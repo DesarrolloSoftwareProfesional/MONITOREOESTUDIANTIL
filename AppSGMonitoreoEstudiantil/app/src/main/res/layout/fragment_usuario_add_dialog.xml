@@ -103,7 +103,7 @@
             android:layout_weight="1"
             android:paddingRight="@dimen/padding_medium">
 
-            <AutoCompleteTextView
+            <EditText
                 android:id="@+id/edtx_usu_add_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
             android:paddingRight="@dimen/padding_medium">
 
             <EditText
-                android:id="@+id/edtx_usu_add_dni"
+                android:id="@+id/edtx_usu_add_dni_alumno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Dni del Alumno"
