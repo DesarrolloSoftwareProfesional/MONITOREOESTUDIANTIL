@@ -21,7 +21,6 @@
 
         <EditText
             android:id="@+id/log_etx_usu"
-
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:drawableLeft="@drawable/ic_icon_user"
@@ -54,6 +53,34 @@
             android:backgroundTint="#F17921"
             android:text="Entrar"
             android:layout_marginTop="10dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="PASSWORD"
+                android:layout_marginRight="10dp"
+                android:id="@+id/log_tvi_pass"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="|"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REGISTRAR"
+                android:paddingLeft="10dp"
+                android:id="@+id/log_tvi_reg"/>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
