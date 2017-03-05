@@ -21,6 +21,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
+                android:tint="@color/colorTextIcons"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_icon_user" />
         </LinearLayout>
@@ -56,6 +57,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tint="@color/colorTextIcons"
                 android:src="@drawable/ic_icon_user" />
         </LinearLayout>
 
@@ -92,6 +94,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tint="@color/colorTextIcons"
                 android:src="@drawable/ic_icon_email_reg" />
         </LinearLayout>
 
@@ -127,6 +130,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
+                android:tint="@color/colorTextIcons"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_icon_dni" />
         </LinearLayout>
@@ -166,6 +170,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tint="@color/colorTextIcons"
                 android:src="@drawable/ic_icon_password" />
         </LinearLayout>
 
@@ -202,6 +207,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tint="@color/colorTextIcons"
                 android:src="@drawable/ic_icon_password" />
         </LinearLayout>
 
