@@ -12,6 +12,8 @@
 
     tools:context="pe.edu.sise.appsgmonitoreoestudiantil.LoginActivity">
 
+    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,16 +69,20 @@
                 android:layout_height="match_parent"
                 android:text="PASSWORD"
                 android:layout_marginRight="10dp"
+                android:textColor="#fff"
                 android:id="@+id/log_tvi_pass"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="|"/>
+                android:text="|"
+                android:textColor="#fff"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="REGISTRAR"
                 android:paddingLeft="10dp"
+                android:textColor="#fff"
                 android:id="@+id/log_tvi_reg"/>
 
         </LinearLayout>
