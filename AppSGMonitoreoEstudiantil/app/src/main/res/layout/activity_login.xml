@@ -1,42 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_width="300dp"
+    android:layout_height="350dp"
+    android:layout_gravity="center"
+    android:background="@drawable/side_item_layout_component_login"
+    android:backgroundTint="#826D5D"
     android:orientation="vertical"
+    android:gravity="center"
+
     tools:context="pe.edu.sise.appsgmonitoreoestudiantil.LoginActivity">
 
-
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Usuario"
-        android:textAlignment="center"
-        android:ems="10"
-        android:drawableLeft="@drawable/ic_icon_user"
-        android:id="@+id/editText" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_marginTop="90dp">
+
+        <EditText
+            android:id="@+id/log_etx_usu"
+
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:drawableLeft="@drawable/ic_icon_user"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:textAlignment="center"
+            android:backgroundTint="#ffffff"
+
+            android:background="@drawable/side_item_layout_component_login"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/log_etx_pass"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:backgroundTint="#ffffff"
+            android:background="@drawable/side_item_layout_component_login"
+            android:drawableLeft="@drawable/ic_icon_password"
+            android:hint="*******"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/log_btn_entrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/side_item_layout_componet_small"
+            android:backgroundTint="#F17921"
+            android:text="Entrar"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Contraseña"
-        android:textAlignment="center"
-        android:inputType="textPassword"
-        android:drawableLeft="@drawable/ic_icon_password"
-        android:ems="10"
-        android:id="@+id/editText2" />
-
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button" />
 </LinearLayout>
