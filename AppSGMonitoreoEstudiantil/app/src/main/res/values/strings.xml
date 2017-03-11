@@ -2,4 +2,12 @@
     <string name="app_name">AppSGMonitoreoEstudiantil</string>
     <string name="nameSistema">Sistema Gestional de Monitoreo Estudiantil</string>
     <string name="namePagina">www.SGMonitoreoEstudiantil</string>
+
+    <string name="error_invalid_email">Esta dirección de correo electrónico no es válida</string>
+    <string name="error_invalid_password">Esta contraseña es demasiado corta</string>
+    <string name="error_incorrect_password">Esta contraseña es incorrecta</string>
+    <string name="error_field_required">Este campo es requerido</string>
+    <string name="error_incorrect_dni">El dni debe tener 8 digitos</string>
+    <string name="error_incorrect_pass_conf">Las contraseñas no coinciden</string>
+    <string name="error_invalid_access">Acceso denegado temporalmente</string>
 </resources>
