@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/dimen_padding_small"
         android:background="@drawable/side_item_layout_componet_small"
         android:orientation="horizontal">
 
@@ -34,21 +34,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingRight="@dimen/padding_medium">
+            android:paddingRight="@dimen/dimen_padding_medium">
 
             <EditText
                 android:id="@+id/usu_add_etx_nom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombres" />
+                android:hint="@string/hint_nombres_usuario" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_small"
-        android:layout_marginTop="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/dimen_padding_small"
+        android:layout_marginTop="@dimen/dimen_padding_small"
         android:background="@drawable/side_item_layout_componet_small"
         android:orientation="horizontal">
 
@@ -69,13 +69,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingRight="@dimen/padding_medium">
+            android:paddingRight="@dimen/dimen_padding_medium">
 
             <EditText
                 android:id="@+id/usu_add_etx_ape"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Apellidos" />
+                android:hint="@string/hint_apellido_usuario" />
         </LinearLayout>
     </LinearLayout>
 
@@ -83,8 +83,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_small"
-        android:layout_marginTop="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/dimen_padding_small"
+        android:layout_marginTop="@dimen/dimen_padding_small"
         android:background="@drawable/side_item_layout_componet_small"
         android:orientation="horizontal">
 
@@ -105,13 +105,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingRight="@dimen/padding_medium">
+            android:paddingRight="@dimen/dimen_padding_medium">
 
             <EditText
                 android:id="@+id/usu_add_etx_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="E-mail"
+                android:hint="@string/hint_email_usuario"
                 android:inputType="textEmailAddress" />
         </LinearLayout>
 
@@ -120,8 +120,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_small"
-        android:layout_marginTop="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/dimen_padding_small"
+        android:layout_marginTop="@dimen/dimen_padding_small"
         android:background="@drawable/side_item_layout_componet_small"
         android:orientation="horizontal">
 
@@ -142,13 +142,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingRight="@dimen/padding_medium">
+            android:paddingRight="@dimen/dimen_padding_medium">
 
             <EditText
                 android:id="@+id/usu_add_etx_dni_alum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Dni del Alumno"
+                android:hint="@string/hint_dni_alumno"
                 android:inputType="numberSigned"
                 android:maxLength="8" />
         </LinearLayout>
@@ -159,8 +159,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_small"
-        android:layout_marginTop="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/dimen_padding_small"
+        android:layout_marginTop="@dimen/dimen_padding_small"
         android:background="@drawable/side_item_layout_componet_small"
         android:orientation="horizontal">
 
@@ -181,13 +181,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingRight="@dimen/padding_medium">
+            android:paddingRight="@dimen/dimen_padding_medium">
 
             <EditText
                 android:id="@+id/usu_add_etx_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="@string/hint_password_usuario"
                 android:inputType="textPassword" />
         </LinearLayout>
 
@@ -196,8 +196,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_small"
-        android:layout_marginTop="@dimen/padding_small"
+        android:layout_marginBottom="@dimen/dimen_padding_small"
+        android:layout_marginTop="@dimen/dimen_padding_small"
         android:background="@drawable/side_item_layout_componet_small"
         android:orientation="horizontal">
 
@@ -218,13 +218,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingRight="@dimen/padding_medium">
+            android:paddingRight="@dimen/dimen_padding_medium">
 
             <EditText
                 android:id="@+id/usu_add_etx_pass_conf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Confirmar Password"
+                android:hint="@string/hint_pass_conf"
                 android:inputType="textPassword" />
         </LinearLayout>
 
@@ -241,7 +241,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/side_item_layout_componet_small"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:text="Registrarse"
+            android:text="@string/name_button_registrar"
             android:textColor="@android:color/white" />
 
     </LinearLayout>

@@ -79,36 +79,36 @@ public class UsuarioAddDialogFragment extends DialogFragment implements View.OnC
 
         //verificar nombre
         if (TextUtils.isEmpty(nombres)) {
-            container.usu_add_etx_nom.setError(getString(R.string.error_field_required));
+            container.usu_add_etx_nom.setError(getString(R.string.err_field_required));
             focusView = container.usu_add_etx_nom;
             cancel = true;
         }
 
         //Verificar apellidos
         if (TextUtils.isEmpty(apellidos)) {
-            container.usu_add_etx_ape.setError(getString(R.string.error_field_required));
+            container.usu_add_etx_ape.setError(getString(R.string.err_field_required));
             focusView = container.usu_add_etx_ape;
             cancel = true;
         }
 
         //Verificar dni
         if (TextUtils.isEmpty(dniAlum)) {
-            container.usu_add_etx_dni_alum.setError(getString(R.string.error_field_required));
+            container.usu_add_etx_dni_alum.setError(getString(R.string.err_field_required));
             focusView = container.usu_add_etx_dni_alum;
             cancel = true;
         } else if (!isDniValid(dniAlum)) {
-            container.usu_add_etx_dni_alum.setError(getString(R.string.error_incorrect_dni));
+            container.usu_add_etx_dni_alum.setError(getString(R.string.err_incorrect_dni));
             focusView = container.usu_add_etx_dni_alum;
             cancel = true;
         }
 
         //Verificar Email
         if (TextUtils.isEmpty(email)) {
-            container.usu_add_etx_email.setError(getString(R.string.error_field_required));
+            container.usu_add_etx_email.setError(getString(R.string.err_field_required));
             focusView = container.usu_add_etx_email;
             cancel = true;
         } else if (!isEmailValid(email)) {
-            container.usu_add_etx_email.setError(getString(R.string.error_invalid_email));
+            container.usu_add_etx_email.setError(getString(R.string.err_invalid_email));
             focusView = container.usu_add_etx_email;
             cancel = true;
         }
@@ -116,22 +116,22 @@ public class UsuarioAddDialogFragment extends DialogFragment implements View.OnC
 
         //Verificar Password
         if (TextUtils.isEmpty(password)) {
-            container.usu_add_etx_pass.setError(getString(R.string.error_field_required));
+            container.usu_add_etx_pass.setError(getString(R.string.err_field_required));
             focusView = container.usu_add_etx_pass;
             cancel = true;
         } else if (!isPasswordValid(password)) {
-            container.usu_add_etx_pass.setError(getString(R.string.error_invalid_password));
+            container.usu_add_etx_pass.setError(getString(R.string.err_invalid_password));
             focusView = container.usu_add_etx_pass;
             cancel = true;
         }
 
         //Verificar que los password concuerden
         if (TextUtils.isEmpty(passConf)) {
-            container.usu_add_etx_pass_conf.setError(getString(R.string.error_field_required));
+            container.usu_add_etx_pass_conf.setError(getString(R.string.err_field_required));
             focusView = container.usu_add_etx_pass_conf;
             cancel = true;
         } else if (!password.equals(passConf)) {
-            container.usu_add_etx_pass_conf.setError(getString(R.string.error_incorrect_pass_conf));
+            container.usu_add_etx_pass_conf.setError(getString(R.string.err_incorrect_pass_conf));
             focusView = container.usu_add_etx_pass_conf;
             cancel = true;
         }
