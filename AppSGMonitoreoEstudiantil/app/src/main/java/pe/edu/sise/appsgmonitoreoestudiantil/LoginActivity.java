@@ -12,8 +12,8 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
     private EditText log_etx_usu;
     private EditText log_etx_pass;
     private Button log_btn_entrar;
-    private TextView log_tvi_reg;
-    private TextView log_tvi_pass;
+    private Button log_btn_reg;
+    private TextView log_tvi_recuPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +23,29 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         //creacion de varaibles
         iniciarUI();
     }
+    private void iniciarUI(){
+        log_etx_usu = (EditText) findViewById(R.id.log_etx_usu);
+        log_etx_pass = (EditText) findViewById(R.id.log_etx_pass);
+        log_btn_entrar = (Button) findViewById(R.id.log_btn_entrar);
+        log_btn_reg = (Button) findViewById(R.id.log_btn_reg);
+        log_tvi_recuPass = (TextView) findViewById(R.id.log_txv_recupPass);
+        //Listener
+        log_btn_reg.setOnClickListener(LoginActivity.this);
+        log_btn_entrar.setOnClickListener(LoginActivity.this);
+    }
+
+
+    //Implements Listener
+    private void mostrarDialogoRegistro()
+    {
+        new UsuarioAddDialogFragment().show(getSupportFragmentManager(), "dialogo");
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId())
         {
-            case R.id.log_tvi_reg:
+            case R.id.log_btn_reg:
                 mostrarDialogoRegistro();
                 break;
             case R.id.log_btn_entrar:
@@ -41,23 +58,4 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         startActivity(intent);
         finish();
     }
-    private void iniciarUI(){
-        log_etx_usu = (EditText) findViewById(R.id.log_etx_usu);
-        log_etx_pass = (EditText) findViewById(R.id.log_etx_pass);
-        log_btn_entrar = (Button) findViewById(R.id.log_btn_entrar);
-        log_tvi_reg = (TextView) findViewById(R.id.log_tvi_reg);
-
-        //Listener
-        log_tvi_reg.setOnClickListener(LoginActivity.this);
-
-    }
-
-
-    //Implements Listener
-    private void mostrarDialogoRegistro()
-    {
-        new UsuarioAddDialogFragment().show(getSupportFragmentManager(), "dialogo");
-    }
-
-
 }
