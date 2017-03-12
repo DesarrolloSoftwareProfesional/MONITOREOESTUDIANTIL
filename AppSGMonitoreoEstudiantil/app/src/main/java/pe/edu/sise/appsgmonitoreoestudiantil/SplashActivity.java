@@ -1,14 +1,13 @@
 package pe.edu.sise.appsgmonitoreoestudiantil;
 
 import android.content.Intent;
-import android.support.annotation.InterpolatorRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-import pe.edu.sise.appsgmonitoreoestudiantil.utils.Atributes;
+import pe.edu.sise.utils.Atributes;
 
 public class SplashActivity extends AppCompatActivity {
     private Timer timer;

@@ -1,4 +1,4 @@
-package pe.edu.sise.appsgmonitoreoestudiantil.utils;
+package pe.edu.sise.utils;
 
 /**
  * Created by ASUS on 12/03/2017.
