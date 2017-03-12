@@ -1,5 +1,6 @@
 package pe.edu.sise.appsgmonitoreoestudiantil;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,24 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         //creacion de varaibles
         iniciarUI();
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.log_tvi_reg:
+                mostrarDialogoRegistro();
+                break;
+            case R.id.log_btn_entrar:
+                ingresarSistema();
+                break;
+        }
+    }
+    private void ingresarSistema(){
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
     private void iniciarUI(){
         log_etx_usu = (EditText) findViewById(R.id.log_etx_usu);
         log_etx_pass = (EditText) findViewById(R.id.log_etx_pass);
@@ -30,6 +49,7 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
 
         //Listener
         log_tvi_reg.setOnClickListener(LoginActivity.this);
+
     }
 
 
@@ -39,13 +59,5 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         new UsuarioAddDialogFragment().show(getSupportFragmentManager(), "dialogo");
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId())
-        {
-            case R.id.log_tvi_reg:
-                mostrarDialogoRegistro();
-                break;
-        }
-    }
+
 }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AppSGMonitoreoEstudiantil</string>
     <string name="name_sistema">Sistema Gestional de Monitoreo Estudiantil</string>
-    <string name="name_pagina">www.SGMonitoreoEstudiantil</string>
+    <string name="name_pagina">www.SGMonitoreoEstudiantil.com.pe</string>
 
 
     <string name="err_invalid_email">Esta dirección de correo electrónico no es válida</string>
