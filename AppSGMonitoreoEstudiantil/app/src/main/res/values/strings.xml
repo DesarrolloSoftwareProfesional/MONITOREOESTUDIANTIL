@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">AppSGMonitoreoEstudiantil</string>
     <string name="name_sistema">Sistema Gestional de Monitoreo Estudiantil</string>
-    <string name="name_pagina">www.SGMonitoreoEstudiantil.com.pe</string>
+    <string name="name_pagina">www.SGMonitoreoEstudiantil</string>
+
+
     <string name="err_invalid_email">Esta dirección de correo electrónico no es válida</string>
     <string name="err_invalid_password">Esta contraseña es demasiado corta</string>
     <string name="err_incorrect_password">Esta contraseña es incorrecta</string>
@@ -17,4 +19,19 @@
     <string name="hint_password_usuario">Password</string>
     <string name="hint_pass_conf">Confirmar Password</string>
     <string name="name_button_registrar">Registrar</string>
+
+
+    <string name="name_grado_alumno">Grado</string>
+    <string name="name_periodo_alumno">Periodo</string>
+    <string name="name_valoracion_alumno">Valoracion</string>
+    <string name="name_cant_act">Cant. Act.</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
