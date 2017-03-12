@@ -31,7 +31,7 @@
         android:textAlignment="center"
         android:textSize="@dimen/dimenNomPagina"
         android:text="@string/namePagina"
-        android:textColor="@color/black60"
+        android:textColor="@color/color_black_60"
         android:layout_below="@+id/imgLogoSistema"
         />
 </RelativeLayout>
