@@ -8,19 +8,25 @@
     android:layout_marginLeft="@dimen/dimen_padding_extra_small"
     android:layout_marginRight="@dimen/dimen_padding_extra_small"
     android:layout_marginTop="@dimen/dimen_padding_extra_small"
-    android:background="@color/cardview_light_background"
-    android:foreground="?attr/selectableItemBackground"
-    card_view:cardCornerRadius="@dimen/dimen_radius_card_view_small">
+    android:clickable="true"
+    android:background="@color/colorAccent"
+    card_view:cardCornerRadius="@dimen/dimen_radius_card_view"
+    card_view:cardElevation="@dimen/dimen_elevation_card_view_small"
+    card_view:layout_collapseMode="parallax"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_padding_extra_small">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:paddingLeft="@dimen/dimen_padding_medium"
+            android:paddingRight="@dimen/dimen_padding_medium">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -46,6 +52,7 @@
                 android:textColor="@color/colorPrimaryText"
                 android:text="J. Abel Palomino Rojas"
                 android:layout_marginBottom="@dimen/dimen_padding_medium"
+                android:textAlignment="center"
                 android:id="@+id/alum_row_tvi_alum" />
 
             <LinearLayout
