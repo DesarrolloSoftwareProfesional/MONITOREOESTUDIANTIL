@@ -8,9 +8,10 @@ import android.os.Bundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import pe.edu.sise.appsgmonitoreoestudiantil.utils.Atributes;
+
 public class SplashActivity extends AppCompatActivity {
     private Timer timer;
-    private final int splashTime = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
                 irLogin();
             }
         };
-        timer.schedule(tt,splashTime);
+        timer.schedule(tt, Atributes.splashTime);
     }
 
     private void irLogin(){

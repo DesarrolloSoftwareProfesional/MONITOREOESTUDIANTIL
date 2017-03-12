@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name">AppSGMonitoreoEstudiantil</string>
-    <string name="nameSistema">Sistema Gestional de Monitoreo Estudiantil</string>
-    <string name="namePagina">www.SGMonitoreoEstudiantil</string>
-
-
-
+    <string name="name_sistema">Sistema Gestional de Monitoreo Estudiantil</string>
+    <string name="name_pagina">www.SGMonitoreoEstudiantil.com.pe</string>
     <string name="err_invalid_email">Esta dirección de correo electrónico no es válida</string>
     <string name="err_invalid_password">Esta contraseña es demasiado corta</string>
     <string name="err_incorrect_password">Esta contraseña es incorrecta</string>

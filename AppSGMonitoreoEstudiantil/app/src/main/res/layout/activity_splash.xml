@@ -9,10 +9,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nameSistema"
+        android:text="@string/name_sistema"
+        android:layout_centerHorizontal="true"
         android:layout_above="@+id/imgLogoSistema"
         android:textAlignment="center"
-        android:textSize="@dimen/dimenNomSistema"
+        android:textSize="@dimen/dimen_nom_sistema"
         android:paddingBottom="@dimen/paddTopBottomImg"
         android:textColor="@android:color/black"
         />
@@ -29,8 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        android:textSize="@dimen/dimenNomPagina"
-        android:text="@string/namePagina"
+        android:textSize="@dimen/dimen_nom_pagina"
+        android:text="@string/name_pagina"
         android:textColor="@color/color_black_60"
         android:layout_below="@+id/imgLogoSistema"
         />

@@ -3,8 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="paddTopBottomImg">16dp</dimen>
-    <dimen name="dimenNomSistema">25sp</dimen>
-    <dimen name="dimenNomPagina">20sp</dimen>
+    <dimen name="dimen_nom_sistema">25sp</dimen>
+    <dimen name="dimen_nom_pagina">20sp</dimen>
     <dimen name="dimen_padding_large">12sp</dimen>
     <dimen name="dimen_padding_extra_large">10sp</dimen>
     <dimen name="dimen_padding_medium">8sp</dimen>
