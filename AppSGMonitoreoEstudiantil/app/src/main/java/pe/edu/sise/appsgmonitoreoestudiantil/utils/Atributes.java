@@ -5,5 +5,5 @@ package pe.edu.sise.appsgmonitoreoestudiantil.utils;
  */
 
 public class Atributes {
-    public static final int splashTime = 2000;
+    public static final int splashTime = 3000;
 }
