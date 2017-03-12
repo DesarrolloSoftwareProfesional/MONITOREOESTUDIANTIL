@@ -6,88 +6,100 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/degradado"
     android:gravity="center"
-    android:orientation="vertical"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp"
+    android:background="@drawable/degradado"
+    android:orientation="horizontal"
     tools:context="pe.edu.sise.appsgmonitoreoestudiantil.LoginActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_logo_monitoreo"
-        android:layout_marginTop="-25dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:height="20dp"
+        android:orientation="vertical"
         android:gravity="center"
-        android:text="@string/name_sistema"
-        android:textAlignment="center"
-        android:textColor="#900C3F" />
+        android:layout_gravity="center">
 
-    <EditText
-        android:id="@+id/log_etx_usu"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/color_trans"
-        android:drawableStart="@drawable/ic_icon_user"
-        android:hint=" Ingrese usuario"
-        android:paddingLeft="10dp"
-        android:textColor="#EA3535"
-        android:textSize="18dp"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:srcCompat="@drawable/ic_logo_monitoreo" />
+        <TextView
+            android:layout_width="239dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/name_sistema"
+            android:textColor="#8F2F0D"
+            android:textSize="18dp"
+            android:textAlignment="center"/>
 
-    <EditText
-        android:id="@+id/log_etx_pass"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/color_trans"
-        android:drawableStart="@drawable/ic_icon_password"
-        android:hint=" Ingrese password"
-        android:paddingLeft="10dp"
-        android:textColor="#EA3535"
-        android:textSize="18dp"/>
+    </LinearLayout>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recordar usuario"
-        android:layout_marginTop="5dp"
-        android:textColor="#8F2F0D"
-        android:buttonTint="#FF7408"/>
-
-    <Button
-        android:id="@+id/log_btn_entrar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Entrar"
-        android:background="#DE7653"
-        android:textColor="#fff"/>
+        android:orientation="vertical"
+        android:padding="6dp"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/log_etx_usu"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="6dp"
+            android:background="@color/color_trans"
+            android:drawableStart="@drawable/ic_icon_user"
+            android:hint=" Ingrese usuario"
+            android:paddingLeft="10dp"
+            android:textColor="#EA3535"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/log_etx_pass"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/color_trans"
+            android:drawableStart="@drawable/ic_icon_password"
+            android:hint=" Ingrese password"
+            android:paddingLeft="10dp"
+            android:textColor="#EA3535"
+            android:textSize="16dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:buttonTint="#FF7408"
+            android:text="Recordar usuario"
+            android:textColor="#8F2F0D" />
+
+        <Button
+            android:id="@+id/log_btn_entrar"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginTop="10dp"
+            android:background="#DE7653"
+            android:text="Entrar"
+            android:textColor="#fff" />
 
 
-    <Button
-        android:id="@+id/log_tvi_reg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Regitrarse"
-        android:background="#E0D8D6"
-        />
+        <Button
+            android:id="@+id/log_tvi_reg"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginTop="5dp"
+            android:background="#E0D8D6"
+            android:text="Regitrarse" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:textSize="15dp"
-        android:text="Olvidaste tu contraseña?"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Olvidaste tu contraseña?"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
 
 </LinearLayout>
