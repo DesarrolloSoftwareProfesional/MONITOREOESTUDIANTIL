@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         log_etx_pass = (EditText) findViewById(R.id.log_etx_pass);
         log_btn_entrar = (Button) findViewById(R.id.log_btn_entrar);
         log_tvi_reg = (TextView) findViewById(R.id.log_tvi_reg);
-        log_tvi_pass = (TextView) findViewById(R.id.log_etx_pass);
 
         //Listener
         log_tvi_reg.setOnClickListener(LoginActivity.this);

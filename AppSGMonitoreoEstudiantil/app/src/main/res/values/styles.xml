@@ -20,4 +20,5 @@
     <style name="Theme_Dialog" parent="android:Theme.Holo.Dialog.NoActionBar.MinWidth">
         <item name="android:windowBackground">@drawable/side_item_layout_dialog_small</item>
     </style>
+
 </resources>
