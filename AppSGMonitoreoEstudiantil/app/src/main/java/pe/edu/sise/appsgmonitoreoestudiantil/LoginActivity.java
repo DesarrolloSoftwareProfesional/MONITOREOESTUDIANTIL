@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import pe.edu.sise.utils.Atributes;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText log_etx_usu;
@@ -23,10 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        //creacion de varaibles
         iniciarUI();
-
     }
 
     private void iniciarUI() {
@@ -65,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String pass = log_etx_pass.getText().toString();
         validasCamposDeEntrad();
 
-        if (usu.equals("jona") & pass.equals("jonaasd")) {
+        if (usu.equals(Atributes.usuarioAdmin) & pass.equals(Atributes.passAdmin)) {
             Toast.makeText(getApplicationContext(), "Cargando...", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
@@ -78,38 +77,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void validasCamposDeEntrad() {
-
         log_etx_usu.setError(null);
         log_etx_pass.setError(null);
-
         String usu = log_etx_usu.getText().toString();
         String pass = log_etx_pass.getText().toString();
-
-
         boolean cancel = false;
         View focusView = null;
 
 
         if (TextUtils.isEmpty(usu)) {
             log_etx_usu.setError(getString(R.string.err_field_required));
-
             focusView = log_etx_usu;
             cancel = true;
         }
-
         if (TextUtils.isEmpty(pass)) {
             log_etx_pass.setError(getString(R.string.err_field_required));
             focusView = log_etx_pass;
             cancel = true;
         }
-
         if (cancel) {
             focusView.requestFocus();
         } else {
-
         }
-
-
     }
-
 }

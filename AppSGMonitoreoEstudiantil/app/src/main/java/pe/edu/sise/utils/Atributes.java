@@ -6,4 +6,6 @@ package pe.edu.sise.utils;
 
 public class Atributes {
     public static final int splashTime = 3000;
+    public static final String usuarioAdmin = "Admin";
+    public static final String passAdmin = "Admin";
 }
