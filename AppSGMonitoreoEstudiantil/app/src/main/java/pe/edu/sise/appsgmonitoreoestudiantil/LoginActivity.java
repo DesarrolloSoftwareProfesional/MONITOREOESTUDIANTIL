@@ -72,7 +72,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             finish();
         } else {
             Toast.makeText(getApplicationContext(),(getString(R.string.err_login)), Toast.LENGTH_LONG).show();
-            log_etx_usu.setText("");
             log_etx_pass.setText("");
             log_etx_usu.requestFocus();
         }
