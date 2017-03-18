@@ -3,17 +3,21 @@ package pe.edu.sise.appsgmonitoreoestudiantil;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity  implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
     private EditText log_etx_usu;
     private EditText log_etx_pass;
     private Button log_btn_entrar;
     private Button log_btn_reg;
     private TextView log_tvi_recuPass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +26,16 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
 
         //creacion de varaibles
         iniciarUI();
+
     }
-    private void iniciarUI(){
+
+    private void iniciarUI() {
         log_etx_usu = (EditText) findViewById(R.id.log_etx_usu);
         log_etx_pass = (EditText) findViewById(R.id.log_etx_pass);
         log_btn_entrar = (Button) findViewById(R.id.log_btn_entrar);
         log_btn_reg = (Button) findViewById(R.id.log_btn_reg);
         log_tvi_recuPass = (TextView) findViewById(R.id.log_txv_recupPass);
+
         //Listener
         log_btn_reg.setOnClickListener(LoginActivity.this);
         log_btn_entrar.setOnClickListener(LoginActivity.this);
@@ -36,15 +43,13 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
 
 
     //Implements Listener
-    private void mostrarDialogoRegistro()
-    {
+    private void mostrarDialogoRegistro() {
         new UsuarioAddDialogFragment().show(getSupportFragmentManager(), "dialogo");
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.log_btn_reg:
                 mostrarDialogoRegistro();
                 break;
@@ -53,9 +58,59 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
                 break;
         }
     }
-    private void ingresarSistema(){
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-        finish();
+
+    private void ingresarSistema() {
+
+        String usu = log_etx_usu.getText().toString();
+        String pass = log_etx_pass.getText().toString();
+        validasCamposDeEntrad();
+
+        if (usu.equals("jona") & pass.equals("jonaasd")) {
+            Toast.makeText(getApplicationContext(), "Cargando...", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(getApplicationContext(),(getString(R.string.err_login)), Toast.LENGTH_LONG).show();
+            log_etx_usu.setText("");
+            log_etx_pass.setText("");
+            log_etx_usu.requestFocus();
+        }
     }
+
+    private void validasCamposDeEntrad() {
+
+        log_etx_usu.setError(null);
+        log_etx_pass.setError(null);
+
+        String usu = log_etx_usu.getText().toString();
+        String pass = log_etx_pass.getText().toString();
+
+
+        boolean cancel = false;
+        View focusView = null;
+
+
+        if (TextUtils.isEmpty(usu)) {
+            log_etx_usu.setError(getString(R.string.err_field_required));
+
+            focusView = log_etx_usu;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(pass)) {
+            log_etx_pass.setError(getString(R.string.err_field_required));
+            focusView = log_etx_pass;
+            cancel = true;
+        }
+
+        if (cancel) {
+            focusView.requestFocus();
+        } else {
+
+        }
+
+
+    }
+
 }

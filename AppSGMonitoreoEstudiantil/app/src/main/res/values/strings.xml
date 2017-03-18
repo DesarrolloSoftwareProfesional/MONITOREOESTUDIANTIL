@@ -32,6 +32,10 @@
 
     <string name="action_settings">Settings</string>
 
+    <string name="hint_user">Ingrese Usuario</string>
+    <string name="hint_pass">Ingrese Contraseña</string>
+    <string name="err_login">Usuario o Contraseña incorrecto</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
