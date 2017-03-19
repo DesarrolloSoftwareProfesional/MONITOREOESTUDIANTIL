@@ -1,6 +1,8 @@
 package pe.edu.sise.adapter;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import pe.edu.sise.appsgmonitoreoestudiantil.DetalleAlumnoActivity;
 import pe.edu.sise.model.Alumno;
 import pe.edu.sise.appsgmonitoreoestudiantil.R;
 
@@ -38,7 +41,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         Alumno alumno = this.alumnoList.get(position);
 
         holder.alum_row_tvi_alum.setText(alumno.getNombres() + " " + alumno.getApellidos());
@@ -46,6 +49,14 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
         holder.alum_row_tvi_periodo.setText(String.valueOf(alumno.getCodPeriodo()));
         holder.alum_row_tvi_valoracion.setText(String.valueOf(alumno.getCodGrado()));
 
+        holder.alum_row_cvi_selec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mintt = new Intent(view.getContext(), DetalleAlumnoActivity.class);
+                mintt.putExtra("Nombre",((TextView)view.findViewById(R.id.alum_row_tvi_alum)).getText());
+                view.getContext().startActivity(mintt);
+            }
+        });
 
         int val = alumno.getCodGrado();
         if (val > 4) {
@@ -77,6 +88,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
         public TextView alum_row_tvi_periodo;
         public TextView alum_row_tvi_valoracion;
         public TextView alum_row_tvi_cant_act;
+        public CardView alum_row_cvi_selec;
 
         public ViewHolder(View view) {
             super(view);
@@ -87,6 +99,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
             alum_row_tvi_periodo = (TextView) view.findViewById(R.id.alum_row_tvi_periodo);
             alum_row_tvi_valoracion = (TextView) view.findViewById(R.id.alum_row_tvi_valoracion);
             alum_row_tvi_cant_act = (TextView) view.findViewById(R.id.alum_row_tvi_cant_act);
+            alum_row_cvi_selec = (CardView) view.findViewById(R.id.alum_row_cvi_selec);
         }
     }
 }

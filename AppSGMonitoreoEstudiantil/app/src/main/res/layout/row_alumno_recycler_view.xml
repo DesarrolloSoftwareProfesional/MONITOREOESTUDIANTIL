@@ -13,6 +13,7 @@
     card_view:cardCornerRadius="@dimen/dimen_radius_card_view"
     card_view:cardElevation="@dimen/dimen_elevation_card_view_small"
     card_view:layout_collapseMode="parallax"
+    android:id="@+id/alum_row_cvi_selec"
     android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
