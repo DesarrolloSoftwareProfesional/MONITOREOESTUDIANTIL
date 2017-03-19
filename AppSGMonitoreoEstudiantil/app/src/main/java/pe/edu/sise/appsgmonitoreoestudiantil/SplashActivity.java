@@ -26,8 +26,8 @@ public class SplashActivity extends AppCompatActivity {
         timer.schedule(tt, Atributes.splashTime);
     }
 
-    private void irLogin(){
-        Intent inte = new Intent(this,LoginActivity.class);
+    private void irLogin() {
+        Intent inte = new Intent(this, LoginActivity.class);
         startActivity(inte);
         this.finish();
     }
