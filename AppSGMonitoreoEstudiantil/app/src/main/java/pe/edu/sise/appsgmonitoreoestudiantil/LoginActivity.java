@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,6 +38,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         log_tvi_recuPass = (TextView) findViewById(R.id.log_txv_recupPass);
 
         //Listener
+        log_etx_pass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if ((keyEvent != null
+                     && (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER))
+                     || (i == EditorInfo.IME_ACTION_DONE)) {
+                    ingresarSistema();
+                }
+                return false;
+            }
+        });
+
         log_btn_reg.setOnClickListener(LoginActivity.this);
         log_btn_entrar.setOnClickListener(LoginActivity.this);
     }
