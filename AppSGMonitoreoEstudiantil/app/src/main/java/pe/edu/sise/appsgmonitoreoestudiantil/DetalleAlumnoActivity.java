@@ -14,6 +14,8 @@ public class DetalleAlumnoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         setContentView(R.layout.activity_detalle_alumno);
         iniciarUI();
     }

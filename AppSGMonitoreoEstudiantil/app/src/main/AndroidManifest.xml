@@ -18,7 +18,8 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".DetalleAlumnoActivity">
+        <activity android:name=".DetalleAlumnoActivity"
+                  android:parentActivityName=".MainActivity" >
         </activity>
     </application>
 
