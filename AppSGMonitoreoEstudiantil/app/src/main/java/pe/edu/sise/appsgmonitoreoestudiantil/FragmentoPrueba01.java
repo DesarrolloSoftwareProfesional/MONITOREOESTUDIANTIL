@@ -13,6 +13,7 @@ import android.widget.TextView;
  */
 
 public class FragmentoPrueba01 extends Fragment{
+
     public FragmentoPrueba01() {
 
     }

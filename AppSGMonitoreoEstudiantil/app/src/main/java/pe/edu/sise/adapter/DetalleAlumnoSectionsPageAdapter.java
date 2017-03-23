@@ -40,11 +40,11 @@ public class DetalleAlumnoSectionsPageAdapter  extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Desempeño";
+                return "Datos Generales";
             case 1:
                 return "Actividades";
             case 2:
-                return "Datos Generales";
+                return "Desempeño";
         }
         return null;
     }

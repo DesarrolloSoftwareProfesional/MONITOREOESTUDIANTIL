@@ -55,6 +55,7 @@ public class AlumnoRecyclerViewFragment extends Fragment {
     }
 
     private SwipeRefreshLayout.OnRefreshListener alum_recv_swrefSetOnRefreshListene(){
+
         return new SwipeRefreshLayout.OnRefreshListener(){
 
             @Override
@@ -75,6 +76,7 @@ public class AlumnoRecyclerViewFragment extends Fragment {
 
 
     //metodos para test
+
     private List<Alumno> cargarListaTest(){
         List<Alumno> list =new ArrayList<>();
 
