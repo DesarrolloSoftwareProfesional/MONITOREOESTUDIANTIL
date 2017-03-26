@@ -13,13 +13,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import pe.edu.sise.utils.SessionManager;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    // Usuario Logeado
+    protected SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.sessionManager=new SessionManager(this);
+
         iniciarUI();
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
                 new AlumnoRecyclerViewFragment()).addToBackStack(null).commit();
@@ -101,7 +108,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-
+            this.sessionManager.closeUsuarioSession();
+            finish();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -112,4 +120,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }

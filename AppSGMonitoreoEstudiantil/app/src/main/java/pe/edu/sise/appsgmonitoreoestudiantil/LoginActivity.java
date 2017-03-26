@@ -8,11 +8,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import pe.edu.sise.model.Usuario;
 import pe.edu.sise.utils.Atributes;
+import pe.edu.sise.utils.SessionManager;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,12 +24,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button log_btn_entrar;
     private Button log_btn_reg;
     private TextView log_tvi_recuPass;
+    private CheckBox log_chb_recUser;
 
+    //Session Usuario
+
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        this.sessionManager=new SessionManager(this);
+
+        if(sessionManager.isLoggedUsuario()){
+            irFormularioMain();
+        }
+
         iniciarUI();
     }
 
@@ -36,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         log_btn_entrar = (Button) findViewById(R.id.log_btn_entrar);
         log_btn_reg = (Button) findViewById(R.id.log_btn_reg);
         log_tvi_recuPass = (TextView) findViewById(R.id.log_txv_recupPass);
-
+        log_chb_recUser=(CheckBox)findViewById(R.id.log_chb_recUser);
         //Listener
         log_etx_pass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -80,9 +93,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (usu.equals(Atributes.usuarioAdmin) & pass.equals(Atributes.passAdmin)) {
             Toast.makeText(getApplicationContext(), "Cargando...", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
+            if(log_chb_recUser.isChecked()){
+                this.guardarUsuario();
+            }
+            this.irFormularioMain();
         } else {
             Toast.makeText(getApplicationContext(),(getString(R.string.err_login)), Toast.LENGTH_LONG).show();
             log_etx_pass.setText("");
@@ -112,6 +126,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (cancel) {
             focusView.requestFocus();
         } else {
+
         }
+    }
+
+    private  void guardarUsuario(){
+        Usuario  usuario= new Usuario();
+        usuario.setEmailusu(Atributes.usuarioAdmin);
+        usuario.setNomusu("Abel");
+        usuario.setApeusu("Palomino Rojas");
+        usuario.setIdusu("0");
+
+        this.sessionManager.createUsuarioSession(usuario);
+    }
+
+    private  void irFormularioMain(){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
