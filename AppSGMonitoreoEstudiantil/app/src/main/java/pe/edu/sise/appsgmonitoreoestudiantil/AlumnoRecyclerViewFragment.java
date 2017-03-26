@@ -51,6 +51,8 @@ public class AlumnoRecyclerViewFragment extends Fragment {
         //Listener
         alum_recv_swref.setOnRefreshListener(alum_recv_swrefSetOnRefreshListene());
 
+        alum_recv_swref.setColorSchemeResources(R.color.colorPrimaryDark);
+
         return view;
     }
 
