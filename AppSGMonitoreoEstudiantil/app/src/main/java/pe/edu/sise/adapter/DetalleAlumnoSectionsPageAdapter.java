@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import pe.edu.sise.appsgmonitoreoestudiantil.AlumnoDatosGeneralesFragment;
+import pe.edu.sise.appsgmonitoreoestudiantil.AlumnoLstActvFragment;
 import pe.edu.sise.appsgmonitoreoestudiantil.FragmentoPrueba01;
 import pe.edu.sise.appsgmonitoreoestudiantil.FragmentoPrueba02;
 import pe.edu.sise.appsgmonitoreoestudiantil.FragmentoPrueba03;
@@ -22,9 +24,9 @@ public class DetalleAlumnoSectionsPageAdapter  extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new FragmentoPrueba01();
+                return new AlumnoDatosGeneralesFragment();
             case 1:
-                return new FragmentoPrueba02();
+                return new AlumnoLstActvFragment();
             case 2:
                 return new FragmentoPrueba03();
         }
