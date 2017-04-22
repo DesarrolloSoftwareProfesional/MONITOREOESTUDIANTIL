@@ -12,11 +12,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import pe.edu.sise.model.Usuario;
 import pe.edu.sise.utils.SessionManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    protected NavigationView navigationView;
+    protected TextView nav_head_tvi_usuario;
+    protected TextView nav_head_tvi_email;
+
     // Usuario Logeado
     protected SessionManager sessionManager;
 
@@ -25,7 +31,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.sessionManager=new SessionManager(this);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        this.sessionManager = new SessionManager(this);
 
         iniciarUI();
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
@@ -36,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     private void iniciarUI() {
         floatingActionButton();
         navigationView();
+        verSessionUsuario();
     }
 
     private void floatingActionButton() {
@@ -58,8 +66,26 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void verSessionUsuario() {
+        //Asociar un la cabecera con una vista
+        View view = navigationView.getHeaderView(0);
+
+        nav_head_tvi_usuario = (TextView) view.findViewById(R.id.nav_head_tvi_usuario);
+        nav_head_tvi_email = (TextView) view.findViewById(R.id.nav_head_tvi_email);
+
+        if (sessionManager.isLoggedUsuario()) {
+            //consume de la sesion
+            Usuario usuario = this.sessionManager.getUsuarioSession();
+            nav_head_tvi_usuario.setText(usuario.getNomusu().toString() + " " + usuario.getApeusu().toString());
+            nav_head_tvi_email.setText(usuario.getEmailusu().toString());
+        } else {
+            //consume del serviciio
+            nav_head_tvi_usuario.setText("Usuario sin datos");
+            nav_head_tvi_email.setText("usuariosindados@gmail.com");
+        }
     }
 
     @Override
@@ -107,7 +133,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_log_out) {
             this.sessionManager.closeUsuarioSession();
             finish();
         } else if (id == R.id.nav_share) {
@@ -120,7 +146,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
 }

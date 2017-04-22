@@ -15,9 +15,9 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Slideshow" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_log_out"
+            android:icon="@drawable/ic_icon_log_out"
+            android:title="Cerrar sesion" />
     </group>
 
     <item android:title="Communicate">

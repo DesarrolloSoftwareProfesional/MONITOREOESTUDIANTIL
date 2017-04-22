@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private  void guardarUsuario(){
         Usuario  usuario= new Usuario();
-        usuario.setEmailusu(Atributes.usuarioAdmin);
+        usuario.setEmailusu("apalomino@gmail.com");
         usuario.setNomusu("Abel");
         usuario.setApeusu("Palomino Rojas");
         usuario.setIdusu("0");
