@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="190dp"
-    card_view:cardCornerRadius="7dp"
-    android:layout_marginTop="8dp"
-    android:layout_margin="9dp"
-    android:padding="5dp">
+    android:layout_height="165dp"
+    card_view:cardCornerRadius="5dp"
+    android:layout_margin="2sp"
+    card_view:cardElevation="@dimen/dimen_elevation_card_view_small"
+    card_view:layout_collapseMode="parallax"
+    android:foreground="?android:attr/selectableItemBackground"
+    >
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#e6e6e6">
+            android:background="#fff"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/alum_actv_tituloAct"
@@ -34,60 +39,155 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="#18768e" />
+                    android:layout_height="1dp"
+                    android:background="#555555" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="6dp"
-                android:orientation="vertical"
-                android:background="#e7e7e7"
-                >
+                android:orientation="horizontal"
+                android:layout_margin="5dp">
 
-                <TextView
-                    android:id="@+id/alum_actv_curso"
+                <LinearLayout
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="12dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Curso:"
+                            android:textSize="17dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Profesor:"
+                            android:textSize="17dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fecha:"
+                            android:textSize="17dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hora Inicio:"
+                            android:textSize="17dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hora Fin:"
+                            android:textSize="17dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Curso :"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/alum_actv_prof"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Prof :"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/alum_actv_fecha"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Fecha :"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                        <TextView
+                            android:id="@+id/alum_actv_curso"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="NomCurso"
+                            android:textSize="17dp"/>
 
-                <TextView
-                    android:id="@+id/alum_actv_hini"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Hora inicio :"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/alum_actv_hfin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Hora fin :"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/alum_actv_prof"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="nomProfesor"
+                            android:textSize="17dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/alum_actv_fecha"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="fecha"
+                            android:textSize="17dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/alum_actv_hini"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="hora_ini"
+                            android:textSize="17dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/alum_actv_hfin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="hora_fin"
+                            android:textSize="17dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
 
 
             </LinearLayout>
 
-
         </LinearLayout>
-
 
     </RelativeLayout>
 

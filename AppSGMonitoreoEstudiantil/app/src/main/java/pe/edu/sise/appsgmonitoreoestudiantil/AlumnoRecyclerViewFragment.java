@@ -82,9 +82,9 @@ public class AlumnoRecyclerViewFragment extends Fragment {
     private List<Alumno> cargarListaTest(){
         List<Alumno> list =new ArrayList<>();
 
-        list.add(new Alumno("J. Abel","Palomino Rojas",3,2017));
-        list.add(new Alumno("Ronald","Fabian Garcia",4,2017));
-        list.add(new Alumno("Jhonatan","Aruhanca Vilca",1,2017));
+        list.add(new Alumno("J. Abel","Palomino Rojas",2,2017));
+        list.add(new Alumno("Ronald","Fabian Garcia",6,2017));
+        list.add(new Alumno("Jhonatan","Aruhanca Vilca",3,2017));
         list.add(new Alumno("Maria","Diaz Luna",5,2017));
         list.add(new Alumno("Cristina","Fernandez Loayza",2,2017));
         list.add(new Alumno("Fernanda","Lima Rojas",5,2017));

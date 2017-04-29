@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         log_etx_pass = (EditText) findViewById(R.id.log_etx_pass);
         log_btn_entrar = (Button) findViewById(R.id.log_btn_entrar);
         log_btn_reg = (Button) findViewById(R.id.log_btn_reg);
-        log_tvi_recuPass = (TextView) findViewById(R.id.log_txv_recupPass);
+        //log_tvi_recuPass = (TextView) findViewById(R.id.log_txv_recupPass);
         log_chb_recUser=(CheckBox)findViewById(R.id.log_chb_recUser);
         //Listener
         log_etx_pass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             Toast.makeText(getApplicationContext(),(getString(R.string.err_login)), Toast.LENGTH_LONG).show();
             log_etx_pass.setText("");
-            log_etx_usu.requestFocus();
+            log_etx_usu.setText("");
         }
     }
 

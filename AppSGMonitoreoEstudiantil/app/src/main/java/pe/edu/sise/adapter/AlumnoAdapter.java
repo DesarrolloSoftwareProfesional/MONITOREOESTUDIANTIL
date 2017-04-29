@@ -16,7 +16,7 @@ import pe.edu.sise.appsgmonitoreoestudiantil.DetalleAlumnoActivity;
 import pe.edu.sise.model.Alumno;
 import pe.edu.sise.appsgmonitoreoestudiantil.R;
 
-public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder> {
+public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder>{
 
     private List<Alumno> alumnoList;
     private FragmentManager fragmentManager;
