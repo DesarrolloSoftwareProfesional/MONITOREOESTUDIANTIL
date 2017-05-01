@@ -65,11 +65,11 @@ public class AlumnoLstActvAdapter extends RecyclerView.Adapter<AlumnoLstActvAdap
         Alumno alumno = items.get(position);
 
         holder.titulo.setText(alumno.getTipoAct());
-        holder.curso.setText("Curso :" + alumno.getCurso());
-        holder.profe.setText("Prof :" + alumno.getProfesor());
-        holder.fecha.setText("Fecha :" + alumno.getFecha());
-        holder.horainicio.setText("Hora inicio :" + alumno.getHora_ini());
-        holder.horafin.setText("Hora fin :" + alumno.getHora_fin());
+        holder.curso.setText(alumno.getCurso());
+        holder.profe.setText(alumno.getProfesor());
+        holder.fecha.setText(alumno.getFecha());
+        holder.horainicio.setText(alumno.getHora_ini());
+        holder.horafin.setText(alumno.getHora_fin());
 
     }
 

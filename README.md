@@ -1,2 +1,0 @@
-# SistemaMonitoreoEstudiantil
-Proyecto de Tesis

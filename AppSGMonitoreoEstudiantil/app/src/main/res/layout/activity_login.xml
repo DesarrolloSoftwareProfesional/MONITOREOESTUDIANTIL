@@ -66,18 +66,19 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingRight="@dimen/dimen_padding_medium">
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/log_etx_usu"
-                        android:layout_width="match_parent"
+                    <android.support.design.widget.TextInputLayout
+                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/hint_user"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textAlignment="center">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/log_etx_usu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_user"
+                            android:textColor="@color/colorPrimaryDark"/>
+
+                    </android.support.design.widget.TextInputLayout>
 
 
             </LinearLayout>
@@ -117,7 +118,7 @@
                     android:textColor="@color/colorPrimaryDark"
                     app:passwordToggleEnabled = "true"
                     app:passwordToggleDrawable="@drawable/ic_eye_pass"
-                    app:passwordToggleTint="#8ba171"
+                    app:passwordToggleTint="#8ecc88"
                     >
 
                     <EditText
