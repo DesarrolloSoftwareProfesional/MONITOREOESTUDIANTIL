@@ -117,8 +117,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimaryDark"
                     app:passwordToggleEnabled = "true"
-                    app:passwordToggleDrawable="@drawable/ic_eye_pass"
-                    app:passwordToggleTint="#8ecc88"
+
+                    app:passwordToggleTint="#5e5e5c"
                     >
 
                     <EditText
