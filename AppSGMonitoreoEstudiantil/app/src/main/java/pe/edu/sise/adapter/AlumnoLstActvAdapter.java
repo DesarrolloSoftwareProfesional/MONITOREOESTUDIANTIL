@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import pe.edu.sise.appsgmonitoreoestudiantil.R;
-import pe.edu.sise.model.Alumno;
+import pe.edu.sise.model.AlumnoTest;
 
 /**
  * Created by ASUS on 25/03/2017.
@@ -17,10 +17,10 @@ import pe.edu.sise.model.Alumno;
 
 public class AlumnoLstActvAdapter extends RecyclerView.Adapter<AlumnoLstActvAdapter.AlumnoViewHolder> {
 
-    private List<Alumno> items;
+    private List<AlumnoTest> items;
 
 
-    public AlumnoLstActvAdapter(List<Alumno> items) {
+    public AlumnoLstActvAdapter(List<AlumnoTest> items) {
         this.items = items;
     }
 
@@ -62,7 +62,7 @@ public class AlumnoLstActvAdapter extends RecyclerView.Adapter<AlumnoLstActvAdap
     @Override
     public void onBindViewHolder(AlumnoViewHolder holder, int position) {
 
-        Alumno alumno = items.get(position);
+        AlumnoTest alumno = items.get(position);
 
         holder.titulo.setText(alumno.getTipoAct());
         holder.curso.setText(alumno.getCurso());

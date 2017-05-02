@@ -13,19 +13,19 @@ import android.widget.TextView;
 import java.util.List;
 
 import pe.edu.sise.appsgmonitoreoestudiantil.DetalleAlumnoActivity;
-import pe.edu.sise.model.Alumno;
+import pe.edu.sise.model.AlumnoTest;
 import pe.edu.sise.appsgmonitoreoestudiantil.R;
 
 public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder>{
 
-    private List<Alumno> alumnoList;
+    private List<AlumnoTest> alumnoList;
     private FragmentManager fragmentManager;
 
     private int colRed;
     private int colGreen;
     private int colyellow;
 
-    public AlumnoAdapter(List<Alumno> alumnoList, FragmentManager fragmentManager) {
+    public AlumnoAdapter(List<AlumnoTest> alumnoList, FragmentManager fragmentManager) {
         this.alumnoList = alumnoList;
         this.fragmentManager = fragmentManager;
     }
@@ -42,7 +42,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Alumno alumno = this.alumnoList.get(position);
+        AlumnoTest alumno = this.alumnoList.get(position);
 
         holder.alum_row_tvi_alum.setText(alumno.getNombres() + " " + alumno.getApellidos());
         holder.alum_row_tvi_grado.setText(String.valueOf(alumno.getCodGrado()));

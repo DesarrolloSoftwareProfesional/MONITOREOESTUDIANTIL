@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pe.edu.sise.adapter.AlumnoLstActvAdapter;
-import pe.edu.sise.model.Alumno;
+import pe.edu.sise.model.AlumnoTest;
 
 
 /**
@@ -40,13 +40,13 @@ public class AlumnoLstActvFragment extends Fragment {
         //
         View view =  inflater.inflate(R.layout.fragment_alumno_lst_actv, container, false);
 
-        List<Alumno> lista = new ArrayList<Alumno>();
+        List<AlumnoTest> lista = new ArrayList<AlumnoTest>();
 
         //poblando data/
-        lista.add(new Alumno("EXAMEN", "Matematica", "Jhonatan", "18/05/16", "08:30am", "10:00am"));
-        lista.add(new Alumno("PRACTICA CALIFICADA", "Lenguaje", "Jhonatan", "20/05/16", "09:00am", "10:30am"));
-        lista.add(new Alumno("EXAMEN", "Caligrafia", "Jhonatan", "05/06/16", "08:30am", "10:00am"));
-        lista.add(new Alumno("EXAMEN", "Ciencia, Tecnologia y Ambiente", "Jhonatan", "18/06/16", "08:30am", "10:00am"));
+        lista.add(new AlumnoTest("EXAMEN", "Matematica", "Jhonatan", "18/05/16", "08:30am", "10:00am"));
+        lista.add(new AlumnoTest("PRACTICA CALIFICADA", "Lenguaje", "Jhonatan", "20/05/16", "09:00am", "10:30am"));
+        lista.add(new AlumnoTest("EXAMEN", "Caligrafia", "Jhonatan", "05/06/16", "08:30am", "10:00am"));
+        lista.add(new AlumnoTest("EXAMEN", "Ciencia, Tecnologia y Ambiente", "Jhonatan", "18/06/16", "08:30am", "10:00am"));
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.reciclador);

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import pe.edu.sise.utils.Atributes;
+import pe.edu.sise.utils.Attributes;
 
 public class SplashActivity extends AppCompatActivity {
     private Timer timer;
@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
                 irLogin();
             }
         };
-        timer.schedule(tt, Atributes.splashTime);
+        timer.schedule(tt, Attributes.SPLASHTIME);
     }
 
     private void irLogin() {
