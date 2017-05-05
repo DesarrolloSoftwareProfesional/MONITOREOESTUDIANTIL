@@ -4,10 +4,10 @@ use BD_SGMEv3;
 -- TABLA:					ALUMNOS , USUARIO_ALUMNO
 -- STORE PROCEDURE:			SP_ALUMNOS_SELECT_LOGIN(?,?)
 -- DESCRIPCIÓN:				Buscar alumno por usuario y pasword
--- FECHA DE CREACIÓN:		2017-04-27		
+-- FECHA DE CREACIÓN:		2017-04-27
 -- CREADO POR:				Palomino Rojas J. Abel
--- FECHA DE MODIFICACIÓN:	
--- MODIFICADO POR:			
+-- FECHA DE MODIFICACIÓN:2017-05-04
+-- MODIFICADO POR:  Palomino Rojas J. Abel
 -- --------------------------------------------------------------
 
 -- DROP PROCEDURE SP_ALUMNOS_SELECT_LOGIN;
@@ -15,9 +15,10 @@ use BD_SGMEv3;
 DELIMITER //
 CREATE PROCEDURE SP_ALUMNOS_SELECT_LOGIN(IN p_userAlumno VARCHAR(30), IN p_passAlumno VARCHAR(30))
  BEGIN
-	SELECT 
+	SELECT
 		A.idAlumno, A.apPaternoAlumno, A.apMaternoAlumno, A.nombresAlumno,
-        A.dniAlumno, A.fechaNacAlumno, A.direccionAlumno, A.nomCompleto, A.estadoRegistro 
+    A.dniAlumno, A.fechaNacAlumno, A.direccionAlumno, A.nomCompleto,
+    U.userAlumno, A.estadoRegistro
 	FROM ALUMNOS A INNER JOIN USUARIO_ALUMNO U ON A.idAlumno=U.idAlumno
 	WHERE U.userAlumno=p_userAlumno AND U.passAlumno=p_passAlumno;
 END //
@@ -32,10 +33,10 @@ DELIMITER ;
 -- TABLA:					ALUMNOS
 -- STORE PROCEDURE:			SP_ALUMNOS_SELECT_ALL()
 -- DESCRIPCIÓN:				Listado completo de alumnos
--- FECHA DE CREACIÓN:		2017-04-27		
+-- FECHA DE CREACIÓN:		2017-04-27
 -- CREADO POR:				Palomino Rojas J. Abel
--- FECHA DE MODIFICACIÓN:	
--- MODIFICADO POR:			
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
 -- --------------------------------------------------------------
 
 -- DROP PROCEDURE SP_ALUMNOS_SELECT_ALL;
@@ -43,9 +44,9 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE SP_ALUMNOS_SELECT_ALL()
  BEGIN
-	SELECT 
+	SELECT
 		A.idAlumno, A.apPaternoAlumno, A.apMaternoAlumno, A.nombresAlumno,
-        A.dniAlumno, A.fechaNacAlumno, A.direccionAlumno, A.nomCompleto, A.estadoRegistro 
+        A.dniAlumno, A.fechaNacAlumno, A.direccionAlumno, A.nomCompleto, A.estadoRegistro
 	FROM ALUMNOS A;
 END //
 DELIMITER ;
@@ -58,10 +59,10 @@ DELIMITER ;
 -- TABLA:					ALUMNOS
 -- STORE PROCEDURE:			SP_ALUMNOS_SELECT_BY_ID()
 -- DESCRIPCIÓN:				Obtiene un alumno por Id
--- FECHA DE CREACIÓN:		2017-04-27		
+-- FECHA DE CREACIÓN:		2017-04-27
 -- CREADO POR:				Palomino Rojas J. Abel
--- FECHA DE MODIFICACIÓN:	
--- MODIFICADO POR:			
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
 -- --------------------------------------------------------------
 
 -- DROP PROCEDURE SP_ALUMNOS_SELECT_BY_ID;
@@ -69,9 +70,9 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE SP_ALUMNOS_SELECT_BY_ID(IN p_idAlumno INT)
  BEGIN
-	SELECT 
+	SELECT
 		A.idAlumno, A.apPaternoAlumno, A.apMaternoAlumno, A.nombresAlumno,
-        A.dniAlumno, A.fechaNacAlumno, A.direccionAlumno, A.nomCompleto, A.estadoRegistro 
+        A.dniAlumno, A.fechaNacAlumno, A.direccionAlumno, A.nomCompleto, A.estadoRegistro
 	FROM ALUMNOS A WHERE A.idAlumno=p_idAlumno;
 END //
 DELIMITER ;
@@ -81,13 +82,13 @@ DELIMITER ;
 
 
 -- -------------------------------------------------------------
--- TABLA:					ALUMNOS 
+-- TABLA:					ALUMNOS
 -- STORE PROCEDURE:			SP_ALUMNOS_INSERT(?,?,?,?,?,?)
 -- DESCRIPCIÓN:				Insertar datos del alumno
--- FECHA DE CREACIÓN:		2017-04-27		
+-- FECHA DE CREACIÓN:		2017-04-27
 -- CREADO POR:				Palomino Rojas J. Abel
--- FECHA DE MODIFICACIÓN:	
--- MODIFICADO POR:			
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
 -- --------------------------------------------------------------
 
 -- DROP PROCEDURE SP_ALUMNOS_INSERT;
@@ -103,9 +104,9 @@ CREATE PROCEDURE SP_ALUMNOS_INSERT
     IN p_direccionAlumno VARCHAR(150)
 )
  BEGIN
-	INSERT INTO ALUMNOS 
-    (apPaternoAlumno, apMaternoAlumno, nombresAlumno, dniAlumno, fechaNacAlumno, direccionAlumno, nomCompleto) 
-    VALUES 
+	INSERT INTO ALUMNOS
+    (apPaternoAlumno, apMaternoAlumno, nombresAlumno, dniAlumno, fechaNacAlumno, direccionAlumno, nomCompleto)
+    VALUES
     (p_apPaternoAlumno, p_apMaternoAlumno, p_nombresAlumno, p_dniAlumno, p_fechaNacAlumno,
      p_direccionAlumno, concat(p_apPaternoAlumno,' ',p_apMaternoAlumno,' ', p_nombresAlumno)) ;
 END //
@@ -117,13 +118,13 @@ DELIMITER ;
 
 
 -- -------------------------------------------------------------
--- TABLA:					ALUMNOS 
+-- TABLA:					ALUMNOS
 -- STORE PROCEDURE:			SP_ALUMNOS_UPDATE(?,?,?,?,?,?)
 -- DESCRIPCIÓN:				Actualiza datos del alumno
--- FECHA DE CREACIÓN:		2017-04-27		
+-- FECHA DE CREACIÓN:		2017-04-27
 -- CREADO POR:				Palomino Rojas J. Abel
--- FECHA DE MODIFICACIÓN:	
--- MODIFICADO POR:			
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
 -- --------------------------------------------------------------
 
 -- DROP PROCEDURE SP_ALUMNOS_UPDATE;
@@ -142,13 +143,10 @@ CREATE PROCEDURE SP_ALUMNOS_UPDATE
  BEGIN
 	UPDATE ALUMNOS SET
     apPaternoAlumno = p_apPaternoAlumno, apMaternoAlumno = p_apMaternoAlumno,
-    nombresAlumno = p_nombresAlumno, dniAlumno = p_dniAlumno, fechaNacAlumno = p_fechaNacAlumno, 
+    nombresAlumno = p_nombresAlumno, dniAlumno = p_dniAlumno, fechaNacAlumno = p_fechaNacAlumno,
     direccionAlumno = p_direccionAlumno, nomCompleto = concat(p_apPaternoAlumno,' ',p_apMaternoAlumno,' ', p_nombresAlumno)
     WHERE idAlumno = p_idAlumno;
 END //
 DELIMITER ;
 
 -- CALL SP_ALUMNOS_UPDATE('FLORES','GARCIA','CRISTINA','4622522','1990-06-11','Av AVANCAY 952',4);
-
-
-
