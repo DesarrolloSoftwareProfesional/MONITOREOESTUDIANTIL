@@ -24,6 +24,12 @@ if (!empty($_GET['page'])) {
                 $nota->restApi();
             break;
 
+            case'apoderado':
+                require_once('../src/service/ApoderadoService.php');
+                $apoderado = new ApoderadoService();
+                $apoderado->restApi();
+            break;
+
             default:
                 echo "Pagina no encontrada";
             break;
