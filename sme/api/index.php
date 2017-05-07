@@ -1,5 +1,7 @@
 <?php
 if (!empty($_GET['page'])) {
+    header('Content-Type: application/JSON; charset=utf-8');
+
     $page=$_GET['page'];
 
     switch ($page) {
@@ -14,6 +16,12 @@ if (!empty($_GET['page'])) {
                 require_once('../src/service/AlumnoService.php');
                 $alumno = new AlumnoService();
                 $alumno->restApi();
+            break;
+
+            case'nota':
+                require_once('../src/service/NotaService.php');
+                $nota = new NotaService();
+                $nota->restApi();
             break;
 
             default:

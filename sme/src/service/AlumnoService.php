@@ -78,8 +78,6 @@ class AlumnoService implements iCrudService
   public function restApi()
   {
       if (!empty($_GET[UtilConst::ACCION])) {
-          header('Content-Type: application/JSON; charset=utf-8');
-
           $action =$_GET[UtilConst::ACCION];
 
           switch ($action) {
