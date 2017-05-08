@@ -14,9 +14,18 @@ public class ServiceManager {
 
 
     //DOMINIO
-    private static final String DOMAIN = "http://192.168.2.17/sme/api/";
+    //private static final String DOMAIN = "http://192.168.2.17/sme/api/";
+
+    //DOMINIO - ABEL
+    private static final String DOMAIN = "http://192.168.2.17/sise/sme/api/";
 
     //URL-ALUMNO
-    public static final String ALUMNO_URL_LOGEO=DOMAIN+"alumno/logeo";
+    public static final String ALUMNO_URL_LOGEO = DOMAIN + "alumno/logeo";
 
+    //URL-Notas
+    public static final String NOTA_URL_PROMEDIO_TRIMESTRE = DOMAIN + "nota/promedioalumnotrimestre";
+
+    public static String nota_Url_Promedio_By_IDAlumno(Integer id) {
+        return DOMAIN + "nota/promedioalumno/" + id;
+    }
 }

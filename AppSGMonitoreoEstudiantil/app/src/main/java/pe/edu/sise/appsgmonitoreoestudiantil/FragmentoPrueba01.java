@@ -23,8 +23,8 @@ public class FragmentoPrueba01 extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View mview = inflater.inflate(R.layout.fragment_prueba,container,false);
-        TextView textView = (TextView) mview.findViewById(R.id.tvitextoprueba);
-        textView.setText("Fragmento 1");
+//        TextView textView = (TextView) mview.findViewById(R.id.tvitextoprueba);
+//        textView.setText("Fragmento 1");
         return mview;
     }
 }
