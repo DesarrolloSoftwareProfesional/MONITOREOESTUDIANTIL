@@ -150,3 +150,33 @@ END //
 DELIMITER ;
 
 -- CALL SP_ALUMNOS_UPDATE('FLORES','GARCIA','CRISTINA','4622522','1990-06-11','Av AVANCAY 952',4);
+
+
+-- -------------------------------------------------------------
+-- TABLA:					NOTAS,
+-- STORE PROCEDURE:			SP_NOTAS_SELECT_ALL_BY_ID(?)
+-- DESCRIPCIÓN:				Listado de Notas por id del Alumno
+-- FECHA DE CREACIÓN:		2017-05-06
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_NOTAS_SELECT_ALL_BY_ID;
+
+DELIMITER //
+CREATE PROCEDURE SP_NOTAS_SELECT_ALL_BY_ID (IN p_idAlumno INT)
+ BEGIN
+Select
+	N.idNota, N.idAlumno, N.idPeriodo, P.trimestre,
+    N.idTipoNota, T.nomTipoNota, N.idCurso, C.nomCurso,
+    C.abrevCurso, N.nota, N.idEmpleado
+from NOTAS N
+	INNER JOIN TIPONOTAS T ON N.idTipoNota=T.idTipoNota
+	INNER JOIN PERIODOS P ON N.idPeriodo=P.idPeriodo
+	INNER JOIN CURSOS C ON N.idCurso=C.idCurso
+WHERE N.idAlumno=p_idAlumno;
+END //
+DELIMITER ;
+
+-- CALL SP_NOTAS_SELECT_ALL_BY_ID(1);
