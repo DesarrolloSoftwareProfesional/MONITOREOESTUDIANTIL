@@ -180,3 +180,55 @@ END //
 DELIMITER ;
 
 -- CALL SP_NOTAS_SELECT_ALL_BY_ID(1);
+
+-- -------------------------------------------------------------
+-- TABLA:					NOTAS,
+-- STORE PROCEDURE:			SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID(?)
+-- DESCRIPCIÓN:				Listado de promedio de Notas por id del Alumno
+-- FECHA DE CREACIÓN:		2017-05-07
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID;
+
+DELIMITER //
+CREATE PROCEDURE SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID (IN p_idAlumno INT)
+ BEGIN
+	SELECT N.idCurso,ROUND(AVG(N.nota)) AS 'promedio',P.trimestre
+	FROM NOTAS N INNER JOIN PERIODOS P ON N.idPeriodo=P.idPeriodo
+	WHERE N.idAlumno=p_idAlumno
+	GROUP BY N.idCurso
+	ORDER BY N.idCurso;
+END //
+DELIMITER ;
+
+-- CALL SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID(1);
+
+-- CALL SP_NOTAS_SELECT_ALL_BY_ID(1);
+
+-- -------------------------------------------------------------
+-- TABLA:					NOTAS,
+-- STORE PROCEDURE:			SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID(?,?)
+-- DESCRIPCIÓN:				Listado de promedio de Notas por id del Alumno y un trimestre
+-- FECHA DE CREACIÓN:		2017-05-07
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID;
+
+DELIMITER //
+CREATE PROCEDURE SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID (IN p_idAlumno INT, IN p_trimestre INT)
+ BEGIN
+	SELECT N.idCurso,ROUND(AVG(N.nota)) AS 'promedio',P.trimestre
+	FROM NOTAS N INNER JOIN PERIODOS P ON N.idPeriodo=P.idPeriodo
+	WHERE N.idAlumno=p_idAlumno and P.trimestre=p_trimestre
+	GROUP BY N.idCurso
+	ORDER BY N.idCurso;
+END //
+DELIMITER ;
+
+-- CALL SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID(1,1);
