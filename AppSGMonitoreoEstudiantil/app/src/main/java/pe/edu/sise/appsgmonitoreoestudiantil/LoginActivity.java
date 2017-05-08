@@ -1,9 +1,11 @@
 package pe.edu.sise.appsgmonitoreoestudiantil;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -13,11 +15,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
+import pe.edu.sise.controller.AlumnoController;
+import pe.edu.sise.model.Alumno;
 import pe.edu.sise.model.Usuario;
-import pe.edu.sise.utils.Atributes;
+import pe.edu.sise.utils.Attributes;
 import pe.edu.sise.utils.SessionManager;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    protected static final String TAG = "LoginActivity";
 
     private EditText log_etx_usu;
     private EditText log_etx_pass;
@@ -34,9 +43,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        this.sessionManager=new SessionManager(this);
+        this.sessionManager = new SessionManager(this);
 
-        if(sessionManager.isLoggedUsuario()){
+        if (sessionManager.isLoggedAlumno()) {
             irFormularioMain();
         }
 
@@ -49,14 +58,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         log_btn_entrar = (Button) findViewById(R.id.log_btn_entrar);
         log_btn_reg = (Button) findViewById(R.id.log_btn_reg);
         //log_tvi_recuPass = (TextView) findViewById(R.id.log_txv_recupPass);
-        log_chb_recUser=(CheckBox)findViewById(R.id.log_chb_recUser);
+        log_chb_recUser = (CheckBox) findViewById(R.id.log_chb_recUser);
         //Listener
         log_etx_pass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if ((keyEvent != null
-                     && (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER))
-                     || (i == EditorInfo.IME_ACTION_DONE)) {
+                        && (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER))
+                        || (i == EditorInfo.IME_ACTION_DONE)) {
                     ingresarSistema();
                 }
                 return false;
@@ -86,22 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void ingresarSistema() {
-
-        String usu = log_etx_usu.getText().toString();
-        String pass = log_etx_pass.getText().toString();
         validasCamposDeEntrad();
-
-        if (usu.equals(Atributes.usuarioAdmin) & pass.equals(Atributes.passAdmin)) {
-            Toast.makeText(getApplicationContext(), "Cargando...", Toast.LENGTH_SHORT).show();
-            if(log_chb_recUser.isChecked()){
-                this.guardarUsuario();
-            }
-            this.irFormularioMain();
-        } else {
-            Toast.makeText(getApplicationContext(),(getString(R.string.err_login)), Toast.LENGTH_LONG).show();
-            log_etx_pass.setText("");
-            log_etx_usu.setText("");
-        }
     }
 
     private void validasCamposDeEntrad() {
@@ -126,23 +120,67 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (cancel) {
             focusView.requestFocus();
         } else {
-
+            new AlumnoLoginAsyncTask().execute(getLoginJsonObject(usu, pass));
         }
     }
 
-    private  void guardarUsuario(){
-        Usuario  usuario= new Usuario();
-        usuario.setEmailusu("apalomino@gmail.com");
-        usuario.setNomusu("Abel");
-        usuario.setApeusu("Palomino Rojas");
-        usuario.setIdusu("0");
+    private  void validarLogin(Alumno alumno){
+        if (alumno != null) {
+            if (alumno.isEstadoRegistro()) {
+                if (log_chb_recUser.isChecked()) {
+                    alumno.setLogged(true);
+                }
+                sessionManager.createAlumnoSession(alumno);
+                irFormularioMain();
 
-        this.sessionManager.createUsuarioSession(usuario);
+            }else{
+                Toast.makeText(getBaseContext(), getString(R.string.err_invalid_access), Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(getApplicationContext(),(getString(R.string.err_login)), Toast.LENGTH_LONG).show();
+        }
     }
 
-    private  void irFormularioMain(){
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+    private void irFormularioMain() {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
+
+    //EMAIL AND PASSWORD - JSONOBJET
+    protected JSONObject getLoginJsonObject(String usu, String pass) {
+        JSONObject jsonObject = null;
+
+        try {
+            HashMap<String, String> hashMap = new HashMap<>();
+            hashMap.put(Attributes.ALUM_USUARIO, usu);
+            hashMap.put(Attributes.ALUM_PASSWORD, pass);
+
+            jsonObject = new JSONObject(hashMap);
+
+        } catch (Exception e) {
+            Log.d(TAG, "Error getLoginJsonObject " + Log.getStackTraceString(e));
+        }
+
+        return jsonObject;
+    }
+
+    //LOGIN - SERVICIO WEB
+
+    private class AlumnoLoginAsyncTask extends AsyncTask<JSONObject, Void, Alumno> {
+
+        @Override
+        protected Alumno doInBackground(JSONObject... params) {
+            return AlumnoController.login(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Alumno alumno) {
+            super.onPostExecute(alumno);
+            validarLogin(alumno);
+        }
+
+    }
+
+
 }

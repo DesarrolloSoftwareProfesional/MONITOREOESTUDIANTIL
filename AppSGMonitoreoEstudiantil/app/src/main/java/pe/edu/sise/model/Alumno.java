@@ -1,35 +1,60 @@
 package pe.edu.sise.model;
 
+/**
+ * Created by Abel on 1/05/2017.
+ */
+
 public class Alumno {
+
+    private String id;
+    private String apPaterno;
+    private String apMaterno;
     private String nombres;
-    private String apellidos;
-    private int codGrado;
-    private int codPeriodo;
-    private String tipoAct;
-    private String curso;
-    private String profesor;
-    private String fecha;
-    private String hora_ini;
-    private String hora_fin;
+    private String dni;
+    private String fechaNac;
+    private String direccion;
+    private String nomCompleto;
+    private boolean estadoRegistro;
+    private String usuario;
+    private boolean logged;
 
-
-    public Alumno(String tipoAct, String curso, String profesor, String fecha, String hora_ini, String hora_fin) {
-        this.tipoAct = tipoAct;
-        this.curso = curso;
-        this.profesor = profesor;
-        this.fecha = fecha;
-        this.hora_ini = hora_ini;
-        this.hora_fin = hora_fin;
-    }
-
-    public Alumno(String nombres, String apellidos, int codGrado, int codPeriodo) {
+    public Alumno(String id, String apPaterno, String apMaterno, String nombres, String dni, String fechaNac, String direccion, String nomCompleto, boolean estadoRegistro) {
+        this.id = id;
+        this.apPaterno = apPaterno;
+        this.apMaterno = apMaterno;
         this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.codGrado = codGrado;
-        this.codPeriodo = codPeriodo;
+        this.dni = dni;
+        this.fechaNac = fechaNac;
+        this.direccion = direccion;
+        this.nomCompleto = nomCompleto;
+        this.estadoRegistro = estadoRegistro;
     }
 
     public Alumno() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getApPaterno() {
+        return apPaterno;
+    }
+
+    public void setApPaterno(String apPaterno) {
+        this.apPaterno = apPaterno;
+    }
+
+    public String getApMaterno() {
+        return apMaterno;
+    }
+
+    public void setApMaterno(String apMaterno) {
+        this.apMaterno = apMaterno;
     }
 
     public String getNombres() {
@@ -40,75 +65,59 @@ public class Alumno {
         this.nombres = nombres;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getDni() {
+        return dni;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
-    public int getCodGrado() {
-        return codGrado;
+    public String getFechaNac() {
+        return fechaNac;
     }
 
-    public void setCodGrado(int codGrado) {
-        this.codGrado = codGrado;
+    public void setFechaNac(String fechaNac) {
+        this.fechaNac = fechaNac;
     }
 
-    public int getCodPeriodo() {
-        return codPeriodo;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setCodPeriodo(int codPeriodo) {
-        this.codPeriodo = codPeriodo;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getTipoAct() {
-        return tipoAct;
+    public String getNomCompleto() {
+        return nomCompleto;
     }
 
-    public void setTipoAct(String tipoAct) {
-        this.tipoAct = tipoAct;
+    public void setNomCompleto(String nomCompleto) {
+        this.nomCompleto = nomCompleto;
     }
 
-    public String getCurso() {
-        return curso;
+    public boolean isEstadoRegistro() {
+        return estadoRegistro;
     }
 
-    public void setCurso(String curso) {
-        this.curso = curso;
+    public void setEstadoRegistro(boolean estadoRegistro) {
+        this.estadoRegistro = estadoRegistro;
     }
 
-    public String getProfesor() {
-        return profesor;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setProfesor(String profesor) {
-        this.profesor = profesor;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public String getFecha() {
-        return fecha;
+    public boolean isLogged() {
+        return logged;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getHora_ini() {
-        return hora_ini;
-    }
-
-    public void setHora_ini(String hora_ini) {
-        this.hora_ini = hora_ini;
-    }
-
-    public String getHora_fin() {
-        return hora_fin;
-    }
-
-    public void setHora_fin(String hora_fin) {
-        this.hora_fin = hora_fin;
+    public void setLogged(boolean logged) {
+        this.logged = logged;
     }
 }

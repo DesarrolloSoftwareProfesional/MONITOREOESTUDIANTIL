@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pe.edu.sise.adapter.AlumnoAdapter;
-import pe.edu.sise.model.Alumno;
+import pe.edu.sise.model.AlumnoTest;
 
 
 public class AlumnoRecyclerViewFragment extends Fragment {
@@ -27,7 +27,7 @@ public class AlumnoRecyclerViewFragment extends Fragment {
 
     //Variables
     protected AlumnoAdapter alumnoAdapter;
-    protected List<Alumno> alumnoList;
+    protected List<AlumnoTest> alumnoList;
 
 
     public AlumnoRecyclerViewFragment() {
@@ -79,15 +79,15 @@ public class AlumnoRecyclerViewFragment extends Fragment {
 
     //metodos para test
 
-    private List<Alumno> cargarListaTest(){
-        List<Alumno> list =new ArrayList<>();
+    private List<AlumnoTest> cargarListaTest(){
+        List<AlumnoTest> list =new ArrayList<>();
 
-        list.add(new Alumno("J. Abel","Palomino Rojas",2,2017));
-        list.add(new Alumno("Ronald","Fabian Garcia",6,2017));
-        list.add(new Alumno("Jhonatan","Aruhanca Vilca",3,2017));
-        list.add(new Alumno("Maria","Diaz Luna",5,2017));
-        list.add(new Alumno("Cristina","Fernandez Loayza",2,2017));
-        list.add(new Alumno("Fernanda","Lima Rojas",5,2017));
+        list.add(new AlumnoTest("J. Abel","Palomino Rojas",2,2017));
+        list.add(new AlumnoTest("Ronald","Fabian Garcia",6,2017));
+        list.add(new AlumnoTest("Jhonatan","Aruhanca Vilca",3,2017));
+        list.add(new AlumnoTest("Maria","Diaz Luna",5,2017));
+        list.add(new AlumnoTest("Cristina","Fernandez Loayza",2,2017));
+        list.add(new AlumnoTest("Fernanda","Lima Rojas",5,2017));
 
         return list;
     }

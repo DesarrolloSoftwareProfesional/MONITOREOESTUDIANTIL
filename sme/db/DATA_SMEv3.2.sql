@@ -1,6 +1,6 @@
 use BD_SGMEv3;
 
--- insert into perfiles(nomPerfil,estadoRegistro) 
+-- insert into perfiles(nomPerfil,estadoRegistro)
 -- values('Director',1),
 -- ('Secretaria',1),
 -- ('Apoderado',1),
@@ -52,29 +52,41 @@ insert into grados(nomGrado,estadoRegistro) values
 ('Quinto',1);
 -- ('Sexto',1);
 
-insert into secciones(codSeccion,estadoRegistro) values 
+insert into secciones(codSeccion,estadoRegistro) values
 ('A',1),
 ('B',1),
 ('C',1),
 ('D',1),
 ('E',1);
 
-insert into cursos(nomCurso,estadoRegistro)values
-('Historia',1),
-('Geografia',1),
-('Matematica',1),
-('Lengua',1),
-('Quimica',1),
-('Biologia',1),
-('Civica',1),
-('Fisica',1),
-('Ingles',1),
-('Contabilidad',1),
-('Psicologia',1),
-('Educacion Fisica',1),
-('Religion',1),
-('Computacion',1);
+-- insert into cursos(nomCurso,estadoRegistro)values
+-- ('Historia',1),
+-- ('Geografia',1),
+-- ('Matematica',1),
+-- ('Lengua',1),
+-- ('Quimica',1),
+-- ('Biologia',1),
+-- ('Civica',1),
+-- ('Fisica',1),
+-- ('Ingles',1),
+-- ('Contabilidad',1),
+-- ('Psicologia',1),
+-- ('Educacion Fisica',1),
+-- ('Religion',1),
+-- ('Computacion',1);
 
+insert into cursos(nomCurso,abrevCurso)values
+('Desarrollo Personal, Ciudananía y Cívica','DPCC'),
+('Ciencias Sociales','CcSs'),
+('Educación Fisica','EFis'),
+('Arte y Cultura','ArtC'),
+('Comunicación','Ccc'),
+('Castellano como Segunda Lengua','CcSL'),
+('Ingles como Lengua Extranjera','IcLE'),
+('Matematica','Mat'),
+('Ciencia y Tecnología','CTec'),
+('Educación para el Trabajo','EpT'),
+('Educación Relegiosa','ERel');
 
 
 insert into grupoacademico(codGrupoAcademico,idGrado,codSeccion,anio) values
@@ -175,7 +187,7 @@ insert into usuario_empleado(idEmpleado, userEmpleado, passEmpleado, estadoRegis
 (4,'cpatricia','cpatricia',1),
 (5,'honoria','honoria',1);
 
-insert into tiponotas(nomTipoNota, estadoRegistro) values 
+insert into tiponotas(nomTipoNota, estadoRegistro) values
 ('Ex Continuo 1',1),
 ('Ex Continuo 2',1),
 ('Ex Continuo 3',1),
@@ -195,9 +207,9 @@ insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRe
 (1,9,1,1,1,17,1),
 (1,10,1,1,1,18,1),
 (1,11,1,1,1,15,1),
-(1,12,1,1,1,12,1),
-(1,13,1,1,1,08,1),
-(1,14,1,1,1,12,1),
+-- (1,12,1,1,1,12,1),
+-- (1,13,1,1,1,08,1),
+-- (1,14,1,1,1,12,1),
 
 (2,1,1,1,1,18,1),
 (2,2,1,1,1,15,1),
@@ -210,9 +222,9 @@ insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRe
 (2,9,1,1,1,17,1),
 (2,10,1,1,1,18,1),
 (2,11,1,1,1,15,1),
-(2,12,1,1,1,12,1),
-(2,13,1,1,1,08,1),
-(2,14,1,1,1,12,1),
+-- (2,12,1,1,1,12,1),
+-- (2,13,1,1,1,08,1),
+-- (2,14,1,1,1,12,1),
 
 (3,1,1,1,1,18,1),
 (3,2,1,1,1,15,1),
@@ -225,9 +237,9 @@ insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRe
 (3,9,1,1,1,17,1),
 (3,10,1,1,1,18,1),
 (3,11,1,1,1,15,1),
-(3,12,1,1,1,12,1),
-(3,13,1,1,1,08,1),
-(3,14,1,1,1,12,1),
+-- (3,12,1,1,1,12,1),
+-- (3,13,1,1,1,08,1),
+-- (3,14,1,1,1,12,1),
 
 (4,1,1,1,1,18,1),
 (4,2,1,1,1,15,1),
@@ -240,9 +252,9 @@ insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRe
 (4,9,1,1,1,17,1),
 (4,10,1,1,1,18,1),
 (4,11,1,1,1,15,1),
-(4,12,1,1,1,12,1),
-(4,13,1,1,1,08,1),
-(4,14,1,1,1,12,1),
+-- (4,12,1,1,1,12,1),
+-- (4,13,1,1,1,08,1),
+-- (4,14,1,1,1,12,1),
 
 (5,1,1,1,1,18,1),
 (5,2,1,1,1,15,1),
@@ -255,9 +267,9 @@ insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRe
 (5,9,1,1,1,17,1),
 (5,10,1,1,1,18,1),
 (5,11,1,1,1,15,1),
-(5,12,1,1,1,12,1),
-(5,13,1,1,1,08,1),
-(5,14,1,1,1,12,1),
+-- (5,12,1,1,1,12,1),
+-- (5,13,1,1,1,08,1),
+-- (5,14,1,1,1,12,1),
 
 (6,1,1,1,1,18,1),
 (6,2,1,1,1,15,1),
@@ -270,9 +282,9 @@ insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRe
 (6,9,1,1,1,17,1),
 (6,10,1,1,1,18,1),
 (6,11,1,1,1,15,1),
-(6,12,1,1,1,12,1),
-(6,13,1,1,1,08,1),
-(6,14,1,1,1,12,1),
+-- (6,12,1,1,1,12,1),
+-- (6,13,1,1,1,08,1),
+-- (6,14,1,1,1,12,1),
 
 (7,1,1,1,1,18,1),
 (7,2,1,1,1,15,1),
@@ -285,9 +297,9 @@ insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRe
 (7,9,1,1,1,17,1),
 (7,10,1,1,1,18,1),
 (7,11,1,1,1,15,1),
-(7,12,1,1,1,12,1),
-(7,13,1,1,1,08,1),
-(7,14,1,1,1,12,1),
+-- (7,12,1,1,1,12,1),
+-- (7,13,1,1,1,08,1),
+-- (7,14,1,1,1,12,1),
 
 (8,1,1,1,1,18,1),
 (8,2,1,1,1,15,1),
@@ -300,9 +312,9 @@ insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRe
 (8,9,1,1,1,17,1),
 (8,10,1,1,1,18,1),
 (8,11,1,1,1,15,1),
-(8,12,1,1,1,12,1),
-(8,13,1,1,1,08,1),
-(8,14,1,1,1,12,1),
+-- (8,12,1,1,1,12,1),
+-- (8,13,1,1,1,08,1),
+-- (8,14,1,1,1,12,1),
 
 (9,1,1,1,1,18,1),
 (9,2,1,1,1,15,1),
@@ -314,10 +326,10 @@ insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRe
 (9,8,1,1,1,14,1),
 (9,9,1,1,1,17,1),
 (9,10,1,1,1,18,1),
-(9,11,1,1,1,15,1),
-(9,12,1,1,1,12,1),
-(9,13,1,1,1,08,1),
-(9,14,1,1,1,12,1);
+(9,11,1,1,1,15,1);
+-- (9,12,1,1,1,12,1),
+-- (9,13,1,1,1,08,1),
+-- (9,14,1,1,1,12,1);
 
 insert into apoderados(apPaternoApoderado,apMaternoApoderado,nombresApoderado,dniApoderado,fechaNacApoderado,direccionApoderado,nomCompleto,estadoRegistro) values
 ('Saavedra','Menor','Hebert','71059247','1982-05-12','Av.Los Portales 856','Saavedra Menor Hebert',1),
@@ -383,20 +395,3 @@ insert into actividades(idEmpleado,idCurso,codGrupoAcademico,NomActividad,DescrA
 (2,8,'4C2017','Practica Calificada','Estudiar ultimos temas aprendidos.','2017-04-28','08:30:00','10:00:00',1,1),
 (3,2,'4C2017','Practica Calificada','Estudiar ultimos temas aprendidos.','2017-05-02','08:30:00','10:00:00',1,1),
 (2,9,'2B2017','Examen','Examen parcial, nota final para el registro en la libreta.','2017-04-28','08:30:00','10:00:00',1,1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

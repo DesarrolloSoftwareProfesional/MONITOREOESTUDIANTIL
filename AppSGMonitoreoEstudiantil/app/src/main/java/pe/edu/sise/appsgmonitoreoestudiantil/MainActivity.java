@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import pe.edu.sise.model.Alumno;
 import pe.edu.sise.model.Usuario;
 import pe.edu.sise.utils.SessionManager;
 
@@ -77,15 +79,11 @@ public class MainActivity extends AppCompatActivity
         nav_head_tvi_usuario = (TextView) view.findViewById(R.id.nav_head_tvi_usuario);
         nav_head_tvi_email = (TextView) view.findViewById(R.id.nav_head_tvi_email);
 
-        if (sessionManager.isLoggedUsuario()) {
+        if (sessionManager.existsAlumno()) {
             //consume de la sesion
-            Usuario usuario = this.sessionManager.getUsuarioSession();
-            nav_head_tvi_usuario.setText(usuario.getNomusu().toString() + " " + usuario.getApeusu().toString());
-            nav_head_tvi_email.setText(usuario.getEmailusu().toString());
-        } else {
-            //consume del serviciio
-            nav_head_tvi_usuario.setText("Usuario sin datos");
-            nav_head_tvi_email.setText("usuariosindados@gmail.com");
+            Alumno alumno = this.sessionManager.getAlumnoSession();
+            nav_head_tvi_usuario.setText(alumno.getNomCompleto());
+            nav_head_tvi_email.setText(alumno.getUsuario());
         }
     }
 
@@ -135,7 +133,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_log_out) {
-            this.sessionManager.closeUsuarioSession();
+            this.sessionManager.closeSession();
             finish();
         } else if (id == R.id.nav_share) {
 
