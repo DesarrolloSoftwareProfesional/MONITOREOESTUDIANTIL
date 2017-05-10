@@ -22,10 +22,17 @@ public class ServiceManager {
     //URL-ALUMNO
     public static final String ALUMNO_URL_LOGEO = DOMAIN + "alumno/logeo";
 
-    //URL-Notas
+    //URL-NOTAS
     public static final String NOTA_URL_PROMEDIO_TRIMESTRE = DOMAIN + "nota/promedioalumnotrimestre";
 
-    public static String nota_Url_Promedio_By_IDAlumno(Integer id) {
+    public static String notaUrlPromedioByIDAlumno(Integer id) {
         return DOMAIN + "nota/promedioalumno/" + id;
+    }
+
+    // URL-CURSOS
+    public static final String CURSO_URL_LIST_ALL = DOMAIN + "curso/listar";
+
+    public static String cursoUrlGetByID(Integer id) {
+        return DOMAIN + "curso/buscar/" + id;
     }
 }
