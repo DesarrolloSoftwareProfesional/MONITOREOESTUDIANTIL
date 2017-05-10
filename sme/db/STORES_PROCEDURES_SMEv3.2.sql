@@ -232,3 +232,55 @@ END //
 DELIMITER ;
 
 -- CALL SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID(1,1);
+
+
+
+-- -------------------------------------------------------------
+-- TABLA:					CURSOS
+-- STORE PROCEDURE:			SP_CURSOS_SELECT_ALL()
+-- DESCRIPCIÓN:				Listado completo de cursos ordenado por id
+-- FECHA DE CREACIÓN:		2017-05-09
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_CURSOS_SELECT_ALL;
+
+DELIMITER //
+CREATE PROCEDURE SP_CURSOS_SELECT_ALL()
+ BEGIN
+	SELECT 
+		idCurso, nomCurso, abrevCurso, estadoRegistro 
+	FROM CURSOS
+	ORDER BY idCurso;
+END //
+DELIMITER ;
+
+-- CALL SP_CURSOS_SELECT_ALL();
+
+
+
+-- -------------------------------------------------------------
+-- TABLA:					CUSOS
+-- STORE PROCEDURE:			SP_CURSOS_SELECT_BY_ID()
+-- DESCRIPCIÓN:				Obtiene un curso por Id
+-- FECHA DE CREACIÓN:		2017-05-09
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_CURSOS_SELECT_BY_ID;
+
+DELIMITER //
+CREATE PROCEDURE SP_CURSOS_SELECT_BY_ID(IN p_idCurso INT)
+ BEGIN
+	SELECT 
+		idCurso, nomCurso, abrevCurso, estadoRegistro 
+	FROM CURSOS
+	WHERE idCurso=p_idCurso;
+END //
+DELIMITER ;
+
+-- CALL SP_CURSOS_SELECT_BY_ID(1);
