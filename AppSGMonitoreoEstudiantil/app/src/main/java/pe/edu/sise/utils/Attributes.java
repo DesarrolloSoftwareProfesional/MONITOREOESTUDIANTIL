@@ -33,6 +33,21 @@ public class Attributes {
     public static final String ALUM_PASSWORD="passAlumno";
     public static final String ALUM_IS_LOGGED="isLogged";
 
+    //ATRIBUTOS DE APODERADO EN JSON
+    public static final String APOD_ID="idApoderado";
+    public static final String APOD_AP_PATERNO="apPaternoApoderado";
+    public static final String APOD_AP_MATERNO="apMaternoApoderado";
+    public static final String APOD_NOMBRES="nombresApoderado";
+    public static final String APOD_NOM_COMPLETO="nomCompleto";
+    public static final String APOD_DNI="dniApoderado";
+    public static final String APOD_FECHA_NAC="fechaNacApoderado";
+    public static final String APOD_DIRECCION="direccionApoderado";
+    public static final String APOD_ESTADO_REG="estadoRegistro";
+    public static final String APOD_USUARIO="userApoderado";
+    public static final String APOD_PASSWORD="passApoderado";
+    public static final String APOD_IS_LOGGED="isLogged";
+
+
     //ATRIBUTOS DE EMPLEADO EN JSON
     public static final String EMP_ID="idEmpleado";
     public static final String EMP_AP_PATERNO="apPaternoEmpleado";
