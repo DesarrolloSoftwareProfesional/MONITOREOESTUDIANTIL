@@ -48,4 +48,16 @@ public class Attributes {
     public static final String EMP_USUARIO="userEmpleado";
     public static final String EMP_PASSWORD="passEmpleado";
 
+    //ATRIBUTOS DE NOTAS EN JSON
+    public static final String NOTA_ID="";
+    public static final String NOTA_ID_CURSO="idCurso";
+    public static final String NOTA_ID_ALUMNO="idAlumno";
+    public static final String NOTA_PROMEDIO="promedio";
+    public static final String NOTA_TIMESTRE="trimestre";
+
+    //ATRIBUTOS DE CURSO EN JSON
+    public static final String CURSO_ID="idCurso";
+    public static final String CURSO_NOMBRE="nomCurso";
+    public static final String CURSO_ABREV="abrevCurso";
+    public static final String CURSO_ESTADO_REG="estadoRegistro";
 }

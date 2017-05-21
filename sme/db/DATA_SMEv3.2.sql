@@ -194,6 +194,18 @@ insert into tiponotas(nomTipoNota, estadoRegistro) values
 ('Ex Parcial',1),
 ('Ex Final',1);
 
+insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRegistro) values
+(1,1,1,1,2,18,1),
+(1,2,1,1,2,15,1),
+(1,3,1,1,2,19,1),
+(1,4,1,1,2,12,1),
+(1,5,1,1,2,08,1),
+(1,6,1,1,2,12,1),
+(1,7,1,1,2,15,1),
+(1,8,1,1,2,14,1),
+(1,9,1,1,2,17,1),
+(1,10,1,1,2,18,1),
+(1,11,1,1,2,15,1);
 
 insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRegistro) values
 (1,1,1,1,1,18,1),
@@ -207,6 +219,7 @@ insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota,estadoRe
 (1,9,1,1,1,17,1),
 (1,10,1,1,1,18,1),
 (1,11,1,1,1,15,1),
+
 -- (1,12,1,1,1,12,1),
 -- (1,13,1,1,1,08,1),
 -- (1,14,1,1,1,12,1),

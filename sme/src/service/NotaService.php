@@ -76,6 +76,26 @@ class NotaService implements iCrudService
         }
     }
 
+    public function getAllPromedioByID()
+    {
+        if (!empty($_GET[UtilConst::ID])) {
+            UtilService::jsonEncode($this->dao->getAllPromedioByID($_GET[UtilConst::ID]));
+        } else {
+            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+        }
+    }
+
+    public function getAllPromedioByTrimestreAlumno()
+    {
+        $obj = UtilService::jsonDecode();
+
+        if (isset($obj->idAlumno) && isset($obj->trimestre)) {
+            $result = $this->dao->getAllPromedioByTrimestreAlumno($obj->idAlumno, $obj->trimestre);
+            UtilService::jsonEncode($result);
+        } else {
+            UtilService::errorResponse("JSON no coressponde a ".self::TABLE);
+        }
+    }
 //Metodo que decide que accion se realizara
   public function restApi()
   {
@@ -104,7 +124,13 @@ class NotaService implements iCrudService
           break;
           case 'notaalumno':
               $this->getAllByID();
-            break;
+          break;
+          case 'promedioalumno':
+              $this->getAllPromedioByID();
+          break;
+          case 'promedioalumnotrimestre':
+              $this->getAllPromedioByTrimestreAlumno();
+          break;
         default:
           UtilService::errorResponse("Metodo no existe");
       break;

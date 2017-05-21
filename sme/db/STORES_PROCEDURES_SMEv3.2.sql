@@ -180,3 +180,107 @@ END //
 DELIMITER ;
 
 -- CALL SP_NOTAS_SELECT_ALL_BY_ID(1);
+
+-- -------------------------------------------------------------
+-- TABLA:					NOTAS,
+-- STORE PROCEDURE:			SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID(?)
+-- DESCRIPCIÓN:				Listado de promedio de Notas por id del Alumno
+-- FECHA DE CREACIÓN:		2017-05-07
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID;
+
+DELIMITER //
+CREATE PROCEDURE SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID (IN p_idAlumno INT)
+ BEGIN
+	SELECT N.idCurso,ROUND(AVG(N.nota)) AS 'promedio',P.trimestre
+	FROM NOTAS N INNER JOIN PERIODOS P ON N.idPeriodo=P.idPeriodo
+	WHERE N.idAlumno=p_idAlumno
+	GROUP BY N.idCurso
+	ORDER BY N.idCurso;
+END //
+DELIMITER ;
+
+-- CALL SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID(1);
+
+-- CALL SP_NOTAS_SELECT_ALL_BY_ID(1);
+
+-- -------------------------------------------------------------
+-- TABLA:					NOTAS,
+-- STORE PROCEDURE:			SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID(?,?)
+-- DESCRIPCIÓN:				Listado de promedio de Notas por id del Alumno y un trimestre
+-- FECHA DE CREACIÓN:		2017-05-07
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID;
+
+DELIMITER //
+CREATE PROCEDURE SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID (IN p_idAlumno INT, IN p_trimestre INT)
+ BEGIN
+	SELECT N.idCurso,ROUND(AVG(N.nota)) AS 'promedio',P.trimestre
+	FROM NOTAS N INNER JOIN PERIODOS P ON N.idPeriodo=P.idPeriodo
+	WHERE N.idAlumno=p_idAlumno and P.trimestre=p_trimestre
+	GROUP BY N.idCurso
+	ORDER BY N.idCurso;
+END //
+DELIMITER ;
+
+-- CALL SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID(1,1);
+
+
+
+-- -------------------------------------------------------------
+-- TABLA:					CURSOS
+-- STORE PROCEDURE:			SP_CURSOS_SELECT_ALL()
+-- DESCRIPCIÓN:				Listado completo de cursos ordenado por id
+-- FECHA DE CREACIÓN:		2017-05-09
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_CURSOS_SELECT_ALL;
+
+DELIMITER //
+CREATE PROCEDURE SP_CURSOS_SELECT_ALL()
+ BEGIN
+	SELECT 
+		idCurso, nomCurso, abrevCurso, estadoRegistro 
+	FROM CURSOS
+	ORDER BY idCurso;
+END //
+DELIMITER ;
+
+-- CALL SP_CURSOS_SELECT_ALL();
+
+
+
+-- -------------------------------------------------------------
+-- TABLA:					CUSOS
+-- STORE PROCEDURE:			SP_CURSOS_SELECT_BY_ID()
+-- DESCRIPCIÓN:				Obtiene un curso por Id
+-- FECHA DE CREACIÓN:		2017-05-09
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_CURSOS_SELECT_BY_ID;
+
+DELIMITER //
+CREATE PROCEDURE SP_CURSOS_SELECT_BY_ID(IN p_idCurso INT)
+ BEGIN
+	SELECT 
+		idCurso, nomCurso, abrevCurso, estadoRegistro 
+	FROM CURSOS
+	WHERE idCurso=p_idCurso;
+END //
+DELIMITER ;
+
+-- CALL SP_CURSOS_SELECT_BY_ID(1);

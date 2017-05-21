@@ -37,6 +37,30 @@
          return $result;
      }
 
+     public function getAllPromedioByTrimestreAlumno($idAlumno, $trimestre)
+     {
+         $sql="CALL SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID(?,?)";
+         $conn=$this->mysqli->open();
+         $stmt = $conn->prepare($sql);
+         $stmt->bind_param('ii', $idAlumno, $trimestre);
+         $result=$this->mysqli->search($stmt);
+         $conn->close();
+
+         return $result;
+     }
+
+     public function getAllPromedioByID($id)
+     {
+         $sql="CALL SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID(?)";
+         $conn=$this->mysqli->open();
+         $stmt=$conn->prepare($sql);
+         $stmt->bind_param("i", $id);
+         $result=$this->mysqli->search($stmt);
+         $conn->close();
+
+         return $result;
+     }
+
      public function insert($nomPerfil)
      {
          $sql="";
