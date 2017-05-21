@@ -180,3 +180,57 @@ END //
 DELIMITER ;
 
 -- CALL SP_NOTAS_SELECT_ALL_BY_ID(1);
+
+-- -------------------------------------------------------------
+-- TABLA:					APODERADOS
+-- STORE PROCEDURE:			SP_APODERADOS_SELECT_ALL()
+-- DESCRIPCIÓN:				Listado completo de apoderados
+-- FECHA DE CREACIÓN:		2017-05-07
+-- CREADO POR:				JHONATAN ARUHANCA VILCA
+-- FECHA DE MODIFICACIÓN:	
+-- MODIFICADO POR:	
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_APODERADOS_SELECT_ALL;
+
+DELIMITER //
+CREATE PROCEDURE SP_APODERADOS_SELECT_ALL()
+ BEGIN
+	SELECT    
+    A.idApoderado, A.apPaternoApoderado, A.apMaternoApoderado,
+    A.nombresApoderado, A.dniApoderado, A.fechaNacApoderado, A.direccionApoderado, A.nomCompleto, A.estadoRegistro
+		
+	FROM APODERADOS A;
+END //
+DELIMITER ;
+
+-- CALL SP_ALUMNOS_SELECT_ALL();
+
+
+-- -------------------------------------------------------------
+-- TABLA:					APODERADOS
+-- STORE PROCEDURE:			SP_APODERADOS_SELECT_LOGIN(?,?)
+-- DESCRIPCIÓN:				Buscar apoderado por usuario y pasword
+-- FECHA DE CREACIÓN:		2017-05-07
+-- CREADO POR:				JHONATAN ARUHANCA VILCA
+-- FECHA DE MODIFICACIÓN:	
+-- MODIFICADO POR:	
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_APODERADOS_SELECT_LOGIN;
+USE BD_SGMEV3;
+
+DELIMITER //
+CREATE PROCEDURE SP_APODERADOS_SELECT_LOGIN(IN p_userApoderado VARCHAR(30), IN p_passApoderado VARCHAR(30))
+ BEGIN
+	SELECT
+    A.idApoderado, A.apPaternoApoderado, A.apMaternoApoderado,
+    A.nombresApoderado, A.dniApoderado, A.fechaNacApoderado, A.direccionApoderado, A.nomCompleto, U.userApoderado, A.estadoRegistro
+    
+	FROM APODERADOS A INNER JOIN USUARIO_APODERADO U ON A.idApoderado=U.idApoderado
+	WHERE U.userApoderado=p_userApoderado AND U.passApoderado=p_passApoderado;
+END //
+DELIMITER ;
+
+-- CALL SP_APODERADOS_SELECT_LOGIN('shebert','shebert');
+

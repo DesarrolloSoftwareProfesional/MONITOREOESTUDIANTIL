@@ -29,6 +29,7 @@ if (!empty($_GET['page'])) {
                 $apoderado = new ApoderadoService();
                 $apoderado->restApi();
             break;
+           
 
             default:
                 echo "Pagina no encontrada";
