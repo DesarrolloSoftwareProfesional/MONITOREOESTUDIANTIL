@@ -268,6 +268,18 @@ DELIMITER ;
 -- --------------------------------------------------------------
 
 
+DELIMITER //
+CREATE PROCEDURE SP_APODERADOS_SELECT_LOGIN (IN p_userApoderado VARCHAR(30), IN p_passApoderado VARCHAR(30))
+BEGIN
+	SELECT
+    A.idApoderado, A.apPaternoApoderado, A.apMaternoApoderado,
+    A.nombresApoderado, A.dniApoderado, A.fechaNacApoderado, A.direccionApoderado, A.nomCompleto, U.userApoderado, A.estadoRegistro
+    
+	FROM APODERADOS A INNER JOIN USUARIO_APODERADO U ON A.idApoderado=U.idApoderado
+	WHERE U.userApoderado=p_userApoderado AND U.passApoderado=p_passApoderado;
+END //
+DELIMITER ;
+
 -- -------------------------------------------------------------
 -- TABLA:					CURSOS
 -- STORE PROCEDURE:			SP_CURSOS_SELECT_ALL()
