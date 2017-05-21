@@ -453,15 +453,3 @@ CREATE PROCEDURE SP_ACTIVIDADES_SELECT_ALL_PENDING()
 	ORDER BY A.idActividad DESC;
 END //
 DELIMITER ;
-
--- CALL SP_ACTIVIDADES_SELECT_ALL_PENDING();
-=======
-    A.idApoderado, A.apPaternoApoderado, A.apMaternoApoderado,
-    A.nombresApoderado, A.dniApoderado, A.fechaNacApoderado, A.direccionApoderado, A.nomCompleto, U.userApoderado, A.estadoRegistro
-
-	FROM APODERADOS A INNER JOIN USUARIO_APODERADO U ON A.idApoderado=U.idApoderado
-	WHERE U.userApoderado=p_userApoderado AND U.passApoderado=p_passApoderado;
-END //
-DELIMITER ;
-
--- CALL SP_APODERADOS_SELECT_LOGIN('shebert','shebert');
