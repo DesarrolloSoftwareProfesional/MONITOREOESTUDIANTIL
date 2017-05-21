@@ -182,75 +182,49 @@ DELIMITER ;
 -- CALL SP_NOTAS_SELECT_ALL_BY_ID(1);
 
 -- -------------------------------------------------------------
--- TABLA:					NOTAS,
--- STORE PROCEDURE:			SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID(?)
--- DESCRIPCIÓN:				Listado de promedio de Notas por id del Alumno
+-- TABLA:					APODERADOS
+-- STORE PROCEDURE:			SP_APODERADOS_SELECT_ALL()
+-- DESCRIPCIÓN:				Listado completo de apoderados
 -- FECHA DE CREACIÓN:		2017-05-07
--- CREADO POR:				Palomino Rojas J. Abel
--- FECHA DE MODIFICACIÓN:
--- MODIFICADO POR:
+-- CREADO POR:				JHONATAN ARUHANCA VILCA
+-- FECHA DE MODIFICACIÓN:	
+-- MODIFICADO POR:	
 -- --------------------------------------------------------------
 
--- DROP PROCEDURE SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID;
+-- DROP PROCEDURE SP_APODERADOS_SELECT_ALL;
 
 DELIMITER //
-CREATE PROCEDURE SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID (IN p_idAlumno INT)
+CREATE PROCEDURE SP_APODERADOS_SELECT_ALL()
  BEGIN
-	SELECT N.idCurso,ROUND(AVG(N.nota)) AS 'promedio',P.trimestre
-	FROM NOTAS N INNER JOIN PERIODOS P ON N.idPeriodo=P.idPeriodo
-	WHERE N.idAlumno=p_idAlumno
-	GROUP BY N.idCurso
-	ORDER BY N.idCurso;
+	SELECT    
+    A.idApoderado, A.apPaternoApoderado, A.apMaternoApoderado,
+    A.nombresApoderado, A.dniApoderado, A.fechaNacApoderado, A.direccionApoderado, A.nomCompleto, A.estadoRegistro
+		
+	FROM APODERADOS A;
 END //
 DELIMITER ;
 
--- CALL SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID(1);
+-- CALL SP_ALUMNOS_SELECT_ALL();
 
--- CALL SP_NOTAS_SELECT_ALL_BY_ID(1);
 
 -- -------------------------------------------------------------
--- TABLA:					NOTAS,
--- STORE PROCEDURE:			SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID(?,?)
--- DESCRIPCIÓN:				Listado de promedio de Notas por id del Alumno y un trimestre
+-- TABLA:					APODERADOS
+-- STORE PROCEDURE:			SP_APODERADOS_SELECT_LOGIN(?,?)
+-- DESCRIPCIÓN:				Buscar apoderado por usuario y pasword
 -- FECHA DE CREACIÓN:		2017-05-07
--- CREADO POR:				Palomino Rojas J. Abel
--- FECHA DE MODIFICACIÓN:
--- MODIFICADO POR:
+-- CREADO POR:				JHONATAN ARUHANCA VILCA
+-- FECHA DE MODIFICACIÓN:	
+-- MODIFICADO POR:	
 -- --------------------------------------------------------------
 
--- DROP PROCEDURE SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID;
+-- DROP PROCEDURE SP_APODERADOS_SELECT_LOGIN;
+USE BD_SGMEV3;
 
 DELIMITER //
-CREATE PROCEDURE SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID (IN p_idAlumno INT, IN p_trimestre INT)
- BEGIN
-	SELECT N.idCurso,ROUND(AVG(N.nota)) AS 'promedio',P.trimestre
-	FROM NOTAS N INNER JOIN PERIODOS P ON N.idPeriodo=P.idPeriodo
-	WHERE N.idAlumno=p_idAlumno and P.trimestre=p_trimestre
-	GROUP BY N.idCurso
-	ORDER BY N.idCurso;
-END //
-DELIMITER ;
-
--- CALL SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID(1,1);
-
-
-
--- -------------------------------------------------------------
--- TABLA:					CURSOS
--- STORE PROCEDURE:			SP_CURSOS_SELECT_ALL()
--- DESCRIPCIÓN:				Listado completo de cursos ordenado por id
--- FECHA DE CREACIÓN:		2017-05-09
--- CREADO POR:				Palomino Rojas J. Abel
--- FECHA DE MODIFICACIÓN:
--- MODIFICADO POR:
--- --------------------------------------------------------------
-
--- DROP PROCEDURE SP_CURSOS_SELECT_ALL;
-
-DELIMITER //
-CREATE PROCEDURE SP_CURSOS_SELECT_ALL()
+CREATE PROCEDURE SP_APODERADOS_SELECT_LOGIN(IN p_userApoderado VARCHAR(30), IN p_passApoderado VARCHAR(30))
  BEGIN
 	SELECT
+<<<<<<< HEAD
 		idCurso, nomCurso, abrevCurso, estadoRegistro
 	FROM CURSOS
 	ORDER BY idCurso;
@@ -412,3 +386,15 @@ END //
 DELIMITER ;
 
 -- CALL SP_ACTIVIDADES_SELECT_ALL_PENDING();
+=======
+    A.idApoderado, A.apPaternoApoderado, A.apMaternoApoderado,
+    A.nombresApoderado, A.dniApoderado, A.fechaNacApoderado, A.direccionApoderado, A.nomCompleto, U.userApoderado, A.estadoRegistro
+    
+	FROM APODERADOS A INNER JOIN USUARIO_APODERADO U ON A.idApoderado=U.idApoderado
+	WHERE U.userApoderado=p_userApoderado AND U.passApoderado=p_passApoderado;
+END //
+DELIMITER ;
+
+-- CALL SP_APODERADOS_SELECT_LOGIN('shebert','shebert');
+
+>>>>>>> origin/master

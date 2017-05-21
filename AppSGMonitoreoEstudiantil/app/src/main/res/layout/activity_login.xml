@@ -15,12 +15,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:backgroundTint="@color/color_trans"
         android:background="@drawable/side_item_layout_componet_small"
-        >
+        android:backgroundTint="@color/color_trans"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
 
 
         <ImageView
@@ -28,7 +27,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_logo_monitoreo"/>
+            app:srcCompat="@drawable/ic_logo_monitoreo" />
 
         <TextView
             android:layout_width="match_parent"
@@ -39,7 +38,13 @@
             android:text="@string/name_sistema"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="15dp"/>
+            android:textSize="15dp" />
+
+        <Spinner
+            android:id="@+id/log_sp_TipoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"></Spinner>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,21 +71,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingRight="@dimen/dimen_padding_medium">
-                    <android.support.design.widget.TextInputLayout
-                         android:layout_width="match_parent"
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center">
+
+                    <EditText
+                        android:id="@+id/log_etx_usu"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center">
+                        android:hint="@string/hint_user"
+                        android:textColor="@color/colorPrimaryDark" />
 
-                        <EditText
-                            android:id="@+id/log_etx_usu"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/hint_user"
-                            android:textColor="@color/colorPrimaryDark"/>
-
-                    </android.support.design.widget.TextInputLayout>
-
-
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -105,7 +109,6 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,41 +119,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimaryDark"
-                    app:passwordToggleEnabled = "true"
-
-                    app:passwordToggleTint="#5e5e5c"
-                    >
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="#5e5e5c">
 
                     <EditText
                         android:id="@+id/log_etx_pass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_pass"
-                        android:inputType="textPassword"
-                        />
+                        android:inputType="textPassword" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
         </LinearLayout>
 
         <CheckBox
+            android:id="@+id/log_chb_recUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recordar usuario"
-            android:layout_marginTop="5dp"
-            android:textColor="#8F2F0D"
             android:buttonTint="#FF7408"
-            android:id="@+id/log_chb_recUser" />
+            android:text="Recordar usuario"
+            android:textColor="#8F2F0D" />
 
         <Button
             android:id="@+id/log_btn_entrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Entrar"
             android:background="@drawable/side_item_layout_componet_small"
             android:backgroundTint="@color/colorPrimaryLight"
-            android:textColor="@color/colorPrimaryText"/>
+            android:text="Entrar"
+            android:textColor="@color/colorPrimaryText" />
 
 
         <Button
@@ -158,12 +156,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Nuevo Usuario"
             android:background="@drawable/side_item_layout_componet_small"
             android:backgroundTint="@color/colorPrimary"
-            android:textColor="@color/colorPrimaryText"
-            />
-
+            android:text="Nuevo Usuario"
+            android:textColor="@color/colorPrimaryText" />
 
 
     </LinearLayout>

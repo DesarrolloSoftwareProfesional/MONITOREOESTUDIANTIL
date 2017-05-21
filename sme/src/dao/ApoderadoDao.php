@@ -68,11 +68,11 @@ class ApoderadoDao{
 
 	public function logeo($userApoderado, $passApoderado)
 	{
-		$sql = "CALL SP_APODERADOS_SELECT_LOGIN(?,?)";
-		$conn = $this->$mysqli->open();
+		$sql = "CALL SP_APODERADOS_SELECT_LOGIN(?,?)";	
+		$conn = $this->mysqli->open();
 		$stmt = $conn->prepare($sql);
 		$stmt->bind_param('ss',$userApoderado, $passApoderado);
-		$result = $this->$mysqli->search($stmt);
+		$result = $this->mysqli->search($stmt);
 		$conn->close();
 
 		return $result;
