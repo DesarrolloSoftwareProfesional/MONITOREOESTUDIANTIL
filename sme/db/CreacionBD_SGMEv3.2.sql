@@ -249,7 +249,7 @@ CREATE TABLE Actividades(
     codGrupoAcademico char(6),
 	nomActividad varchar(50),
 	descrActividad varchar(600),
-	fechaRealizacion datetime,
+	fechaRealizacion date,
 	horaInicio time,
 	horaFin time,
 	frecuenciaAviso int,

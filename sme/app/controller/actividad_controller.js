@@ -1,7 +1,7 @@
 //Importar los archivos necesarios
 $.when(
   $.getScript("app/util/service_manager.js"),
-  $.getScript("app/model/alumno_model.js"),
+  $.getScript("app/model/actividad_model.js"),
   $.Deferred(function(deferred) {
     $(deferred.resolve);
   })
@@ -12,17 +12,17 @@ $(document).ready(main);
 //Funciones de Arranque
 function main() {
 
-  getAllAlumno();
+  getAllActividad();
 
   //Accion al hacer click en boton  Registrar Alumno
-  $('#nuevoAlumno').click(function() {
-    document.getElementById("guardarAlumno").value = ACCION_REGISTRAR;
+  $('#nuevaActividad').click(function() {
+    document.getElementById("guardarActividad").value = ACCION_REGISTRAR;
     clearInputs();
     showModal();
   });
 
   //Accion en el boton del modal
-  $('#guardarAlumno').click(function() {
+  $('#guardarActividad').click(function() {
     saveAlumno();
   });
 
@@ -30,30 +30,31 @@ function main() {
 
 
 //listar todas las categorias
-function getAllAlumno() {
+function getAllActividad() {
   $.ajax({
     dataType: DATA_TYPE_JSON,
     contentType: CONTEN_TYPE_JSON,
     type: METHOD_GET,
-    url: ALUMNO_URL_LISTAR,
+    url: ACTIVIDAD_URL_LISTAR,
     success: function(data) {
-      $("#tblAlumno").html('');
+      $("#tblActividad").html('');
 
       $.each(data, function(key, value) {
         var newrow = "<tr><td>" +
-          value['idAlumno'] + "</td><td>" +
-          value['apPaternoAlumno'] + "</td><td>" +
-          value['apMaternoAlumno'] + "</td><td>" +
-          value['nombresAlumno'] + "</td><td>" +
-          value['dniAlumno'] + "</td><td>" +
-          value['fechaNacAlumno'] + "</td><td>" +
-          value['direccionAlumno'] + "</td><td>" +
-          "<button type='button' class='btn btn-xs btn-success' onclick='searchAlumno(" + value['idAlumno'] + ")'>" +
+          value['idActividad'] + "</td><td>" +
+          value['codGrupoAcademico'] + "</td><td>" +
+          value['nomActividad'] + "</td><td>" +
+          value['descrActividad'] + "</td><td>" +
+          value['nomCurso'] + "</td><td>" +
+          value['fechaRealizacion'] + "</td><td>" +
+          value['horaInicio'] + "</td><td>" +
+          value['horaFin'] + "</td><td>" +
+          "<button type='button' class='btn btn-xs btn-success' onclick='searchActividad(" + value['idActividad'] + ")'>" +
           "<span class='glyphicon glyphicon-refresh'></button></td><td>" +
-          "<button type='button' class='btn btn-xs btn-danger' onclick='deleteAlumno(" + value['idAlumno'] + ")'>" +
+          "<button type='button' class='btn btn-xs btn-danger' onclick='deleteActividad(" + value['idActividad'] + ")'>" +
           "<span class='glyphicon glyphicon-trash'></button></td><tr>";
 
-        $("#tblAlumno").parent().append(newrow);
+        $("#tblActividad").parent().append(newrow);
       });
     },
     error: function(data) {
@@ -64,9 +65,9 @@ function getAllAlumno() {
 
 //Metodo para registrar o actualizar
 function saveAlumno() {
-  let opcion = document.getElementById("guardarAlumno").value;
+  let opcion = document.getElementById("guardarActividad").value;
 
-  let url_select = (opcion === ACCION_REGISTRAR) ? ALUMNO_URL_REGISTAR : ALUMNO_URL_ACTUALIZAR;
+  let url_select = (opcion === ACCION_REGISTRAR) ? ACTIVIDAD_URL_REGISTAR : ACTIVIDAD_URL_ACTUALIZAR;
 
   let objAlumno = getAlumnoValue().toString();
 
@@ -80,7 +81,7 @@ function saveAlumno() {
 
       ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
       console.log(data);
-      getAllAlumno();
+      getAllActividad();
       hideModal();
     },
     error: function(data) {
@@ -93,16 +94,16 @@ function saveAlumno() {
 }
 
 //Metodo para buscar una categoria por su ID
-function searchAlumno(id) {
+function searchActividad(id) {
 
   $.ajax({
     dataType: DATA_TYPE_JSON,
     contentType: CONTEN_TYPE_JSON,
     type: METHOD_GET,
-    url: ALUMNO_URL_BUSCAR + id,
+    url: ACTIVIDAD_URL_BUSCAR + id,
     success: function(data) {
 
-      document.getElementById("guardarAlumno").value = ACCION_ACTUALIZAR;
+      document.getElementById("guardarActividad").value = ACCION_ACTUALIZAR;
 
       $.each(data, function(key, value) {
         setInputs(value);
@@ -118,17 +119,7 @@ function searchAlumno(id) {
 }
 
 //Metodo para eliminar una categoria por su ID
-function deleteAlumno(id) {
-  // //Accion al hacer click en boton Eliminar
-  // $(".btn").zzConfirm({
-  //   content: '¿Seguro que quiere Eliminar?',
-  //   ok: function(ele, box) {
-  //     msg_info("no se cancelo");
-  //   },
-  //   cancel: function(ele, box) {
-  //     msg_warning("Se cancelo la operacion");
-  //   }
-  // });
+function deleteActividad(id) {
 
   if (confirm('Desea eliminar este registo?')) {
 
@@ -136,11 +127,11 @@ function deleteAlumno(id) {
       dataType: DATA_TYPE_JSON,
       contentType: CONTEN_TYPE_JSON,
       type: METHOD_DELETE,
-      url: ALUMNO_URL_ELIMINAR + id,
+      url: ACTIVIDAD_URL_ELIMINAR + id,
       success: function(data) {
         ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
         console.log(data);
-        getAllAlumno();
+        getAllActividad();
       },
       error: function(data) {
         console.log(data);
@@ -153,14 +144,14 @@ function deleteAlumno(id) {
 
 
 function showModal() {
-  $('#modalAlumno').modal({
+  $('#modalActividad').modal({
     show: true,
     backdrop: 'static',
   });
 }
 
 function hideModal() {
-  $("#modalAlumno").modal('toggle');
+  $("#modalActividad").modal('toggle');
 }
 
 function clearInputs() {

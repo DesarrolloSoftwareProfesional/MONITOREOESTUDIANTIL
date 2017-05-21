@@ -250,8 +250,8 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE SP_CURSOS_SELECT_ALL()
  BEGIN
-	SELECT 
-		idCurso, nomCurso, abrevCurso, estadoRegistro 
+	SELECT
+		idCurso, nomCurso, abrevCurso, estadoRegistro
 	FROM CURSOS
 	ORDER BY idCurso;
 END //
@@ -276,11 +276,139 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE SP_CURSOS_SELECT_BY_ID(IN p_idCurso INT)
  BEGIN
-	SELECT 
-		idCurso, nomCurso, abrevCurso, estadoRegistro 
+	SELECT
+		idCurso, nomCurso, abrevCurso, estadoRegistro
 	FROM CURSOS
 	WHERE idCurso=p_idCurso;
 END //
 DELIMITER ;
 
 -- CALL SP_CURSOS_SELECT_BY_ID(1);
+
+
+
+-- -------------------------------------------------------------
+-- TABLA:					ACTIVIDADES
+-- STORE PROCEDURE:			SP_ACTIVIDADES_INSERT(?,?,?,?,?,?,?,?,?,?)
+-- DESCRIPCIÓN:				Insertar datos de la actividad
+-- FECHA DE CREACIÓN:		2017-05-21
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ACTIVIDADES_INSERT;
+
+DELIMITER //
+CREATE PROCEDURE SP_ACTIVIDADES_INSERT
+(
+	IN p_idEmpleado int,
+	IN p_idCurso int,
+    IN p_codGrupoAcademico char(6),
+	IN p_nomActividad varchar(50),
+	IN p_descrActividad varchar(600),
+	IN p_fechaRealizacion date,
+	IN p_horaInicio time,
+	IN p_horaFin time,
+	IN p_frecuenciaAviso int
+)
+ BEGIN
+	INSERT INTO ACTIVIDADES
+    (idEmpleado, idCurso, codGrupoAcademico, nomActividad, descrActividad,
+    fechaRealizacion, horaInicio, horaFin, frecuenciaAviso, flag_Notificado)
+    VALUES
+    (p_idEmpleado, p_idCurso, p_codGrupoAcademico, p_nomActividad, p_descrActividad,
+    p_fechaRealizacion, p_horaInicio, p_horaFin, p_frecuenciaAviso, 1) ;
+END //
+DELIMITER ;
+
+-- CALL SP_ACTIVIDADES_INSERT(2,1,'1A2017','Examen final','Examen parcial, nota final para el registro en la libreta.','2017-05-21','16:30:00','18:00:00',1);
+
+
+
+-- -------------------------------------------------------------
+-- TABLA:					ACTIVIDADES
+-- STORE PROCEDURE:			SP_ACTIVIDADES_SELECT_ALL()
+-- DESCRIPCIÓN:				Listado de todas la actividades de forma desendente
+-- FECHA DE CREACIÓN:		2017-05-21
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ACTIVIDADES_SELECT_ALL;
+
+DELIMITER //
+CREATE PROCEDURE SP_ACTIVIDADES_SELECT_ALL()
+ BEGIN
+	SELECT
+		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+		A.idCurso,C.nomCurso, A.fechaRealizacion, A.horaInicio,
+		A.horaFin, A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
+	FROM
+		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+	ORDER BY A.idActividad DESC;
+END //
+DELIMITER ;
+
+-- CALL SP_ACTIVIDADES_SELECT_ALL();
+
+
+
+-- -------------------------------------------------------------
+-- TABLA:					ACTIVIDADES
+-- STORE PROCEDURE:			SP_ACTIVIDADES_SELECT_BY_ID(?)
+-- DESCRIPCIÓN:				Obtiene una actividad por ID
+-- FECHA DE CREACIÓN:		2017-05-21
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ACTIVIDADES_SELECT_BY_ID;
+
+DELIMITER //
+CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_ID(IN p_idActividad INT)
+ BEGIN
+	SELECT
+		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+		A.idCurso,C.nomCurso, A.fechaRealizacion, A.horaInicio,
+		A.horaFin, A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
+	FROM
+		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+	WHERE A.idActividad =p_idActividad;
+END //
+DELIMITER ;
+
+-- CALL SP_ACTIVIDADES_SELECT_BY_ID(1);
+
+
+
+-- -------------------------------------------------------------
+-- TABLA:					ACTIVIDADES
+-- STORE PROCEDURE:			SP_ACTIVIDADES_SELECT_ALL_PENDING()
+-- DESCRIPCIÓN:				Listado de todas la actividades pendientes de forma desendente
+-- FECHA DE CREACIÓN:		2017-05-21
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ACTIVIDADES_SELECT_ALL_PENDING;
+
+DELIMITER //
+CREATE PROCEDURE SP_ACTIVIDADES_SELECT_ALL_PENDING()
+ BEGIN
+	SELECT
+		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+		A.idCurso,C.nomCurso, A.fechaRealizacion, A.horaInicio,
+		A.horaFin, A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
+	FROM
+		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+	WHERE
+		CONCAT(DATE(A.fechaRealizacion),'',A.horaFin) >= DATE_FORMAT(NOW(),'%Y-%m-%d %T')
+	ORDER BY A.idActividad DESC;
+END //
+DELIMITER ;
+
+-- CALL SP_ACTIVIDADES_SELECT_ALL_PENDING();

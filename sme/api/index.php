@@ -35,6 +35,13 @@ if (!empty($_GET['page'])) {
                 $curso = new CursoService();
                 $curso->restApi();
             break;
+
+            case'actividad':
+                require_once('../src/service/ActividadService.php');
+                $actividad = new ActividadService();
+                $actividad->restApi();
+            break;
+
             default:
                 echo "Pagina no encontrada";
             break;
