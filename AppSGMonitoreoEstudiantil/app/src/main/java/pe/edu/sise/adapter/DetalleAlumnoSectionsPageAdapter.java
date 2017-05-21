@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import pe.edu.sise.appsgmonitoreoestudiantil.AlumnoDatosGeneralesFragment;
+import pe.edu.sise.appsgmonitoreoestudiantil.AlumnoGraficosFragment;
 import pe.edu.sise.appsgmonitoreoestudiantil.AlumnoLstActvFragment;
 import pe.edu.sise.appsgmonitoreoestudiantil.FragmentoPrueba01;
 import pe.edu.sise.appsgmonitoreoestudiantil.FragmentoPrueba02;
@@ -28,7 +29,7 @@ public class DetalleAlumnoSectionsPageAdapter  extends FragmentPagerAdapter {
             case 1:
                 return new AlumnoLstActvFragment();
             case 2:
-                return new FragmentoPrueba03();
+                return new AlumnoGraficosFragment();
         }
         return null;
     }

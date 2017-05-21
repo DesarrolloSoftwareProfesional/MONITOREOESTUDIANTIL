@@ -31,6 +31,11 @@ if (!empty($_GET['page'])) {
             break;
            
 
+            case'curso':
+                require_once('../src/service/CursoService.php');
+                $curso = new CursoService();
+                $curso->restApi();
+            break;
             default:
                 echo "Pagina no encontrada";
             break;

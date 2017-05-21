@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import pe.edu.sise.model.Alumno;
+import pe.edu.sise.model.Apoderado;
 import pe.edu.sise.model.Usuario;
 
 public class SessionManager {
@@ -60,6 +61,22 @@ public class SessionManager {
         this.editor.commit();
     }
 
+    public void createApoderadoSession(Apoderado apoderado) {
+        this.editor.putString(Attributes.APOD_ID,apoderado.getId());
+        this.editor.putString(Attributes.APOD_AP_PATERNO,apoderado.getApPaterno());
+        this.editor.putString(Attributes.APOD_AP_MATERNO,apoderado.getApMaterno());
+        this.editor.putString(Attributes.APOD_NOMBRES,apoderado.getNombres());
+        this.editor.putString(Attributes.APOD_DNI,apoderado.getDni());
+        this.editor.putString(Attributes.APOD_NOM_COMPLETO,apoderado.getNomCompleto());
+        this.editor.putString(Attributes.APOD_FECHA_NAC,apoderado.getFechaNac());
+        this.editor.putString(Attributes.APOD_DIRECCION,apoderado.getDireccion());
+        this.editor.putBoolean(Attributes.APOD_ESTADO_REG,apoderado.isEstadoRegistro());
+        this.editor.putString(Attributes.APOD_USUARIO,apoderado.getUsuario());
+        this.editor.putBoolean(Attributes.APOD_IS_LOGGED,apoderado.isLogged());
+
+        this.editor.commit();
+    }
+
     public Alumno getAlumnoSession() {
         Alumno alumno = new Alumno();
         alumno.setId(this.sharedPreferences.getString(Attributes.ALUM_ID, null));
@@ -76,12 +93,37 @@ public class SessionManager {
         return alumno;
     }
 
+    public Apoderado getApoderadoSession() {
+        Apoderado apoderado = new Apoderado();
+
+        apoderado.setId(this.sharedPreferences.getString(Attributes.APOD_ID, null));
+        apoderado.setApPaterno(this.sharedPreferences.getString(Attributes.APOD_AP_PATERNO, null));
+        apoderado.setApMaterno(this.sharedPreferences.getString(Attributes.APOD_AP_MATERNO, null));
+        apoderado.setNombres(this.sharedPreferences.getString(Attributes.APOD_NOMBRES, null));
+        apoderado.setDni(this.sharedPreferences.getString(Attributes.APOD_DNI, null));
+        apoderado.setNomCompleto(this.sharedPreferences.getString(Attributes.APOD_NOM_COMPLETO, null));
+        apoderado.setFechaNac(this.sharedPreferences.getString(Attributes.APOD_FECHA_NAC, null));
+        apoderado.setDireccion(this.sharedPreferences.getString(Attributes.APOD_DIRECCION, null));
+        apoderado.setEstadoRegistro(this.sharedPreferences.getBoolean(Attributes.APOD_ESTADO_REG, false));
+        apoderado.setUsuario(this.sharedPreferences.getString(Attributes.APOD_USUARIO, null));
+        apoderado.setLogged(this.sharedPreferences.getBoolean(Attributes.APOD_IS_LOGGED, false));
+        return apoderado;
+    }
+
     public boolean isLoggedAlumno() {
         return this.sharedPreferences.getBoolean(Attributes.ALUM_IS_LOGGED, false);
     }
 
+    public boolean isLoggedApoderado() {
+        return this.sharedPreferences.getBoolean(Attributes.APOD_IS_LOGGED, false);
+    }
+
     public boolean existsAlumno() {
         return (this.sharedPreferences.getString(Attributes.ALUM_ID,null)== null )?false:true;
+    }
+
+    public boolean existsApoderado() {
+        return (this.sharedPreferences.getString(Attributes.APOD_ID,null)== null )?false:true;
     }
 
 

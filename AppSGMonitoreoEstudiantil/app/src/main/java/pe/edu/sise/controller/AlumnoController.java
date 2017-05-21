@@ -15,6 +15,7 @@ import pe.edu.sise.utils.ServiceManager;
  */
 
 public class AlumnoController {
+
     protected static final String TAG = "AlumnoController";
 
     public static Alumno login(JSONObject jsonObjectIn) {
@@ -25,7 +26,7 @@ public class AlumnoController {
             JSONArray jsonArray = new JSONArray(jsonString);
             if (jsonArray.length() > 0) {
                 JSONObject jsonObjectOut = jsonArray.getJSONObject(0);
-                ;
+
                 alumno.setId(jsonObjectOut.getString(Attributes.ALUM_ID));
                 alumno.setApPaterno(jsonObjectOut.getString(Attributes.ALUM_AP_PATERNO));
                 alumno.setApMaterno(jsonObjectOut.getString(Attributes.ALUM_AP_MATERNO));
