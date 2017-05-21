@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         log_sp_TipoUsuario.setAdapter(spinner_adapter);
 
-        this.tipoSesionUser();
+       // this.tipoSesionUser();
     }
 
 
@@ -108,12 +108,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //            }
 //        });
 
-        log_sp_TipoUsuario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                
-            }
-        });
+//        log_sp_TipoUsuario.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
     }
 
@@ -230,7 +230,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         try {
             HashMap<String, String> hashMap = new HashMap<>();
-            hashMap.put(Attributes.APOD_USUARIO, usu);
+           hashMap.put(Attributes.APOD_USUARIO, usu);
             hashMap.put(Attributes.APOD_PASSWORD, pass);
 
             jsonObject = new JSONObject(hashMap);
