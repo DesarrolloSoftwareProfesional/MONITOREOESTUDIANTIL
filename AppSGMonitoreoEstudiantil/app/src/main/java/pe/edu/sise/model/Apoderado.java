@@ -1,10 +1,12 @@
 package pe.edu.sise.model;
 
 /**
- * Created by Abel on 1/05/2017.
+ * Created by ASUS on 7/05/2017.
  */
 
-public class Alumno {  private String id;
+public class Apoderado {
+
+    private String id;
     private String apPaterno;
     private String apMaterno;
     private String nombres;
@@ -16,10 +18,12 @@ public class Alumno {  private String id;
     private String usuario;
     private boolean logged;
 
+    public Apoderado() {
+    }
 
-
-    public Alumno(String id, String apPaterno, String apMaterno, String nombres, String dni, String fechaNac, String direccion, String nomCompleto, boolean estadoRegistro) {
+    public Apoderado(String id, boolean logged, String apPaterno, String apMaterno, String nombres, String dni, String fechaNac, String direccion, String nomCompleto, boolean estadoRegistro, String usuario) {
         this.id = id;
+        this.logged = logged;
         this.apPaterno = apPaterno;
         this.apMaterno = apMaterno;
         this.nombres = nombres;
@@ -28,9 +32,7 @@ public class Alumno {  private String id;
         this.direccion = direccion;
         this.nomCompleto = nomCompleto;
         this.estadoRegistro = estadoRegistro;
-    }
-
-    public Alumno() {
+        this.usuario = usuario;
     }
 
     public String getId() {
