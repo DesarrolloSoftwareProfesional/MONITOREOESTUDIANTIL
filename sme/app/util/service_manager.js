@@ -20,6 +20,11 @@ const ALUMNO_URL_LOGEO = URL_BASE + "alumno/logeo";
 
 const ACTIVIDAD_URL_LISTAR = URL_BASE + "actividad/listar";
 const ACTIVIDAD_URL_BUSCAR = URL_BASE + "actividad/buscar/";
+const ACTIVIDAD_URL_ULTIMO_REGISTRO = URL_BASE + "actividad/ultimoregistro";
 const ACTIVIDAD_URL_REGISTAR = URL_BASE + "actividad/registrar";
 const ACTIVIDAD_URL_ACTUALIZAR = URL_BASE + "actividad/actualizar";
 const ACTIVIDAD_URL_ELIMINAR = URL_BASE + "actividad/eliminar/";
+
+const CURSO_URL_LISTAR = URL_BASE + "curso/listar";
+
+const GRUPOACADEMICO_URL_LISTAR = URL_BASE + "grupo/listar";

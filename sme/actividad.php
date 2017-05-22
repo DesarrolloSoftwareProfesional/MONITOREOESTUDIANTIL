@@ -82,51 +82,57 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel"><b>Datos del Alumno</b></h4>
+          <h4 class="modal-title" id="myModalLabel"><b>Datos de Actividad</b></h4>
         </div>
         <form class=""  method="post">
         <input type="hidden" id="id">
         <div class="modal-body" id="datosAqui">
           <div class="modal-body">
 
+            <div class="form-group">
+              <select class="form-control" id="codGrupoAcademico">
+              </select>
+            </div>
+
               <div class="form-group">
-                <input type="text" class="form-control" id="apPaterno" placeholder="Apellido paterno" required="true">
+                <input type="text" class="form-control" id="nomActividad" placeholder="Actividad" required="true">
               </div>
 
               <div class="form-group">
-                <input type="text" class="form-control" id="apMaterno" placeholder="Apellido materno" required="true">
+                <textarea class="form-control" rows="3" id="descrActividad" placeholder="Descripcion de actividad" required="true"></textarea>
               </div>
 
               <div class="form-group">
-                <input type="text" class="form-control" id="nombres" placeholder="Nombres" required="true">
+                <select class="form-control" id="idCurso">
+                </select>
               </div>
 
               <div class="form-group">
-                <input type="text" class="form-control" id="dni" placeholder="Dni" required="true">
-              </div>
-
-              <div class="form-group">
-                <input type="date" class="form-control" id="fechaNac" placeholder="Fecha de nacimiento" required="true">
-              </div>
-
-              <div class="form-group">
-                  <div class='input-group date' id='datetimepicker1'>
-                      <input type='text' class="form-control" />
+                  <div class='input-group date' id='dtfechaRealizacion'>
+                      <input type='text' id="fechaRealizacion" class="form-control" placeholder="Fecha de realizacion"/>
                       <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                       </span>
                   </div>
               </div>
-              <div class="form-group">
-                              <div class='input-group date' id='datetimepicker3'>
-                                  <input type='text' class="form-control" />
-                                  <span class="input-group-addon">
-                                      <span class="glyphicon glyphicon-time"></span>
-                                  </span>
-                              </div>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" id="direccion" placeholder="Direccion" required="true">
+              <div class="form-group grupo-fecha">
+                <div class="item-fecha">
+                  <div class='input-group date' id='dthoraInicio'>
+                    <input type='text' id="horaInicio" class="form-control" placeholder="Hora inicio" />
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-time"></span>
+                      </span>
+                </div>
+                </div>
+                <div class="item-fecha">
+                  <div class='input-group date' id='dthoraFin'>
+                    <input type='text' id="horaFin" class="form-control" placeholder="Hora fin"/>
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-time"></span>
+                      </span>
+                </div>
+                </div>
+
               </div>
           </div>
           <div class="modal-footer">
@@ -156,11 +162,16 @@
 
   <script type="text/javascript">
       $(function () {
-          $('#datetimepicker1').datetimepicker();
+          $('#dtfechaRealizacion').datetimepicker({
+            format: 'DD-MM-YYYY'
+          });
 
-          $('#datetimepicker3').datetimepicker({
+          $('#dthoraInicio').datetimepicker({
                     format: 'LT'
                 });
+          $('#dthoraFin').datetimepicker({
+                          format: 'LT'
+                      });
       });
   </script>
 </body>

@@ -3,14 +3,14 @@
  *
  */
 require_once("../src/lib/autoload.php");
-class CursoService implements iCrudService
+class GrupoAcademicoService implements iCrudService
 {
-    const TABLE = "Curso";
+    const TABLE = "Grupo academico";
     protected $dao;
 
     public function __construct()
     {
-        $this->dao = new CursoDao();
+        $this->dao = new GrupoAcademicoDao();
     }
 
     public function getAll()

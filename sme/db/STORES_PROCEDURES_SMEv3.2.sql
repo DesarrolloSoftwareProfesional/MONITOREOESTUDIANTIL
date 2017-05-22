@@ -274,7 +274,7 @@ BEGIN
 	SELECT
     A.idApoderado, A.apPaternoApoderado, A.apMaternoApoderado,
     A.nombresApoderado, A.dniApoderado, A.fechaNacApoderado, A.direccionApoderado, A.nomCompleto, U.userApoderado, A.estadoRegistro
-    
+
 	FROM APODERADOS A INNER JOIN USUARIO_APODERADO U ON A.idApoderado=U.idApoderado
 	WHERE U.userApoderado=p_userApoderado AND U.passApoderado=p_passApoderado;
 END //
@@ -350,9 +350,9 @@ CREATE PROCEDURE SP_ACTIVIDADES_INSERT
     IN p_codGrupoAcademico char(6),
 	IN p_nomActividad varchar(50),
 	IN p_descrActividad varchar(600),
-	IN p_fechaRealizacion date,
-	IN p_horaInicio time,
-	IN p_horaFin time,
+	IN p_fechaRealizacion varchar(10),
+	IN p_horaInicio varchar(10),
+	IN p_horaFin varchar(10),
 	IN p_frecuenciaAviso int
 )
  BEGIN
@@ -361,12 +361,54 @@ CREATE PROCEDURE SP_ACTIVIDADES_INSERT
     fechaRealizacion, horaInicio, horaFin, frecuenciaAviso, flag_Notificado)
     VALUES
     (p_idEmpleado, p_idCurso, p_codGrupoAcademico, p_nomActividad, p_descrActividad,
-    p_fechaRealizacion, p_horaInicio, p_horaFin, p_frecuenciaAviso, 1) ;
+    STR_TO_DATE(p_fechaRealizacion,'%d-%m-%Y'), STR_TO_DATE(p_horaInicio, '%h:%i %p'),
+    STR_TO_DATE(p_horaFin, '%h:%i %p'), p_frecuenciaAviso, 1) ;
 END //
 DELIMITER ;
 
--- CALL SP_ACTIVIDADES_INSERT(2,1,'1A2017','Examen final','Examen parcial, nota final para el registro en la libreta.','2017-05-21','16:30:00','18:00:00',1);
+-- CALL SP_ACTIVIDADES_INSERT(1,3,'1A2017','examen final','examen','22-05-2017','8:30 PM','9:20 PM',1);
 
+
+
+-- -------------------------------------------------------------
+-- TABLA:					ACTIVIDADES
+-- STORE PROCEDURE:			SP_ACTIVIDADES_UPDATE(?,?,?,?,?,?,?,?,?,?;?)
+-- DESCRIPCIÓN:				Actualiza datos de la actividad
+-- FECHA DE CREACIÓN:		2017-05-21
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ACTIVIDADES_UPDATE;
+
+DELIMITER //
+CREATE PROCEDURE SP_ACTIVIDADES_UPDATE
+(
+	IN p_idEmpleado int,
+	IN p_idCurso int,
+    IN p_codGrupoAcademico char(6),
+	IN p_nomActividad varchar(50),
+	IN p_descrActividad varchar(600),
+	IN p_fechaRealizacion varchar(10),
+	IN p_horaInicio varchar(10),
+	IN p_horaFin varchar(10),
+	IN p_frecuenciaAviso int,
+    IN p_idActividad int
+)
+ BEGIN
+	UPDATE ACTIVIDADES SET
+		idEmpleado=p_idEmpleado, idCurso=p_idCurso,
+		codGrupoAcademico=p_codGrupoAcademico, nomActividad=p_nomActividad,
+		descrActividad=p_descrActividad, fechaRealizacion=STR_TO_DATE(p_fechaRealizacion,'%d-%m-%Y'),
+		horaInicio=STR_TO_DATE(p_horaInicio, '%h:%i %p'), horaFin=STR_TO_DATE(p_horaFin, '%h:%i %p'),
+		frecuenciaAviso=p_frecuenciaAviso
+    WHERE
+		idActividad=p_idActividad;
+END //
+DELIMITER ;
+
+-- CALL SP_ACTIVIDADES_UPDATE(1,3,'1A2017','examen final','examen','22-05-2017','8:30 PM','9:20 PM',1,2);
 
 
 -- -------------------------------------------------------------
@@ -386,8 +428,9 @@ CREATE PROCEDURE SP_ACTIVIDADES_SELECT_ALL()
  BEGIN
 	SELECT
 		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
-		A.idCurso,C.nomCurso, A.fechaRealizacion, A.horaInicio,
-		A.horaFin, A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
+		A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
+    TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
+    A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
 	FROM
 		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
 	ORDER BY A.idActividad DESC;
@@ -415,8 +458,9 @@ CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_ID(IN p_idActividad INT)
  BEGIN
 	SELECT
 		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
-		A.idCurso,C.nomCurso, A.fechaRealizacion, A.horaInicio,
-		A.horaFin, A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
+		A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
+    TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
+    A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
 	FROM
 		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
 	WHERE A.idActividad =p_idActividad;
@@ -444,13 +488,90 @@ CREATE PROCEDURE SP_ACTIVIDADES_SELECT_ALL_PENDING()
  BEGIN
 	SELECT
 		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
-		A.idCurso,C.nomCurso, A.fechaRealizacion, A.horaInicio,
-		A.horaFin, A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
+		A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
+    TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
+    A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
 	FROM
 		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
 	WHERE
 		CONCAT(DATE(A.fechaRealizacion),'',A.horaFin) >= DATE_FORMAT(NOW(),'%Y-%m-%d %T')
 	ORDER BY A.idActividad DESC;
-	
+
 END //
 DELIMITER ;
+
+
+-- -------------------------------------------------------------
+-- TABLA:					ACTIVIDADES
+-- STORE PROCEDURE:			SP_ACTIVIDADES_SELECT_LAST_INSERTED()
+-- DESCRIPCIÓN:				Obtiene el ultimo registro
+-- FECHA DE CREACIÓN:		2017-05-21
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ACTIVIDADES_SELECT_LAST_INSERTED;
+
+DELIMITER //
+CREATE PROCEDURE SP_ACTIVIDADES_SELECT_LAST_INSERTED()
+ BEGIN
+	SELECT
+		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+		A.idCurso,C.nomCurso, A.fechaRealizacion, A.horaInicio,
+		A.horaFin, A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
+	FROM
+		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+	ORDER BY A.idActividad DESC LIMIT 1;
+END //
+DELIMITER ;
+
+-- CALL SP_ACTIVIDADES_SELECT_LAST_INSERTED();
+
+-- -------------------------------------------------------------
+-- TABLA:					GRUPOACADEMICO
+-- STORE PROCEDURE:			SP_GRUPOACADEMICO_SELECT_ALL()
+-- DESCRIPCIÓN:				Listado de todos los GRUPOS ACADEMICOS
+-- FECHA DE CREACIÓN:		2017-05-21
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+-- DROP PROCEDURE SP_GRUPOACADEMICO_SELECT_ALL;
+DELIMITER //
+CREATE PROCEDURE SP_GRUPOACADEMICO_SELECT_ALL()
+BEGIN
+SELECT
+	codGrupoAcademico, idGrado, codSeccion, anio, estadoRegistro
+FROM
+	GRUPOACADEMICO;
+END
+//
+DELIMITER ;
+
+-- CALL SP_GRUPOACADEMICO_SELECT_ALL();
+
+
+-- -------------------------------------------------------------
+-- TABLA:					GRUPOACADEMICO
+-- STORE PROCEDURE:			SP_GRUPOACADEMICO_SELECT_BY_ID(?)
+-- DESCRIPCIÓN:				Obtiene un grupo academico por codigo
+-- FECHA DE CREACIÓN:		2017-05-21
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+-- DROP PROCEDURE SP_GRUPOACADEMICO_SELECT_BY_ID;
+DELIMITER //
+CREATE PROCEDURE SP_GRUPOACADEMICO_SELECT_BY_ID(IN p_codGrupoAcademico CHAR(6))
+BEGIN
+SELECT
+	codGrupoAcademico, idGrado, codSeccion, anio, estadoRegistro
+FROM
+	GRUPOACADEMICO
+WHERE codGrupoAcademico=p_codGrupoAcademico;
+END
+//
+DELIMITER ;
+
+-- CALL SP_GRUPOACADEMICO_SELECT_BY_ID('1A2017');

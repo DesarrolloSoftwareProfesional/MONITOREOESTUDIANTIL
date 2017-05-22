@@ -25,6 +25,12 @@
          return $this->mysqli->findAll($sql);
      }
 
+     public function getLastInserted()
+     {
+         $sql="CALL SP_ACTIVIDADES_SELECT_LAST_INSERTED()";
+         return $this->mysqli->findAll($sql);
+     }
+
      public function getByID($id)
      {
          $sql="CALL SP_ACTIVIDADES_SELECT_BY_ID(?)";
@@ -45,12 +51,14 @@
          return $result;
      }
 
-     public function update()
+     public function update($idEmpleado, $idCurso, $codGrupoAcademico, $nomActividad, $descrActividad,
+                            $fechaRealizacion, $horaInicio, $horaFin, $frecuenciaAviso, $idActividad)
      {
-         $sql="CALL (?,?,?,?)";
+         $sql="CALL SP_ACTIVIDADES_UPDATE(?,?,?,?,?,?,?,?,?,?)";
          $conn=$this->mysqli->open();
          $stmt = $conn->prepare($sql);
-         $stmt->bind_param('sss', '');
+         $stmt->bind_param('iissssssii', $idEmpleado, $idCurso, $codGrupoAcademico, $nomActividad, $descrActividad,
+                                $fechaRealizacion, $horaInicio, $horaFin, $frecuenciaAviso, $idActividad);
          $result=$this->mysqli->executeIUD($stmt);
          $conn->close();
 

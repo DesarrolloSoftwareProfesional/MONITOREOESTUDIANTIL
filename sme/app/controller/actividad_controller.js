@@ -11,25 +11,26 @@ $.when(
 $(document).ready(main);
 //Funciones de Arranque
 function main() {
-
   getAllActividad();
 
   //Accion al hacer click en boton  Registrar Alumno
   $('#nuevaActividad').click(function() {
     document.getElementById("guardarActividad").value = ACCION_REGISTRAR;
     clearInputs();
+    getAllGrupoAcademico();
+    getAllCursos();
     showModal();
   });
 
   //Accion en el boton del modal
   $('#guardarActividad').click(function() {
-    saveAlumno();
+    saveActividad();
   });
 
 }
 
 
-//listar todas las categorias
+//listar todas la actrividades
 function getAllActividad() {
   $.ajax({
     dataType: DATA_TYPE_JSON,
@@ -63,23 +64,73 @@ function getAllActividad() {
   });
 }
 
+//listar todos los cursos
+function getAllCursos() {
+  $.ajax({
+    dataType: DATA_TYPE_JSON,
+    contentType: CONTEN_TYPE_JSON,
+    type: METHOD_GET,
+    url: CURSO_URL_LISTAR,
+    success: function(data) {
+      $("#idCurso").html('');
+      $("#idCurso").append("<option value='0' disabled selected> Seleccione Curso </option>");
+      $.each(data, function(key, value) {
+        var newrow = "<option value='" + value['idCurso'] + "'>" + value['nomCurso'] + "</option>";
+        $("#idCurso").append(newrow);
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+}
+
+//listar todos los grupos academicos
+function getAllGrupoAcademico() {
+  $.ajax({
+    dataType: DATA_TYPE_JSON,
+    contentType: CONTEN_TYPE_JSON,
+    type: METHOD_GET,
+    url: GRUPOACADEMICO_URL_LISTAR,
+    success: function(data) {
+      $("#codGrupoAcademico").html('');
+      $("#codGrupoAcademico").append("<option value='0' disabled selected> Seleccione Grupo </option>");
+      $.each(data, function(key, value) {
+        var newrow = "<option value='" + value['codGrupoAcademico'] + "'>" +
+          value['idGrado'] + "° " +
+          value['codSeccion'] + " - " +
+          value['anio'] +
+          "</option>";
+        $("#codGrupoAcademico").append(newrow);
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+}
+
 //Metodo para registrar o actualizar
-function saveAlumno() {
+function saveActividad() {
   let opcion = document.getElementById("guardarActividad").value;
 
   let url_select = (opcion === ACCION_REGISTRAR) ? ACTIVIDAD_URL_REGISTAR : ACTIVIDAD_URL_ACTUALIZAR;
 
-  let objAlumno = getAlumnoValue().toString();
+  let objActividad = getActividadValue();
 
   jQuery.ajax({
     dataType: DATA_TYPE_JSON,
     contentType: CONTEN_TYPE_JSON,
     type: METHOD_POST,
-    data: JSON.stringify(objAlumno),
+    data: JSON.stringify(objActividad.toString()),
     url: url_select,
     success: function(data) {
 
       ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
+
+      if ("true" === data.state) {
+        dataForNotification(objActividad.id);
+      }
       console.log(data);
       getAllActividad();
       hideModal();
@@ -95,6 +146,8 @@ function saveAlumno() {
 
 //Metodo para buscar una categoria por su ID
 function searchActividad(id) {
+  getAllGrupoAcademico();
+  getAllCursos();
 
   $.ajax({
     dataType: DATA_TYPE_JSON,
@@ -141,7 +194,27 @@ function deleteActividad(id) {
   }
 }
 
+function dataForNotification(id) {
+  let url_select = ("" === id) ? ACTIVIDAD_URL_ULTIMO_REGISTRO : ACTIVIDAD_URL_BUSCAR + id;
 
+  $.ajax({
+    dataType: DATA_TYPE_JSON,
+    contentType: CONTEN_TYPE_JSON,
+    type: METHOD_GET,
+    url: url_select,
+    success: function(data) {
+      console.log(data);
+      $.each(data, function(key, value) {});
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+}
+
+function sendNotification() {
+
+}
 
 function showModal() {
   $('#modalActividad').modal({
@@ -156,35 +229,40 @@ function hideModal() {
 
 function clearInputs() {
   document.getElementById("id").value = '';
-  document.getElementById("apPaterno").value = '';
-  document.getElementById("apMaterno").value = '';
-  document.getElementById("nombres").value = '';
-  document.getElementById("dni").value = '';
-  document.getElementById("fechaNac").value = '';
-  document.getElementById("direccion").value = '';
+  document.getElementById("codGrupoAcademico").value = '0';
+  document.getElementById("nomActividad").value = '';
+  document.getElementById("descrActividad").value = '';
+  document.getElementById("idCurso").value = '0';
+  document.getElementById("fechaRealizacion").value = '';
+  document.getElementById("horaInicio").value = '';
+  document.getElementById("horaFin").value = '';
 }
 
 function setInputs(value) {
-  document.getElementById("id").value = value['idAlumno'];
-  document.getElementById("apPaterno").value = value['apPaternoAlumno'];
-  document.getElementById("apMaterno").value = value['apMaternoAlumno'];
-  document.getElementById("nombres").value = value['nombresAlumno'];
-  document.getElementById("dni").value = value['dniAlumno'];
-  document.getElementById("fechaNac").value = value['fechaNacAlumno'];
-  document.getElementById("direccion").value = value['direccionAlumno'];
+  document.getElementById("id").value = value['idActividad'];
+  document.getElementById("codGrupoAcademico").value = value['codGrupoAcademico'];
+  document.getElementById("nomActividad").value = value['nomActividad'];
+  document.getElementById("descrActividad").value = value['descrActividad'];
+  document.getElementById("idCurso").value = value['idCurso'];
+  document.getElementById("fechaRealizacion").value = value['fechaRealizacion'];
+  document.getElementById("horaInicio").value = value['horaInicio'];
+  document.getElementById("horaFin").value = value['horaFin'];
 }
 
 //obtener valores de los inputs
-function getAlumnoValue() {
+function getActividadValue() {
   let id = document.getElementById("id").value;
-  let apPaterno = document.getElementById("apPaterno").value;
-  let apMaterno = document.getElementById("apMaterno").value;
-  let nombres = document.getElementById("nombres").value;
-  let dni = document.getElementById("dni").value;
-  let fechaNac = document.getElementById("fechaNac").value;
-  let direccion = document.getElementById("direccion").value;
+  let idEmpleado = 1;
+  let codGrupoAcademico = document.getElementById("codGrupoAcademico").value;
+  let nomActividad = document.getElementById("nomActividad").value;
+  let descrActividad = document.getElementById("descrActividad").value;
+  let idCurso = document.getElementById("idCurso").value;
+  let fechaRealizacion = document.getElementById("fechaRealizacion").value;
+  let horaInicio = document.getElementById("horaInicio").value;
+  let horaFin = document.getElementById("horaFin").value;
+  let frecuenciaAviso = 1;
+  let objActividad = new ActidadModel(id, idEmpleado, idCurso, codGrupoAcademico, nomActividad, descrActividad,
+    fechaRealizacion, horaInicio, horaFin, frecuenciaAviso);
 
-  let objAlumno = new AlumnoModel(id, apPaterno, apMaterno, nombres, dni, fechaNac, direccion);
-
-  return objAlumno;
+  return objActividad;
 }

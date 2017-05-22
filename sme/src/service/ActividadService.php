@@ -23,6 +23,11 @@ class ActividadService implements iCrudService
         UtilService::jsonEncode($this->dao->getAllPending());
     }
 
+    public function getLastInserted()
+    {
+        UtilService::jsonEncode($this->dao->getLastInserted());
+    }
+
     public function getById()
     {
         if (!empty($_GET[UtilConst::ID])) {
@@ -51,6 +56,19 @@ class ActividadService implements iCrudService
 
     public function update()
     {
+        $obj = UtilService::jsonDecode();
+
+        if (isset($obj->idEmpleado) && isset($obj->idCurso) && isset($obj->codGrupoAcademico) &&
+          isset($obj->nomActividad) && isset($obj->descrActividad) && isset($obj->fechaRealizacion) &&
+          isset($obj->horaInicio) && isset($obj->horaFin) && isset($obj->frecuenciaAviso) && isset($obj->idActividad)) {
+            $result= $this->dao->update($obj->idEmpleado, $obj->idCurso, $obj->codGrupoAcademico,
+                                      $obj->nomActividad, $obj->descrActividad, $obj->fechaRealizacion,
+                                       $obj->horaInicio, $obj->horaFin, $obj->frecuenciaAviso, $obj->idActividad);
+
+            UtilService::jsonEncodeIUD($result, self::TABLE, "Actualizado");
+        } else {
+            UtilService::errorResponse("JSON no coressponde a ".self::TABLE);
+        }
     }
 
     public function delete()
@@ -90,9 +108,12 @@ class ActividadService implements iCrudService
               UtilService::errorResponse("Use metodo DELETE");
           }
           break;
-          case 'pendientes':
+        case 'pendientes':
             $this->getAllPending();
-            break;
+          break;
+        case 'ultimoregistro':
+            $this->getLastInserted();
+          break;
         default:
           UtilService::errorResponse("Metodo no existe");
       break;

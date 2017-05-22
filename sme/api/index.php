@@ -29,7 +29,7 @@ if (!empty($_GET['page'])) {
                 $apoderado = new ApoderadoService();
                 $apoderado->restApi();
             break;
-           
+
 
             case'curso':
                 require_once('../src/service/CursoService.php');
@@ -41,6 +41,11 @@ if (!empty($_GET['page'])) {
                 require_once('../src/service/ActividadService.php');
                 $actividad = new ActividadService();
                 $actividad->restApi();
+            break;
+            case'grupo':
+                require_once('../src/service/GrupoAcademicoService.php');
+                $grupo = new GrupoAcademicoService();
+                $grupo->restApi();
             break;
 
             default:
