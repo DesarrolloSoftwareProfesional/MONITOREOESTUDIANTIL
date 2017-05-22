@@ -2,7 +2,7 @@
 <resources>
 
     <string-array name="TipoSession">
-        <item>Seleccione tipo de Usuario</item>
+        <item>Seleccione</item>
         <item>Alumno</item>
         <item>Apoderado</item>
     </string-array>

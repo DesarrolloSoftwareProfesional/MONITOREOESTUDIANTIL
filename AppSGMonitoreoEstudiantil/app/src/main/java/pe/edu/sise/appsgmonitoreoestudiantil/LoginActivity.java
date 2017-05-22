@@ -31,15 +31,17 @@ import pe.edu.sise.utils.Attributes;
 import pe.edu.sise.utils.SessionManager;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
     protected static final String TAG = "LoginActivity";
 
     private EditText log_etx_usu;
     private EditText log_etx_pass;
     private Button log_btn_entrar;
     private Button log_btn_reg;
-    private TextView log_tvi_recuPass;
+    private TextView log_tv_registrate;
     private CheckBox log_chb_recUser;
     private Spinner log_sp_TipoUsuario;
+
 
     //Session Usuario
 
@@ -67,10 +69,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         log_etx_usu = (EditText) findViewById(R.id.log_etx_usu);
         log_etx_pass = (EditText) findViewById(R.id.log_etx_pass);
         log_btn_entrar = (Button) findViewById(R.id.log_btn_entrar);
-        log_btn_reg = (Button) findViewById(R.id.log_btn_reg);
+        //log_btn_reg = (Button) findViewById(R.id.log_btn_reg);
         //log_tvi_recuPass = (TextView) findViewById(R.id.log_txv_recupPass);
         log_chb_recUser = (CheckBox) findViewById(R.id.log_chb_recUser);
         log_sp_TipoUsuario = (Spinner) findViewById(R.id.log_sp_TipoUsuario);
+        log_tv_registrate = (TextView) findViewById(R.id.log_tv_reg);
 
         //Listener
         log_etx_pass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -85,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        log_btn_reg.setOnClickListener(LoginActivity.this);
+        log_tv_registrate.setOnClickListener(LoginActivity.this);
         log_btn_entrar.setOnClickListener(LoginActivity.this);
 
         ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource( this, R.array.TipoSession , android.R.layout.simple_spinner_item);
@@ -127,7 +130,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.log_btn_reg:
+            case R.id.log_tv_reg:
                 mostrarDialogoRegistro();
                 break;
             case R.id.log_btn_entrar:
