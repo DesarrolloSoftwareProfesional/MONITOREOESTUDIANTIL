@@ -118,29 +118,29 @@ CREATE TABLE Periodos(
     constraint Ak_anio_trimestre unique(anio,trimestre)
 );
 
-CREATE TABLE Cargos(
-	idCargo int auto_increment,
-	nomCargo varchar(60),
-	estadoRegistro bit default 1,
+-- CREATE TABLE Cargos(
+-- 	idCargo int auto_increment,
+-- 	nomCargo varchar(60),
+-- 	estadoRegistro bit default 1,
+-- 
+-- 	constraint Pk_Cargos primary key (idCargo)
+-- );
 
-	constraint Pk_Cargos primary key (idCargo)
-);
-
-CREATE TABLE DetalleAcademico(
-	idAlumno int auto_increment,
-	idGrado int,
-	codSeccion char(1),
-	idPeriodo int,
-
-	constraint Pk_DetalleAcademico primary key (idAlumno),
-	constraint Fk_idGrado_Grados_DetalleAcademico foreign key (idGrado) references Grados(idGrado),
-	constraint Fk_codSeccion_Secciones_DetalleAcademico foreign key (codSeccion) references Secciones(codSeccion),
-	constraint Fk_idPeriodo_Periodos_DetalleAcademico foreign key (idPeriodo) references Periodos(idPeriodo)
-);
+-- CREATE TABLE DetalleAcademico(
+-- 	idAlumno int auto_increment,
+-- 	idGrado int,
+-- 	codSeccion char(1),
+-- 	idPeriodo int,
+-- 
+-- 	constraint Pk_DetalleAcademico primary key (idAlumno),
+-- 	constraint Fk_idGrado_Grados_DetalleAcademico foreign key (idGrado) references Grados(idGrado),
+-- 	constraint Fk_codSeccion_Secciones_DetalleAcademico foreign key (codSeccion) references Secciones(codSeccion),
+-- 	constraint Fk_idPeriodo_Periodos_DetalleAcademico foreign key (idPeriodo) references Periodos(idPeriodo)
+-- );
 
 CREATE TABLE Empleados(
 	idEmpleado int auto_increment,
-	idCargo int,
+	idPerfil int,
 	apPaternoEmpleado varchar(60),
 	apMaternoEmpleado varchar(60),
 	nombresEmpleado varchar(60),
@@ -152,7 +152,7 @@ CREATE TABLE Empleados(
 	estadoRegistro bit default 1,
 
 	constraint Pk_Empleados primary key (idEmpleado),
-	constraint Fk_idCargo_Cargos foreign key (idCargo) references Cargos(idCargo),
+	constraint Fk_idPerfil_Perfiles foreign key (idPerfil) references Perfiles(idPerfil),
     constraint Ak_dniEmpleado_Empleados unique(dniEmpleado)
     -- constraint Fk_idUsuario_Usuarios_Empleados foreign key (idUsuario) references Usuarios(idUsuario)
 );
