@@ -19,7 +19,8 @@
   <link rel="stylesheet" href="resources/css/notify.min.css">
   <link rel="stylesheet" href="resources/css/font-awesome.min.css">
   <link rel="stylesheet" href="resources/css/jquery.zzconfirm.min.css">
-
+  <link rel="stylesheet" href="resources/css/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" href="resources/css/bootstrap-datetimepicker-standalone.css">
   <style media="screen">
     .navbar {
       border-radius: 0;
@@ -102,8 +103,13 @@
                 <input type="text" class="form-control" id="dni" placeholder="Dni" required="true">
               </div>
 
-              <div class="form-group">
-                <input type="date" class="form-control" id="fechaNac" placeholder="Fecha de nacimiento" required="true">
+               <div class="form-group">
+                  <div class='input-group date' id='fechaNac'>
+                      <input type='text' id="fechaNacimiento" class="form-control" placeholder="Fecha de Nacimiento"/>
+                      <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
               </div>
 
               <div class="form-group">
@@ -126,6 +132,8 @@
 
   <script src="resources/js/vendor/jquery-1.11.2.min.js"></script>
   <script src="resources/js/vendor/bootstrap.min.js"></script>
+  <script src="resources/js/vendor/moment.min.js"></script>
+  <script src="resources/js/vendor/bootstrap-datetimepicker.min.js"></script>
   <script src="resources/js/main.js"></script>
   <script src="resources/js/vendor/notify.min.js"></script>
   <script src="resources/js/vendor/jquery.zzconfirm.js"></script>
@@ -140,6 +148,12 @@
     // $(document).on('click','.btn',function(){
     //   $('.btn').css("background-color", "yellow");
     // })
+    // 
+      $(function () {
+          $('#fechaNac').datetimepicker({
+            format: 'DD-MM-YYYY'
+          });
+      });
   </script>
 </body>
 
