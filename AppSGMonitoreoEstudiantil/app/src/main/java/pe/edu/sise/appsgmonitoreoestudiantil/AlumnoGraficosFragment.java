@@ -54,6 +54,7 @@ public class AlumnoGraficosFragment extends Fragment {
 
         alum_lista_lstv = (ListView) mview.findViewById(R.id.alum_lista_lstv);
         alum_graf_chart_prom = (BarChart) mview.findViewById(R.id.alum_graf_chart_prom);
+
         alum_graf_chart_prom.animateY(2500);
         alum_graf_chart_prom.setDescription("Mis Cursos");
         alum_graf_chart_prom.setMaxVisibleValueCount(60);
