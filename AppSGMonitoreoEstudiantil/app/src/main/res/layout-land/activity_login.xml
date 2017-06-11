@@ -1,197 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:background="@drawable/degradado"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/degradado"
     tools:context="pe.edu.sise.appsgmonitoreoestudiantil.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        >
-
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_logo_monitoreo" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="20dp"
-            android:gravity="center"
-            android:text="@string/name_sistema"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="16dp" />
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_margin="10dp">
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="150dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_logo_monitoreo" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Seleccione tipo de usuario :"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:textColor="@color/colorSecondaryText"/>
-
-            <Spinner
-                android:id="@+id/log_sp_TipoUsuario"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:textAlignment="center"/>
+                android:gravity="center"
+                android:text="@string/name_sistema"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="12dp" />
 
         </LinearLayout>
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/side_item_layout_componet_small"
-            android:orientation="horizontal"
-            android:layout_marginBottom="15dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:gravity="center"
-                android:background="@drawable/side_item_layout_componet_extra_small"
-                android:backgroundTint="@color/colorAccent">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_icon_user"
-                    android:tint="@color/colorTextIcons" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingRight="@dimen/dimen_padding_medium">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center">
-
-                    <EditText
-                        android:id="@+id/log_etx_usu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/hint_user"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/colorPrimaryDark"/>
-
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/side_item_layout_componet_small"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
+                android:layout_margin="2dp"
                 android:gravity="center"
-                android:background="@drawable/side_item_layout_componet_extra_small"
-                android:backgroundTint="@color/colorAccent">
+                android:orientation="horizontal">
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_icon_password"
-                    android:tint="@color/colorTextIcons"
-                    />
+                    android:text="Seleccione tipo de usuario :"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/log_sp_TipoUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:textAlignment="center" />
+
             </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingRight="@dimen/dimen_padding_medium">
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/side_item_layout_componet_small"
+                android:orientation="horizontal">
 
-                <android.support.design.widget.TextInputLayout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:background="@drawable/side_item_layout_componet_extra_small"
+                    android:backgroundTint="@color/colorAccent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_icon_user"
+                        android:tint="@color/colorTextIcons" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimaryDark"
-                    app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="#5e5e5c">
+                    android:layout_weight="1"
+                    android:paddingRight="@dimen/dimen_padding_medium">
 
-                    <EditText
-                        android:id="@+id/log_etx_pass"
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/hint_pass"
-                        android:inputType="textPassword"/>
+                        android:textAlignment="center">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/log_etx_usu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_user"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/side_item_layout_componet_small"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:background="@drawable/side_item_layout_componet_extra_small"
+                    android:backgroundTint="@color/colorAccent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_icon_password"
+                        android:tint="@color/colorTextIcons" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingRight="@dimen/dimen_padding_medium">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="#5e5e5c">
+
+                        <EditText
+                            android:id="@+id/log_etx_pass"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_pass"
+                            android:inputType="textPassword" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/log_chb_recUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:buttonTint="@color/colorSecondaryText"
+                android:text="Recordar usuario"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/log_btn_entrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/side_item_layout_componet_small"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Ingresar"
+                android:textColor="#ffffff" />
+
+
+            <TextView
+                android:id="@+id/log_tv_reg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Registrarse"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="16sp" />
+
+
         </LinearLayout>
-
-        <CheckBox
-            android:id="@+id/log_chb_recUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recordar usuario"
-            android:buttonTint="@color/colorSecondaryText"
-            android:textColor="@color/colorSecondaryText"
-            android:layout_margin="8dp"
-            android:textSize="15sp"
-            android:layout_gravity="center"
-            />
-
-        <Button
-            android:id="@+id/log_btn_entrar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/side_item_layout_componet_small"
-            android:backgroundTint="@color/colorAccent"
-            android:text="Ingresar"
-            android:textColor="#ffffff"
-            android:layout_marginBottom="20dp"
-            />
-
-
-        <TextView
-            android:id="@+id/log_tv_reg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registrarse"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="@color/colorSecondaryText"/>
 
 
     </LinearLayout>
