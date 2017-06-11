@@ -81,7 +81,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:gravity="center"
-                android:background="@drawable/side_item_layout_componet_small"
+                android:background="@drawable/side_item_layout_componet_extra_small"
                 android:backgroundTint="@color/colorAccent">
 
                 <ImageView
@@ -126,7 +126,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:gravity="center"
-                android:background="@drawable/side_item_layout_componet_small"
+                android:background="@drawable/side_item_layout_componet_extra_small"
                 android:backgroundTint="@color/colorAccent">
 
                 <ImageView

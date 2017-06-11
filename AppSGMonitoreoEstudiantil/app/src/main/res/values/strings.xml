@@ -15,7 +15,7 @@
     <string name="hint_nombres_usuario">Nombres</string>
     <string name="hint_apellido_usuario">Apellidos</string>
     <string name="hint_email_usuario">E-mail</string>
-    <string name="hint_dni_alumno">Dni del Alumno</string>
+    <string name="hint_dni_alumno">DNI del Alumno</string>
     <string name="hint_password_usuario">Password</string>
     <string name="hint_pass_conf">Confirmar Password</string>
     <string name="name_button_registrar">Registrar</string>
