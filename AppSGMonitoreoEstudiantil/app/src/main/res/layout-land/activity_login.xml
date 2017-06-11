@@ -1,186 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/degradado"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="15dp"
+    android:background="@drawable/degradado"
     tools:context="pe.edu.sise.appsgmonitoreoestudiantil.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:backgroundTint="@color/color_trans"
-        android:background="@drawable/side_item_layout_componet_small"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
         >
 
-        <LinearLayout
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_logo_monitoreo"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_logo_monitoreo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="20dp"
+            android:gravity="center"
+            android:text="@string/name_sistema"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_margin="10dp">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seleccione tipo de usuario :"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textColor="@color/colorSecondaryText"/>
+
+            <Spinner
+                android:id="@+id/log_sp_TipoUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/side_item_layout_componet_small"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:background="@drawable/side_item_layout_componet_extra_small"
+                android:backgroundTint="@color/colorAccent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_icon_user"
+                    android:tint="@color/colorTextIcons" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:height="20dp"
-                android:gravity="center"
-                android:text="@string/name_sistema"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="15dp"/>
+                android:layout_weight="1"
+                android:paddingRight="@dimen/dimen_padding_medium">
 
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center">
+
+                    <EditText
+                        android:id="@+id/log_etx_usu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_user"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@drawable/side_item_layout_componet_small"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:background="@drawable/side_item_layout_componet_extra_small"
+                android:backgroundTint="@color/colorAccent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_icon_password"
+                    android:tint="@color/colorTextIcons"
+                    />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimen_padding_small"
-                android:background="@drawable/side_item_layout_componet_small"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:paddingRight="@dimen/dimen_padding_medium">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_icon_user"
-                        android:tint="@color/colorTextIcons" />
-                </LinearLayout>
-
-                <LinearLayout
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingRight="@dimen/dimen_padding_medium">
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    android:textColor="@color/colorPrimaryDark"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="#5e5e5c">
 
-                        <EditText
-                            android:id="@+id/log_etx_usu"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/hint_user"
-                            android:textColor="@color/colorPrimaryDark"/>
-
-                    </android.support.design.widget.TextInputLayout>
-
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimen_padding_small"
-                android:background="@drawable/side_item_layout_componet_small"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_icon_password"
-                        android:tint="@color/colorTextIcons" />
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingRight="@dimen/dimen_padding_medium">
-
-                    <android.support.design.widget.TextInputLayout
+                    <EditText
+                        android:id="@+id/log_etx_pass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimaryDark"
-                        app:passwordToggleEnabled = "true"
-                        app:passwordToggleDrawable="@drawable/ic_eye_pass"
-                        app:passwordToggleTint="#8ba171"
-                        >
+                        android:hint="@string/hint_pass"
+                        android:inputType="textPassword"/>
 
-                        <EditText
-                            android:id="@+id/log_etx_pass"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/hint_pass"
-                            android:inputType="textPassword"
-                            />
-                    </android.support.design.widget.TextInputLayout>
+                </android.support.design.widget.TextInputLayout>
 
-                </LinearLayout>
             </LinearLayout>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Recordar usuario"
-                android:layout_marginTop="1dp"
-                android:textColor="#8F2F0D"
-                android:buttonTint="#FF7408"
-                android:id="@+id/log_chb_recUser" />
-
-            <Button
-                android:id="@+id/log_btn_entrar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Entrar"
-                android:background="@drawable/side_item_layout_componet_small"
-                android:backgroundTint="@color/colorPrimaryLight"
-                android:textColor="@color/colorPrimaryText"/>
-
-
-            <Button
-                android:id="@+id/log_btn_reg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Nuevo Usuario"
-                android:background="@drawable/side_item_layout_componet_small"
-                android:backgroundTint="@color/colorPrimary"
-                android:textColor="@color/colorPrimaryText"
-                />
-
         </LinearLayout>
 
-        </LinearLayout>
+        <CheckBox
+            android:id="@+id/log_chb_recUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recordar usuario"
+            android:buttonTint="@color/colorSecondaryText"
+            android:textColor="@color/colorSecondaryText"
+            android:layout_margin="8dp"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            />
+
+        <Button
+            android:id="@+id/log_btn_entrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/side_item_layout_componet_small"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Ingresar"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="20dp"
+            />
 
 
+        <TextView
+            android:id="@+id/log_tv_reg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrarse"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/colorSecondaryText"/>
 
+
+    </LinearLayout>
 
 
 </LinearLayout>

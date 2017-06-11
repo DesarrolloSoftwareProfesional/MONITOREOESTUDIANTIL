@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryDark">#9d9d9d</color>
-    <color name="colorPrimary">#dedede</color>
+    <color name="colorPrimaryDark">#de7e35</color>
+    <color name="colorPrimary">#eb9b5c</color>
     <color name="colorPrimaryLight">#ffffff</color>
     <color name="colorTextIcons">#ffffff</color>
-    <color name="colorAccent">#36a754</color>
+    <color name="colorAccent">#e3a95e</color>
     <color name="colorPrimaryText">#212121</color>
-    <color name="colorSecondaryText">#757575</color>
+    <color name="colorSecondaryText">#515151</color>
     <color name="color_black_60">#a0000000</color>
     <color name="color_trans">#85ffffff</color>
 </resources>
