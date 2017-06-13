@@ -75,4 +75,10 @@ public class Attributes {
     public static final String CURSO_NOMBRE="nomCurso";
     public static final String CURSO_ABREV="abrevCurso";
     public static final String CURSO_ESTADO_REG="estadoRegistro";
+
+    //ATRIBUTOS DE ALUMNO - LLAVES DE INTENT
+    public static final String KEY_NOMBRE="Nombre";
+    public static final String KEY_IDALUMNO="idAlumno";
+    public static final String KEY_PROMEDIO="trimestre";
+
 }

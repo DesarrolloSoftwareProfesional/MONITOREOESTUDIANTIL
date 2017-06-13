@@ -51,10 +51,22 @@ public class AlumnoGraficosFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View mview = inflater.inflate(R.layout.fragment_alumno_graficos, container, false);
-
         alum_lista_lstv = (ListView) mview.findViewById(R.id.alum_lista_lstv);
         alum_graf_chart_prom = (BarChart) mview.findViewById(R.id.alum_graf_chart_prom);
+        iniciarUI();
+        consultarCursos();
+        int idAlumno  = 0,trimestre = 0;
+        idAlumno = getArguments().getInt(Attributes.KEY_IDALUMNO,0);
+        trimestre = getArguments().getInt(Attributes.KEY_PROMEDIO,1);
+        consultarNotaPromedio(idAlumno,trimestre);
+        return mview;
+    }
 
+    private void iniciarUI() {
+        propReportGraf();
+    }
+
+    private void propReportGraf() {
         alum_graf_chart_prom.animateY(2500);
         alum_graf_chart_prom.setDescription("Mis Cursos");
         alum_graf_chart_prom.setMaxVisibleValueCount(60);
@@ -62,10 +74,6 @@ public class AlumnoGraficosFragment extends Fragment {
         alum_graf_chart_prom.setDrawBarShadow(false);
         alum_graf_chart_prom.setDrawGridBackground(false);
         alum_graf_chart_prom.invalidate();
-
-        consultarCursos();
-        consultarNotaPromedio();
-        return mview;
     }
 
     protected JSONObject getIdAlumnoTrimestreJsonObject(Integer idAlumno, Integer trimestre) {
@@ -85,15 +93,16 @@ public class AlumnoGraficosFragment extends Fragment {
         return jsonObject;
     }
 
-    public void consultarNotaPromedio() {
+    public void consultarNotaPromedio(int idAlumno, int trimestre) {
         try {
-            new NotaPromedioTrimestreAsyncTask().execute(getIdAlumnoTrimestreJsonObject(1, 1));
+            new NotaPromedioTrimestreAsyncTask().execute(getIdAlumnoTrimestreJsonObject(idAlumno, trimestre));
         } catch (Exception e) {
             Log.d(TAG, "consultarNotaPromedio: " + Log.getStackTraceString(e));
         }
     }
 
     public void consultarCursos() {
+
         try {
             new CursosListAsyncTask().execute();
         } catch (Exception e) {

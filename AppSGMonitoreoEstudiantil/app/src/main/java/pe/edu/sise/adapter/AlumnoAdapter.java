@@ -15,6 +15,7 @@ import java.util.List;
 import pe.edu.sise.appsgmonitoreoestudiantil.DetalleAlumnoActivity;
 import pe.edu.sise.model.AlumnoTest;
 import pe.edu.sise.appsgmonitoreoestudiantil.R;
+import pe.edu.sise.utils.Attributes;
 
 public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder>{
 
@@ -42,18 +43,21 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        AlumnoTest alumno = this.alumnoList.get(position);
+        final AlumnoTest alumno = this.alumnoList.get(position);
 
         holder.alum_row_tvi_alum.setText(alumno.getNombres() + " " + alumno.getApellidos());
         holder.alum_row_tvi_grado.setText(String.valueOf(alumno.getCodGrado()));
         holder.alum_row_tvi_periodo.setText(String.valueOf(alumno.getCodPeriodo()));
         holder.alum_row_tvi_valoracion.setText(String.valueOf(alumno.getCodGrado()));
-
+        alumno.setIdAlumno(position);
+        alumno.setTrimestre(1);
         holder.alum_row_cvi_selec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent mintt = new Intent(view.getContext(), DetalleAlumnoActivity.class);
-                mintt.putExtra("Nombre",((TextView)view.findViewById(R.id.alum_row_tvi_alum)).getText());
+                mintt.putExtra(Attributes.KEY_NOMBRE,alumno.getNombres());
+                mintt.putExtra(Attributes.KEY_IDALUMNO,alumno.getIdAlumno());
+                mintt.putExtra(Attributes.KEY_PROMEDIO,alumno.getTrimestre());
                 view.getContext().startActivity(mintt);
             }
         });

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import pe.edu.sise.adapter.DetalleAlumnoSectionsPageAdapter;
+import pe.edu.sise.utils.Attributes;
 
 public class DetalleAlumnoActivity extends AppCompatActivity {
     private ViewPager mViewPager;
@@ -26,7 +27,10 @@ public class DetalleAlumnoActivity extends AppCompatActivity {
             /*mTabLayout.addTab(mTabLayout.newTab().setText("Desempeño"));
         mTabLayout.addTab(mTabLayout.newTab().setText("Actividades"));
         mTabLayout.addTab(mTabLayout.newTab().setText("Datos Generales"));*/
-        DetalleAlumnoSectionsPageAdapter adapter = new DetalleAlumnoSectionsPageAdapter(getSupportFragmentManager());
+        int idAlumno =  getIntent().getIntExtra(Attributes.KEY_IDALUMNO,0);
+        int trimestre = getIntent().getIntExtra(Attributes.KEY_PROMEDIO,1);
+        DetalleAlumnoSectionsPageAdapter adapter =
+                    new DetalleAlumnoSectionsPageAdapter(getSupportFragmentManager(),idAlumno,trimestre);
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
     }
