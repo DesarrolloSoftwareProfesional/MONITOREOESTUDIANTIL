@@ -58,6 +58,6 @@ public class SmeFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(Integer.valueOf(msgId) /* ID of notification */, notificationBuilder.build());
     }
 }

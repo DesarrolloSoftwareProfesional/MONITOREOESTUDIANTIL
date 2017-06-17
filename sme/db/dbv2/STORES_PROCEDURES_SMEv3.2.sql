@@ -516,17 +516,36 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE SP_ACTIVIDADES_SELECT_LAST_INSERTED()
  BEGIN
-	SELECT
-		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
-		A.idCurso,C.nomCurso, A.fechaRealizacion, A.horaInicio,
-		A.horaFin, A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
-	FROM
-		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
-	ORDER BY A.idActividad DESC LIMIT 1;
+ SELECT
+   A.idActividad 'id',CONCAT(A.nomActividad,' - ',C.nomCurso) 'actividad',
+   CONCAT(DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y'),' ', TIME_FORMAT(A.horaInicio, '%h:%i %p')) 'fecha'
+ FROM
+   ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+ ORDER BY A.idActividad DESC LIMIT 1;
 END //
 DELIMITER ;
 
 -- CALL SP_ACTIVIDADES_SELECT_LAST_INSERTED();
+
+
+
+-- DROP PROCEDURE SP_ACTIVIDADES_SELECT_NOTIFICATION_BY_ID;
+
+DELIMITER //
+CREATE PROCEDURE SP_ACTIVIDADES_SELECT_NOTIFICATION_BY_ID(IN p_idActividad INT)
+ BEGIN
+	SELECT
+		A.idActividad 'id',CONCAT(A.nomActividad,' - ',C.nomCurso) 'actividad',
+        CONCAT(DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y'),' ', TIME_FORMAT(A.horaInicio, '%h:%i %p')) 'fecha'
+	FROM
+		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+	WHERE A.idActividad=p_idActividad;
+END //
+DELIMITER ;
+
+-- CALL SP_ACTIVIDADES_SELECT_NOTIFICATION_BY_ID(16);
+
+
 
 -- -------------------------------------------------------------
 -- TABLA:					GRUPOACADEMICO
@@ -587,22 +606,22 @@ DELIMITER ;
 
 -- DROP PROCEDURE SP_ALUMNOS_SELECT_BY_IDApoderado();
 
-USE bd_sgmev3;
+-- USE bd_sgmev3;
 
 DELIMITER //
 CREATE PROCEDURE SP_ALUMNOS_SELECT_BY_IDApoderado(IN p_idApoderado INT)
- 
+
  BEGIN
- 
+
 	CREATE TEMPORARY TABLE temp_listAlumByApod as
-	(select  n.idAlumno, MAX(n.idPeriodo) as peridoFinal 
+	(select  n.idAlumno, MAX(n.idPeriodo) as peridoFinal
      from   notas n
     INNER JOIN alumnos_apoderados a
     on n.idAlumno = a.idAlumno where a.idApoderado = p_idApoderado
-    group by n.idAlumno);    
- 
-	select a.idAlumno, a.nombresAlumno, 
-			a.apPaternoAlumno, a.apMaternoAlumno, p.trimestre, 
+    group by n.idAlumno);
+
+	select a.idAlumno, a.nombresAlumno,
+			a.apPaternoAlumno, a.apMaternoAlumno, p.trimestre,
             p.anio, GA.idGrado, GA.codSeccion,
             COALESCE(ac.CantAC,0) AS CantAC, totalPromedio = 20
 	from alumnos a
@@ -620,12 +639,12 @@ CREATE PROCEDURE SP_ALUMNOS_SELECT_BY_IDApoderado(IN p_idApoderado INT)
     p.idPeriodo = t.peridoFinal
     LEFT JOIN(SELECT codGrupoAcademico,COUNT(1) AS CantAC FROM actividades
      GROUP BY codGrupoAcademico) ac
-     on ac.codGrupoAcademico = AG.codGrupoAcademico     
+     on ac.codGrupoAcademico = AG.codGrupoAcademico
 	where idApoderado = p_idApoderado;
-	
+
     drop table temp_listAlumByApod;
 END //
 DELIMITER ;
 
 
-CALL SP_ALUMNOS_SELECT_BY_IDApoderado(2)
+-- CALL SP_ALUMNOS_SELECT_BY_IDApoderado(2)
