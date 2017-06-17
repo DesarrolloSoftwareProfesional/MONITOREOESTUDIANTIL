@@ -37,6 +37,7 @@ public class Attributes {
     public static final String ALUM_GRADO="idGrado";
     public static final String ALUM_COD_SECCION="codSeccion";
     public static final String ALUM_CANT_ACTIVIDAD="CantAC";
+    public static final String ALUM_PROMEDIO_TOTAL="totalPromedio";
 
     //ATRIBUTOS DE APODERADO EN JSON
     public static final String APOD_ID="idApoderado";

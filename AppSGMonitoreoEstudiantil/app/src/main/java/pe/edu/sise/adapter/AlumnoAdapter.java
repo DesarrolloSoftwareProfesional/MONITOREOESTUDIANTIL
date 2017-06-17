@@ -49,7 +49,8 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
         holder.alum_row_tvi_alum.setText(alumno.getNomCompleto());
         holder.alum_row_tvi_grado.setText(String.valueOf(alumno.getCodGracdo()));
         holder.alum_row_tvi_periodo.setText(String.valueOf(alumno.getPeriodo()));
-        holder.alum_row_tvi_valoracion.setText(String.valueOf(alumno.getCodGracdo()));
+        holder.alum_row_tvi_valoracion.setText(String.valueOf(alumno.getPromedioTotal()));
+        holder.alum_row_tvi_cant_act.setText(String.valueOf(alumno.getCantAct()));
        // alumno.setId(position);
        //alumno.setTrimestre(1);
         holder.alum_row_cvi_selec.setOnClickListener(new View.OnClickListener() {

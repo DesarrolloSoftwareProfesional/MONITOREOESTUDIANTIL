@@ -73,7 +73,8 @@ public class AlumnoController {
                 alumno.setCodGracdo(jsonObjectOut.getInt(Attributes.ALUM_GRADO));
                 alumno.setCodSeccion(jsonObjectOut.getString(Attributes.ALUM_COD_SECCION));
                 alumno.setCantAct(jsonObjectOut.getInt(Attributes.ALUM_CANT_ACTIVIDAD));
-
+                alumno.setPeriodo(jsonObjectOut.getInt(Attributes.ALUM_ANIO));
+                alumno.setPromedioTotal(jsonObjectOut.getInt(Attributes.ALUM_PROMEDIO_TOTAL));
                 lst.add(alumno);
             }
 
