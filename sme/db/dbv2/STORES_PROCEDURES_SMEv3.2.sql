@@ -623,7 +623,7 @@ CREATE PROCEDURE SP_ALUMNOS_SELECT_BY_IDApoderado(IN p_idApoderado INT)
 	select a.idAlumno, a.nombresAlumno,
 			a.apPaternoAlumno, a.apMaternoAlumno, p.trimestre,
             p.anio, GA.idGrado, GA.codSeccion,
-            COALESCE(ac.CantAC,0) AS CantAC, totalPromedio = 20
+            COALESCE(ac.CantAC,0) AS CantAC, 20 AS totalPromedio
 	from alumnos a
 	inner join alumnos_apoderados ap
 	on a.idAlumno = ap.idAlumno
@@ -647,4 +647,4 @@ END //
 DELIMITER ;
 
 
--- CALL SP_ALUMNOS_SELECT_BY_IDApoderado(2)
+-- CALL SP_ALUMNOS_SELECT_BY_IDApoderado(15)
