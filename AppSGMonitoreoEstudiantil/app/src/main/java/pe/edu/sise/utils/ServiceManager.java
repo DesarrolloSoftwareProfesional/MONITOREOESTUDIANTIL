@@ -17,7 +17,7 @@ public class ServiceManager {
     //private static final String DOMAIN = "http://192.168.2.17/sme/api/";
 
 //    //DOMINIO - ABEL
-    private static final String DOMAIN = "http://192.168.2.17/sise/sme/api/";
+    private static final String DOMAIN = "http://192.168.137.1/sise/sme/api/";
 
     //DOMINIO - JHONATAN
     //private static final String DOMAIN = "http://192.168.1.26/sise/sme/api/";
@@ -48,4 +48,11 @@ public class ServiceManager {
     public static String cursoUrlGetByID(Integer id) {
         return DOMAIN + "curso/buscar/" + id;
     }
+
+    //URL-ACTIVIDADES
+    public  static final String ACTIVIDAD_URL_LIST_ALL=DOMAIN+"actividad/listar";
+    public static String listarActividadesByApoderado(Integer idApoderado) {
+        return DOMAIN + "actividad/listar_act_by_apod/" + idApoderado;
+    }
+
 }

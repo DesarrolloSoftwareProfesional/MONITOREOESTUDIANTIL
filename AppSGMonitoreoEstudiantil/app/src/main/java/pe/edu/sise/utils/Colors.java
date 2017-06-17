@@ -19,9 +19,12 @@ public class Colors {
     public static final int PURPLE = Color.rgb(103, 58, 183);
     public static final int LIME = Color.rgb(205, 220, 57);
     public static final int INDIGO = Color.rgb(63, 81, 181);
-    final static int DEEP_PURPLE = Color.rgb(103, 58, 183);
+    public static final int DEEP_PURPLE = Color.rgb(103, 58, 183);
+    public static final int AMBER = Color.rgb(255, 193, 7);
+    public static final int BLUE_GREY = Color.rgb(96, 125, 139);
+    public static final int DEEP_ORANGE = Color.rgb(255, 87, 34);
 
     public static final int[] CUSTOM_COLORS = {
-            PINK, BLUE, ORANGE, YELLOW, PURPLE, TEAL, GREEN, LIME, INDIGO, BROWN, CYAN, DEEP_PURPLE
+            PINK, BLUE, ORANGE, YELLOW, PURPLE, TEAL, GREEN, LIME, INDIGO, BROWN, CYAN, DEEP_PURPLE, AMBER, BLUE_GREY, DEEP_ORANGE
     };
 }

@@ -6,11 +6,13 @@
     <dimen name="dimen_nom_sistema">25sp</dimen>
     <dimen name="dimen_nom_pagina">20sp</dimen>
     <dimen name="dimen_padding_large">12sp</dimen>
+    <dimen name="dimen_padding_card">16sp</dimen>
     <dimen name="dimen_padding_extra_large">10sp</dimen>
     <dimen name="dimen_padding_medium">8sp</dimen>
     <dimen name="dimen_padding_extra_medium">6sp</dimen>
     <dimen name="dimen_padding_small">4sp</dimen>
     <dimen name="dimen_padding_extra_small">2sp</dimen>
+    <dimen name="dimen_padding_separator">1sp</dimen>
     <dimen name="dimen_radius_card_view">6dp</dimen>
     <dimen name="dimen_elevation_card_view">6sp</dimen>
     <dimen name="dimen_radius_card_view_small">4dp</dimen>

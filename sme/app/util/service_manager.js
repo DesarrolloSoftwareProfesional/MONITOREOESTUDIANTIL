@@ -9,7 +9,7 @@ const CONTEN_TYPE_JSON = "application/json; charset=utf-8";
 const ACCION_REGISTRAR = "Registrar";
 const ACCION_ACTUALIZAR = "Actualizar";
 
-const URL_BASE = "http://localhost/sise/sme/api/";
+const URL_BASE = "http://192.168.137.1/sise/sme/api/";
 
 const ALUMNO_URL_LISTAR = URL_BASE + "alumno/listar";
 const ALUMNO_URL_BUSCAR = URL_BASE + "alumno/buscar/";

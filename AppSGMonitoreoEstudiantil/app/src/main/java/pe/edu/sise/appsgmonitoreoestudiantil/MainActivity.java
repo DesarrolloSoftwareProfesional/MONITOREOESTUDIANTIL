@@ -51,8 +51,10 @@ public class MainActivity extends AppCompatActivity
         this.sessionManager = new SessionManager(this);
 
         iniciarUI();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+//                new AlumnoRecyclerViewFragment()).addToBackStack(null).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
-                new AlumnoRecyclerViewFragment()).addToBackStack(null).commit();
+                new ActividadRecyclerViewFragment()).addToBackStack(null).commit();
 
     }
 

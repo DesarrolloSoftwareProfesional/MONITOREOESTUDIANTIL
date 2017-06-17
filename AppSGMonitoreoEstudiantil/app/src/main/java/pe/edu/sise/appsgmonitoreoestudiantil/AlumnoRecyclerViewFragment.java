@@ -27,7 +27,7 @@ import pe.edu.sise.utils.SessionManager;
 
 public class AlumnoRecyclerViewFragment extends Fragment {
 
-    private static final String TAG = "AlumnoRecyclerViewFragment";
+    private static final String TAG = "AlumnoRcVwFragment";
 
     // Variables - controles
 

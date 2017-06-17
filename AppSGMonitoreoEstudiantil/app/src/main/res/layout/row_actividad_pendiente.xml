@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/alum_row_act_pendiente"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dimen_padding_small"
+    android:layout_marginLeft="@dimen/dimen_padding_extra_small"
+    android:layout_marginRight="@dimen/dimen_padding_extra_small"
+    android:layout_marginTop="@dimen/dimen_padding_extra_small"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/act_row_imgv_color"
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen_padding_card"
+            android:paddingLeft="@dimen/dimen_padding_large"
+            android:paddingRight="@dimen/dimen_padding_large"
+            android:paddingTop="@dimen/dimen_padding_card">
+
+            <TextView
+                android:id="@+id/act_row_tvi_nom_actividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_padding_extra_small"
+                android:text="Nombre de actividad"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryText" />
+
+            <!--<TextView-->
+            <!--android:id="@+id/act_row_tvi_nom_curso"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Cuso: matematica"-->
+            <!--android:textColor="@color/colorPrimaryText"/>-->
+
+            <TextView
+                android:id="@+id/act_row_tvi_det_actividad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Detalle de actividad"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorSecondaryText" />
+
+            <TextView
+                android:id="@+id/act_row_tvi_fecha_prog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_padding_extra_medium"
+                android:text="22-06-2017 08:45 AM"
+                android:textColor="@color/colorSecondaryText" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
