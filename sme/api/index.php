@@ -1,6 +1,7 @@
 <?php
 if (!empty($_GET['page'])) {
     header('Content-Type: application/JSON; charset=utf-8');
+    header("Access-Control-Allow-Origin: *");
 
     $page=$_GET['page'];
 
