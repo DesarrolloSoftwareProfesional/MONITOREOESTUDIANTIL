@@ -27,8 +27,13 @@ public class DetalleAlumnoActivity extends AppCompatActivity {
             /*mTabLayout.addTab(mTabLayout.newTab().setText("Desempeño"));
         mTabLayout.addTab(mTabLayout.newTab().setText("Actividades"));
         mTabLayout.addTab(mTabLayout.newTab().setText("Datos Generales"));*/
-        int idAlumno =  getIntent().getIntExtra(Attributes.KEY_IDALUMNO,0);
-        int trimestre = getIntent().getIntExtra(Attributes.KEY_PROMEDIO,1);
+        Bundle extras = getIntent().getExtras();
+        int idAlumno = 0,trimestre=0;
+        if(extras != null)
+        {
+            idAlumno = Integer.parseInt(extras.getString(Attributes.KEY_IDALUMNO,"0"));
+            trimestre = extras.getInt(Attributes.KEY_PROMEDIO,1);
+        }
         DetalleAlumnoSectionsPageAdapter adapter =
                     new DetalleAlumnoSectionsPageAdapter(getSupportFragmentManager(),idAlumno,trimestre);
         mViewPager.setAdapter(adapter);
