@@ -195,7 +195,7 @@ function deleteActividad(id) {
 }
 
 function dataForNotification(id) {
-  let url_select = ("" === id) ? ACTIVIDAD_URL_ULTIMO_REGISTRO : ACTIVIDAD_URL_BUSCAR + id;
+  let url_select = ("" === id) ? ACTIVIDAD_URL_ULTIMO_REGISTRO : ACTIVIDAD_URL_BUSCAR_NOTIFICACION + id;
 
   $.ajax({
     dataType: DATA_TYPE_JSON,
@@ -203,17 +203,13 @@ function dataForNotification(id) {
     type: METHOD_GET,
     url: url_select,
     success: function(data) {
+      (1 === data.success) ? msg_success("notificacion enviado correctamente"): msg_error("notificacion no se pudo enviar");
       console.log(data);
-      $.each(data, function(key, value) {});
     },
     error: function(data) {
       console.log(data);
     }
   });
-}
-
-function sendNotification() {
-
 }
 
 function showModal() {

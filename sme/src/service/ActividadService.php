@@ -25,7 +25,28 @@ class ActividadService implements iCrudService
 
     public function getLastInserted()
     {
-        UtilService::jsonEncode($this->dao->getLastInserted());
+        $notificacion=$this->dao->getLastInserted();
+        $this->setNotification($notificacion);
+    }
+
+    public function getNotificationByID()
+    {
+        if (!empty($_GET[UtilConst::ID])) {
+            $notificacion = $this->dao->getNotificationByID($_GET[UtilConst::ID]);
+            $this->setNotification($notificacion);
+            // foreach ($notificacion as $key => $value) {
+            //     echo $value["id"]." ".$value["actividad"]." ".$value["fecha"];
+            // }
+        } else {
+            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+        }
+    }
+
+    public function setNotification($notificacion)
+    {
+        foreach ($notificacion as $key => $value) {
+            echo UtilNotification::sendNotification($value["id"], $value["actividad"], $value["fecha"]);
+        }
     }
 
     public function getById()
@@ -113,6 +134,9 @@ class ActividadService implements iCrudService
           break;
         case 'ultimoregistro':
             $this->getLastInserted();
+          break;
+        case 'notificacion':
+            $this->getNotificationByID();
           break;
         default:
           UtilService::errorResponse("Metodo no existe");

@@ -16,12 +16,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import pe.edu.sise.model.Alumno;
 import pe.edu.sise.model.Usuario;
+import pe.edu.sise.utils.Attributes;
 import pe.edu.sise.utils.SessionManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String TAG="MainActivity";
+
     protected NavigationView navigationView;
     protected TextView nav_head_tvi_usuario;
     protected TextView nav_head_tvi_email;
@@ -33,6 +38,14 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d(TAG,"Tocken: "+ FirebaseInstanceId.getInstance().getToken());
+
+        String id= getIntent().getStringExtra(Attributes.MSG_ID);
+
+        if(!"".equals(id)){
+            Log.d(TAG,"id: "+id);
+        }
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         this.sessionManager = new SessionManager(this);

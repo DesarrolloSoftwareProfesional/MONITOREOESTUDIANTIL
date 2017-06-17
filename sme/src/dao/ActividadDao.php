@@ -30,6 +30,12 @@
          $sql="CALL SP_ACTIVIDADES_SELECT_LAST_INSERTED()";
          return $this->mysqli->findAll($sql);
      }
+     
+     public function getNotificationByID($id)
+     {
+         $sql="CALL SP_ACTIVIDADES_SELECT_NOTIFICATION_BY_ID(?)";
+         return $this->mysqli->find($sql, $id);
+     }
 
      public function getByID($id)
      {

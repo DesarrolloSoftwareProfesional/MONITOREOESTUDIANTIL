@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "719967885761",
+    "firebase_url": "https://proyectosme-40b7d.firebaseio.com",
+    "project_id": "proyectosme-40b7d",
+    "storage_bucket": "proyectosme-40b7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719967885761:android:d2ee61c7b27fac23",
+        "android_client_info": {
+          "package_name": "pe.edu.sise.appsgmonitoreoestudiantil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719967885761-hrpdl7lc1v5476oiqtnvggd9dh9au4ec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5fFgisO7j4ppiKIMiUl3TP1OPsftfS2M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

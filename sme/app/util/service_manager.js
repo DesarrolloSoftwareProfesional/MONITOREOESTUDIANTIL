@@ -24,6 +24,8 @@ const ACTIVIDAD_URL_ULTIMO_REGISTRO = URL_BASE + "actividad/ultimoregistro";
 const ACTIVIDAD_URL_REGISTAR = URL_BASE + "actividad/registrar";
 const ACTIVIDAD_URL_ACTUALIZAR = URL_BASE + "actividad/actualizar";
 const ACTIVIDAD_URL_ELIMINAR = URL_BASE + "actividad/eliminar/";
+const ACTIVIDAD_URL_BUSCAR_NOTIFICACION = URL_BASE + "actividad/notificacion/";
+
 
 const CURSO_URL_LISTAR = URL_BASE + "curso/listar";
 

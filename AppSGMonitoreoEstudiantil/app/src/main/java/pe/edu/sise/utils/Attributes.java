@@ -86,4 +86,22 @@ public class Attributes {
     public static final String KEY_IDALUMNO="idAlumno";
     public static final String KEY_PROMEDIO="trimestre";
 
+    //ATRIBUTOS DE ACTIVIDAD EN JSON
+    public static final String ACT_ID="idActividad";
+    public static final String ACT_ID_EMPLEADO="idEmpleado";
+    public static final String ACT_ID_CURSO="idCurso";
+    public static final String ACT_NOMB_CURSO="nomCurso";
+    public static final String ACT_GPO_ACADEMICO="codGrupoAcademico";
+    public static final String ACT_NOMBRE="nomActividad";
+    public static final String ACT_DESCRIPCION="descrActividad";
+    public static final String ACT_FECH_REALIZACION="fechaRealizacion";
+    public static final String ACT_HORA_INICIO="horaInicio";
+    public static final String ACT_HORA_FIN="horaFin";
+    public static final String ACT_FREC_AVISO="frecuenciaAviso";
+    public static final String ACT_FLAG_NOTIFICADO="flag_Notificado";
+
+    //VARIABLE PARA LA  NOTIFICACION
+    public static final String MSG_ID ="id";
+    public static final String MSG_ACTIVIDAD ="actividad";
+    public static final String MSG_FECHA_REALIZARSE ="fecha";
 }
