@@ -13,20 +13,21 @@ import android.widget.TextView;
 import java.util.List;
 
 import pe.edu.sise.appsgmonitoreoestudiantil.DetalleAlumnoActivity;
+import pe.edu.sise.model.Alumno;
 import pe.edu.sise.model.AlumnoTest;
 import pe.edu.sise.appsgmonitoreoestudiantil.R;
 import pe.edu.sise.utils.Attributes;
 
 public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder>{
 
-    private List<AlumnoTest> alumnoList;
+    private List<Alumno> alumnoList;
     private FragmentManager fragmentManager;
 
     private int colRed;
     private int colGreen;
     private int colyellow;
 
-    public AlumnoAdapter(List<AlumnoTest> alumnoList, FragmentManager fragmentManager) {
+    public AlumnoAdapter(List<Alumno> alumnoList, FragmentManager fragmentManager) {
         this.alumnoList = alumnoList;
         this.fragmentManager = fragmentManager;
     }
@@ -43,26 +44,26 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final AlumnoTest alumno = this.alumnoList.get(position);
+        final Alumno alumno = this.alumnoList.get(position);
 
-        holder.alum_row_tvi_alum.setText(alumno.getNombres() + " " + alumno.getApellidos());
-        holder.alum_row_tvi_grado.setText(String.valueOf(alumno.getCodGrado()));
-        holder.alum_row_tvi_periodo.setText(String.valueOf(alumno.getCodPeriodo()));
-        holder.alum_row_tvi_valoracion.setText(String.valueOf(alumno.getCodGrado()));
-        alumno.setIdAlumno(position);
-        alumno.setTrimestre(1);
+        holder.alum_row_tvi_alum.setText(alumno.getNomCompleto());
+        holder.alum_row_tvi_grado.setText(String.valueOf(alumno.getCodGracdo()));
+        holder.alum_row_tvi_periodo.setText(String.valueOf(alumno.getPeriodo()));
+        holder.alum_row_tvi_valoracion.setText(String.valueOf(alumno.getCodGracdo()));
+       // alumno.setId(position);
+       //alumno.setTrimestre(1);
         holder.alum_row_cvi_selec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent mintt = new Intent(view.getContext(), DetalleAlumnoActivity.class);
                 mintt.putExtra(Attributes.KEY_NOMBRE,alumno.getNombres());
-                mintt.putExtra(Attributes.KEY_IDALUMNO,alumno.getIdAlumno());
+                mintt.putExtra(Attributes.KEY_IDALUMNO,alumno.getId());
                 mintt.putExtra(Attributes.KEY_PROMEDIO,alumno.getTrimestre());
                 view.getContext().startActivity(mintt);
             }
         });
 
-        int val = alumno.getCodGrado();
+        int val = alumno.getPromedioTotal();
         if (val > 4) {
 //            holder.alum_row_tvi_valoracion.setTextColor(colGreen);
             holder.alum_row_tvi_valoracion.setBackgroundColor(colGreen);

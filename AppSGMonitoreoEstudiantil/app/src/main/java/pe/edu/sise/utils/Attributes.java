@@ -32,6 +32,11 @@ public class Attributes {
     public static final String ALUM_USUARIO="userAlumno";
     public static final String ALUM_PASSWORD="passAlumno";
     public static final String ALUM_IS_LOGGED="isLogged";
+    public static final String ALUM_TRIMESTRE="trimestre";
+    public static final String ALUM_ANIO="anio";
+    public static final String ALUM_GRADO="idGrado";
+    public static final String ALUM_COD_SECCION="codSeccion";
+    public static final String ALUM_CANT_ACTIVIDAD="CantAC";
 
     //ATRIBUTOS DE APODERADO EN JSON
     public static final String APOD_ID="idApoderado";

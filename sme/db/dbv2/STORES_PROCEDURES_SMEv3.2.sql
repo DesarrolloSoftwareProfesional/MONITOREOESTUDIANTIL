@@ -574,4 +574,58 @@ END
 //
 DELIMITER ;
 
--- CALL SP_GRUPOACADEMICO_SELECT_BY_ID('1A2017');
+
+-- -------------------------------------------------------------
+-- TABLA:					Lista de alumnos por apoderado
+-- STORE PROCEDURE:			SP_ALUMNOS_SELECT_BY_IDApoderado()
+-- DESCRIPCIÓN:				Obtiene la lista de los alumnos por apoderado(id)
+-- FECHA DE CREACIÓN:		2017-06-14
+-- CREADO POR:				Aruhanca Vilca Jhonatan
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ALUMNOS_SELECT_BY_IDApoderado();
+
+USE bd_sgmev3;
+
+DELIMITER //
+CREATE PROCEDURE SP_ALUMNOS_SELECT_BY_IDApoderado(IN p_idApoderado INT)
+ 
+ BEGIN
+ 
+	CREATE TEMPORARY TABLE temp_listAlumByApod as
+	(select  n.idAlumno, MAX(n.idPeriodo) as peridoFinal 
+     from   notas n
+    INNER JOIN alumnos_apoderados a
+    on n.idAlumno = a.idAlumno where a.idApoderado = p_idApoderado
+    group by n.idAlumno);    
+ 
+	select a.idAlumno, a.nombresAlumno, 
+			a.apPaternoAlumno, a.apMaternoAlumno, p.trimestre, 
+            p.anio, GA.idGrado, GA.codSeccion,
+            COALESCE(ac.CantAC,0) AS CantAC, totalPromedio = 20
+	from alumnos a
+	inner join alumnos_apoderados ap
+	on a.idAlumno = ap.idAlumno
+    INNER JOIN alumnos_grupoacademico AG
+		ON AG.idAlumno = a.idAlumno
+        AND AG.estadoRegistro = 1 -- UltimoGrado
+	INNER JOIN grupoacademico GA
+		ON GA.codGrupoAcademico = AG.codGrupoAcademico
+	LEFT JOIN temp_listAlumByApod t
+    on a.idAlumno = t.idAlumno
+    INNER JOIN periodos p
+    on
+    p.idPeriodo = t.peridoFinal
+    LEFT JOIN(SELECT codGrupoAcademico,COUNT(1) AS CantAC FROM actividades
+     GROUP BY codGrupoAcademico) ac
+     on ac.codGrupoAcademico = AG.codGrupoAcademico     
+	where idApoderado = p_idApoderado;
+	
+    drop table temp_listAlumByApod;
+END //
+DELIMITER ;
+
+
+CALL SP_ALUMNOS_SELECT_BY_IDApoderado(2)

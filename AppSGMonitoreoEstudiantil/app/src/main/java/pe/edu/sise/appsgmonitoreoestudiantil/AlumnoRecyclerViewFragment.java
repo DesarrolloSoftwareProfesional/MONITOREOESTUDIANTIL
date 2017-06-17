@@ -1,6 +1,7 @@
 package pe.edu.sise.appsgmonitoreoestudiantil;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +18,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pe.edu.sise.adapter.AlumnoAdapter;
+import pe.edu.sise.controller.AlumnoController;
+import pe.edu.sise.model.Alumno;
 import pe.edu.sise.model.AlumnoTest;
+import pe.edu.sise.model.Apoderado;
+import pe.edu.sise.utils.SessionManager;
 
 
 public class AlumnoRecyclerViewFragment extends Fragment {
 
+    private static final String TAG = "AlumnoRecyclerViewFragment";
+
     // Variables - controles
+
+    protected SessionManager sessionManager;
     protected SwipeRefreshLayout alum_recv_swref;
     protected RecyclerView alum_recv_alumos;
 
@@ -45,35 +55,42 @@ public class AlumnoRecyclerViewFragment extends Fragment {
         alum_recv_alumos.setHasFixedSize(true);
         alum_recv_alumos.setLayoutManager(new LinearLayoutManager(this.getContext()));
         alum_recv_alumos.setItemAnimator(new DefaultItemAnimator());
-        alumnoAdapter = new AlumnoAdapter(cargarListaTest(),getFragmentManager());
-        alum_recv_alumos.setAdapter(alumnoAdapter);
+
 
         //Listener
-        alum_recv_swref.setOnRefreshListener(alum_recv_swrefSetOnRefreshListene());
+//        alum_recv_swref.setOnRefreshListener(alum_recv_swrefSetOnRefreshListene());
 
         alum_recv_swref.setColorSchemeResources(R.color.colorPrimaryDark);
+        this.sessionManager = new SessionManager(getContext());
+        if (sessionManager.existsAlumno()) {
+            //consume de la sesion
+            Alumno alumno = this.sessionManager.getAlumnoSession();
+            cargarAlumnoByApoderado(Integer.parseInt(alumno.getId()));
+        }
+
+
 
         return view;
     }
 
-    private SwipeRefreshLayout.OnRefreshListener alum_recv_swrefSetOnRefreshListene(){
-
-        return new SwipeRefreshLayout.OnRefreshListener(){
-
-            @Override
-            public void onRefresh() {
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            alumnoAdapter = new AlumnoAdapter(cargarListaTest(),getFragmentManager());
-                            alum_recv_alumos.setAdapter(alumnoAdapter);
-                            alum_recv_swref.setRefreshing(false);
-                        }
-                    },1000);
-            }
-        };
-    }
+//    private SwipeRefreshLayout.OnRefreshListener alum_recv_swrefSetOnRefreshListene(){
+//
+//        return new SwipeRefreshLayout.OnRefreshListener(){
+//
+//            @Override
+//            public void onRefresh() {
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//
+//                            alumnoAdapter = new AlumnoAdapter(cargarListaTest(),getFragmentManager());
+//                            alum_recv_alumos.setAdapter(alumnoAdapter);
+//                            alum_recv_swref.setRefreshing(false);
+//                        }
+//                    },1000);
+//            }
+//        };
+//    }
 
 
 
@@ -91,4 +108,35 @@ public class AlumnoRecyclerViewFragment extends Fragment {
 
         return list;
     }
+
+    private List<Alumno> cargarAlumnoByApoderado(int idApoderado){
+        List<Alumno> lst = new ArrayList<>();
+
+        try {
+            //lst = new AlumnosByApoderadoListAsyncTask(idApoderado);
+
+            new AlumnosByApoderadoListAsyncTask().execute(idApoderado);
+
+        } catch (Exception e) {
+            Log.i(TAG, "consultarCursos: " + Log.getStackTraceString(e).toString());
+        }
+        return lst;
+    }
+
+    private class AlumnosByApoderadoListAsyncTask extends AsyncTask<Integer, Void, List<Alumno>> {
+        @Override
+        protected List<Alumno> doInBackground(Integer... params) {
+            return AlumnoController.getAlumnosByApoderado(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(List<Alumno> alumnos) {
+            super.onPostExecute(alumnos);
+            alumnoAdapter = new AlumnoAdapter(alumnos,getFragmentManager());
+            alum_recv_alumos.setAdapter(alumnoAdapter);
+
+        }
+    }
+
+
 }

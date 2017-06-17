@@ -4,7 +4,8 @@ package pe.edu.sise.model;
  * Created by Abel on 1/05/2017.
  */
 
-public class Alumno {  private String id;
+public class Alumno {
+    private String id;
     private String apPaterno;
     private String apMaterno;
     private String nombres;
@@ -15,7 +16,13 @@ public class Alumno {  private String id;
     private boolean estadoRegistro;
     private String usuario;
     private boolean logged;
-
+    private int trimestre;
+    private int anio;
+    private int codGracdo;
+    private String codSeccion;
+    private int cantAct;
+    private int periodo;
+    private int promedioTotal;
 
 
     public Alumno(String id, String apPaterno, String apMaterno, String nombres, String dni, String fechaNac, String direccion, String nomCompleto, boolean estadoRegistro) {
@@ -90,7 +97,8 @@ public class Alumno {  private String id;
     }
 
     public String getNomCompleto() {
-        return nomCompleto;
+        //return nomCompleto;
+        return nombres + " " + apPaterno + " " + apMaterno;
     }
 
     public void setNomCompleto(String nomCompleto) {
@@ -119,5 +127,61 @@ public class Alumno {  private String id;
 
     public void setLogged(boolean logged) {
         this.logged = logged;
+    }
+
+    public int getTrimestre() {
+        return trimestre;
+    }
+
+    public void setTrimestre(int trimestre) {
+        this.trimestre = trimestre;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
+    public int getCodGracdo() {
+        return codGracdo;
+    }
+
+    public void setCodGracdo(int codGracdo) {
+        this.codGracdo = codGracdo;
+    }
+
+    public String getCodSeccion() {
+        return codSeccion;
+    }
+
+    public void setCodSeccion(String codSeccion) {
+        this.codSeccion = codSeccion;
+    }
+
+    public int getCantAct() {
+        return cantAct;
+    }
+
+    public void setCantAct(int cantAct) {
+        this.cantAct = cantAct;
+    }
+
+    public int getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(int periodo) {
+        this.periodo = periodo;
+    }
+
+    public int getPromedioTotal() {
+        return promedioTotal;
+    }
+
+    public void setPromedioTotal(int promedioTotal) {
+        this.promedioTotal = promedioTotal;
     }
 }
