@@ -27,6 +27,8 @@
             <li><a href="#">Apoderados</a></li>
             <li class="divider"></li>
             <li><a href="#">Profesores</a></li>
+            <li class="divider"></li>
+            <li><a href="nota.php">Notas</a></li>
           </ul>
         </li>
       </ul>

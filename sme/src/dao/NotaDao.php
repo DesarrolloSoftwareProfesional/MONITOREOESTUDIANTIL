@@ -19,6 +19,12 @@
          return $this->mysqli->findAll($sql);
      }
 
+     public function getAllAlumnos()
+     {
+        $sql="CALL SP_ALUMNOS_SELECT_NOTAS()";
+         return $this->mysqli->findAll($sql);
+     }
+
      public function getByID($id)
      {
          $sql="";

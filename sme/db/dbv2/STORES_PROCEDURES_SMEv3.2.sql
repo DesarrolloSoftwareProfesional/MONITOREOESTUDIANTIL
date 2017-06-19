@@ -645,6 +645,35 @@ CREATE PROCEDURE SP_ALUMNOS_SELECT_BY_IDApoderado(IN p_idApoderado INT)
     drop table temp_listAlumByApod;
 END //
 DELIMITER ;
-
-
 -- CALL SP_ALUMNOS_SELECT_BY_IDApoderado(15)
+
+-- -------------------------------------------------------------
+-- TABLA:					ALUMNOS
+-- STORE PROCEDURE:			SP_ALUMNOS_SELECT_NOTAS
+-- DESCRIPCIÓN:				Obtiene la lista de los alumnos y datos de notas.
+-- FECHA DE CREACIÓN:		2017-06-17
+-- CREADO POR:				Ronald Fabian Garcia
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- USE bd_sgmev3
+-- DROP PROCEDURE SP_ALUMNOS_SELECT_NOTAS
+-- CALL SP_ALUMNOS_SELECT_NOTAS();
+DELIMITER //
+CREATE PROCEDURE SP_ALUMNOS_SELECT_NOTAS()
+BEGIN
+	SELECT  A.idAlumno,
+			A.apPaternoAlumno,
+			A.apMaternoAlumno,
+            A.nombresAlumno,
+            A.dniAlumno,
+            A.fechaNacAlumno,
+            A.direccionAlumno,
+            AGA.codGrupoAcademico
+    FROM ALUMNOS A
+    INNER JOIN alumnos_grupoacademico AGA
+		ON AGA.idAlumno = A.idAlumno
+		AND AGA.estadoRegistro = 1
+    WHERE A.estadoRegistro = 1;
+END //
+DELIMITER ;
+

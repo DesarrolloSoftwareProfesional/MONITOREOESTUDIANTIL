@@ -31,5 +31,5 @@ const CURSO_URL_LISTAR = URL_BASE + "curso/listar";
 
 const GRUPOACADEMICO_URL_LISTAR = URL_BASE + "grupo/listar";
 
-
 const NOTA_URL_PROMEDIOALUMNOTRIMESTRE = URL_BASE + "nota/promedioalumnotrimestre"
+const NOTA_URL_LISTAR_ALUMNO = URL_BASE + "nota/listarAlumno";

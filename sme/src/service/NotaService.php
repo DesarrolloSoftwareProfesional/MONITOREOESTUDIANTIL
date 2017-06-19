@@ -96,6 +96,12 @@ class NotaService implements iCrudService
             UtilService::errorResponse("JSON no coressponde a ".self::TABLE);
         }
     }
+
+    public function getAllAlumnos()
+    {
+        UtilService::jsonEncode($this->dao->getAllAlumnos());
+    }
+    
 //Metodo que decide que accion se realizara
   public function restApi()
   {
@@ -130,6 +136,9 @@ class NotaService implements iCrudService
           break;
           case 'promedioalumnotrimestre':
               $this->getAllPromedioByTrimestreAlumno();
+          break;
+          case 'listarAlumno':
+              $this->getAllAlumnos();
           break;
         default:
           UtilService::errorResponse("Metodo no existe");
