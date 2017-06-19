@@ -1,11 +1,13 @@
 package pe.edu.sise.appsgmonitoreoestudiantil;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.*;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pe.edu.sise.adapter.AlumnoLstActvAdapter;
+import pe.edu.sise.controller.ActividadController;
+import pe.edu.sise.model.Actividad;
 import pe.edu.sise.model.AlumnoTest;
+import pe.edu.sise.utils.Attributes;
 
 
 /**
@@ -40,15 +45,6 @@ public class AlumnoLstActvFragment extends Fragment {
         //
         View view =  inflater.inflate(R.layout.fragment_alumno_lst_actv, container, false);
 
-        List<AlumnoTest> lista = new ArrayList<AlumnoTest>();
-
-        //poblando data/
-        lista.add(new AlumnoTest("EXAMEN", "Matematica", "Jhonatan", "18/05/16", "08:30am", "10:00am"));
-        lista.add(new AlumnoTest("PRACTICA CALIFICADA", "Lenguaje", "Jhonatan", "20/05/16", "09:00am", "10:30am"));
-        lista.add(new AlumnoTest("EXAMEN", "Caligrafia", "Jhonatan", "05/06/16", "08:30am", "10:00am"));
-        lista.add(new AlumnoTest("EXAMEN", "Ciencia, Tecnologia y Ambiente", "Jhonatan", "18/06/16", "08:30am", "10:00am"));
-
-
         recyclerView = (RecyclerView) view.findViewById(R.id.reciclador);
         recyclerView.setHasFixedSize(false);
 
@@ -56,13 +52,31 @@ public class AlumnoLstActvFragment extends Fragment {
         lmanager = new LinearLayoutManager(AlumnoLstActvFragment.this.getContext());
         recyclerView.setLayoutManager(lmanager);
 
-        //adaptador
-
-        adapter = new AlumnoLstActvAdapter(lista);
-        recyclerView.setAdapter(adapter);
+        if(getActivity().getIntent().getExtras()!=null){
+            String gpoAcademico = getActivity().getIntent().getExtras().getString(Attributes.ACT_GPO_ACADEMICO);
+            Log.d("id",gpoAcademico);
+            new ActividadListAsyncTask().execute(gpoAcademico);
+        }
 
         return view;
 
+    }
+
+    private class ActividadListAsyncTask extends AsyncTask<String,Void,List<Actividad>>{
+        @Override
+        protected List<Actividad> doInBackground(String... params) {
+            return ActividadController.getActividadesByGpoAcademico(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(List<Actividad> actividads) {
+            super.onPostExecute(actividads);
+
+            //adaptador
+
+        adapter = new AlumnoLstActvAdapter(actividads);
+        recyclerView.setAdapter(adapter);
+        }
     }
 
 }

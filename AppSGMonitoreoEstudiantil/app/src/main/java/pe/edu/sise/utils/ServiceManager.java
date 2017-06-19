@@ -16,20 +16,20 @@ public class ServiceManager {
     //DOMINIO
     //private static final String DOMAIN = "http://192.168.2.17/sme/api/";
 
-//    //DOMINIO - ABEL
-    private static final String DOMAIN = "http://192.168.137.1/sise/sme/api/";
+    //    //DOMINIO - ABEL
+    private static final String DOMAIN = "http://192.168.2.17/sise/sme/api/";
 
     //DOMINIO - JHONATAN
     //private static final String DOMAIN = "http://192.168.1.26/sise/sme/api/";
 
     //DOMINIO - RONALD
-   // private static final String DOMAIN = "http://192.168.43.222/sise/sme/api/";
+    // private static final String DOMAIN = "http://192.168.43.222/sise/sme/api/";
 
     //URL-ALUMNO
     public static final String ALUMNO_URL_LOGEO = DOMAIN + "alumno/logeo";
 
     //URL-APODERADO
-    public static final String APODERADO_URL_LOGEO = DOMAIN + "alumno/logeo";
+    public static final String APODERADO_URL_LOGEO = DOMAIN + "apoderado/logeo";
 
     //URL-NOTAS
     public static final String NOTA_URL_PROMEDIO_TRIMESTRE = DOMAIN + "nota/promedioalumnotrimestre";
@@ -50,9 +50,20 @@ public class ServiceManager {
     }
 
     //URL-ACTIVIDADES
-    public  static final String ACTIVIDAD_URL_LIST_ALL=DOMAIN+"actividad/listar";
+    public static final String ACTIVIDAD_URL_LIST_ALL = DOMAIN + "actividad/listar";
+
+    public static final String ACTIVIDAD_URL_BY_IDACTIVIDAD_IDALUMNO = DOMAIN + "actividad/idactividalumno";
+
+    public static String actividadByID(Integer id) {
+        return DOMAIN + "actividad/buscar/" + id;
+    }
+
     public static String listarActividadesByApoderado(Integer idApoderado) {
-        return DOMAIN + "actividad/listar_act_by_apod/" + idApoderado;
+        return DOMAIN + "actividad/apoderadoid/" + idApoderado;
+    }
+
+    public static String listarActividadesByGpoAcademico(String gpoAcademico) {
+        return DOMAIN + "actividad/gpoacademico/" + gpoAcademico;
     }
 
 }

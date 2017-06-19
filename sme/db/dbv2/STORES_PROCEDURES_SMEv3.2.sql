@@ -470,6 +470,71 @@ DELIMITER ;
 -- CALL SP_ACTIVIDADES_SELECT_BY_ID(1);
 
 
+-- -------------------------------------------------------------
+-- TABLA:					ACTIVIDADES
+-- STORE PROCEDURE:			SP_ACTIVIDADES_SELECT_BY_ID_APODERADO(?)
+-- DESCRIPCIÓN:				Listado de todas la actividades por codigo del apoderado de forma desendente
+-- FECHA DE CREACIÓN:		2017-06-18
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ACTIVIDADES_SELECT_BY_ID_APODERADO;
+
+DELIMITER //
+CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_ID_APODERADO(IN p_idApoderado INT)
+BEGIN
+SELECT
+ A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+ A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
+ TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
+ A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado,AL.nombresAlumno
+FROM
+ ACTIVIDADES A
+     INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+     INNER JOIN ALUMNOS_GRUPOACADEMICO AG ON A.codGrupoAcademico=AG.codGrupoAcademico
+     INNER JOIN ALUMNOS AL ON AG.idAlumno=AL.idAlumno
+     INNER JOIN ALUMNOS_APODERADOS AP ON AL.idAlumno=AP.idAlumno
+WHERE AP.idApoderado=p_idApoderado
+ORDER BY A.idActividad DESC;
+ END //
+DELIMITER ;
+
+-- CALL SP_ACTIVIDADES_SELECT_BY_ID_APODERADO(1);
+
+-- -------------------------------------------------------------
+-- TABLA:					ACTIVIDADES
+-- STORE PROCEDURE:			SP_ACTIVIDADES_SELECT_BY_IDACTIVIDAD_IDALUMNO(?,?)
+-- DESCRIPCIÓN:				actividad por codigo de activiad y alumno de forma desendente
+-- FECHA DE CREACIÓN:		2017-06-18
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ACTIVIDADES_SELECT_BY_IDACTIVIDAD_IDALUMNO;
+
+DELIMITER //
+CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_IDACTIVIDAD_IDALUMNO(IN p_idActividad INT, IN p_idAlumno INT)
+ BEGIN
+   SELECT
+     A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+     A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
+     TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
+     A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado,E.nomCompleto'nombresEmpleado', AL.nomCompleto 'nombresAlumno'
+  FROM
+    ACTIVIDADES A
+    INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+    INNER JOIN EMPLEADOS E ON A.idEmpleado=E.idEmpleado
+    INNER JOIN ALUMNOS_GRUPOACADEMICO AG ON A.codGrupoAcademico=AG.codGrupoAcademico
+	INNER JOIN ALUMNOS AL ON AG.idAlumno=AL.idAlumno
+	WHERE A.idActividad =p_idActividad AND AL.idAlumno=p_idAlumno;
+END //
+DELIMITER ;
+
+-- CALL SP_ACTIVIDADES_SELECT_BY_IDACTIVIDAD_IDALUMNO(2,4);
+
 
 -- -------------------------------------------------------------
 -- TABLA:					ACTIVIDADES
@@ -499,6 +564,36 @@ CREATE PROCEDURE SP_ACTIVIDADES_SELECT_ALL_PENDING()
 
 END //
 DELIMITER ;
+
+
+-- -------------------------------------------------------------
+-- TABLA:					ACTIVIDADES
+-- STORE PROCEDURE:			SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO()
+-- DESCRIPCIÓN:				Listado de todas la actividades por codigo de grupo academido de forma desendente
+-- FECHA DE CREACIÓN:		2017-06-18
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO;
+
+DELIMITER //
+CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO(IN p_codGrupoAcademico CHAR(6))
+ BEGIN
+	SELECT
+		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+		A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
+    TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
+    A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
+	FROM
+		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+	WHERE A.codGrupoAcademico=p_codGrupoAcademico
+	ORDER BY A.idActividad DESC;
+END //
+DELIMITER ;
+
+-- CALL SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO('2B2017');
 
 
 -- -------------------------------------------------------------

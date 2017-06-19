@@ -17,6 +17,7 @@ import java.util.List;
 import pe.edu.sise.adapter.ActividadPendienteAdapter;
 import pe.edu.sise.controller.ActividadController;
 import pe.edu.sise.model.Actividad;
+import pe.edu.sise.utils.Attributes;
 import pe.edu.sise.utils.SessionManager;
 
 
@@ -28,19 +29,32 @@ public class ActividadRecyclerViewFragment extends Fragment {
     private static final String TAG = "ActividadRcVwFragment";
 
     // Variables - controles
-
-    protected SessionManager sessionManager;
     protected SwipeRefreshLayout act_recv_swref;
     protected RecyclerView act_recv_actividades;
 
     //Variables
     protected ActividadPendienteAdapter actividadPendienteAdapter;
-    protected List<Actividad> actividadList;
+    protected String paramIdApoderado;
 
     public ActividadRecyclerViewFragment() {
         // Required empty public constructor
     }
 
+    public ActividadRecyclerViewFragment newInstance(String idApoderado) {
+        ActividadRecyclerViewFragment fragment = new ActividadRecyclerViewFragment();
+        Bundle args = new Bundle();
+        args.putString(Attributes.APOD_ID, idApoderado);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            paramIdApoderado = getArguments().getString(Attributes.APOD_ID);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +71,10 @@ public class ActividadRecyclerViewFragment extends Fragment {
         act_recv_swref.setColorSchemeResources(R.color.colorPrimaryDark);
 
         //LLAMANDO METODO ASYCKTASK
-        new ActividadesByApoderadoListAsyncTask().execute(0);
+        if(!"".equals(paramIdApoderado) && paramIdApoderado!=null){
+            new ActividadesByApoderadoListAsyncTask().execute(Integer.valueOf(paramIdApoderado));
+        }
+
 
         return view;
     }

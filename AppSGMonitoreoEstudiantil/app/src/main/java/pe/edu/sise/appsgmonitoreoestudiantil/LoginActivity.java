@@ -57,10 +57,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-        if (sessionManager.isLoggedAlumno()) {
+//        if (sessionManager.isLoggedAlumno()) {
+//            irFormularioMain();
+//        }
+        if (sessionManager.isLoggedApoderado()) {
             irFormularioMain();
         }
-
 
         iniciarUI();
     }
@@ -165,7 +167,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (cancel) {
             focusView.requestFocus();
         } else {
-            new AlumnoLoginAsyncTask().execute(getLoginJsonObject(usu, pass));
+            //new AlumnoLoginAsyncTask().execute(getLoginJsonObject(usu, pass));
+            new ApoderadoLoginAsyncTask().execute(getLoginApoderadoJsonObject(usu,pass));
         }
     }
 

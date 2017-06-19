@@ -30,7 +30,7 @@
          $sql="CALL SP_ACTIVIDADES_SELECT_LAST_INSERTED()";
          return $this->mysqli->findAll($sql);
      }
-     
+
      public function getNotificationByID($id)
      {
          $sql="CALL SP_ACTIVIDADES_SELECT_NOTIFICATION_BY_ID(?)";
@@ -43,6 +43,29 @@
          return $this->mysqli->find($sql, $id);
      }
 
+     public function getAllByIDGpoAcademico($id)
+     {
+         $sql="CALL SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO(?)";
+         return $this->mysqli->findByIdString($sql, $id);
+     }
+
+     public function getAllByIDApoderado($id)
+     {
+         $sql="CALL SP_ACTIVIDADES_SELECT_BY_ID_APODERADO(?)";
+         return $this->mysqli->find($sql, $id);
+     }
+
+     public function getByIDActividadIDAlumno($idActividad, $idAlumno)
+     {
+         $sql  = "CALL SP_ACTIVIDADES_SELECT_BY_IDACTIVIDAD_IDALUMNO(?,?)";
+         $conn = $this->mysqli->open();
+         $stmt = $conn->prepare($sql);
+         $stmt->bind_param('ii', $idActividad, $idAlumno);
+         $result = $this->mysqli->search($stmt);
+         $conn->close();
+
+         return $result;
+     }
      public function insert($idEmpleado, $idCurso, $codGrupoAcademico, $nomActividad, $descrActividad,
                             $fechaRealizacion, $horaInicio, $horaFin, $frecuenciaAviso)
      {

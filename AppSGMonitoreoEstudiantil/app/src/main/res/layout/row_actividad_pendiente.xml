@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/alum_row_act_pendiente"
+    android:id="@+id/act_row_car_pendiente"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/dimen_padding_small"
@@ -61,7 +61,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_padding_extra_medium"
                 android:text="22-06-2017 08:45 AM"
-                android:textColor="@color/colorSecondaryText" />
+                android:textColor="@color/color_cyan" />
+
+            <TextView
+                android:id="@+id/act_row_tvi_nom_alumno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewEnd"
+                android:text="Alex"
+                android:textColor="@color/color_green" />
 
         </LinearLayout>
 

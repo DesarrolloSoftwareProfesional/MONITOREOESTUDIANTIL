@@ -18,6 +18,9 @@ public class Actividad {
     private String horaFin;
     private boolean frecuenciaAviso;
     private boolean flag_Notificado;
+    private String nomAlumno;
+    private String nomEmpleado;
+    private String idAlumno;
 
     public Actividad() {
     }
@@ -133,4 +136,27 @@ public class Actividad {
         this.flag_Notificado = flag_Notificado;
     }
 
+    public String getNomAlumno() {
+        return nomAlumno;
+    }
+
+    public void setNomAlumno(String nomAlumno) {
+        this.nomAlumno = nomAlumno;
+    }
+
+    public String getNomEmpleado() {
+        return nomEmpleado;
+    }
+
+    public void setNomEmpleado(String nomEmpleado) {
+        this.nomEmpleado = nomEmpleado;
+    }
+
+    public String getIdAlumno() {
+        return idAlumno;
+    }
+
+    public void setIdAlumno(String idAlumno) {
+        this.idAlumno = idAlumno;
+    }
 }

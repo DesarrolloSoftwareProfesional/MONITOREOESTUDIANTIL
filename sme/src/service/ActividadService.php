@@ -42,6 +42,36 @@ class ActividadService implements iCrudService
         }
     }
 
+    public function getAllByIDGpoAcademico()
+    {
+        if (!empty($_GET[UtilConst::ID])) {
+            UtilService::jsonEncode($this->dao->getAllByIDGpoAcademico($_GET[UtilConst::ID]));
+        } else {
+            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+        }
+    }
+
+    public function getAllByIDApoderado()
+    {
+        if (!empty($_GET[UtilConst::ID])) {
+            UtilService::jsonEncode($this->dao->getAllByIDApoderado($_GET[UtilConst::ID]));
+        } else {
+            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+        }
+    }
+
+    public function getByIDActividadIDAlumno()
+    {
+        $obj = UtilService::jsonDecode();
+
+        if (isset($obj->idActividad) && isset($obj->idAlumno)) {
+            $result = $this->dao->getByIDActividadIDAlumno($obj->idActividad, $obj->idAlumno);
+            UtilService::jsonEncode($result);
+        } else {
+            UtilService::errorResponse("JSON no coressponde a " . self::TABLE);
+        }
+    }
+
     public function setNotification($notificacion)
     {
         foreach ($notificacion as $key => $value) {
@@ -138,6 +168,15 @@ class ActividadService implements iCrudService
         case 'notificacion':
             $this->getNotificationByID();
           break;
+        case 'gpoacademico':
+            $this->getAllByIDGpoAcademico();
+          break;
+        case 'apoderadoid':
+              $this->getAllByIDApoderado();
+            break;
+        case 'idactividalumno':
+              $this->getByIDActividadIDAlumno();
+            break;
         default:
           UtilService::errorResponse("Metodo no existe");
       break;

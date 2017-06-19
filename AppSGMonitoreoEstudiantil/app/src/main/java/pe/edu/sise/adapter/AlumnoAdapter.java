@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ import pe.edu.sise.model.AlumnoTest;
 import pe.edu.sise.appsgmonitoreoestudiantil.R;
 import pe.edu.sise.utils.Attributes;
 
-public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder>{
+public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder> {
 
     private List<Alumno> alumnoList;
     private FragmentManager fragmentManager;
@@ -51,15 +52,16 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
         holder.alum_row_tvi_periodo.setText(String.valueOf(alumno.getPeriodo()));
         holder.alum_row_tvi_valoracion.setText(String.valueOf(alumno.getPromedioTotal()));
         holder.alum_row_tvi_cant_act.setText(String.valueOf(alumno.getCantAct()));
-       // alumno.setId(position);
-       //alumno.setTrimestre(1);
+        // alumno.setId(position);
+        //alumno.setTrimestre(1);
         holder.alum_row_cvi_selec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent mintt = new Intent(view.getContext(), DetalleAlumnoActivity.class);
-                mintt.putExtra(Attributes.KEY_NOMBRE,alumno.getNombres());
-                mintt.putExtra(Attributes.KEY_IDALUMNO,alumno.getId());
-                mintt.putExtra(Attributes.KEY_PROMEDIO,alumno.getTrimestre());
+                mintt.putExtra(Attributes.KEY_NOMBRE, alumno.getNombres());
+                mintt.putExtra(Attributes.KEY_IDALUMNO, alumno.getId());
+                mintt.putExtra(Attributes.KEY_PROMEDIO, alumno.getTrimestre());
+                mintt.putExtra(Attributes.ACT_GPO_ACADEMICO, String.valueOf(alumno.getCodGracdo()) + alumno.getCodSeccion() + String.valueOf(alumno.getAnio()));
                 view.getContext().startActivity(mintt);
             }
         });
