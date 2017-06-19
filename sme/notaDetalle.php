@@ -20,10 +20,22 @@
 								<option value='0' disabled selected> Seleccione Periodo </option>"
 							</select>
 						</div>
-						<div class="form-group">
-							<select class="form-control" id="slnAlumno">
-								<option value='0' disabled selected> Seleccione Alumno </option>"
-							</select>
+						<div class="panel panel-default">
+							<div class="panel-heading">Datos de Alumno</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label for="txtDNI">N° Documento</label>
+									<input type="text" class="form-control" id="txtDNI">	
+								</div>
+								<div class="form-group">
+									<label for="txtNombreAlum">Nombre</label>
+									<input type="text" class="form-control" id="txtNombreAlum">	
+								</div>
+								<div class="form-group">
+									<label for="txtApellidos">Apellidos</label>
+									<input type="text" class="form-control" id="txtApellAlumn" name="">	
+								</div>
+							</div>
 						</div>
 						<hr>
 						<div class="form-inline">
