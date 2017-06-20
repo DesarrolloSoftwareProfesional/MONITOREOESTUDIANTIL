@@ -29,7 +29,7 @@ $(document).ready(main);
 function showModal() {
   $('#modalRegistroNotas').modal({
     show: true,
-    backdrop: 'static',
+    backdrop: 'static'
   });
 }
 

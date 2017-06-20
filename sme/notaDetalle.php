@@ -23,18 +23,30 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">Datos de Alumno</div>
 							<div class="panel-body">
-								<div class="form-group">
-									<label for="txtDNI">N° Documento</label>
-									<input type="text" class="form-control" id="txtDNI">	
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="txtDNI">N° DNI</label>
+										<input type="text" placeholder="DNI" class="form-control" id="txtDNI">	
+										<label class="sr-only" for="txtNombreAlum">Nombre</label>
+										<input placeholder="Nombre" type="text" class="form-control" id="txtNombreAlum" width="200px">
+								    </div>
 								</div>
 								<div class="form-group">
-									<label for="txtNombreAlum">Nombre</label>
-									<input type="text" class="form-control" id="txtNombreAlum">	
+									<label class="sr-only" for="txtApellAlumn">Apellidos</label>
+									<input placeholder="Apellidos" type="text" class="form-control" id="txtApellAlumn">	
 								</div>
-								<div class="form-group">
-									<label for="txtApellidos">Apellidos</label>
-									<input type="text" class="form-control" id="txtApellAlumn" name="">	
+
+								<div class="form-inline">
+									<div class="form-group">
+										<select class="form-control" id="slnTipoNota">
+											<option value='0' disabled selected> Seleccione Tipo de Nota </option>"
+										</select>
+										<input type="text" id="txtvalornota" class="form-control" placeholder="Nota">
+									</div>		
 								</div>
+							</div>
+							<div class="panel-footer">
+								<input type="button" class="btn btn-warning btn-block " id="btnguardarNota" value="Adicionar Nota">
 							</div>
 						</div>
 						<hr>
@@ -60,7 +72,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<input type="button" class="btn btn-warning btn-block " id="btnguardarNota" value="Adicionar Nota">
+						
 					</div>
 		        </div>
 	        </form>
