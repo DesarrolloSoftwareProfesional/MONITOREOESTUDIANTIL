@@ -33,6 +33,7 @@ public class DetalleAlumnoActivity extends AppCompatActivity {
         {
             idAlumno = Integer.parseInt(extras.getString(Attributes.KEY_IDALUMNO,"0"));
             trimestre = extras.getInt(Attributes.KEY_PROMEDIO,1);
+            setTitle(extras.getString(Attributes.KEY_NOMBRE));
         }
         DetalleAlumnoSectionsPageAdapter adapter =
                     new DetalleAlumnoSectionsPageAdapter(getSupportFragmentManager(),idAlumno,trimestre);

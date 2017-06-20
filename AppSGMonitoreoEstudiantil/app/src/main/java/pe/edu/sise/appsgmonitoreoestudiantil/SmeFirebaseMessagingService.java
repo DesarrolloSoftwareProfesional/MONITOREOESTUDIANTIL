@@ -36,7 +36,7 @@ public class SmeFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void sendNotification(String msgId,String msgActivity, String msgStartDate) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, DetalleActividad.class);
         intent.putExtra(Attributes.MSG_ACTIVIDAD,msgActivity);
         intent.putExtra(Attributes.MSG_FECHA_REALIZARSE,msgStartDate);
         intent.putExtra(Attributes.MSG_ID,msgId);

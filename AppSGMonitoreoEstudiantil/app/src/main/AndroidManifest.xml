@@ -25,7 +25,8 @@
             android:name=".DetalleAlumnoActivity"
             android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".NotificandoActivity"></activity>
-        <activity android:name=".DetalleActividad"></activity>
+        <activity android:name=".DetalleActividad"
+            android:parentActivityName=".MainActivity"></activity>
 
         <service android:name=".SmeFirebaseMessagingService">
             <intent-filter>

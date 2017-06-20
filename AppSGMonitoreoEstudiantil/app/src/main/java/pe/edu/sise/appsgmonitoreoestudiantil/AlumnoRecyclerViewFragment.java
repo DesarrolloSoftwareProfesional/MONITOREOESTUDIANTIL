@@ -22,6 +22,7 @@ import pe.edu.sise.controller.AlumnoController;
 import pe.edu.sise.model.Alumno;
 import pe.edu.sise.model.AlumnoTest;
 import pe.edu.sise.model.Apoderado;
+import pe.edu.sise.utils.Attributes;
 import pe.edu.sise.utils.SessionManager;
 
 
@@ -31,19 +32,33 @@ public class AlumnoRecyclerViewFragment extends Fragment {
 
     // Variables - controles
 
-    protected SessionManager sessionManager;
+    //protected SessionManager sessionManager;
     protected SwipeRefreshLayout alum_recv_swref;
     protected RecyclerView alum_recv_alumos;
 
     //Variables
     protected AlumnoAdapter alumnoAdapter;
-    protected List<AlumnoTest> alumnoList;
-
+    protected String paramIdApoderado;
 
     public AlumnoRecyclerViewFragment() {
         // Required empty public constructor
     }
 
+    public AlumnoRecyclerViewFragment newInstance(String idApoderado) {
+        AlumnoRecyclerViewFragment fragment = new AlumnoRecyclerViewFragment();
+        Bundle args = new Bundle();
+        args.putString(Attributes.APOD_ID, idApoderado);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            paramIdApoderado = getArguments().getString(Attributes.APOD_ID);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,13 +76,10 @@ public class AlumnoRecyclerViewFragment extends Fragment {
 //        alum_recv_swref.setOnRefreshListener(alum_recv_swrefSetOnRefreshListene());
 
         alum_recv_swref.setColorSchemeResources(R.color.colorPrimaryDark);
-        this.sessionManager = new SessionManager(getContext());
-        if (sessionManager.existsAlumno()) {
-            //consume de la sesion
-            Alumno alumno = this.sessionManager.getAlumnoSession();
-            cargarAlumnoByApoderado(Integer.parseInt(alumno.getId()));
-        }
 
+        if(!"".equals(paramIdApoderado) && paramIdApoderado!=null){
+            cargarAlumnoByApoderado(Integer.parseInt(paramIdApoderado));
+        }
 
 
         return view;

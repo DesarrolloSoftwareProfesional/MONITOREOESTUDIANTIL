@@ -100,9 +100,11 @@ public class Attributes {
     public static final String ACT_HORA_FIN="horaFin";
     public static final String ACT_FREC_AVISO="frecuenciaAviso";
     public static final String ACT_FLAG_NOTIFICADO="flag_Notificado";
+    public static final String ACT_NOM_ALUMNO="nombresAlumno";
 
     //VARIABLE PARA LA  NOTIFICACION
     public static final String MSG_ID ="id";
     public static final String MSG_ACTIVIDAD ="actividad";
     public static final String MSG_FECHA_REALIZARSE ="fecha";
+    public static final String MSG_ID_ALUMNO ="id";
 }

@@ -31,6 +31,19 @@ class Connection
         return $result;
     }
 
+//Realizar un busqueda por id (String) de la Tabla
+    public function findByIdString($sql, $id)
+    {
+        $mysqli = $this->open();
+        $stmt   = $mysqli->prepare($sql);
+        $stmt->bind_param('s', $id);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        $mysqli->close();
+        return $result;
+    }
+
 //Realizar un select completo
     public function findAll($sql)
     {

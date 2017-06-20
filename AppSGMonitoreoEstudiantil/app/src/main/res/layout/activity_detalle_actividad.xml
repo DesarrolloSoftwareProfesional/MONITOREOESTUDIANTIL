@@ -1,36 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_detalle_actividad"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_marginBottom="@dimen/dimen_padding_extra_medium"
+    android:layout_marginLeft="@dimen/dimen_padding_large"
+    android:layout_marginRight="@dimen/dimen_padding_large"
+    android:layout_marginTop="@dimen/dimen_padding_extra_medium"
+    android:clickable="true"
+    card_view:cardCornerRadius="@dimen/dimen_padding_medium"
+    card_view:cardElevation="@dimen/dimen_padding_large"
     tools:context="pe.edu.sise.appsgmonitoreoestudiantil.DetalleActividad">
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        >
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtFecha"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccione Fecha"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen_padding_large"
+            android:paddingTop="@dimen/dimen_padding_large"
+            android:paddingLeft="@dimen/dimen_padding_card"
+            android:paddingRight="@dimen/dimen_padding_card">
 
-        <TextView
-            android:id="@+id/txtHora"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Seleccione Hora"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_padding_extra_medium"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen_padding_small"
+                android:paddingTop="@dimen/dimen_padding_small">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Curso"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimaryText" />
+
+                <TextView
+                    android:id="@+id/det_act_tvi_curso"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ciencias Sociales"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_padding_extra_medium"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen_padding_small"
+                android:paddingTop="@dimen/dimen_padding_small">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Actividad"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimaryText" />
 
-</LinearLayout>
+                <TextView
+                    android:id="@+id/det_act_tvi_actividad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Examen parcial"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_padding_extra_medium"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen_padding_small"
+                android:paddingTop="@dimen/dimen_padding_small">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Detalle"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimaryText" />
+
+                <TextView
+                    android:id="@+id/det_act_tvi_detalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Abarcarn los temas de la rebolucion francesa"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_padding_extra_medium"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen_padding_small"
+                android:paddingTop="@dimen/dimen_padding_small">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimaryText" />
+
+                <TextView
+                    android:id="@+id/det_act_tvi_fecha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="19-06-2017"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_padding_extra_medium"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen_padding_small"
+                android:paddingTop="@dimen/dimen_padding_small">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Inicia"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimaryText" />
+
+                <TextView
+                    android:id="@+id/det_act_tvi_inicia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="08:20 AM"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_padding_extra_medium"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen_padding_small"
+                android:paddingTop="@dimen/dimen_padding_small">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Termina"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimaryText" />
+
+                <TextView
+                    android:id="@+id/det_act_tvi_termina"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="09:10 AM "
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.v7.widget.CardView>

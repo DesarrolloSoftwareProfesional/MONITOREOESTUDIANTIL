@@ -25,7 +25,7 @@ import pe.edu.sise.utils.SessionManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String TAG="MainActivity";
+    public static final String TAG = "MainActivity";
 
     protected NavigationView navigationView;
     protected TextView nav_head_tvi_usuario;
@@ -39,13 +39,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d(TAG,"Tocken: "+ FirebaseInstanceId.getInstance().getToken());
+        Log.d(TAG, "Tocken: " + FirebaseInstanceId.getInstance().getToken());
 
-        String id= getIntent().getStringExtra(Attributes.MSG_ID);
-
-        if(!"".equals(id)){
-            Log.d(TAG,"id: "+id);
-        }
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         this.sessionManager = new SessionManager(this);
@@ -53,9 +48,12 @@ public class MainActivity extends AppCompatActivity
         iniciarUI();
 //        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
 //                new AlumnoRecyclerViewFragment()).addToBackStack(null).commit();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
-                new ActividadRecyclerViewFragment()).addToBackStack(null).commit();
+        if (sessionManager.isLoggedApoderado()) {
 
+            String idApoderado = sessionManager.getApoderadoSession().getId();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+                    new ActividadRecyclerViewFragment().newInstance(idApoderado)).addToBackStack(null).commit();
+        }
     }
 
     private void iniciarUI() {
@@ -142,7 +140,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_alumno) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
-                    new AlumnoRecyclerViewFragment()).addToBackStack(null).commit();
+                    new AlumnoRecyclerViewFragment().newInstance(this.sessionManager.getApoderadoSession().getId())).addToBackStack(null).commit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -153,7 +151,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-            Intent intt =  new Intent(this,NotificandoActivity.class);
+            Intent intt = new Intent(this, NotificandoActivity.class);
             startActivity(intt);
         }
 

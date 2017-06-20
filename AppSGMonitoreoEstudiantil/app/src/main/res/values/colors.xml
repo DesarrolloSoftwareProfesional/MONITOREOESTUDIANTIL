@@ -9,4 +9,10 @@
     <color name="colorSecondaryText">#515151</color>
     <color name="color_black_60">#a0000000</color>
     <color name="color_trans">#85ffffff</color>
+    <color name="color_teal">#009688</color>
+    <color name="color_blue">#2196f3</color>
+    <color name="color_cyan">#00bcd4</color>
+    <color name="color_amber">#ffc107</color>
+    <color name="color_brown">#795548</color>
+    <color name="color_green">#4caf50</color>
 </resources>
