@@ -101,6 +101,16 @@ class NotaService implements iCrudService
     {
         UtilService::jsonEncode($this->dao->getAllAlumnos());
     }
+
+    public function getTipoNotas()
+    {
+        UtilService::jsonEncode($this->dao->getTipoNotas());
+    }
+
+    public function getAlumnoPorDni()
+    {
+        UtilService::jsonEncode($this->dao->getTipoNotas());
+    }
     
 //Metodo que decide que accion se realizara
   public function restApi()
@@ -139,6 +149,12 @@ class NotaService implements iCrudService
           break;
           case 'listarAlumno':
               $this->getAllAlumnos();
+          break;
+          case 'listarTipoNota':
+              $this->getTipoNotas();
+          break;
+          case 'listarAlumnoPorDni':
+              $this->getAlumnoPorDni();
           break;
         default:
           UtilService::errorResponse("Metodo no existe");

@@ -25,6 +25,18 @@
          return $this->mysqli->findAll($sql);
      }
 
+     public function getTipoNotas()
+     {
+        $sql="CALL SP_TIPONOTAS_SELECT_ALL()";
+         return $this->mysqli->findAll($sql);
+     }
+     
+     public function getAlumnoPorDni()
+     {
+        $sql="CALL SP_TIPONOTAS_SELECT_ALL()";
+         return $this->mysqli->findAll($sql);
+     }
+
      public function getByID($id)
      {
          $sql="";

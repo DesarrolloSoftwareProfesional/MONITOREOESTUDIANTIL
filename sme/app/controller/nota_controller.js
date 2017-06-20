@@ -17,9 +17,12 @@ $(document).ready(main);
 	    //clearInputs();
 	    //getAllGrupoAcademico();
 	   //getAllCursos();
+	   getTipoNotas()
 	   showModal();
 	  });
-
+	  $("#btnBuscarAlumnoPorDni").click(function(){
+	  	getAlumnoPorDni($("#txtDNI").val());
+	  });
 	  //Accion en el boton del modal
 	  $('#guardarActividad').click(function() {
 	    saveActividad();
@@ -72,4 +75,42 @@ function getAllAlumnos() {
 	  });
 }
 
-	
+function getTipoNotas() {
+  $.ajax({
+    dataType: DATA_TYPE_JSON,
+    contentType: CONTEN_TYPE_JSON,
+    type: METHOD_GET,
+    url: NOTA_URL_LISTAR_TIPONOTA,
+    success: function(data) {
+      $("#slnTipoNota").html('');
+      $("#slnTipoNota").append("<option value='0' disabled selected> Seleccione Tipo de Nota </option>");
+      $.each(data, function(key, value) {
+        var newrow ="<option value='" + value['idTipoNota'] + "'>" +
+					         value['nomTipoNota'] +
+				    "</option>";
+        $("#slnTipoNota").append(newrow);
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+}
+
+function getAlumnoPorDni(){
+	$.ajax({
+	    dataType: DATA_TYPE_JSON,
+	    contentType: CONTEN_TYPE_JSON,
+	    type: METHOD_GET,
+	    url: NOTA_URL_LISTAR_ALUMNO_DNI,
+	    success: function(data) {
+	      $.each(data, function(key, value) {
+	      		$("#txtNombreAlum").val(value["nombresAlumno"]);
+	      		$("#txtApellAlumn").val(value["apPaternoAlumno"] + " " + value["apMaternoAlumno"]);
+	      });
+	    },
+	    error: function(data) {
+	      console.log(data);
+	    }
+  	});	
+}

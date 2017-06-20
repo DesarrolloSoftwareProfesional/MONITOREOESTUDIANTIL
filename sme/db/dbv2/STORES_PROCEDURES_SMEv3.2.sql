@@ -772,3 +772,50 @@ BEGIN
 END //
 DELIMITER ;
 
+-- -------------------------------------------------------------
+-- TABLA:					TIPONOTAS
+-- STORE PROCEDURE:			SP_TIPONOTAS_SELECT_ALL
+-- DESCRIPCIÓN:				Obtiene los tipos de notas registrados.
+-- FECHA DE CREACIÓN:		2017-06-19
+-- CREADO POR:				Ronald Fabian Garcia
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- USE bd_sgmev3
+-- DROP PROCEDURE SP_TIPONOTAS_SELECT_ALL
+-- CALL SP_TIPONOTAS_SELECT_ALL();
+DELIMITER //
+CREATE PROCEDURE SP_TIPONOTAS_SELECT_ALL()
+BEGIN
+	SELECT  A.idTipoNota,
+			A.nomTipoNota
+    FROM tiponotas A
+    WHERE A.estadoRegistro = 1;
+END //
+DELIMITER ;
+
+-- -------------------------------------------------------------
+-- TABLA:					ALUMNOS
+-- STORE PROCEDURE:			SP_ALUMNOS_SELECT_BY_DNI
+-- DESCRIPCIÓN:				Obtiene dato de un alumno por DNI.
+-- FECHA DE CREACIÓN:		2017-06-19
+-- CREADO POR:				Ronald Fabian Garcia
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- USE bd_sgmev3
+-- DROP PROCEDURE SP_ALUMNOS_SELECT_BY_DNI
+-- CALL SP_ALUMNOS_SELECT_BY_DNI("75240380");
+DELIMITER //
+CREATE PROCEDURE SP_ALUMNOS_SELECT_BY_DNI(IN DNI varchar(8))
+BEGIN
+	SELECT  A.idAlumno,
+			A.apPaternoAlumno,
+			A.apMaternoAlumno,
+            A.nombresAlumno,
+            A.dniAlumno,
+            A.fechaNacAlumno,
+            A.direccionAlumno
+    FROM ALUMNOS A
+    WHERE A.estadoRegistro = 1
+    AND A.dniAlumno = DNI;
+END //
+DELIMITER ;
