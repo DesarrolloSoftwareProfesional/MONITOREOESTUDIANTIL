@@ -3,109 +3,121 @@
 /**
  *
  */
- require_once("../src/lib/autoload.php");
- class NotaDao
- {
-     protected $mysqli;
+require_once "../src/lib/autoload.php";
+class NotaDao
+{
+    protected $mysqli;
 
-     public function __construct()
-     {
-         $this->mysqli = new Connection();
-     }
+    public function __construct()
+    {
+        $this->mysqli = new Connection();
+    }
 
-     public function getAll()
-     {
-         $sql="";
-         return $this->mysqli->findAll($sql);
-     }
+    public function getAll()
+    {
+        $sql = "";
+        return $this->mysqli->findAll($sql);
+    }
 
-     public function getAllAlumnos()
-     {
-        $sql="CALL SP_ALUMNOS_SELECT_NOTAS()";
-         return $this->mysqli->findAll($sql);
-     }
+    public function getAllAlumnos()
+    {
+        $sql = "CALL SP_ALUMNOS_SELECT_NOTAS()";
+        return $this->mysqli->findAll($sql);
+    }
 
-     public function getTipoNotas()
-     {
-        $sql="CALL SP_TIPONOTAS_SELECT_ALL()";
-         return $this->mysqli->findAll($sql);
-     }
-     
-     public function getAlumnoPorDni()
-     {
-        $sql="CALL SP_TIPONOTAS_SELECT_ALL()";
-         return $this->mysqli->findAll($sql);
-     }
+    public function getTipoNotas()
+    {
+        $sql = "CALL SP_TIPONOTAS_SELECT_ALL()";
+        return $this->mysqli->findAll($sql);
+    }
 
-     public function getByID($id)
-     {
-         $sql="";
-         return $this->mysqli->find($sql, $id);
-     }
+    public function getAlumnoPorDni()
+    {
+        $sql = "CALL SP_TIPONOTAS_SELECT_ALL()";
+        return $this->mysqli->findAll($sql);
+    }
 
-     public function getAllByID($id)
-     {
-         $sql="CALL SP_NOTAS_SELECT_ALL_BY_ID(?)";
-         $conn=$this->mysqli->open();
-         $stmt=$conn->prepare($sql);
-         $stmt->bind_param("i", $id);
-         $result=$this->mysqli->search($stmt);
-         $conn->close();
+    public function getCursos()
+    {
+        $sql = "CALL SP_CURSOS_SELECT_ALL_FOR_NOTAS()";
+        return $this->mysqli->findAll($sql);
+    }
 
-         return $result;
-     }
+    public function getPeriodos()
+    {
+        $sql = "CALL SP_PERIODOS_SELECT_ALL()";
+        return $this->mysqli->findAll($sql);
+    }
 
-     public function getAllPromedioByTrimestreAlumno($idAlumno, $trimestre)
-     {
-         $sql="CALL SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID(?,?)";
-         $conn=$this->mysqli->open();
-         $stmt = $conn->prepare($sql);
-         $stmt->bind_param('ii', $idAlumno, $trimestre);
-         $result=$this->mysqli->search($stmt);
-         $conn->close();
+    public function getByID($id)
+    {
+        $sql = "";
+        return $this->mysqli->find($sql, $id);
+    }
 
-         return $result;
-     }
+    public function getAllByID($id)
+    {
+        $sql  = "CALL SP_NOTAS_SELECT_ALL_BY_ID(?)";
+        $conn = $this->mysqli->open();
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $result = $this->mysqli->search($stmt);
+        $conn->close();
 
-     public function getAllPromedioByID($id)
-     {
-         $sql="CALL SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID(?)";
-         $conn=$this->mysqli->open();
-         $stmt=$conn->prepare($sql);
-         $stmt->bind_param("i", $id);
-         $result=$this->mysqli->search($stmt);
-         $conn->close();
+        return $result;
+    }
 
-         return $result;
-     }
+    public function getAllPromedioByTrimestreAlumno($idAlumno, $trimestre)
+    {
+        $sql  = "CALL SP_NOTAS_PROMEDIO_TRIMESTRE_SELECT_ALL_BY_ID(?,?)";
+        $conn = $this->mysqli->open();
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('ii', $idAlumno, $trimestre);
+        $result = $this->mysqli->search($stmt);
+        $conn->close();
 
-     public function insert($nomPerfil)
-     {
-         $sql="";
-         $conn=$this->mysqli->open();
-         $stmt = $conn->prepare($sql);
-         $stmt->bind_param('s', $nomPerfil);
-         $result=$this->mysqli->executeIUD($stmt);
-         $conn->close();
+        return $result;
+    }
 
-         return $result;
-     }
+    public function getAllPromedioByID($id)
+    {
+        $sql  = "CALL SP_NOTAS_PROMEDIO_SELECT_ALL_BY_ID(?)";
+        $conn = $this->mysqli->open();
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $result = $this->mysqli->search($stmt);
+        $conn->close();
 
-     public function update($nomPerfil, $idPerfil)
-     {
-         $sql="";
-         $conn=$this->mysqli->open();
-         $stmt = $conn->prepare($sql);
-         $stmt->bind_param('', $nomPerfil, $idPerfil);
-         $result=$this->mysqli->executeIUD($stmt);
-         $conn->close();
+        return $result;
+    }
 
-         return $result;
-     }
+    public function insert($nomPerfil)
+    {
+        $sql  = "";
+        $conn = $this->mysqli->open();
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $nomPerfil);
+        $result = $this->mysqli->executeIUD($stmt);
+        $conn->close();
 
-     public function delete($id)
-     {
-         $sql="";
-         return $this->mysqli->delete($sql, $id);
-     }
- }
+        return $result;
+    }
+
+    public function update($nomPerfil, $idPerfil)
+    {
+        $sql  = "";
+        $conn = $this->mysqli->open();
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('', $nomPerfil, $idPerfil);
+        $result = $this->mysqli->executeIUD($stmt);
+        $conn->close();
+
+        return $result;
+    }
+
+    public function delete($id)
+    {
+        $sql = "";
+        return $this->mysqli->delete($sql, $id);
+    }
+}

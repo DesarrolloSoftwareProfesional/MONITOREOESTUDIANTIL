@@ -13,7 +13,7 @@
   	</style>
 </head>
 <body>
-<?php include_once 'template/main-menu.php'; ?>
+<?php include_once 'template/main-menu.php';?>
 	<div class="container">
 		<div id="divbotones">
 			<button type="button" class="btn btn-warning" id="btnRegistroNotas">Registrar Notas</button>
@@ -34,14 +34,14 @@
 			 		</tr>
 			 	</thead>
 			 	<tbody id="tblAlumnos">
-			 		 
+
 			 	</tbody>
 		 	</table>
 		</div>
 	</div>
 
-<?php include_once 'template/main-footer.php'; ?>
-<?php include_once 'notaDetalle.php'; ?>
+<?php include_once 'template/main-footer.php';?>
+<?php include_once 'notaDetalle.php';?>
 
 	<script src="resources/js/vendor/modernizr-2.8.3.min.js"></script>
   	<script src="resources/js/vendor/jquery-1.11.2.min.js"></script>

@@ -75,6 +75,7 @@ function getAllAlumnos() {
 	  });
 }
 
+
 function getTipoNotas() {
   $.ajax({
     dataType: DATA_TYPE_JSON,
@@ -97,6 +98,51 @@ function getTipoNotas() {
   });
 }
 
+function getPeriodos() {
+  $.ajax({
+    dataType: DATA_TYPE_JSON,
+    contentType: CONTEN_TYPE_JSON,
+    type: METHOD_GET,
+    url: NOTA_URL_LISTAR_PERIODO,
+    success: function(data) {
+      $("#slnPeriodo").html('');
+      $("#slnPeriodo").append("<option value='0' disabled selected> Seleccione Periodo </option>");
+      $.each(data, function(key, value) {
+        var newrow ="<option value='" + value['idPeriodo'] + "'>" +
+					         value['periodo'] +
+				    "</option>";
+        $("#slnPeriodo").append(newrow);
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+}
+
+
+function getCursos() {
+	$.ajax({
+		dataType: DATA_TYPE_JSON,
+	    contentType: CONTEN_TYPE_JSON,
+	    type: METHOD_GET,
+		url: NOTA_URL_LISTAR_CURSO,
+		success: function(data){
+			$("#slnCurso").html('');
+			$("#slnCurso").append("<option value='0' disabled selected> Seleccione Curso </option>");
+			$.each(data, function(key, value){
+			  var newrow = "<option value='" + value['idCurso'] + "'>" +
+								  value['nomCurso'] +
+						 "</option>";
+			  $("#slnCurso").append(newrow);
+			});
+		},
+		error: function(data){
+			console.log(data);
+		}
+	});
+}
+
 function getAlumnoPorDni(){
 	$.ajax({
 	    dataType: DATA_TYPE_JSON,
@@ -114,3 +160,7 @@ function getAlumnoPorDni(){
 	    }
   	});	
 }
+
+
+
+
