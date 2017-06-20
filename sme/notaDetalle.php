@@ -9,25 +9,34 @@
 	        <form class=""  method="post">
 		        <div class="modal-body" id="datosAqui">
 					<div class="modal-body">
-
-
-
 						<div class="form-group">
 						  <select class="form-control" id="slnCurso">
 						  	<option value='0' disabled selected> Seleccione Curso </option>"
 						  </select>
 						</div>
-
-
 						<div class="form-group">
 							<select class="form-control" id="slnPeriodo">
 								<option value='0' disabled selected> Seleccione Periodo </option>"
 							</select>
 						</div>
-
-
-
-<!-- PEGAR AQUI EL CODIGO DEL NOTEPAD KJASFJGASJKFASJKGFJKASGFJKASGJKFASF -->
+						<div class="panel panel-default">
+							<div class="panel-heading">Datos de Alumno</div>
+							<div class="panel-body">
+								<div class="form-inline">
+									<div class="form-group">
+										<label for="txtDNI">N° DNI</label>
+										<input type="text" placeholder="DNI" class="form-control" id="txtDNI">
+										<button type="button" class='btn btn-xs btn-info' id="btnBuscarAlumnoPorDni" >
+											<span class='glyphicon glyphicon-search'>
+										</button>
+										<label class="sr-only" for="txtNombreAlum">Nombre</label>
+										<input placeholder="Nombre" type="text" class="form-control" id="txtNombreAlum" width="200px">
+								    </div>
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="txtApellAlumn">Apellidos</label>
+									<input placeholder="Apellidos" type="text" class="form-control" id="txtApellAlumn">
+								</div>
 
 
 								<div class="form-inline">
@@ -41,8 +50,6 @@
 										<input type="text" id="txtvalornota" class="form-control" placeholder="Nota">
 									</div>
 								</div>
-
-
 
 							</div>
 							<div class="panel-footer">

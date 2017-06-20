@@ -17,7 +17,9 @@ $(document).ready(main);
 	    //clearInputs();
 	    //getAllGrupoAcademico();
 	   //getAllCursos();
-	   getTipoNotas()
+	   getTipoNotas();
+	   getCursos();
+	   getPeriodos();
 	   showModal();
 	  });
 	  $("#btnBuscarAlumnoPorDni").click(function(){

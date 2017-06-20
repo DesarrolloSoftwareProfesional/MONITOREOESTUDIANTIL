@@ -338,7 +338,6 @@ insert into tiponotas(nomTipoNota) values
 ('Ex Parcial'),
 ('Ex Final');
 
-select * from notas;
 
 insert into notas(idAlumno,idCurso,idPeriodo,idEmpleado,idTipoNota,nota) values
 (1,1,1,2,1,9),
