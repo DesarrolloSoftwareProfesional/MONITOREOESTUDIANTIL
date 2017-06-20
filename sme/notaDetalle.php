@@ -26,25 +26,8 @@
 						</div>
 
 
-						<div class="panel panel-default">
-							<div class="panel-heading">Datos de Alumno</div>
-							<div class="panel-body">
-								<div class="form-inline">
-									<div class="form-group">
-										<label for="txtDNI">N° DNI</label>
-										<input type="text" placeholder="DNI" class="form-control" id="txtDNI">
-										<button type="button" class='btn btn-xs btn-info' id="btnBuscarAlumnoPorDni" >
-											<span class='glyphicon glyphicon-search'>
-										</button>
-										<label class="sr-only" for="txtNombreAlum">Nombre</label>
-										<input placeholder="Nombre" type="text" class="form-control" id="txtNombreAlum" width="200px">
-								    </div>
-								</div>
-								<div class="form-group">
-									<label class="sr-only" for="txtApellAlumn">Apellidos</label>
-									<input placeholder="Apellidos" type="text" class="form-control" id="txtApellAlumn">
-								</div>
 
+<!-- PEGAR AQUI EL CODIGO DEL NOTEPAD KJASFJGASJKFASJKGFJKASGFJKASGJKFASF -->
 
 
 								<div class="form-inline">

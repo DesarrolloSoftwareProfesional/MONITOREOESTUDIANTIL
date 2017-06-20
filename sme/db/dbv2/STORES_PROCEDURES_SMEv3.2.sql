@@ -819,3 +819,44 @@ BEGIN
     AND A.dniAlumno = DNI;
 END //
 DELIMITER ;
+
+-- -------------------------------------------------------------
+-- TABLA:					PERIODOS
+-- STORE PROCEDURE:			SP_PERIODOS_SELECT_ALL
+-- DESCRIPCIÓN:				Obtiene lista de peridos.
+-- FECHA DE CREACIÓN:		2017-06-20
+-- CREADO POR:				ARUHANCA VILCA JHONATAN
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- USE bd_sgmev3
+-- DROP PROCEDURE SP_PERIODOS_SELECT_ALL;
+-- CALL SP_PERIODOS_SELECT_ALL();
+DELIMITER //
+CREATE PROCEDURE SP_PERIODOS_SELECT_ALL()
+BEGIN
+	SELECT p.idPeriodo, concat(p.anio,'-', p.trimestre) AS periodo
+    FROM periodos p
+    WHERE p.estadoRegistro = '1';
+END //
+DELIMITER ;
+
+-- -------------------------------------------------------------
+-- TABLA:					CURSOS
+-- STORE PROCEDURE:			SP_PERIODOS_SELECT_ALL
+-- DESCRIPCIÓN:				Obtiene lista de peridos.
+-- FECHA DE CREACIÓN:		2017-06-20
+-- CREADO POR:				ARUHANCA VILCA JHONATAN
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- USE bd_sgmev3
+-- DROP PROCEDURE SP_PERIODOS_SELECT_ALL;
+-- CALL SP_PERIODOS_SELECT_ALL();
+DELIMITER //
+CREATE PROCEDURE SP_CURSOS_SELECT_ALL_FOR_NOTAS()
+BEGIN
+	SELECT c.idCurso, c.nomCurso
+    FROM cursos c
+    WHERE c.estadoRegistro = '1';
+END //
+DELIMITER ;
+
