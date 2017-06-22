@@ -3,9 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Gestión de Notas</title>
+	<link rel="stylesheet" href="resources/css/notify.min.css">
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
   	<link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
   	<link rel="stylesheet" href="resources/css/jquery.zzconfirm.min.css">
+
   	<style type="text/css">
 	  	th{
 	  		text-align: center;
@@ -46,6 +48,9 @@
 	<script src="resources/js/vendor/modernizr-2.8.3.min.js"></script>
   	<script src="resources/js/vendor/jquery-1.11.2.min.js"></script>
   	<script src="resources/js/vendor/bootstrap.min.js"></script>
+  	<script src="resources/js/vendor/jquery.zzconfirm.js"></script>
+	
+	<script src="resources/js/vendor/notify.min.js"></script>
   	<script src="resources/js/vendor/jquery.zzconfirm.js"></script>
 
   	<script src="app/util/service_manager.js"></script>

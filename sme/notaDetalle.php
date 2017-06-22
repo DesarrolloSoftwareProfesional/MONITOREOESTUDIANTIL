@@ -3,7 +3,7 @@
     <div class="modal-dialog">
 		<div class="modal-content">
 	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="variables.abrioDetalle = false;">&times;</button>
 	          <h4 class="modal-title" id="myModalLabel"><b>Registro de Notas</b></h4>
 	        </div>
 	        <form class=""  method="post">
@@ -29,16 +29,17 @@
 										<button type="button" class='btn btn-xs btn-info' id="btnBuscarAlumnoPorDni" >
 											<span class='glyphicon glyphicon-search'>
 										</button>
-										<label class="sr-only" for="txtNombreAlum">Nombre</label>
-										<input placeholder="Nombre" type="text" class="form-control" id="txtNombreAlum" width="200px">
 								    </div>
 								</div>
-								<div class="form-group">
-									<label class="sr-only" for="txtApellAlumn">Apellidos</label>
-									<input placeholder="Apellidos" type="text" class="form-control" id="txtApellAlumn">
+								<div ></div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label class="sr-only" for="txtNombreAlum">Nombre</label>
+										<input placeholder="Nombre" type="text" class="form-control" id="txtNombreAlum" width="200px">
+										<label class="sr-only" for="txtApellAlumn">Apellidos</label>
+										<input placeholder="Apellidos" type="text" class="form-control" id="txtApellAlumn">
+									</div>
 								</div>
-
-
 								<div class="form-inline">
 									<div class="form-group">
 										<select class="form-control" id="slnTipoNota">

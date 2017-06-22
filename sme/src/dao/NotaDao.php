@@ -31,10 +31,16 @@ class NotaDao
         return $this->mysqli->findAll($sql);
     }
 
-    public function getAlumnoPorDni()
+    public function getAlumnoPorDni($dni)
     {
-        $sql = "CALL SP_TIPONOTAS_SELECT_ALL()";
-        return $this->mysqli->findAll($sql);
+        $sql="CALL SP_ALUMNOS_SELECT_BY_DNI(?)";
+        $conn=$this->mysqli->open();
+        $stmt=$conn->prepare($sql);
+        $stmt->bind_param("i", $dni);
+        $result=$this->mysqli->search($stmt);
+        $conn->close();
+
+        return $result;
     }
 
     public function getCursos()

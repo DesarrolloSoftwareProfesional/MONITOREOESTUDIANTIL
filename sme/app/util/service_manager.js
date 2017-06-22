@@ -9,7 +9,7 @@ const CONTEN_TYPE_JSON = "application/json; charset=utf-8";
 const ACCION_REGISTRAR = "Registrar";
 const ACCION_ACTUALIZAR = "Actualizar";
 
-const URL_BASE = "http://192.168.0.4/sise/sme/api/";
+const URL_BASE = "http://10.64.128.145/sise/sme/api/";
 
 const ALUMNO_URL_LISTAR = URL_BASE + "alumno/listar";
 const ALUMNO_URL_BUSCAR = URL_BASE + "alumno/buscar/";
@@ -36,7 +36,7 @@ const GRUPOACADEMICO_URL_LISTAR = URL_BASE + "grupo/listar";
 const NOTA_URL_PROMEDIOALUMNOTRIMESTRE = URL_BASE + "nota/promedioalumnotrimestre"
 const NOTA_URL_LISTAR_ALUMNO = URL_BASE + "nota/listarAlumno";
 const NOTA_URL_LISTAR_TIPONOTA = URL_BASE + "nota/listarTipoNota";
-const NOTA_URL_LISTAR_ALUMNO_DNI = URL_BASE + "nota/listarAlumnoPorDni"
+const NOTA_URL_LISTAR_ALUMNO_DNI = URL_BASE + "nota/listarAlumnoPorDni/"
 const NOTA_URL_LISTAR_CURSO = URL_BASE + "nota/listarCurso";
 const NOTA_URL_LISTAR_PERIODO = URL_BASE + "nota/listarPeriodo";
 

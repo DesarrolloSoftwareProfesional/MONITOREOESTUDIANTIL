@@ -7,6 +7,25 @@ $.when(
   })
 ).done(function() {});
 
+var variables = {
+	abrioDetalle : false
+}
+
+document.onkeypress=function(e){
+var esIE=(document.all);
+var esNS=(document.layers);
+tecla=(esIE) ? event.keyCode : e.which;
+if(tecla==13 && variables.abrioDetalle){
+	if ($("#txtDNI").val()=="")
+	{
+		msg_error("Indicar nro de Documento");
+		$("#txtDNI").focus();
+		return false;
+	}
+	getAlumnoPorDni($("#txtDNI").val());
+  }
+}
+
 $(document).ready(main);
 	//Funciones de Arranque
 	function main() {
@@ -21,6 +40,7 @@ $(document).ready(main);
 	   getCursos();
 	   getPeriodos();
 	   showModal();
+	   variables.abrioDetalle = true;
 	  });
 	  $("#btnBuscarAlumnoPorDni").click(function(){
 	  	getAlumnoPorDni($("#txtDNI").val());
@@ -40,6 +60,7 @@ function showModal() {
 
 function hideModal() {
   $("#modalRegistroNotas").modal('toggle');
+  variables.abrioDetalle = false;
 }
 
 function getAllAlumnos() {
@@ -145,12 +166,12 @@ function getCursos() {
 	});
 }
 
-function getAlumnoPorDni(){
+function getAlumnoPorDni(dni){
 	$.ajax({
 	    dataType: DATA_TYPE_JSON,
 	    contentType: CONTEN_TYPE_JSON,
 	    type: METHOD_GET,
-	    url: NOTA_URL_LISTAR_ALUMNO_DNI,
+	    url: NOTA_URL_LISTAR_ALUMNO_DNI + dni,
 	    success: function(data) {
 	      $.each(data, function(key, value) {
 	      		$("#txtNombreAlum").val(value["nombresAlumno"]);

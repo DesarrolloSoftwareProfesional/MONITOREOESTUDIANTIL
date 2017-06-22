@@ -109,7 +109,11 @@ class NotaService implements iCrudService
 
     public function getAlumnoPorDni()
     {
-        UtilService::jsonEncode($this->dao->getTipoNotas());
+        if (!empty($_GET[UtilConst::ID])) {
+            UtilService::jsonEncode($this->dao->getAlumnoPorDni($_GET[UtilConst::ID]));
+        } else {
+            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+        }
     }
 
     public function getCursos()
