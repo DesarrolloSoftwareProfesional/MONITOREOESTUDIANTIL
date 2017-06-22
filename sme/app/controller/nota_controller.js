@@ -32,22 +32,19 @@ $(document).ready(main);
 	  	getAllAlumnos();
 	  //Accion al hacer click en boton  Registrar Alumno
 	  $('#btnRegistroNotas').click(function() {
-	    //document.getElementById("guardarActividad").value = ACCION_REGISTRAR;
-	    //clearInputs();
-	    //getAllGrupoAcademico();
-	   //getAllCursos();
 	   getTipoNotas();
 	   getCursos();
 	   getPeriodos();
 	   showModal();
 	   variables.abrioDetalle = true;
 	  });
+
 	  $("#btnBuscarAlumnoPorDni").click(function(){
 	  	getAlumnoPorDni($("#txtDNI").val());
 	  });
-	  //Accion en el boton del modal
-	  $('#guardarActividad').click(function() {
-	    saveActividad();
+
+	  $("#btnguardarNota").click(function(){
+	  	postguardarNota();
 	  });
 }
 
@@ -184,6 +181,96 @@ function getAlumnoPorDni(dni){
   	});	
 }
 
+function validarFormulario(){
+	if ($("#slnCurso").val()=="0") 
+	{
+		msg_error("Seleccione Curso");
+		return false;
+	}else if ($("#slnPeriodo").val()=="0") 
+	{
+		msg_error("Seleccione Periodo");
+		return false;
+	}else if ($("#slnTipoNota").val()=="0") 
+	{
+		msg_error("Seleccione Tipo de Nota");
+		return false;
+	}else if ($("#txtvalornota").val()=="") 
+	{
+		msg_error("Ingrese Nota");
+		return false;
+	}
+} 
 
+function generarNota(){
+	var idNota 		= 0;
+	var	idAlumno	= 1;
+	var	idCurso		= $("#slnCurso").val();
+	var	idPeriodo	= $("#slnPeriodo").val();
+	var	idEmpleado	= 1;
+	var	idTipoNota	= $("#slnTipoNota").val();
+	var	nota 		= $("#txtvalornota").val();
+	var modelNota = new notaModel(	idNota,
+									idAlumno,
+									idCurso,
+									idPeriodo,
+									idEmpleado,
+									idTipoNota,
+									nota); 
+	return modelNota;
+}
 
+function postguardarNota(){
+	validarFormulario();
+	var Nota = generarNota();
+	jQuery.ajax({
+	    dataType: DATA_TYPE_JSON,
+	    contentType: CONTEN_TYPE_JSON,
+	    type: METHOD_POST,
+	    data: JSON.stringify(Nota.toString()),
+	    url: NOTA_URL_REGISTRO,
+	    success: function(data) {
+	      ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
 
+	      if ("true" === data.state) {
+	        //dataForNotification(objActividad.id);
+	      }
+	      console.log(data);
+	      BuscarNotasAlumno(1);
+	      //hideModal();
+	    },
+	    error: function(data) {
+	      console.log(data);
+	    }
+  	});
+}
+
+function BuscarNotasAlumno(id){
+	$.ajax({
+	    dataType: DATA_TYPE_JSON,
+	    contentType: CONTEN_TYPE_JSON,
+	    type: METHOD_GET,
+	    url: NOTA_URL_LISTAR_NOTAS_ALUMNO + id,
+	    success: function(data) {
+	      $("#tblNotas").html('');
+	      $.each(data, function(key, value) {
+	        var newrow = "<tr><td>" 	+
+	          //value['idAlumno'] 		+ "</td><td>" +
+	          value['nomTipoNota']	+ "</td><td>" +
+	          value['nomCurso'] 	+ "</td><td>" +
+	          value['nota'] 	+ "</td><td>" +
+	          "<button type='button' class='btn btn-xs btn-success' onclick='editarNotas(" + value['idCurso'] + "," + value['idCurso'] + ")'>" +
+	          	"<span class='glyphicon glyphicon-pencil'>" + 
+	          "</button>" 				+ "</td><td>" +
+	          "<button type='button' class='btn btn-xs btn-info' onclick='consultarNotas(" + value['idCurso'] + "," +  value['idCurso'] + ")'>" +
+	          	"<span class='glyphicon glyphicon-search'>" +
+	          "</button>" +
+	          "</td></tr>";
+
+	        $("#tblNotas").parent().append(newrow);
+	      });
+	    },
+	    error: function(data) {
+	      console.log(data);
+	    }
+  	});		
+}

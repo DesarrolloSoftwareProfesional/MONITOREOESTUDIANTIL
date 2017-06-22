@@ -25,7 +25,7 @@
 								<div class="form-inline">
 									<div class="form-group">
 										<label for="txtDNI">N° DNI</label>
-										<input type="text" placeholder="DNI" class="form-control" id="txtDNI">
+										<input type="text" placeholder="DNI" class="form-control" id="txtDNI" maxlength="8">
 										<button type="button" class='btn btn-xs btn-info' id="btnBuscarAlumnoPorDni" >
 											<span class='glyphicon glyphicon-search'>
 										</button>
@@ -48,7 +48,7 @@
 
 
 
-										<input type="text" id="txtvalornota" class="form-control" placeholder="Nota">
+										<input type="number" id="txtvalornota" class="form-control" placeholder="Nota" min="0"  max="20" maxlength="99">
 									</div>
 								</div>
 

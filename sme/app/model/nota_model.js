@@ -33,4 +33,35 @@ class alumnoModel{
 }
 
 class notaModel{
+	constructor( 
+				idNota,
+			  	idAlumno,
+			  	idCurso, 
+			  	idPeriodo, 
+			    idEmpleado, 
+			    idTipoNota, 
+			    nota,
+			    estadoregistro){
+	this.idNota 		= idNota, 
+  	this.idAlumno 		= idAlumno, 
+  	this.idCurso		= idCurso, 
+  	this.idPeriodo		= idPeriodo, 
+    this.idEmpleado		= idEmpleado, 
+    this.idTipoNota		= idTipoNota,
+    this.nota 			= nota,			
+    this.estadoregistro = estadoregistro
+	}
+
+	toString(){
+		return{
+			"idNota" 		: this.idNota,  
+			"idAlumno" 		: this.idAlumno,  
+			"idCurso"		: this.idCurso,  
+			"idPeriodo"		: this.idPeriodo,  
+			"idEmpleado"	: this.idEmpleado,  	
+			"idTipoNota"	: this.idTipoNota, 
+			"nota"	:  this.nota,			
+			"estadoregistro": this.estadoregistro  
+		}
+	}
 }

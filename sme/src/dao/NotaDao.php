@@ -97,12 +97,22 @@ class NotaDao
         return $result;
     }
 
-    public function insert($nomPerfil)
+    public function insert( $idAlumno,
+                            $idCurso, 
+                            $idPeriodo, 
+                            $idEmpleado, 
+                            $idTipoNota, 
+                            $nota)
     {
-        $sql  = "";
+        $sql  = "CALL SP_NOTAS_INSERT(?,?,?,?,?,?)";
         $conn = $this->mysqli->open();
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('s', $nomPerfil);
+        $stmt->bind_param('iiiiii', $idAlumno,
+                                    $idCurso, 
+                                    $idPeriodo, 
+                                    $idEmpleado, 
+                                    $idTipoNota, 
+                                    $nota);
         $result = $this->mysqli->executeIUD($stmt);
         $conn->close();
 

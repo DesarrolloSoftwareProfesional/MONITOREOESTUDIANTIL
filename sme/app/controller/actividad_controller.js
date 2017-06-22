@@ -123,7 +123,7 @@ function saveActividad() {
     contentType: CONTEN_TYPE_JSON,
     type: METHOD_POST,
     data: JSON.stringify(objActividad.toString()),
-    url: url_select,
+    url: NOTA_URL_REGISTRO,
     success: function(data) {
 
       ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
