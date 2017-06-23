@@ -169,7 +169,7 @@ function clearInputs() {
   document.getElementById("apMaterno").value = '';
   document.getElementById("nombres").value = '';
   document.getElementById("dni").value = '';
-  document.getElementById("fechaNac").value = '';
+  document.getElementById("fechaNacimiento").value = '';
   document.getElementById("direccion").value = '';
 }
 
@@ -179,7 +179,7 @@ function setInputs(value) {
   document.getElementById("apMaterno").value = value['apMaternoAlumno'];
   document.getElementById("nombres").value = value['nombresAlumno'];
   document.getElementById("dni").value = value['dniAlumno'];
-  document.getElementById("fechaNac").value = value['fechaNacAlumno'];
+  document.getElementById("fechaNacimiento").value = value['fechaNacAlumno'];
   document.getElementById("direccion").value = value['direccionAlumno'];
 }
 
@@ -190,7 +190,7 @@ function getAlumnoValue() {
   let apMaterno = document.getElementById("apMaterno").value;
   let nombres = document.getElementById("nombres").value;
   let dni = document.getElementById("dni").value;
-  let fechaNac = document.getElementById("fechaNac").value;
+  let fechaNac = document.getElementById("fechaNacimiento").value;
   let direccion = document.getElementById("direccion").value;
 
   let objAlumno = new AlumnoModel(id, apPaterno, apMaterno, nombres, dni, fechaNac, direccion);

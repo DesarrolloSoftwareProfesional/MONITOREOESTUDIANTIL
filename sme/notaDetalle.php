@@ -71,7 +71,7 @@
 							 			<th>Tipo de Examen</th>
 							 			<th>DNI Empleado</th>
 							 			<th>Nota</th>
-							 			<th colspan="2">Acciones</th>
+							 			<th colspan="1">Acciones</th>
 							 		</tr>
 							 	</thead>
 							 	<tbody id="tblNotas">
