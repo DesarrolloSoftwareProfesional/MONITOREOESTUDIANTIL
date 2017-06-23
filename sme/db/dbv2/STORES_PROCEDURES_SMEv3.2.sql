@@ -884,3 +884,37 @@ BEGIN
 	VALUES ( idAlumno, idCurso, idPeriodo, idEmpleado, idTipoNota, nota, 1);
 END //
 DELIMITER ;
+
+-- -------------------------------------------------------------
+-- TABLA:					NOTAS
+-- STORE PROCEDURE:			SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO 
+-- DESCRIPCIÓN:				Insertar Notas de Menores
+-- FECHA DE CREACIÓN:		2017-06-21
+-- CREADO POR:				Ronald Fabian Garcia
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- USE bd_sgmev3
+-- DROP PROCEDURE SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO
+-- CALL SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(1,1,1);
+DELIMITER //
+CREATE PROCEDURE SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(IN idAlumno INT, 
+													 IN idCurso INT, 
+													 IN idPeriodo INT)
+BEGIN
+	SELECT idNota, 
+		   idAlumno, 
+           idCurso, 
+           idPeriodo, 
+           idEmpleado, 
+           TN.idTipoNota,
+           TN.nomTipoNota,
+           nota
+    FROM NOTAS N
+    INNER JOIN tiponotas TN
+		ON N.idTipoNota = TN.idTipoNota
+    WHERE N.idAlumno = idAlumno
+    AND N.idCurso = idCurso
+    AND N.idPeriodo = idPeriodo
+    AND N.estadoRegistro = 1;
+END //
+DELIMITER ;

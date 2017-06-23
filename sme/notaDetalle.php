@@ -24,6 +24,7 @@
 							<div class="panel-body">
 								<div class="form-inline">
 									<div class="form-group">
+										<input type="hidden" id="hdnidAlumno">
 										<label for="txtDNI">N° DNI</label>
 										<input type="text" placeholder="DNI" class="form-control" id="txtDNI" maxlength="8">
 										<button type="button" class='btn btn-xs btn-info' id="btnBuscarAlumnoPorDni" >
@@ -35,9 +36,9 @@
 								<div class="form-inline">
 									<div class="form-group">
 										<label class="sr-only" for="txtNombreAlum">Nombre</label>
-										<input placeholder="Nombre" type="text" class="form-control" id="txtNombreAlum" width="200px">
+										<input placeholder="Nombre" disabled="disabled" type="text" class="form-control" id="txtNombreAlum" width="200px">
 										<label class="sr-only" for="txtApellAlumn">Apellidos</label>
-										<input placeholder="Apellidos" type="text" class="form-control" id="txtApellAlumn">
+										<input placeholder="Apellidos" type="text" disabled="disabled" class="form-control" id="txtApellAlumn">
 									</div>
 								</div>
 								<div class="form-inline">

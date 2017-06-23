@@ -43,6 +43,20 @@ class NotaDao
         return $result;
     }
 
+    
+
+    public function getNotasPorCursoPeriodo($idAlumno,$idCurso,$idPeriodo)
+    {
+        $sql="CALL SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(?,?,?)";
+        $conn=$this->mysqli->open();
+        $stmt=$conn->prepare($sql);
+        $stmt->bind_param("iii", $idAlumno,$idCurso,$idPeriodo);
+        $result=$this->mysqli->search($stmt);
+        $conn->close();
+
+        return $result;
+    }
+
     public function getCursos()
     {
         $sql = "CALL SP_CURSOS_SELECT_ALL_FOR_NOTAS()";

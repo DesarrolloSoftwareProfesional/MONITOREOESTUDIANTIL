@@ -103,6 +103,18 @@ class NotaService implements iCrudService
         }
     }
 
+    public function getNotasPorCursoPeriodo()
+    {
+        $obj = UtilService::jsonDecode();
+
+        if (isset($obj->idAlumno) && isset($obj->idCurso) && isset($obj->idPeriodo)) {
+            $result = $this->dao->getNotasPorCursoPeriodo($obj->idAlumno, $obj->idCurso,$obj->idPeriodo);
+            UtilService::jsonEncode($result);
+        } else {
+            UtilService::errorResponse("JSON no coressponde a " . self::TABLE);
+        }
+    }
+
     public function getAllAlumnos()
     {
         UtilService::jsonEncode($this->dao->getAllAlumnos());
@@ -180,6 +192,8 @@ class NotaService implements iCrudService
                     break;
                 case 'listarPeriodo':
                     $this->getPeriodos();
+                    break;
+                    $this->getNotasPorCursoPeriodo();
                     break;
                 default:
                     UtilService::errorResponse("Metodo no existe");
