@@ -29,16 +29,22 @@ class NotaService implements iCrudService
 
     public function insert()
     {
-        // $obj = UtilService::jsonDecode();
-        //
-        // if (isset($obj->nomPerfil)) {
-        //
-        //   $result= $this->dao->insert($obj->nomPerfil);
-        //   UtilService::jsonEncodeIUD($result,self::TABLE,"Registrado");
-        //
-        // }else{
-        //   UtilService::errorResponse("JSON no coressponde a ".self::TABLE);
-        // }
+        $obj = UtilService::jsonDecode();
+
+        if (isset($obj->idAlumno) && isset($obj->idCurso) && isset($obj->idPeriodo) &&
+            isset($obj->idEmpleado) && isset($obj->idTipoNota) && isset($obj->nota))
+        {
+            $result= $this->dao->insert($obj->idAlumno, 
+                                        $obj->idCurso, 
+                                        $obj->idPeriodo, 
+                                        $obj->idEmpleado, 
+                                        $obj->idTipoNota,
+                                        $obj->nota);
+
+            UtilService::jsonEncodeIUD($result, self::TABLE, "Registrado");
+        } else {
+            UtilService::errorResponse("JSON no coressponde a ".self::TABLE);
+        }
     }
 
     public function update()
@@ -109,7 +115,11 @@ class NotaService implements iCrudService
 
     public function getAlumnoPorDni()
     {
-        UtilService::jsonEncode($this->dao->getTipoNotas());
+        if (!empty($_GET[UtilConst::ID])) {
+            UtilService::jsonEncode($this->dao->getAlumnoPorDni($_GET[UtilConst::ID]));
+        } else {
+            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+        }
     }
 
     public function getCursos()

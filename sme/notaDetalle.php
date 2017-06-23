@@ -3,11 +3,11 @@
     <div class="modal-dialog">
 		<div class="modal-content">
 	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="variables.abrioDetalle = false;">&times;</button>
 	          <h4 class="modal-title" id="myModalLabel"><b>Registro de Notas</b></h4>
 	        </div>
 	        <form class=""  method="post">
-		        <div class="modal-body" id="datosAqui">
+		        <div  id="datosAqui">
 					<div class="modal-body">
 						<div class="form-group">
 						  <select class="form-control" id="slnCurso">
@@ -25,20 +25,21 @@
 								<div class="form-inline">
 									<div class="form-group">
 										<label for="txtDNI">N° DNI</label>
-										<input type="text" placeholder="DNI" class="form-control" id="txtDNI">
+										<input type="text" placeholder="DNI" class="form-control" id="txtDNI" maxlength="8">
 										<button type="button" class='btn btn-xs btn-info' id="btnBuscarAlumnoPorDni" >
 											<span class='glyphicon glyphicon-search'>
 										</button>
-										<label class="sr-only" for="txtNombreAlum">Nombre</label>
-										<input placeholder="Nombre" type="text" class="form-control" id="txtNombreAlum" width="200px">
 								    </div>
 								</div>
-								<div class="form-group">
-									<label class="sr-only" for="txtApellAlumn">Apellidos</label>
-									<input placeholder="Apellidos" type="text" class="form-control" id="txtApellAlumn">
+								<div ></div>
+								<div class="form-inline">
+									<div class="form-group">
+										<label class="sr-only" for="txtNombreAlum">Nombre</label>
+										<input placeholder="Nombre" type="text" class="form-control" id="txtNombreAlum" width="200px">
+										<label class="sr-only" for="txtApellAlumn">Apellidos</label>
+										<input placeholder="Apellidos" type="text" class="form-control" id="txtApellAlumn">
+									</div>
 								</div>
-
-
 								<div class="form-inline">
 									<div class="form-group">
 										<select class="form-control" id="slnTipoNota">
@@ -47,7 +48,7 @@
 
 
 
-										<input type="text" id="txtvalornota" class="form-control" placeholder="Nota">
+										<input type="number" id="txtvalornota" class="form-control" placeholder="Nota" min="0"  max="20" maxlength="99">
 									</div>
 								</div>
 

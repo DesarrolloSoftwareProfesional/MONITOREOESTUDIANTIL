@@ -31,10 +31,16 @@ class NotaDao
         return $this->mysqli->findAll($sql);
     }
 
-    public function getAlumnoPorDni()
+    public function getAlumnoPorDni($dni)
     {
-        $sql = "CALL SP_TIPONOTAS_SELECT_ALL()";
-        return $this->mysqli->findAll($sql);
+        $sql="CALL SP_ALUMNOS_SELECT_BY_DNI(?)";
+        $conn=$this->mysqli->open();
+        $stmt=$conn->prepare($sql);
+        $stmt->bind_param("i", $dni);
+        $result=$this->mysqli->search($stmt);
+        $conn->close();
+
+        return $result;
     }
 
     public function getCursos()
@@ -91,12 +97,22 @@ class NotaDao
         return $result;
     }
 
-    public function insert($nomPerfil)
+    public function insert( $idAlumno,
+                            $idCurso, 
+                            $idPeriodo, 
+                            $idEmpleado, 
+                            $idTipoNota, 
+                            $nota)
     {
-        $sql  = "";
+        $sql  = "CALL SP_NOTAS_INSERT(?,?,?,?,?,?)";
         $conn = $this->mysqli->open();
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('s', $nomPerfil);
+        $stmt->bind_param('iiiiii', $idAlumno,
+                                    $idCurso, 
+                                    $idPeriodo, 
+                                    $idEmpleado, 
+                                    $idTipoNota, 
+                                    $nota);
         $result = $this->mysqli->executeIUD($stmt);
         $conn->close();
 

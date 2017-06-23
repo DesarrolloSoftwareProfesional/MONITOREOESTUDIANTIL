@@ -161,9 +161,9 @@ DELIMITER ;
 -- FECHA DE MODIFICACIÓN:
 -- MODIFICADO POR:
 -- --------------------------------------------------------------
-
--- DROP PROCEDURE SP_NOTAS_SELECT_ALL_BY_ID;
-
+-- USE bd_sgmev3
+-- DROP PROCEDURE SP_NOTAS_SELECT_ALL_BY_ID 
+-- CALL SP_NOTAS_SELECT_ALL_BY_ID (1);
 DELIMITER //
 CREATE PROCEDURE SP_NOTAS_SELECT_ALL_BY_ID (IN p_idAlumno INT)
  BEGIN
@@ -860,3 +860,27 @@ BEGIN
 END //
 DELIMITER ;
 
+-- -------------------------------------------------------------
+-- TABLA:					NOTAS
+-- STORE PROCEDURE:			SP_NOTAS_INSERT
+-- DESCRIPCIÓN:				Insertar Notas de Menores
+-- FECHA DE CREACIÓN:		2017-06-21
+-- CREADO POR:				Ronald Fabian Garcia
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- USE bd_sgmev3
+-- DROP PROCEDURE SP_NOTAS_INSERT
+-- CALL SP_NOTAS_INSERT(1,4,2,3,2,15);
+DELIMITER //
+CREATE PROCEDURE SP_NOTAS_INSERT(IN idAlumno INT, 
+                                 IN idCurso INT, 
+                                 IN idPeriodo INT, 
+								 IN idEmpleado INT, 
+                                 IN idTipoNota INT, 
+								 IN nota INT)
+BEGIN
+	INSERT INTO NOTAS(idAlumno, idCurso, idPeriodo, 
+					  idEmpleado, idTipoNota, nota,estadoregistro)
+	VALUES ( idAlumno, idCurso, idPeriodo, idEmpleado, idTipoNota, nota, 1);
+END //
+DELIMITER ;
