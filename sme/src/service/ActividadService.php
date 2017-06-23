@@ -34,9 +34,6 @@ class ActividadService implements iCrudService
         if (!empty($_GET[UtilConst::ID])) {
             $notificacion = $this->dao->getNotificationByID($_GET[UtilConst::ID]);
             $this->setNotification($notificacion);
-            // foreach ($notificacion as $key => $value) {
-            //     echo $value["id"]." ".$value["actividad"]." ".$value["fecha"];
-            // }
         } else {
             UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
         }
@@ -75,7 +72,7 @@ class ActividadService implements iCrudService
     public function setNotification($notificacion)
     {
         foreach ($notificacion as $key => $value) {
-            echo UtilNotification::sendNotification($value["id"], $value["actividad"], $value["fecha"]);
+            echo UtilNotification::sendNotificationTheme($value["codGrupoAcademico"], $value["id"], $value["actividad"], $value["fecha"]);
         }
     }
 

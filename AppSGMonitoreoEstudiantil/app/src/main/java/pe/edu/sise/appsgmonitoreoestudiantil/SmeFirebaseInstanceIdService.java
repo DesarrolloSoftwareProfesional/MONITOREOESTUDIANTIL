@@ -5,11 +5,16 @@ import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
+import org.json.JSONObject;
+
+import pe.edu.sise.utils.FcmTokenAsyncTask;
+import pe.edu.sise.utils.JSONObjectValue;
+
 /**
  * Created by Abel on 17/06/2017.
  */
 
-public class SmeFirebaseInstanceIdService  extends FirebaseInstanceIdService {
+public class SmeFirebaseInstanceIdService extends FirebaseInstanceIdService {
 
     private static final String TAG = "SmeFirebaseInstIdServ";
 
@@ -24,6 +29,11 @@ public class SmeFirebaseInstanceIdService  extends FirebaseInstanceIdService {
     }
 
     private void sendRegistrationToServer(String token) {
-        // Add custom implementation, as needed.
+        try {
+            new FcmTokenAsyncTask().execute(JSONObjectValue.fcmToken("1", token));
+        } catch (Exception e) {
+            Log.d(TAG, Log.getStackTraceString(e));
+        }
     }
+
 }

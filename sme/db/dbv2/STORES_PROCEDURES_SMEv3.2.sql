@@ -152,6 +152,34 @@ DELIMITER ;
 -- CALL SP_ALUMNOS_UPDATE('FLORES','GARCIA','CRISTINA','4622522','1990-06-11','Av AVANCAY 952',4);
 
 
+
+-- -------------------------------------------------------------
+-- TABLA:					ALUMNOS
+-- STORE PROCEDURE:			SP_ALUMNOS_UPDATE_FCM_TOKEN(?,?)
+-- DESCRIPCIÓN:				Actualiza token de FCM Token para envio de notificaciones
+-- FECHA DE CREACIÓN:		2017-06-22
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ALUMNOS_UPDATE_FCM_TOKEN;
+
+DELIMITER //
+CREATE PROCEDURE SP_ALUMNOS_UPDATE_FCM_TOKEN
+(
+    IN p_fcmToken TEXT,
+    IN p_idAlumno INT
+)
+ BEGIN
+	UPDATE ALUMNOS SET fcmToken = p_fcmToken
+    WHERE idAlumno = p_idAlumno;
+END //
+DELIMITER ;
+
+-- CALL SP_ALUMNOS_UPDATE_FCM_TOKEN('', 4);
+
+
 -- -------------------------------------------------------------
 -- TABLA:					NOTAS,
 -- STORE PROCEDURE:			SP_NOTAS_SELECT_ALL_BY_ID(?)
@@ -162,7 +190,7 @@ DELIMITER ;
 -- MODIFICADO POR:
 -- --------------------------------------------------------------
 -- USE bd_sgmev3
--- DROP PROCEDURE SP_NOTAS_SELECT_ALL_BY_ID 
+-- DROP PROCEDURE SP_NOTAS_SELECT_ALL_BY_ID
 -- CALL SP_NOTAS_SELECT_ALL_BY_ID (1);
 DELIMITER //
 CREATE PROCEDURE SP_NOTAS_SELECT_ALL_BY_ID (IN p_idAlumno INT)
@@ -602,8 +630,8 @@ DELIMITER ;
 -- DESCRIPCIÓN:				Obtiene el ultimo registro
 -- FECHA DE CREACIÓN:		2017-05-21
 -- CREADO POR:				Palomino Rojas J. Abel
--- FECHA DE MODIFICACIÓN:
--- MODIFICADO POR:
+-- FECHA DE MODIFICACIÓN:	2017-06-22
+-- MODIFICADO POR:			Palomino Rojas J. Abel
 -- --------------------------------------------------------------
 
 -- DROP PROCEDURE SP_ACTIVIDADES_SELECT_LAST_INSERTED;
@@ -612,7 +640,7 @@ DELIMITER //
 CREATE PROCEDURE SP_ACTIVIDADES_SELECT_LAST_INSERTED()
  BEGIN
  SELECT
-   A.idActividad 'id',CONCAT(A.nomActividad,' - ',C.nomCurso) 'actividad',
+   A.idActividad 'id',CONCAT(A.nomActividad,' - ',C.nomCurso) 'actividad',A.codGrupoAcademico,
    CONCAT(DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y'),' ', TIME_FORMAT(A.horaInicio, '%h:%i %p')) 'fecha'
  FROM
    ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
@@ -624,13 +652,23 @@ DELIMITER ;
 
 
 
+-- -------------------------------------------------------------
+-- TABLA:					ACTIVIDADES
+-- STORE PROCEDURE:			SP_ACTIVIDADES_SELECT_NOTIFICATION_BY_ID(?)
+-- DESCRIPCIÓN:				Obtiene una actividad por id
+-- FECHA DE CREACIÓN:		2017-05-21
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:	2017-06-22
+-- MODIFICADO POR:			Palomino Rojas J. Abel
+-- --------------------------------------------------------------
+
 -- DROP PROCEDURE SP_ACTIVIDADES_SELECT_NOTIFICATION_BY_ID;
 
 DELIMITER //
 CREATE PROCEDURE SP_ACTIVIDADES_SELECT_NOTIFICATION_BY_ID(IN p_idActividad INT)
  BEGIN
 	SELECT
-		A.idActividad 'id',CONCAT(A.nomActividad,' - ',C.nomCurso) 'actividad',
+		A.idActividad 'id',CONCAT(A.nomActividad,' - ',C.nomCurso) 'actividad',A.codGrupoAcademico,
         CONCAT(DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y'),' ', TIME_FORMAT(A.horaInicio, '%h:%i %p')) 'fecha'
 	FROM
 		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
@@ -638,8 +676,7 @@ CREATE PROCEDURE SP_ACTIVIDADES_SELECT_NOTIFICATION_BY_ID(IN p_idActividad INT)
 END //
 DELIMITER ;
 
--- CALL SP_ACTIVIDADES_SELECT_NOTIFICATION_BY_ID(16);
-
+-- CALL SP_ACTIVIDADES_SELECT_NOTIFICATION_BY_ID(1);
 
 
 -- -------------------------------------------------------------
@@ -872,14 +909,14 @@ DELIMITER ;
 -- DROP PROCEDURE SP_NOTAS_INSERT
 -- CALL SP_NOTAS_INSERT(1,4,2,3,2,15);
 DELIMITER //
-CREATE PROCEDURE SP_NOTAS_INSERT(IN idAlumno INT, 
-                                 IN idCurso INT, 
-                                 IN idPeriodo INT, 
-								 IN idEmpleado INT, 
-                                 IN idTipoNota INT, 
+CREATE PROCEDURE SP_NOTAS_INSERT(IN idAlumno INT,
+                                 IN idCurso INT,
+                                 IN idPeriodo INT,
+								 IN idEmpleado INT,
+                                 IN idTipoNota INT,
 								 IN nota INT)
 BEGIN
-	INSERT INTO NOTAS(idAlumno, idCurso, idPeriodo, 
+	INSERT INTO NOTAS(idAlumno, idCurso, idPeriodo,
 					  idEmpleado, idTipoNota, nota,estadoregistro)
 	VALUES ( idAlumno, idCurso, idPeriodo, idEmpleado, idTipoNota, nota, 1);
 END //

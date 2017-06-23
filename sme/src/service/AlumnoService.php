@@ -50,7 +50,17 @@ class AlumnoService implements iCrudService
             UtilService::errorResponse("JSON no coressponde a " . self::TABLE);
         }
     }
+    public function updateFcmToken()
+    {
+        $obj = UtilService::jsonDecode();
 
+        if (($obj->fcmToken) && isset($obj->idAlumno)) {
+            $result = $this->dao->update($obj->fcmToken, $obj->idAlumno);
+            UtilService::jsonEncodeIUD($result, self::TABLE, "fcm token Actualizado");
+        } else {
+            UtilService::errorResponse("JSON no coressponde a " . self::TABLE);
+        }
+    }
     public function delete()
     {
         if (!empty($_GET[UtilConst::ID])) {
@@ -117,6 +127,10 @@ class AlumnoService implements iCrudService
                 case UtilConst::LISTA_ALUM_BY_APOD:
                     $this->getAlumByIdApoderado();
                     break;
+                case 'updtoken':
+                    $this->updateFcmToken();;
+                    break;
+
                 default:
                     UtilService::errorResponse("Metodo no existe");
                     break;

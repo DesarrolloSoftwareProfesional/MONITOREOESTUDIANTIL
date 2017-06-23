@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -28,6 +30,8 @@ import pe.edu.sise.model.Alumno;
 import pe.edu.sise.model.Apoderado;
 import pe.edu.sise.model.Usuario;
 import pe.edu.sise.utils.Attributes;
+import pe.edu.sise.utils.FcmTokenAsyncTask;
+import pe.edu.sise.utils.JSONObjectValue;
 import pe.edu.sise.utils.SessionManager;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -196,6 +200,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     apoderado.setLogged(true);
                 }
                 sessionManager.createApoderadoSession(apoderado);
+
+                //Actualizar token.
+                new FcmTokenAsyncTask().execute(JSONObjectValue.fcmToken("1", FirebaseInstanceId.getInstance().getToken()));
+                
                 irFormularioMain();
 
             }else{

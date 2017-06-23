@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import pe.edu.sise.model.Alumno;
 import pe.edu.sise.model.Usuario;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         Log.d(TAG, "Tocken: " + FirebaseInstanceId.getInstance().getToken());
-
+        FirebaseMessaging.getInstance().subscribeToTopic("1A2017");
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         this.sessionManager = new SessionManager(this);

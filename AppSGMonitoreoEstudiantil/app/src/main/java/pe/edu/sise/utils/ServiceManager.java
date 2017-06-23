@@ -27,6 +27,7 @@ public class ServiceManager {
 
     //URL-ALUMNO
     public static final String ALUMNO_URL_LOGEO = DOMAIN + "alumno/logeo";
+    public static final String ALUMNO_URL_FCM_TOKEN_UPDATE = DOMAIN + "alumno/updtoken";
 
     //URL-APODERADO
     public static final String APODERADO_URL_LOGEO = DOMAIN + "apoderado/logeo";

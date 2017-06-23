@@ -6,13 +6,11 @@ class UtilNotification
 {
     const GOOGLE_API_KEY="AAAAp6FuGcE:APA91bFnsPeki2rb7BBzSY_-M3vDkGVl5VYyax6sj-t1iJXoMyUiUDUZ2q2wOq-vnRYlzNeAks9XwG8Z5mef1tLa9KwZFUH_WXCfqNh8n8zWdr0H63CJY9gFoJCY0gIOd4oZAKiINTsk";
     const GOOGLE_GCM_URL ="https://fcm.googleapis.com/fcm/send";
-    const USER_TOKEN_FCM="dqGJvZz01so:APA91bEDdSsQAGuBQXNCxZy3tAnP9af2sd85OOAF5VXYcN4d7-LMwJRBUdstrkYRToJMdanILsY4ge0h4G426anD2zXzmWMtrB9b1dW-MepXnmv48CvyEgiqzgUPm3wvLkqr0_D0isyY";
-
-
-    public static function sendNotification($id, $actividad, $fecha)
+    
+    public static function sendNotification($fcmToken, $id, $actividad, $fecha)
     {
         $fields = array(
-            'to'=> self::USER_TOKEN_FCM ,
+            'to'=> $fcmToken,
             'priority'=> "high",
             'data' => array("id"=>$id,"actividad" =>$actividad, "fecha" => $fecha)
         );

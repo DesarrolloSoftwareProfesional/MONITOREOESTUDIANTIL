@@ -38,6 +38,7 @@ public class Attributes {
     public static final String ALUM_COD_SECCION="codSeccion";
     public static final String ALUM_CANT_ACTIVIDAD="CantAC";
     public static final String ALUM_PROMEDIO_TOTAL="totalPromedio";
+    public static final String ALUM_FCM_TOKEN="fcmToken";
 
     //ATRIBUTOS DE APODERADO EN JSON
     public static final String APOD_ID="idApoderado";
@@ -107,4 +108,8 @@ public class Attributes {
     public static final String MSG_ACTIVIDAD ="actividad";
     public static final String MSG_FECHA_REALIZARSE ="fecha";
     public static final String MSG_ID_ALUMNO ="id";
+
+    //ATRIBUTOS DE RESPONSE EN JSON
+    public static final String RES_STATE = "state";
+    public static final String RES_MSG = "msg";
 }

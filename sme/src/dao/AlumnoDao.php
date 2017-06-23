@@ -49,6 +49,18 @@ class AlumnoDao
         return $result;
     }
 
+    public function updateFcmToken($fcmToken, $idAlumno)
+    {
+        $sql  = "CALL SP_ALUMNOS_UPDATE(?,?)";
+        $conn = $this->mysqli->open();
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('si', $fcmToken, $idAlumno);
+        $result = $this->mysqli->executeIUD($stmt);
+        $conn->close();
+
+        return $result;
+    }
+
     public function delete($id)
     {
         $sql = "DELETE FROM ALUMNOS WHERE idAlumno =?";

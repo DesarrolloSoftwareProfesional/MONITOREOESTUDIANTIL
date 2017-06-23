@@ -21,10 +21,11 @@ CREATE TABLE Alumnos(
 	fechaNacAlumno Date,
 	direccionAlumno varchar(150),
 	nomCompleto varchar(200),
-    -- idUsuario int,
 	estadoRegistro bit default 1,
+	fcmToken text,
+
 	constraint Pk_Alumnos primary key (idAlumno),
-    constraint Ak_dniAlumno_Alumnos unique(dniAlumno)
+  constraint Ak_dniAlumno_Alumnos unique(dniAlumno)
 );
 
 CREATE TABLE Usuario_Alumno(

@@ -123,7 +123,7 @@ function saveActividad() {
     contentType: CONTEN_TYPE_JSON,
     type: METHOD_POST,
     data: JSON.stringify(objActividad.toString()),
-    url: NOTA_URL_REGISTRO,
+    url: url_select,
     success: function(data) {
 
       ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
@@ -203,7 +203,7 @@ function dataForNotification(id) {
     type: METHOD_GET,
     url: url_select,
     success: function(data) {
-      (1 === data.success) ? msg_success("notificacion enviado correctamente"): msg_error("notificacion no se pudo enviar");
+      ("" !== data.message_id) ? msg_success("notificacion enviado correctamente"): msg_error("notificacion no se pudo enviar");
       console.log(data);
     },
     error: function(data) {

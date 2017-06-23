@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pe.edu.sise.model.Alumno;
+import pe.edu.sise.model.Response;
 import pe.edu.sise.utils.Attributes;
 import pe.edu.sise.utils.JsonManager;
 import pe.edu.sise.utils.ServiceManager;
@@ -38,7 +39,7 @@ public class AlumnoController {
                 alumno.setDni(jsonObjectOut.getString(Attributes.ALUM_DNI));
                 alumno.setFechaNac(jsonObjectOut.getString(Attributes.ALUM_FECHA_NAC));
                 alumno.setDireccion(jsonObjectOut.getString(Attributes.ALUM_DIRECCION));
-                alumno.setEstadoRegistro((jsonObjectOut.getInt(Attributes.ALUM_ESTADO_REG)!=0));
+                alumno.setEstadoRegistro((jsonObjectOut.getInt(Attributes.ALUM_ESTADO_REG) != 0));
                 alumno.setUsuario(jsonObjectOut.getString(Attributes.ALUM_USUARIO));
             }
         } catch (Exception e) {
@@ -48,6 +49,22 @@ public class AlumnoController {
 
     }
 
+    public static Response updateFcmToken(JSONObject jsonObjectIn) {
+        Response response = null;
+        try {
+            String jsonString = JsonManager.getJsonString(ServiceManager.ALUMNO_URL_FCM_TOKEN_UPDATE, ServiceManager.POST, jsonObjectIn);
+
+            JSONObject jsonObjectOut = new JSONObject(jsonString);
+            response = new Response();
+            response.setState(jsonObjectOut.getBoolean(Attributes.RES_STATE));
+            response.setMsg(jsonObjectOut.getString(Attributes.RES_MSG));
+        } catch (Exception e) {
+            Log.d(TAG, Log.getStackTraceString(e));
+            response = new Response(false, "Ocurrio un error inesperado");
+        }
+
+        return response;
+    }
 
     public static List<Alumno> getAlumnosByApoderado(Integer idApoderado) {
         List<Alumno> lst = new ArrayList<>();
