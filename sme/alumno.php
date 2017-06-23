@@ -148,12 +148,18 @@
     // $(document).on('click','.btn',function(){
     //   $('.btn').css("background-color", "yellow");
     // })
-    // 
+    //
+      // $(function () {
+      //     $('#fechaNac').datetimepicker({
+      //       format: 'DD-MM-YYYY'
+      //     });
+      // });
       $(function () {
           $('#fechaNac').datetimepicker({
-            format: 'DD-MM-YYYY'
+            format: 'YYYY-MM-DD'
           });
       });
+
   </script>
 </body>
 
