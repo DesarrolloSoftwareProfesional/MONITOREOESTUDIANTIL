@@ -193,6 +193,7 @@ class NotaService implements iCrudService
                 case 'listarPeriodo':
                     $this->getPeriodos();
                     break;
+                case 'listarNotaAlumnoCursoPeriodo':
                     $this->getNotasPorCursoPeriodo();
                     break;
                 default:
