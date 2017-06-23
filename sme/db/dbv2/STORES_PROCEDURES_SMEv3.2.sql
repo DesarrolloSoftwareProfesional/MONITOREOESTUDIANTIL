@@ -905,13 +905,16 @@ BEGIN
 		   idAlumno, 
            idCurso, 
            idPeriodo, 
-           idEmpleado, 
+           E.idEmpleado,
+           E.dniEmpleado,
            TN.idTipoNota,
            TN.nomTipoNota,
            nota
     FROM NOTAS N
     INNER JOIN tiponotas TN
 		ON N.idTipoNota = TN.idTipoNota
+	INNER JOIN empleados E 
+		ON E.idEmpleado = N.idEmpleado
     WHERE N.idAlumno = idAlumno
     AND N.idCurso = idCurso
     AND N.idPeriodo = idPeriodo

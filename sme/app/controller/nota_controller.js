@@ -281,14 +281,11 @@ function BuscarNotasAlumno(){
 	        var newrow = "<tr><td>" 	+
 	          //value['idAlumno'] 		+ "</td><td>" +
 	          value['nomTipoNota']	+ "</td><td>" +
-	          value['nomCurso'] 	+ "</td><td>" +
+	          value['dniEmpleado'] 	+ "</td><td>" +
 	          value['nota'] 	+ "</td><td>" +
-	          "<button type='button' class='btn btn-xs btn-success' onclick='editarNotas(" + value['idCurso'] + "," + value['idCurso'] + ")'>" +
+	          "<button type='button' class='btn btn-xs btn-warning' onclick='editarNotas(" + value['idCurso'] + "," + value['idCurso'] + ")'>" +
 	          	"<span class='glyphicon glyphicon-pencil'>" + 
-	          "</button>" 				+ "</td><td>" +
-	          "<button type='button' class='btn btn-xs btn-info' onclick='consultarNotas(" + value['idCurso'] + "," +  value['idCurso'] + ")'>" +
-	          	"<span class='glyphicon glyphicon-search'>" +
-	          "</button>" +
+	          "</button>" 				+ 
 	          "</td></tr>";
 
 	        $("#tblNotas").parent().append(newrow);

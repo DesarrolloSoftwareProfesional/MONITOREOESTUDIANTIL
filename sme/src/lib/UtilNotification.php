@@ -36,4 +36,34 @@ class UtilNotification
 
         return $result;
     }
+
+
+    public static function sendNotificationTheme($theme, $id, $actividad, $fecha)
+    {
+        $fields = array(
+            'to'=> '/topics/'.$theme,
+            'priority'=> "high",
+            'data' => array("id"=>$id,"actividad" =>$actividad, "fecha" => $fecha)
+        );
+
+
+        $headers = array(
+          self::GOOGLE_GCM_URL,
+          'Content-Type: application/json',
+          'Authorization: key=' . self::GOOGLE_API_KEY
+        );
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, self::GOOGLE_GCM_URL);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        return $result;
+    }
 }

@@ -41,6 +41,3 @@ const NOTA_URL_LISTAR_CURSO = URL_BASE + "nota/listarCurso";
 const NOTA_URL_LISTAR_PERIODO = URL_BASE + "nota/listarPeriodo";
 const NOTA_URL_REGISTRO = URL_BASE + "nota/registrar";
 const NOTA_URL_LISTAR_NOTAS_ALUMNO_CURSO_PERIODO = URL_BASE + "nota/listarNotaAlumnoCursoPeriodo";
-
-
-
