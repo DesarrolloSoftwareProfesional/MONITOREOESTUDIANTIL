@@ -1,10 +1,10 @@
 //Importar los archivos necesarios
 $.when(
-  $.getScript("app/util/service_manager.js"),
-  $.getScript("app/model/nota_model.js"),
-  $.Deferred(function(deferred) {
-    $(deferred.resolve);
-  })
+	$.getScript("app/util/service_manager.js"),
+	$.getScript("app/model/nota_model.js"),
+	$.Deferred(function(deferred) {
+	  $(deferred.resolve);
+	})
 ).done(function() {});
 
 var variables = {
@@ -12,18 +12,18 @@ var variables = {
 }
 
 document.onkeypress=function(e){
-var esIE=(document.all);
-var esNS=(document.layers);
-tecla=(esIE) ? event.keyCode : e.which;
-if(tecla==13 && variables.abrioDetalle){
-	if ($("#txtDNI").val()=="")
-	{
-		msg_error("Indicar nro de Documento");
-		$("#txtDNI").focus();
-		return false;
+	var esIE=(document.all);
+	var esNS=(document.layers);
+	tecla=(esIE) ? event.keyCode : e.which;
+	if(tecla==13 && variables.abrioDetalle){
+		if ($("#txtDNI").val()=="")
+		{
+			msg_error("Indicar nro de Documento");
+			$("#txtDNI").focus();
+			return false;
+		}
+		getAlumnoPorDni($("#txtDNI").val());
 	}
-	getAlumnoPorDni($("#txtDNI").val());
-  }
 }
 
 $(document).ready(main);
@@ -46,7 +46,7 @@ $(document).ready(main);
 	  $("#btnguardarNota").click(function(){
 	  	postguardarNota();
 	  });
-}
+	}
 
 function showModal() {
   $('#modalRegistroNotas').modal({
@@ -181,26 +181,6 @@ function getAlumnoPorDni(dni){
   	});	
 }
 
-function validarFormulario(){
-	if ($("#slnCurso").val()=="0") 
-	{
-		msg_error("Seleccione Curso");
-		return false;
-	}else if ($("#slnPeriodo").val()=="0") 
-	{
-		msg_error("Seleccione Periodo");
-		return false;
-	}else if ($("#slnTipoNota").val()=="0") 
-	{
-		msg_error("Seleccione Tipo de Nota");
-		return false;
-	}else if ($("#txtvalornota").val()=="") 
-	{
-		msg_error("Ingrese Nota");
-		return false;
-	}
-} 
-
 function generarNota(){
 	var idNota 		= 0;
 	var	idAlumno	= 1;
@@ -220,7 +200,31 @@ function generarNota(){
 }
 
 function postguardarNota(){
-	validarFormulario();
+	if ($("#slnCurso").val()=="0" || $("#slnCurso").val()==null) 
+	{
+		msg_error("Seleccione Curso");
+		$("#slnCurso").focus();	
+		return false;
+	}else if ($("#slnPeriodo").val()=="0" || $("#slnPeriodo").val()==null) 
+	{
+		msg_error("Seleccione Periodo");
+		$("#slnPeriodo").focus();
+		return false;
+	}else if ($("#slnTipoNota").val()=="0" || $("#slnTipoNota").val()==null) 
+	{
+		msg_error("Seleccione Tipo de Nota");
+		$("#slnTipoNota").focus();
+		return false;
+	}else if ($("#txtvalornota").val()=="") 
+	{
+		msg_error("Ingrese Nota");
+		$("#txtvalornota").focus();
+		return false;
+	}else if ($("#txtDNI").val().length !=8) {
+		msg_error("Verificar Nro de DNI");
+		$("#txtDNI").focus();
+		return false;
+	}
 	var Nota = generarNota();
 	jQuery.ajax({
 	    dataType: DATA_TYPE_JSON,

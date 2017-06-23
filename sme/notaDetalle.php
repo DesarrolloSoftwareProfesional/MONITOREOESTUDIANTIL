@@ -7,7 +7,7 @@
 	          <h4 class="modal-title" id="myModalLabel"><b>Registro de Notas</b></h4>
 	        </div>
 	        <form class=""  method="post">
-		        <div class="modal-body" id="datosAqui">
+		        <div  id="datosAqui">
 					<div class="modal-body">
 						<div class="form-group">
 						  <select class="form-control" id="slnCurso">

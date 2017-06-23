@@ -12,6 +12,13 @@
 	  	th{
 	  		text-align: center;
 	  	}
+	  	.modal-dialog{
+		    overflow-y: initial !important
+		}
+		.modal-body{
+		    height: 550px;
+		    overflow-y: auto;
+		}
   	</style>
 </head>
 <body>
