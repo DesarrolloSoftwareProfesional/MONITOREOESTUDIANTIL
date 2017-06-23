@@ -19,6 +19,9 @@
 		    height: 550px;
 		    overflow-y: auto;
 		}
+		.glyphicon >.glyphicon-remove{
+			text-align: center;
+		}
   	</style>
 </head>
 <body>

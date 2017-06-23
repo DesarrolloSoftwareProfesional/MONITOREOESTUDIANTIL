@@ -283,8 +283,8 @@ function BuscarNotasAlumno(){
 	          value['nomTipoNota']	+ "</td><td>" +
 	          value['dniEmpleado'] 	+ "</td><td>" +
 	          value['nota'] 	+ "</td><td>" +
-	          "<button type='button' class='btn btn-xs btn-warning' onclick='editarNotas(" + value['idCurso'] + "," + value['idCurso'] + ")'>" +
-	          	"<span class='glyphicon glyphicon-pencil'>" + 
+	          "<button style='text-align:center' type='button' class='btn btn-xs btn-danger' onclick='eliminarNota(" + value['idNota'] +")'>" +
+	          	"<span class='glyphicon glyphicon-remove'>" + 
 	          "</button>" 				+ 
 	          "</td></tr>";
 
@@ -295,4 +295,25 @@ function BuscarNotasAlumno(){
 	      console.log(data);
 	    }
   	});		
+}
+
+function eliminarNota(idNota){
+	if (confirm('Desea eliminar este registo?')) 
+	{
+	    $.ajax({
+		    dataType: DATA_TYPE_JSON,
+		    contentType: CONTEN_TYPE_JSON,
+		    type: METHOD_DELETE,
+		    url: NOTA_URL_ELIMINAR + idNota,
+		    success: function(data) {
+		      ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
+		      console.log(data);
+		      BuscarNotasAlumno();
+		    },
+		    error: function(data) {
+		      console.log(data);
+		    }
+	    });
+
+  	}	
 }

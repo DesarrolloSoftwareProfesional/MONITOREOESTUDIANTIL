@@ -147,7 +147,7 @@ class NotaDao
 
     public function delete($id)
     {
-        $sql = "";
+        $sql="DELETE FROM NOTAS WHERE idNota=?";
         return $this->mysqli->delete($sql, $id);
     }
 }
