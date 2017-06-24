@@ -958,3 +958,21 @@ BEGIN
     AND N.estadoRegistro = 1;
 END //
 DELIMITER ;
+
+-- -------------------------------------------------------------
+-- TABLA:					EMPLEADOS
+-- STORE PROCEDURE:			SP_EMPLEADOS_SELECT_ALL 
+-- DESCRIPCIÓN:				Listar empleados con ID - para combo 
+-- FECHA DE CREACIÓN:		2017-06-24
+-- CREADO POR:				ARUHANCA VILCA JHONATAN
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- USE bd_sgmev3
+-- DROP PROCEDURE SP_EMPLEADOS_SELECT_ALL
+-- CALL SP_EMPLEADOS_SELECT_ALL();
+DELIMITER //
+CREATE PROCEDURE SP_EMPLEADOS_SELECT_ALL()
+BEGIN
+	SELECT e.idEmpleado, concat(e.apPaternoEmpleado , " " , e.apMaternoEmpleado , " " , e.nombresEmpleado) as nomEmpleado FROM empleados e;
+END //
+DELIMITER ;
