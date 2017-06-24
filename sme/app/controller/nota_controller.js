@@ -297,14 +297,14 @@ function postguardarNota(){
 	    data: JSON.stringify(Nota.toString()),
 	    url: NOTA_URL_REGISTRO,
 	    success: function(data) {
-	      ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
+        ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
 
-	      if ("true" === data.state) {
-	        //dataForNotification(objActividad.id);
-	      }
-	      console.log(data);
-	      BuscarNotasAlumno();
-	      //hideModal();
+	        if ("true" === data.state) {
+	    		NotificarNota();
+	        }
+        	console.log(data);
+        	BuscarNotasAlumno();
+        	//hideModal();
 	    },
 	    error: function(data) {
 	      console.log(data);
@@ -382,4 +382,8 @@ function eliminarNota(idNota){
 
 function consultarNotas(idAlumno,dniAlumno){
 	window.open("notaImpresion.php"+"?DNI="+dniAlumno);
+}
+
+function notificarNota() {
+	
 }
