@@ -223,6 +223,42 @@ function searchActividad(id) {
   });
 }
 
+function getActividadByIdGpoAcademico(){
+  
+  var idGpoAcademico=$("#slnGrupoAcademico").val();
+
+  $.ajax({
+      dataType: DATA_TYPE_JSON,
+      contentType: CONTEN_TYPE_JSON,
+      type: METHOD_GET,
+      url: ACTIVIDAD_URL_BUSCAR + idGpoAcademico,
+      success: function(data) {
+        $("#tblActividad").html('');
+
+        $.each(data, function(key, value) {
+          var newrow = "<tr><td>" +
+            value['codGrupoAcademico'] + "</td><td>" +
+            value['nomCompleto'] + "</td><td>" +
+            value['nomActividad'] + "</td><td>" +
+            value['descrActividad'] + "</td><td>" +
+            value['nomCurso'] + "</td><td>" +
+            value['fechaRealizacion'] + "</td><td>" +
+            value['horaInicio'] + "</td><td>" +
+            value['horaFin'] + "</td><td>" +
+            "<button type='button' class='btn btn-xs btn-success' onclick='searchActividad(" + value['idActividad'] + ")'>" +
+            "<span class='glyphicon glyphicon-pencil'></button></td><td>" +
+            "<button type='button' class='btn btn-xs btn-danger' onclick='deleteActividad(" + value['idActividad'] + ")'>" +
+            "<span class='glyphicon glyphicon-trash'></button></td><tr>";
+
+          $("#tblActividad").parent().append(newrow);
+        });
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    }); 
+}
+
 //Metodo para eliminar una categoria por su ID
 function deleteActividad(id) {
 

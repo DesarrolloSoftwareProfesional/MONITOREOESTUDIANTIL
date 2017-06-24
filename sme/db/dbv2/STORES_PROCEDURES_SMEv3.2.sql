@@ -703,12 +703,13 @@ DELIMITER //
 CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO(IN p_codGrupoAcademico CHAR(6))
  BEGIN
 	SELECT
-		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+		A.idActividad,A.codGrupoAcademico,E.nomCompleto,A.nomActividad, A.descrActividad,
 		A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
     TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
     A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
 	FROM
 		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+        INNER JOIN empleados E ON A.idEmpleado = E.idEmpleado
 	WHERE A.codGrupoAcademico=p_codGrupoAcademico
 	ORDER BY A.idActividad DESC;
 END //
