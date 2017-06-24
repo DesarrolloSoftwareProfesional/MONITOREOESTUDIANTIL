@@ -29,6 +29,9 @@ function main() {
     saveActividad();
   });
 
+  $('#slnGrupoAcademico').on('change', function() {
+    getAllActividad();
+  })
 }
 
 
@@ -143,7 +146,7 @@ function getAllGrupoAcademicoLst() {
     url: GRUPOACADEMICO_URL_LISTAR,
     success: function(data) {
       $("#slnGrupoAcademico").html('');
-      $("#slnGrupoAcademico").append("<option value='0' disabled selected> Seleccione Grupo Academico </option>");
+      $("#slnGrupoAcademico").append("<option value='0' selected='selected'> Todos </option>");
       $.each(data, function(key, value) {
         var newrow = "<option value='" + value['codGrupoAcademico'] + "'>" +
           value['idGrado'] + "° " +
