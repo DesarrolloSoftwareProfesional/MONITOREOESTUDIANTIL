@@ -3,7 +3,7 @@
     <div class="modal-dialog">
 		<div class="modal-content">
 	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="variables.abrioDetalle = false;">&times;</button>
+	          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="variables.abrioDetalle = false;limpiarDatos();">&times;</button>
 	          <h4 class="modal-title" id="myModalLabel"><b>Registro de Notas</b></h4>
 	        </div>
 	        <form class=""  method="post">
@@ -17,6 +17,11 @@
 						<div class="form-group">
 							<select class="form-control" id="slnPeriodo">
 								<option value='0' disabled selected> Seleccione Periodo </option>"
+							</select>
+						</div>
+						<div class="form-group">
+							<select class="form-control" id="slnEmpleados">
+								<option value='0' disabled selected> Seleccione Empleado </option>"
 							</select>
 						</div>
 						<div class="panel panel-default">
@@ -47,8 +52,6 @@
 											<option value='0' disabled selected> Seleccione Tipo de Nota </option>"
 										</select>
 
-
-
 										<input type="number" id="txtvalornota" class="form-control" placeholder="Nota" min="0"  max="20" maxlength="99">
 									</div>
 								</div>
@@ -69,7 +72,7 @@
 						 		<thead>
 							 		<tr class="warning">
 							 			<th>Tipo de Examen</th>
-							 			<th>DNI Empleado</th>
+							 			<th>Nom Empleado</th>
 							 			<th>Nota</th>
 							 			<th colspan="1">Acciones</th>
 							 		</tr>

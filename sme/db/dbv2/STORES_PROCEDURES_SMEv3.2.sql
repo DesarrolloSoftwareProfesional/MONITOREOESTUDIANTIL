@@ -1030,23 +1030,57 @@ CREATE PROCEDURE SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(IN idAlumno INT,
 													 IN idCurso INT,
 													 IN idPeriodo INT)
 BEGIN
+<<<<<<< HEAD
 	SELECT idNota,
 		   idAlumno,
            idCurso,
            idPeriodo,
+=======
+	SELECT N.idNota, 
+		   N.idAlumno, 
+           N.idCurso,
+           C.nomCurso,
+           N.idPeriodo,
+           P.anio,
+           concat(P.anio,'-', P.trimestre) AS periodo,
+>>>>>>> origin/master
            E.idEmpleado,
            E.dniEmpleado,
+           E.nomCompleto,
            TN.idTipoNota,
            TN.nomTipoNota,
-           nota
+           N.nota
     FROM NOTAS N
+    INNER JOIN cursos C
+		ON C.idCurso = N.idCurso
     INNER JOIN tiponotas TN
 		ON N.idTipoNota = TN.idTipoNota
 	INNER JOIN empleados E
 		ON E.idEmpleado = N.idEmpleado
+	INNER JOIN periodos P
+		ON P.idPeriodo = N.idPeriodo
     WHERE N.idAlumno = idAlumno
-    AND N.idCurso = idCurso
+    AND (idCurso = 0 OR N.idCurso = idCurso)
     AND N.idPeriodo = idPeriodo
-    AND N.estadoRegistro = 1;
+    AND N.estadoRegistro = 1
+    ORDER BY C.nomCurso,idTipoNota;
+END //
+DELIMITER ;
+
+-- -------------------------------------------------------------
+-- TABLA:					EMPLEADOS
+-- STORE PROCEDURE:			SP_EMPLEADOS_SELECT_ALL 
+-- DESCRIPCIÓN:				Listar empleados con ID - para combo 
+-- FECHA DE CREACIÓN:		2017-06-24
+-- CREADO POR:				ARUHANCA VILCA JHONATAN
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- USE bd_sgmev3
+-- DROP PROCEDURE SP_EMPLEADOS_SELECT_ALL
+-- CALL SP_EMPLEADOS_SELECT_ALL();
+DELIMITER //
+CREATE PROCEDURE SP_EMPLEADOS_SELECT_ALL()
+BEGIN
+	SELECT e.idEmpleado, concat(e.apPaternoEmpleado , " " , e.apMaternoEmpleado , " " , e.nombresEmpleado) as nomEmpleado FROM empleados e;
 END //
 DELIMITER ;

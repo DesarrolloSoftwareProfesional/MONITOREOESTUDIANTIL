@@ -23,13 +23,14 @@ document.onkeypress=function(e){
 $(document).ready(main);
 	//Funciones de Arranque
 	function main() {
-	  	getAllAlumnos();
+	  getAllAlumnos();
 	  //Accion al hacer click en boton  Registrar Alumno
 	  $('#btnRegistroNotas').click(function() {
 	   getTipoNotas();
 	   getCursos();
 	   getPeriodos();
 	   showModal();
+	   getEmpleados();
 	   variables.abrioDetalle = true;
 	  });
 
@@ -40,6 +41,11 @@ $(document).ready(main);
 	  $("#btnguardarNota").click(function(){
 	  	postguardarNota();
 	  });
+
+	  $("#btnBuscarNotas").click(function(){
+	  	BuscarNotasAlumno();
+	  });
+
 	}
 
 function showModal() {
@@ -49,9 +55,19 @@ function showModal() {
   });
 }
 
+function limpiarDatos(){
+	$("#txtDNI").val("");
+	$("#hdnidAlumno").val("");
+	$("#txtvalornota").val("");
+  	$("#txtNombreAlum").val("");
+  	$("#txtApellAlumn").val("");
+  	$("#tblNotas").html('');
+}
+
 function hideModal() {
   $("#modalRegistroNotas").modal('toggle');
   variables.abrioDetalle = false;
+  limpiarDatos();
 }
 
 function getAllAlumnos() {
@@ -72,10 +88,10 @@ function getAllAlumnos() {
 	          value['fechaNacAlumno'] 	+ "</td><td>" +
 	          value['direccionAlumno'] 	+ "</td><td>" +
 	          value['codGrupoAcademico']+ "</td><td>" +
-	          "<button type='button' class='btn btn-xs btn-success' onclick='editarNotas(" + value['idAlumno'] + "," + value['codGrupoAcademico'] + ")'>" +
+	          "<button type='button' class='btn btn-xs btn-success' onclick='editarNotas(" + value['idAlumno'] + "," + value['dniAlumno'] + ")'>" +
 	          	"<span class='glyphicon glyphicon-pencil'>" + 
 	          "</button>" 				+ "</td><td>" +
-	          "<button type='button' class='btn btn-xs btn-info' onclick='consultarNotas(" + value['idAlumno'] + "," +  value['codGrupoAcademico'] + ")'>" +
+	          "<button type='button' class='btn btn-xs btn-info' onclick='consultarNotas(" + value['idAlumno'] + "," +  value['dniAlumno'] + ")'>" +
 	          	"<span class='glyphicon glyphicon-search'>" +
 	          "</button>" +
 	          "</td></tr>";
@@ -89,6 +105,16 @@ function getAllAlumnos() {
 	  });
 }
 
+function editarNotas(idAlumno,dniAlumno){
+	getTipoNotas();
+	getCursos();
+	getPeriodos();
+	getEmpleados();
+	showModal();
+	variables.abrioDetalle = true;
+	$("#txtDNI").val(dniAlumno);
+	getAlumnoPorDni();
+}
 
 function getTipoNotas() {
   $.ajax({
@@ -135,6 +161,28 @@ function getPeriodos() {
 }
 
 
+function getEmpleados() {
+  $.ajax({
+    dataType: DATA_TYPE_JSON,
+    contentType: CONTEN_TYPE_JSON,
+    type: METHOD_GET,
+    url: NOTA_URL_LISTAR_EMPLEADO,
+    success: function(data) {
+      $("#slnEmpleados").html('');
+      $("#slnEmpleados").append("<option value='0' disabled selected> Seleccione Empleado </option>");
+      $.each(data, function(key, value) {
+        var newrow ="<option value='" + value['idEmpleado'] + "'>" +
+					         value['nomEmpleado'] +
+				    "</option>";
+        $("#slnEmpleados").append(newrow);
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+}
+
 function getCursos() {
 	$.ajax({
 		dataType: DATA_TYPE_JSON,
@@ -171,12 +219,20 @@ function getAlumnoPorDni(){
 	    type: METHOD_GET,
 	    url: NOTA_URL_LISTAR_ALUMNO_DNI + dni,
 	    success: function(data) {
-        	$.each(data, function(key, value) {
-			  	$("#hdnidAlumno").val(value["idAlumno"]);
-			  	$("#txtNombreAlum").val(value["nombresAlumno"]);
-			  	$("#txtApellAlumn").val(value["apPaternoAlumno"] + " " + value["apMaternoAlumno"]);
-		 	});
+	    	if (data.length>0) {
+	    		$.each(data, function(key, value) {
+				  	$("#hdnidAlumno").val(value["idAlumno"]);
+				  	$("#txtNombreAlum").val(value["nombresAlumno"]);
+				  	$("#txtApellAlumn").val(value["apPaternoAlumno"] + " " + value["apMaternoAlumno"]);
+		 		});
 		 	BuscarNotasAlumno();
+	    	}else{
+	    		$("#hdnidAlumno").val("");
+				$("#txtvalornota").val("");
+			  	$("#txtNombreAlum").val("");
+			  	$("#txtApellAlumn").val("");
+			  	$("#tblNotas").html('');
+	    	}
 	    },
 	    error: function(data) {
 	      console.log(data);
@@ -189,7 +245,7 @@ function generarNota(){
 	var	idAlumno	= $("#hdnidAlumno").val();
 	var	idCurso		= $("#slnCurso").val();
 	var	idPeriodo	= $("#slnPeriodo").val();
-	var	idEmpleado	= 1;
+	var	idEmpleado	= $("#slnEmpleados").val();
 	var	idTipoNota	= $("#slnTipoNota").val();
 	var	nota 		= $("#txtvalornota").val();
 	var modelNota = new notaModel(	idNota,
@@ -205,26 +261,31 @@ function generarNota(){
 function postguardarNota(){
 	if ($("#slnCurso").val()=="0" || $("#slnCurso").val()==null) 
 	{
-		msg_error("Seleccione Curso");
+		msg_error("Seleccione curso");
 		$("#slnCurso").focus();	
 		return false;
 	}else if ($("#slnPeriodo").val()=="0" || $("#slnPeriodo").val()==null) 
 	{
-		msg_error("Seleccione Periodo");
+		msg_error("Seleccione periodo");
 		$("#slnPeriodo").focus();
+		return false;
+	}else if ($("#slnEmpleados").val()=="0" || $("#slnEmpleados").val()==null) 
+	{
+		msg_error("Seleccione Empleado");
+		$("#slnEmpleados").focus();
 		return false;
 	}else if ($("#slnTipoNota").val()=="0" || $("#slnTipoNota").val()==null) 
 	{
-		msg_error("Seleccione Tipo de Nota");
+		msg_error("Seleccione tipo de nota");
 		$("#slnTipoNota").focus();
 		return false;
 	}else if ($("#txtvalornota").val()=="") 
 	{
-		msg_error("Ingrese Nota");
+		msg_error("Ingrese nota");
 		$("#txtvalornota").focus();
 		return false;
 	}else if ($("#txtDNI").val().length !=8) {
-		msg_error("Verificar Nro de DNI");
+		msg_error("Verificar nro de DNI");
 		$("#txtDNI").focus();
 		return false;
 	}
@@ -254,7 +315,7 @@ function postguardarNota(){
 function validarDatos(){
 	if ($("#hdnidAlumno").val()==""){
 		return false;
-	}if ($("#slnCurso").val()=="0" || $("#slnCurso").val()==null) 
+	}else if ($("#slnCurso").val()=="0" || $("#slnCurso").val()==null) 
 	{
 		return false;
 	}else if ($("#slnPeriodo").val()=="0" || $("#slnPeriodo").val()==null) 
@@ -266,6 +327,7 @@ function validarDatos(){
 
 function BuscarNotasAlumno(){
 	if (!validarDatos()) {
+		msg_error("Validar datos para buscar notas.");
 		return false;	
 	}
 	var Nota = generarNota();
@@ -281,9 +343,9 @@ function BuscarNotasAlumno(){
 	        var newrow = "<tr><td>" 	+
 	          //value['idAlumno'] 		+ "</td><td>" +
 	          value['nomTipoNota']	+ "</td><td>" +
-	          value['dniEmpleado'] 	+ "</td><td>" +
-	          value['nota'] 	+ "</td><td>" +
-	          "<button style='text-align:center' type='button' class='btn btn-xs btn-danger' onclick='eliminarNota(" + value['idNota'] +")'>" +
+	          value['nomCompleto'] 	+ "</td><td>" +
+	          value['nota'] 	+ "</td><td style='text-align: center;'>" +
+	          "<button type='button' class='btn btn-xs btn-danger' onclick='eliminarNota(" + value['idNota'] +")'>" +
 	          	"<span class='glyphicon glyphicon-remove'>" + 
 	          "</button>" 				+ 
 	          "</td></tr>";
@@ -316,4 +378,8 @@ function eliminarNota(idNota){
 	    });
 
   	}	
+}
+
+function consultarNotas(idAlumno,dniAlumno){
+	window.open("notaImpresion.php"+"?DNI="+dniAlumno);
 }

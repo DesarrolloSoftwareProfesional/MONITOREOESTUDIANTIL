@@ -33,25 +33,23 @@ class NotaDao
 
     public function getAlumnoPorDni($dni)
     {
-        $sql="CALL SP_ALUMNOS_SELECT_BY_DNI(?)";
-        $conn=$this->mysqli->open();
-        $stmt=$conn->prepare($sql);
+        $sql  = "CALL SP_ALUMNOS_SELECT_BY_DNI(?)";
+        $conn = $this->mysqli->open();
+        $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $dni);
-        $result=$this->mysqli->search($stmt);
+        $result = $this->mysqli->search($stmt);
         $conn->close();
 
         return $result;
     }
 
-    
-
-    public function getNotasPorCursoPeriodo($idAlumno,$idCurso,$idPeriodo)
+    public function getNotasPorCursoPeriodo($idAlumno, $idCurso, $idPeriodo)
     {
-        $sql="CALL SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(?,?,?)";
-        $conn=$this->mysqli->open();
-        $stmt=$conn->prepare($sql);
-        $stmt->bind_param("iii", $idAlumno,$idCurso,$idPeriodo);
-        $result=$this->mysqli->search($stmt);
+        $sql  = "CALL SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(?,?,?)";
+        $conn = $this->mysqli->open();
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iii", $idAlumno, $idCurso, $idPeriodo);
+        $result = $this->mysqli->search($stmt);
         $conn->close();
 
         return $result;
@@ -111,22 +109,21 @@ class NotaDao
         return $result;
     }
 
-    public function insert( $idAlumno,
-                            $idCurso, 
-                            $idPeriodo, 
-                            $idEmpleado, 
-                            $idTipoNota, 
-                            $nota)
-    {
+    public function insert($idAlumno,
+        $idCurso,
+        $idPeriodo,
+        $idEmpleado,
+        $idTipoNota,
+        $nota) {
         $sql  = "CALL SP_NOTAS_INSERT(?,?,?,?,?,?)";
         $conn = $this->mysqli->open();
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('iiiiii', $idAlumno,
-                                    $idCurso, 
-                                    $idPeriodo, 
-                                    $idEmpleado, 
-                                    $idTipoNota, 
-                                    $nota);
+            $idCurso,
+            $idPeriodo,
+            $idEmpleado,
+            $idTipoNota,
+            $nota);
         $result = $this->mysqli->executeIUD($stmt);
         $conn->close();
 
@@ -147,7 +144,14 @@ class NotaDao
 
     public function delete($id)
     {
-        $sql="DELETE FROM NOTAS WHERE idNota=?";
+        $sql = "DELETE FROM NOTAS WHERE idNota=?";
         return $this->mysqli->delete($sql, $id);
     }
+
+    public function getEmpleados()
+    {
+        $sql = "CALL SP_EMPLEADOS_SELECT_ALL()";
+        return $this->mysqli->findAll($sql);
+    }
+
 }
