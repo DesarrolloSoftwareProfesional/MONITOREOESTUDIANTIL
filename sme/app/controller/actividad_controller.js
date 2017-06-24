@@ -19,6 +19,7 @@ function main() {
     clearInputs();
     getAllGrupoAcademico();
     getAllCursos();
+    getEmpleados();
     showModal();
   });
 
@@ -77,6 +78,28 @@ function getAllCursos() {
       $.each(data, function(key, value) {
         var newrow = "<option value='" + value['idCurso'] + "'>" + value['nomCurso'] + "</option>";
         $("#idCurso").append(newrow);
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+}
+
+//Listar todos los empleados(profesores)
+
+function getEmpleados(){
+  $.ajax({
+    dataType: DATA_TYPE_JSON,
+    contentType: CONTEN_TYPE_JSON,
+    type: METHOD_GET,
+    url: EMPLEADO_URL_LISTAR,
+    success: function(data) {
+      $("#idEmpleado").html('');
+      $("#idEmpleado").append("<option value='0' disabled selected> Seleccione Profesor </option>");
+      $.each(data, function(key, value) {
+        var newrow = "<option value='" + value['idEmpleado'] + "'>" + value['nomEmpleado'] + "</option>";
+        $("#idEmpleado").append(newrow);
       });
     },
     error: function(data) {
@@ -229,6 +252,7 @@ function clearInputs() {
   document.getElementById("nomActividad").value = '';
   document.getElementById("descrActividad").value = '';
   document.getElementById("idCurso").value = '0';
+  document.getElementById("idEmpleado").value = '0';
   document.getElementById("fechaRealizacion").value = '';
   document.getElementById("horaInicio").value = '';
   document.getElementById("horaFin").value = '';
@@ -240,6 +264,7 @@ function setInputs(value) {
   document.getElementById("nomActividad").value = value['nomActividad'];
   document.getElementById("descrActividad").value = value['descrActividad'];
   document.getElementById("idCurso").value = value['idCurso'];
+  document.getElementById("idEmpleado").value = value['idEmpleado'];
   document.getElementById("fechaRealizacion").value = value['fechaRealizacion'];
   document.getElementById("horaInicio").value = value['horaInicio'];
   document.getElementById("horaFin").value = value['horaFin'];
@@ -248,11 +273,11 @@ function setInputs(value) {
 //obtener valores de los inputs
 function getActividadValue() {
   let id = document.getElementById("id").value;
-  let idEmpleado = 1;
   let codGrupoAcademico = document.getElementById("codGrupoAcademico").value;
   let nomActividad = document.getElementById("nomActividad").value;
   let descrActividad = document.getElementById("descrActividad").value;
   let idCurso = document.getElementById("idCurso").value;
+  let idEmpleado = document.getElementById("idEmpleado").value;
   let fechaRealizacion = document.getElementById("fechaRealizacion").value;
   let horaInicio = document.getElementById("horaInicio").value;
   let horaFin = document.getElementById("horaFin").value;

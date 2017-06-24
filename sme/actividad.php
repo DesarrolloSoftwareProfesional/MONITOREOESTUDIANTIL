@@ -35,7 +35,7 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 <!--menu  -->
-<?php include_once 'template/main-menu.php'; ?>
+<?php include_once 'template/main-menu.php';?>
 <!-- /menu -->
 
 <!-- contenedor -->
@@ -72,7 +72,7 @@
 <!-- /contenedor -->
 
 <!-- footer -->
-<?php include_once 'template/main-footer.php'; ?>
+<?php include_once 'template/main-footer.php';?>
 <!-- /fotter -->
 
 
@@ -94,17 +94,22 @@
               </select>
             </div>
 
+            <div class="form-group">
+                <select class="form-control" id="idCurso">
+                </select>
+              </div>
+
+              <div class="form-group">
+                <select class="form-control" id="idEmpleado">
+                </select>
+              </div>
+
               <div class="form-group">
                 <input type="text" class="form-control" id="nomActividad" placeholder="Actividad" required="true">
               </div>
 
               <div class="form-group">
                 <textarea class="form-control" rows="3" id="descrActividad" placeholder="Descripcion de actividad" required="true"></textarea>
-              </div>
-
-              <div class="form-group">
-                <select class="form-control" id="idCurso">
-                </select>
               </div>
 
               <div class="form-group">

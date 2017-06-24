@@ -375,7 +375,7 @@ CREATE PROCEDURE SP_ACTIVIDADES_INSERT
 (
 	IN p_idEmpleado int,
 	IN p_idCurso int,
-    IN p_codGrupoAcademico char(6),
+    IN p_codGrupoAcademico char(6),    
 	IN p_nomActividad varchar(50),
 	IN p_descrActividad varchar(600),
 	IN p_fechaRealizacion varchar(10),
@@ -938,33 +938,24 @@ CREATE PROCEDURE SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(IN idAlumno INT,
 													 IN idCurso INT, 
 													 IN idPeriodo INT)
 BEGIN
-	SELECT N.idNota, 
-		   N.idAlumno, 
-           N.idCurso,
-           C.nomCurso,
-           N.idPeriodo,
-           P.anio,
-           concat(P.anio,'-', P.trimestre) AS periodo,
+	SELECT idNota, 
+		   idAlumno, 
+           idCurso, 
+           idPeriodo, 
            E.idEmpleado,
            E.dniEmpleado,
-           E.nomCompleto,
            TN.idTipoNota,
            TN.nomTipoNota,
-           N.nota
+           nota
     FROM NOTAS N
-    INNER JOIN cursos C
-		ON C.idCurso = N.idCurso
     INNER JOIN tiponotas TN
 		ON N.idTipoNota = TN.idTipoNota
 	INNER JOIN empleados E 
 		ON E.idEmpleado = N.idEmpleado
-	INNER JOIN periodos P
-		ON P.idPeriodo = N.idPeriodo
     WHERE N.idAlumno = idAlumno
-    AND (idCurso = 0 OR N.idCurso = idCurso)
+    AND N.idCurso = idCurso
     AND N.idPeriodo = idPeriodo
-    AND N.estadoRegistro = 1
-    ORDER BY C.nomCurso,idTipoNota;
+    AND N.estadoRegistro = 1;
 END //
 DELIMITER ;
 
@@ -982,6 +973,9 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE SP_EMPLEADOS_SELECT_ALL()
 BEGIN
-	SELECT e.idEmpleado, concat(e.apPaternoEmpleado , " " , e.apMaternoEmpleado , " " , e.nombresEmpleado) as nomEmpleado FROM empleados e;
+	SELECT e.idEmpleado, concat(e.apPaternoEmpleado , " " , e.apMaternoEmpleado , " " , e.nombresEmpleado) as nomEmpleado FROM empleados e
+    where e.idPerfil=3;
 END //
 DELIMITER ;
+	
+

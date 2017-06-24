@@ -29,6 +29,8 @@ const ACTIVIDAD_URL_BUSCAR_NOTIFICACION = URL_BASE + "actividad/notificacion/";
 
 const CURSO_URL_LISTAR = URL_BASE + "curso/listar";
 
+const EMPLEADO_URL_LISTAR = URL_BASE + "empleado/listar";
+
 
 
 const GRUPOACADEMICO_URL_LISTAR = URL_BASE + "grupo/listar";
