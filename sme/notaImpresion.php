@@ -31,6 +31,39 @@
 			<button type="button" class="btn btn-warning" onclick="javascript:window.print()" id="btnRegistroNotas">Imprimir Consulta de Notas</button>
 		</div>
 		<hr>
+		<div class="">
+				<div class="form-group">
+					<select class="form-control" id="slnPeriodo">
+						<option value='0' disabled selected> Seleccione Periodo </option>"
+					</select>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">Datos de Alumno</div>
+					<div class="panel-body">
+						<div class="form-inline">
+							<div class="form-group">
+								<input type="hidden" id="hdnidAlumno">
+								<label for="txtDNI">N° DNI</label>
+								<input type="text" placeholder="DNI" class="form-control" id="txtDNI" maxlength="8">
+								<button type="button" class='btn btn-xs btn-info' id="btnBuscarAlumnoPorDni" >
+									<span class='glyphicon glyphicon-search'>
+								</button>
+						    </div>
+						    <div class="form-group">
+								<label class="sr-only" for="txtNombreAlum">Nombre</label>
+								<input placeholder="Nombre" disabled="disabled" type="text" class="form-control" id="txtNombreAlum" width="200px">
+								<label class="sr-only" for="txtApellAlumn">Apellidos</label>
+								<input placeholder="Apellidos" type="text" disabled="disabled" class="form-control" id="txtApellAlumn">
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="form-inline">
+					<label >Lista de Notas</label>
+					<input type="button" class="btn btn-warning pull-right" style="margin:-7px 5px 5px 5px" id="btnBuscarNotas" value="Buscar Notas">
+				</div>
+			</div>
 		<div id="divTabla">
 		 	<table class="table table-striped table-responsive table-bordered table-condensed table-hover">
 		 		<thead>
@@ -42,7 +75,7 @@
 			 			<th>Nota</th>
 			 		</tr>
 			 	</thead>
-			 	<tbody id="tblImpresionNotas">
+			 	<tbody id="tblNotas">
 
 			 	</tbody>
 		 	</table>
@@ -63,7 +96,7 @@
   	<script src="app/util/service_manager.js"></script>
   	<script src="app/util/message.js"></script>
   	<script src="app/model/nota_model.js"></script>
-  	<script src="app/controller/nota_controller.js"></script>
+  	<script src="app/controller/notaImpresion_controller.js"></script>
 
 </body>
 </html>
