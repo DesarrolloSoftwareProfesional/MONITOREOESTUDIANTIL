@@ -320,9 +320,6 @@ function validarDatos(){
 	}else if ($("#slnPeriodo").val()=="0" || $("#slnPeriodo").val()==null) 
 	{
 		return false;
-	}else if ($("#slnEmpleados").val()=="0" || $("#slnEmpleados").val()==null) 
-	{
-		return false;
 	}
 	return true;
 }
