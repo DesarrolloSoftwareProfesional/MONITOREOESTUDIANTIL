@@ -60,7 +60,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //log_sp_TipoUsuario = (Spinner) findViewById(R.id.log_sp_TipoUsuario);
 
 
-
 //        if (sessionManager.isLoggedAlumno()) {
 //            irFormularioMain();
 //        }
@@ -97,17 +96,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         log_tv_registrate.setOnClickListener(LoginActivity.this);
         log_btn_entrar.setOnClickListener(LoginActivity.this);
 
-        ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource( this, R.array.TipoSession , android.R.layout.simple_spinner_item);
+        ArrayAdapter spinner_adapter = ArrayAdapter.createFromResource(this, R.array.TipoSession, android.R.layout.simple_spinner_item);
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         log_sp_TipoUsuario.setAdapter(spinner_adapter);
 
-       // this.tipoSesionUser();
+        // this.tipoSesionUser();
     }
 
 
     //VER TIPO DE INICIO DE SESION
 
-    private void tipoSesionUser(){
+    private void tipoSesionUser() {
 //
 //        log_sp_TipoUsuario.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -125,7 +124,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        });
 
     }
-
 
 
     //Implements Listener
@@ -172,11 +170,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             focusView.requestFocus();
         } else {
             //new AlumnoLoginAsyncTask().execute(getLoginJsonObject(usu, pass));
-            new ApoderadoLoginAsyncTask().execute(getLoginApoderadoJsonObject(usu,pass));
+            new ApoderadoLoginAsyncTask().execute(getLoginApoderadoJsonObject(usu, pass));
         }
     }
 
-    private  void validarLogin(Alumno alumno){
+    private void validarLogin(Alumno alumno) {
         if (alumno != null) {
             if (alumno.isEstadoRegistro()) {
                 if (log_chb_recUser.isChecked()) {
@@ -185,32 +183,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 sessionManager.createAlumnoSession(alumno);
                 irFormularioMain();
 
-            }else{
+            } else {
                 Toast.makeText(getBaseContext(), getString(R.string.err_invalid_access), Toast.LENGTH_SHORT).show();
             }
-        }else{
-            Toast.makeText(getApplicationContext(),(getString(R.string.err_login)), Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), (getString(R.string.err_login)), Toast.LENGTH_LONG).show();
         }
     }
 
-    private  void validarLoginApoderado(Apoderado apoderado){
-        if (apoderado != null) {
-            if (apoderado.isEstadoRegistro()) {
-                if (log_chb_recUser.isChecked()) {
-                    apoderado.setLogged(true);
+    private void validarLoginApoderado(Apoderado apoderado) {
+        try {
+            if (apoderado != null) {
+                if (apoderado.isEstadoRegistro()) {
+                    if (log_chb_recUser.isChecked()) {
+                        apoderado.setLogged(true);
+                    }
+                    sessionManager.createApoderadoSession(apoderado);
+                    new AlumnosStringAsyncTask().execute(Integer.valueOf(apoderado.getId()));
+
+                    for (Alumno alumno : sessionManager.getListAlumnos()) {
+                        //Actualizar token.
+                        new FcmTokenAsyncTask().execute(JSONObjectValue.fcmToken(FirebaseInstanceId.getInstance().getToken(), alumno.getId()));
+                       // Log.d(TAG, "Alumno " + alumno.getId());
+                    }
+
+                    irFormularioMain();
+
+                } else {
+                    Toast.makeText(getBaseContext(), getString(R.string.err_invalid_access), Toast.LENGTH_SHORT).show();
                 }
-                sessionManager.createApoderadoSession(apoderado);
-
-                //Actualizar token.
-                new FcmTokenAsyncTask().execute(JSONObjectValue.fcmToken("1", FirebaseInstanceId.getInstance().getToken()));
-                
-                irFormularioMain();
-
-            }else{
-                Toast.makeText(getBaseContext(), getString(R.string.err_invalid_access), Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), (getString(R.string.err_login)), Toast.LENGTH_LONG).show();
             }
-        }else{
-            Toast.makeText(getApplicationContext(),(getString(R.string.err_login)), Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Log.d(TAG, "validarLoginApoderado " + Log.getStackTraceString(e));
         }
     }
 
@@ -244,7 +250,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         try {
             HashMap<String, String> hashMap = new HashMap<>();
-           hashMap.put(Attributes.APOD_USUARIO, usu);
+            hashMap.put(Attributes.APOD_USUARIO, usu);
             hashMap.put(Attributes.APOD_PASSWORD, pass);
 
             jsonObject = new JSONObject(hashMap);
@@ -288,5 +294,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    private class AlumnosStringAsyncTask extends AsyncTask<Integer, Void, String> {
+        @Override
+        protected String doInBackground(Integer... params) {
+            return AlumnoController.getStringAlumnosByIDApoderado(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            sessionManager.createListAlumnosByApoderadoSession(s);
+        }
+    }
 
 }

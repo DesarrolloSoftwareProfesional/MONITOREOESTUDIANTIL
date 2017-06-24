@@ -39,6 +39,7 @@ public class Attributes {
     public static final String ALUM_CANT_ACTIVIDAD="CantAC";
     public static final String ALUM_PROMEDIO_TOTAL="totalPromedio";
     public static final String ALUM_FCM_TOKEN="fcmToken";
+    public static final String ALUM_COD_GPO_ACADEMICO="codGrupoAcademico";
 
     //ATRIBUTOS DE APODERADO EN JSON
     public static final String APOD_ID="idApoderado";
@@ -102,6 +103,8 @@ public class Attributes {
     public static final String ACT_FREC_AVISO="frecuenciaAviso";
     public static final String ACT_FLAG_NOTIFICADO="flag_Notificado";
     public static final String ACT_NOM_ALUMNO="nombresAlumno";
+
+    public static final String KEY_LIST_ALUMNO="listAlumno";
 
     //VARIABLE PARA LA  NOTIFICACION
     public static final String MSG_ID ="id";

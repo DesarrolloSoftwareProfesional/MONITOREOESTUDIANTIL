@@ -101,4 +101,15 @@ public class AlumnoController {
 
         return lst;
     }
+
+    public static String getStringAlumnosByIDApoderado(int idApoderado) {
+        String alumnosString = "";
+        try {
+            alumnosString = JsonManager.getJsonString(ServiceManager.listaAlumnosByIDApoderado(idApoderado), ServiceManager.GET);
+        } catch (Exception e) {
+            Log.d(TAG, "getStringAlumnosByIDApoderado " + Log.getStackTraceString(e));
+        }
+
+        return alumnosString;
+    }
 }

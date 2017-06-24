@@ -109,6 +109,7 @@ function editarNotas(idAlumno,dniAlumno){
 	getTipoNotas();
 	getCursos();
 	getPeriodos();
+	getEmpleados();
 	showModal();
 	variables.abrioDetalle = true;
 	$("#txtDNI").val(dniAlumno);
@@ -296,14 +297,14 @@ function postguardarNota(){
 	    data: JSON.stringify(Nota.toString()),
 	    url: NOTA_URL_REGISTRO,
 	    success: function(data) {
-	      ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
+        ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
 
-	      if ("true" === data.state) {
-	        //dataForNotification(objActividad.id);
-	      }
-	      console.log(data);
-	      BuscarNotasAlumno();
-	      //hideModal();
+	        if ("true" === data.state) {
+	    		NotificarNota();
+	        }
+        	console.log(data);
+        	BuscarNotasAlumno();
+        	//hideModal();
 	    },
 	    error: function(data) {
 	      console.log(data);
@@ -342,9 +343,9 @@ function BuscarNotasAlumno(){
 	        var newrow = "<tr><td>" 	+
 	          //value['idAlumno'] 		+ "</td><td>" +
 	          value['nomTipoNota']	+ "</td><td>" +
-	          value['dniEmpleado'] 	+ "</td><td>" +
-	          value['nota'] 	+ "</td><td>" +
-	          "<button style='text-align:center' type='button' class='btn btn-xs btn-danger' onclick='eliminarNota(" + value['idNota'] +")'>" +
+	          value['nomCompleto'] 	+ "</td><td>" +
+	          value['nota'] 	+ "</td><td style='text-align: center;'>" +
+	          "<button type='button' class='btn btn-xs btn-danger' onclick='eliminarNota(" + value['idNota'] +")'>" +
 	          	"<span class='glyphicon glyphicon-remove'>" + 
 	          "</button>" 				+ 
 	          "</td></tr>";
@@ -380,5 +381,9 @@ function eliminarNota(idNota){
 }
 
 function consultarNotas(idAlumno,dniAlumno){
-	window.open("notaImpresion.php");
+	window.open("notaImpresion.php"+"?DNI="+dniAlumno);
+}
+
+function notificarNota() {
+	
 }

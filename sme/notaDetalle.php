@@ -72,7 +72,7 @@
 						 		<thead>
 							 		<tr class="warning">
 							 			<th>Tipo de Examen</th>
-							 			<th>DNI Empleado</th>
+							 			<th>Nom Empleado</th>
 							 			<th>Nota</th>
 							 			<th colspan="1">Acciones</th>
 							 		</tr>

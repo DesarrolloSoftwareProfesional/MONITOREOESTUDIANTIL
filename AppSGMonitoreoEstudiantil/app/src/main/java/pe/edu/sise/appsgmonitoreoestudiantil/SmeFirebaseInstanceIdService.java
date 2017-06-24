@@ -7,8 +7,10 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
 
 import org.json.JSONObject;
 
+import pe.edu.sise.model.Alumno;
 import pe.edu.sise.utils.FcmTokenAsyncTask;
 import pe.edu.sise.utils.JSONObjectValue;
+import pe.edu.sise.utils.SessionManager;
 
 /**
  * Created by Abel on 17/06/2017.
@@ -17,6 +19,8 @@ import pe.edu.sise.utils.JSONObjectValue;
 public class SmeFirebaseInstanceIdService extends FirebaseInstanceIdService {
 
     private static final String TAG = "SmeFirebaseInstIdServ";
+
+    private SessionManager sessionManager;
 
     @Override
     public void onTokenRefresh() {
@@ -30,7 +34,10 @@ public class SmeFirebaseInstanceIdService extends FirebaseInstanceIdService {
 
     private void sendRegistrationToServer(String token) {
         try {
-            new FcmTokenAsyncTask().execute(JSONObjectValue.fcmToken("1", token));
+            this.sessionManager=new SessionManager(getBaseContext());
+            for (Alumno alumno : sessionManager.getListAlumnos()) {
+                new FcmTokenAsyncTask().execute(JSONObjectValue.fcmToken(token,alumno.getId()));
+            }
         } catch (Exception e) {
             Log.d(TAG, Log.getStackTraceString(e));
         }

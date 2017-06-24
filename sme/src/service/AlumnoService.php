@@ -55,7 +55,7 @@ class AlumnoService implements iCrudService
         $obj = UtilService::jsonDecode();
 
         if (($obj->fcmToken) && isset($obj->idAlumno)) {
-            $result = $this->dao->update($obj->fcmToken, $obj->idAlumno);
+            $result = $this->dao->updateFcmToken($obj->fcmToken, $obj->idAlumno);
             UtilService::jsonEncodeIUD($result, self::TABLE, "fcm token Actualizado");
         } else {
             UtilService::errorResponse("JSON no coressponde a " . self::TABLE);
@@ -128,7 +128,7 @@ class AlumnoService implements iCrudService
                     $this->getAlumByIdApoderado();
                     break;
                 case 'updtoken':
-                    $this->updateFcmToken();;
+                    $this->updateFcmToken();
                     break;
 
                 default:

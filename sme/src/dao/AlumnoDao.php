@@ -51,7 +51,7 @@ class AlumnoDao
 
     public function updateFcmToken($fcmToken, $idAlumno)
     {
-        $sql  = "CALL SP_ALUMNOS_UPDATE(?,?)";
+        $sql  = "CALL SP_ALUMNOS_UPDATE_FCM_TOKEN(?,?)";
         $conn = $this->mysqli->open();
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('si', $fcmToken, $idAlumno);
