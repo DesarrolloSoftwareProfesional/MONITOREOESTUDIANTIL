@@ -19,6 +19,11 @@
 								<option value='0' disabled selected> Seleccione Periodo </option>"
 							</select>
 						</div>
+						<div class="form-group">
+							<select class="form-control" id="slnEmpleados">
+								<option value='0' disabled selected> Seleccione Empleado </option>"
+							</select>
+						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">Datos de Alumno</div>
 							<div class="panel-body">
@@ -46,7 +51,7 @@
 										<select class="form-control" id="slnTipoNota">
 											<option value='0' disabled selected> Seleccione Tipo de Nota </option>"
 										</select>
-										
+
 										<input type="number" id="txtvalornota" class="form-control" placeholder="Nota" min="0"  max="20" maxlength="99">
 									</div>
 								</div>

@@ -32,18 +32,17 @@ class NotaService implements iCrudService
         $obj = UtilService::jsonDecode();
 
         if (isset($obj->idAlumno) && isset($obj->idCurso) && isset($obj->idPeriodo) &&
-            isset($obj->idEmpleado) && isset($obj->idTipoNota) && isset($obj->nota))
-        {
-            $result= $this->dao->insert($obj->idAlumno, 
-                                        $obj->idCurso, 
-                                        $obj->idPeriodo, 
-                                        $obj->idEmpleado, 
-                                        $obj->idTipoNota,
-                                        $obj->nota);
+            isset($obj->idEmpleado) && isset($obj->idTipoNota) && isset($obj->nota)) {
+            $result = $this->dao->insert($obj->idAlumno,
+                $obj->idCurso,
+                $obj->idPeriodo,
+                $obj->idEmpleado,
+                $obj->idTipoNota,
+                $obj->nota);
 
             UtilService::jsonEncodeIUD($result, self::TABLE, "Registrado");
         } else {
-            UtilService::errorResponse("JSON no coressponde a ".self::TABLE);
+            UtilService::errorResponse("JSON no coressponde a " . self::TABLE);
         }
     }
 
@@ -63,13 +62,13 @@ class NotaService implements iCrudService
 
     public function delete()
     {
-         if(!empty($_GET[UtilConst::ID])){
+        if (!empty($_GET[UtilConst::ID])) {
             $result = $this->dao->delete($_GET[UtilConst::ID]);
-        
-           UtilService::jsonEncodeIUD($result,self::TABLE,"Eliminado");
-         }else{
-           UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
-         }
+
+            UtilService::jsonEncodeIUD($result, self::TABLE, "Eliminado");
+        } else {
+            UtilService::errorResponse("No ingreso codigo de " . self::TABLE);
+        }
     }
 
     public function getAllByID()
@@ -107,7 +106,7 @@ class NotaService implements iCrudService
         $obj = UtilService::jsonDecode();
 
         if (isset($obj->idAlumno) && isset($obj->idCurso) && isset($obj->idPeriodo)) {
-            $result = $this->dao->getNotasPorCursoPeriodo($obj->idAlumno, $obj->idCurso,$obj->idPeriodo);
+            $result = $this->dao->getNotasPorCursoPeriodo($obj->idAlumno, $obj->idCurso, $obj->idPeriodo);
             UtilService::jsonEncode($result);
         } else {
             UtilService::errorResponse("JSON no coressponde a " . self::TABLE);
@@ -129,7 +128,7 @@ class NotaService implements iCrudService
         if (!empty($_GET[UtilConst::ID])) {
             UtilService::jsonEncode($this->dao->getAlumnoPorDni($_GET[UtilConst::ID]));
         } else {
-            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+            UtilService::errorResponse("No ingreso codigo de " . self::TABLE);
         }
     }
 
@@ -140,6 +139,11 @@ class NotaService implements iCrudService
     public function getPeriodos()
     {
         UtilService::jsonEncode($this->dao->getPeriodos());
+    }
+
+    public function getEmpleados()
+    {
+        UtilService::jsonEncode($this->dao->getEmpleados());
     }
 
 //Metodo que decide que accion se realizara
@@ -194,6 +198,9 @@ class NotaService implements iCrudService
                     break;
                 case 'listarNotaAlumnoCursoPeriodo':
                     $this->getNotasPorCursoPeriodo();
+                    break;
+                case 'listarEmpleados':
+                    $this->getEmpleados();
                     break;
                 default:
                     UtilService::errorResponse("Metodo no existe");

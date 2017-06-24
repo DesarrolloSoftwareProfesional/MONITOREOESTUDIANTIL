@@ -30,6 +30,7 @@ $(document).ready(main);
 	   getCursos();
 	   getPeriodos();
 	   showModal();
+	   getEmpleados();
 	   variables.abrioDetalle = true;
 	  });
 
@@ -159,6 +160,28 @@ function getPeriodos() {
 }
 
 
+function getEmpleados() {
+  $.ajax({
+    dataType: DATA_TYPE_JSON,
+    contentType: CONTEN_TYPE_JSON,
+    type: METHOD_GET,
+    url: NOTA_URL_LISTAR_EMPLEADO,
+    success: function(data) {
+      $("#slnEmpleados").html('');
+      $("#slnEmpleados").append("<option value='0' disabled selected> Seleccione Empleado </option>");
+      $.each(data, function(key, value) {
+        var newrow ="<option value='" + value['idEmpleado'] + "'>" +
+					         value['nomEmpleado'] +
+				    "</option>";
+        $("#slnEmpleados").append(newrow);
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+}
+
 function getCursos() {
 	$.ajax({
 		dataType: DATA_TYPE_JSON,
@@ -221,7 +244,7 @@ function generarNota(){
 	var	idAlumno	= $("#hdnidAlumno").val();
 	var	idCurso		= $("#slnCurso").val();
 	var	idPeriodo	= $("#slnPeriodo").val();
-	var	idEmpleado	= 1;
+	var	idEmpleado	= $("#slnEmpleados").val();
 	var	idTipoNota	= $("#slnTipoNota").val();
 	var	nota 		= $("#txtvalornota").val();
 	var modelNota = new notaModel(	idNota,
@@ -244,6 +267,11 @@ function postguardarNota(){
 	{
 		msg_error("Seleccione periodo");
 		$("#slnPeriodo").focus();
+		return false;
+	}else if ($("#slnEmpleados").val()=="0" || $("#slnEmpleados").val()==null) 
+	{
+		msg_error("Seleccione Empleado");
+		$("#slnEmpleados").focus();
 		return false;
 	}else if ($("#slnTipoNota").val()=="0" || $("#slnTipoNota").val()==null) 
 	{
@@ -286,10 +314,13 @@ function postguardarNota(){
 function validarDatos(){
 	if ($("#hdnidAlumno").val()==""){
 		return false;
-	}if ($("#slnCurso").val()=="0" || $("#slnCurso").val()==null) 
+	}else if ($("#slnCurso").val()=="0" || $("#slnCurso").val()==null) 
 	{
 		return false;
 	}else if ($("#slnPeriodo").val()=="0" || $("#slnPeriodo").val()==null) 
+	{
+		return false;
+	}else if ($("#slnEmpleados").val()=="0" || $("#slnEmpleados").val()==null) 
 	{
 		return false;
 	}
