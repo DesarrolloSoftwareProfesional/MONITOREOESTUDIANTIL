@@ -1014,9 +1014,10 @@ BEGIN
 END //
 DELIMITER ;
 
+
 -- -------------------------------------------------------------
 -- TABLA:					NOTAS
--- STORE PROCEDURE:			SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO
+-- STORE PROCEDURE:			SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO 
 -- DESCRIPCIÓN:				Insertar Notas de Menores
 -- FECHA DE CREACIÓN:		2017-06-21
 -- CREADO POR:				Ronald Fabian Garcia
@@ -1026,16 +1027,10 @@ DELIMITER ;
 -- DROP PROCEDURE SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO
 -- CALL SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(1,1,1);
 DELIMITER //
-CREATE PROCEDURE SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(IN idAlumno INT,
-													 IN idCurso INT,
+CREATE PROCEDURE SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(IN idAlumno INT, 
+													 IN idCurso INT, 
 													 IN idPeriodo INT)
 BEGIN
-<<<<<<< HEAD
-	SELECT idNota,
-		   idAlumno,
-           idCurso,
-           idPeriodo,
-=======
 	SELECT N.idNota, 
 		   N.idAlumno, 
            N.idCurso,
@@ -1043,7 +1038,6 @@ BEGIN
            N.idPeriodo,
            P.anio,
            concat(P.anio,'-', P.trimestre) AS periodo,
->>>>>>> origin/master
            E.idEmpleado,
            E.dniEmpleado,
            E.nomCompleto,
@@ -1055,7 +1049,7 @@ BEGIN
 		ON C.idCurso = N.idCurso
     INNER JOIN tiponotas TN
 		ON N.idTipoNota = TN.idTipoNota
-	INNER JOIN empleados E
+	INNER JOIN empleados E 
 		ON E.idEmpleado = N.idEmpleado
 	INNER JOIN periodos P
 		ON P.idPeriodo = N.idPeriodo
