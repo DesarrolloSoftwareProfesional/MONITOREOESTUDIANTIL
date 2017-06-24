@@ -1069,10 +1069,4 @@ BEGIN
 	SELECT e.idEmpleado, concat(e.apPaternoEmpleado , " " , e.apMaternoEmpleado , " " , e.nombresEmpleado) as nomEmpleado FROM empleados e
     where e.idPerfil=3;
 END //
-<<<<<<< HEAD
 DELIMITER ;
-	
-
-=======
-DELIMITER ;
->>>>>>> origin/master
