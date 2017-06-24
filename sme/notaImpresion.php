@@ -43,16 +43,16 @@
 						<div class="form-inline">
 							<div class="form-group">
 								<input type="hidden" id="hdnidAlumno">
-								<label for="txtDNI">N° DNI</label>
+								<label for="txtDNI">N° DNI:</label>
 								<input type="text" placeholder="DNI" class="form-control" id="txtDNI" maxlength="8">
 								<button type="button" class='btn btn-xs btn-info' id="btnBuscarAlumnoPorDni" >
 									<span class='glyphicon glyphicon-search'>
 								</button>
 						    </div>
 						    <div class="form-group">
-								<label class="sr-only" for="txtNombreAlum">Nombre</label>
+								<label for="txtNombreAlum">Nombres:</label>
 								<input placeholder="Nombre" disabled="disabled" type="text" class="form-control" id="txtNombreAlum" width="200px">
-								<label class="sr-only" for="txtApellAlumn">Apellidos</label>
+								<label  for="txtApellAlumn">Apellidos:</label>
 								<input placeholder="Apellidos" type="text" disabled="disabled" class="form-control" id="txtApellAlumn">
 							</div>
 						</div>

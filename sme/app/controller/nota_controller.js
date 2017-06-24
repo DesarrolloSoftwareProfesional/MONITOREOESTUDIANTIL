@@ -380,5 +380,5 @@ function eliminarNota(idNota){
 }
 
 function consultarNotas(idAlumno,dniAlumno){
-	window.open("notaImpresion.php");
+	window.open("notaImpresion.php"+"?DNI="+dniAlumno);
 }

@@ -16,18 +16,28 @@ document.onkeypress=function(e){
 	}
 }
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 $(document).ready(main);
 	//Funciones de Arranque
 	function main() {
-	   getPeriodos();
-
-	  $("#btnBuscarAlumnoPorDni").click(function(){
+	   	getPeriodos();
+		var DNI = getParameterByName('DNI');
+	  	$("#txtDNI").val(DNI);
 	  	getAlumnoPorDni();
-	  });
 
-	  $("#btnBuscarNotas").click(function(){
-	  	BuscarNotasAlumno();
-	  });
+	  	$("#btnBuscarAlumnoPorDni").click(function(){
+	  		getAlumnoPorDni();
+	  	});
+	
+		 $("#btnBuscarNotas").click(function(){
+		  		BuscarNotasAlumno();
+	  	});
 	}
 
 function getPeriodos() {
