@@ -12,6 +12,7 @@ $(document).ready(main);
 //Funciones de Arranque
 function main() {
   getAllActividad();
+  getAllGrupoAcademicoLst();
 
   //Accion al hacer click en boton  Registrar Alumno
   $('#nuevaActividad').click(function() {
@@ -19,6 +20,7 @@ function main() {
     clearInputs();
     getAllGrupoAcademico();
     getAllCursos();
+    getEmpleados();
     showModal();
   });
 
@@ -27,6 +29,10 @@ function main() {
     saveActividad();
   });
 
+  $('#slnGrupoAcademico').on('change', function() {
+    getActividadByIdGpoAcademico();
+
+  })
 }
 
 
@@ -42,8 +48,8 @@ function getAllActividad() {
 
       $.each(data, function(key, value) {
         var newrow = "<tr><td>" +
-          value['idActividad'] + "</td><td>" +
           value['codGrupoAcademico'] + "</td><td>" +
+          value['nomCompleto'] + "</td><td>" +
           value['nomActividad'] + "</td><td>" +
           value['descrActividad'] + "</td><td>" +
           value['nomCurso'] + "</td><td>" +
@@ -51,7 +57,7 @@ function getAllActividad() {
           value['horaInicio'] + "</td><td>" +
           value['horaFin'] + "</td><td>" +
           "<button type='button' class='btn btn-xs btn-success' onclick='searchActividad(" + value['idActividad'] + ")'>" +
-          "<span class='glyphicon glyphicon-refresh'></button></td><td>" +
+          "<span class='glyphicon glyphicon-pencil'></button></td><td>" +
           "<button type='button' class='btn btn-xs btn-danger' onclick='deleteActividad(" + value['idActividad'] + ")'>" +
           "<span class='glyphicon glyphicon-trash'></button></td><tr>";
 
@@ -85,7 +91,29 @@ function getAllCursos() {
   });
 }
 
-//listar todos los grupos academicos
+//Listar todos los empleados(profesores)
+
+function getEmpleados(){
+  $.ajax({
+    dataType: DATA_TYPE_JSON,
+    contentType: CONTEN_TYPE_JSON,
+    type: METHOD_GET,
+    url: EMPLEADO_URL_LISTAR,
+    success: function(data) {
+      $("#idEmpleado").html('');
+      $("#idEmpleado").append("<option value='0' disabled selected> Seleccione Profesor </option>");
+      $.each(data, function(key, value) {
+        var newrow = "<option value='" + value['idEmpleado'] + "'>" + value['nomEmpleado'] + "</option>";
+        $("#idEmpleado").append(newrow);
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+}
+
+//listar todos los grupos academicos, DEL MODAL
 function getAllGrupoAcademico() {
   $.ajax({
     dataType: DATA_TYPE_JSON,
@@ -102,6 +130,31 @@ function getAllGrupoAcademico() {
           value['anio'] +
           "</option>";
         $("#codGrupoAcademico").append(newrow);
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+}
+
+//listar todos los grupos academicos, DE LA LISTA COMPLETA
+function getAllGrupoAcademicoLst() {
+  $.ajax({
+    dataType: DATA_TYPE_JSON,
+    contentType: CONTEN_TYPE_JSON,
+    type: METHOD_GET,
+    url: GRUPOACADEMICO_URL_LISTAR,
+    success: function(data) {
+      $("#slnGrupoAcademico").html('');
+      $("#slnGrupoAcademico").append("<option value='0' selected='selected'> Todos </option>");
+      $.each(data, function(key, value) {
+        var newrow = "<option value='" + value['codGrupoAcademico'] + "'>" +
+          value['idGrado'] + "° " +
+          value['codSeccion'] + " - " +
+          value['anio'] +
+          "</option>";
+        $("#slnGrupoAcademico").append(newrow);
       });
     },
     error: function(data) {
@@ -148,7 +201,7 @@ function saveActividad() {
 function searchActividad(id) {
   getAllGrupoAcademico();
   getAllCursos();
-
+  getEmpleados();
   $.ajax({
     dataType: DATA_TYPE_JSON,
     contentType: CONTEN_TYPE_JSON,
@@ -169,6 +222,43 @@ function searchActividad(id) {
       console.log(data);
     }
   });
+}
+
+function getActividadByIdGpoAcademico(){
+  
+  var idGpoAcademico=$("#slnGrupoAcademico").val();
+  let url_select = (idGpoAcademico=="0")?ACTIVIDAD_URL_LISTAR:ACTIVIDAD_URL_BUSCAR + idGpoAcademico;
+
+  $.ajax({
+      dataType: DATA_TYPE_JSON,
+      contentType: CONTEN_TYPE_JSON,
+      type: METHOD_GET,
+      url: url_select,
+      success: function(data) {
+        $("#tblActividad").html('');
+
+        $.each(data, function(key, value) {
+          var newrow = "<tr><td>" +
+            value['codGrupoAcademico'] + "</td><td>" +
+            value['nomCompleto'] + "</td><td>" +
+            value['nomActividad'] + "</td><td>" +
+            value['descrActividad'] + "</td><td>" +
+            value['nomCurso'] + "</td><td>" +
+            value['fechaRealizacion'] + "</td><td>" +
+            value['horaInicio'] + "</td><td>" +
+            value['horaFin'] + "</td><td>" +
+            "<button type='button' class='btn btn-xs btn-success' onclick='searchActividad(" + value['idActividad'] + ")'>" +
+            "<span class='glyphicon glyphicon-pencil'></button></td><td>" +
+            "<button type='button' class='btn btn-xs btn-danger' onclick='deleteActividad(" + value['idActividad'] + ")'>" +
+            "<span class='glyphicon glyphicon-trash'></button></td><tr>";
+
+          $("#tblActividad").parent().append(newrow);
+        });
+      },
+      error: function(data) {
+        console.log(data);
+      }
+    }); 
 }
 
 //Metodo para eliminar una categoria por su ID
@@ -229,6 +319,7 @@ function clearInputs() {
   document.getElementById("nomActividad").value = '';
   document.getElementById("descrActividad").value = '';
   document.getElementById("idCurso").value = '0';
+  document.getElementById("idEmpleado").value = '0';
   document.getElementById("fechaRealizacion").value = '';
   document.getElementById("horaInicio").value = '';
   document.getElementById("horaFin").value = '';
@@ -240,6 +331,7 @@ function setInputs(value) {
   document.getElementById("nomActividad").value = value['nomActividad'];
   document.getElementById("descrActividad").value = value['descrActividad'];
   document.getElementById("idCurso").value = value['idCurso'];
+  document.getElementById("idEmpleado").value = value['idEmpleado'];
   document.getElementById("fechaRealizacion").value = value['fechaRealizacion'];
   document.getElementById("horaInicio").value = value['horaInicio'];
   document.getElementById("horaFin").value = value['horaFin'];
@@ -248,11 +340,11 @@ function setInputs(value) {
 //obtener valores de los inputs
 function getActividadValue() {
   let id = document.getElementById("id").value;
-  let idEmpleado = 1;
   let codGrupoAcademico = document.getElementById("codGrupoAcademico").value;
   let nomActividad = document.getElementById("nomActividad").value;
   let descrActividad = document.getElementById("descrActividad").value;
   let idCurso = document.getElementById("idCurso").value;
+  let idEmpleado = document.getElementById("idEmpleado").value;
   let fechaRealizacion = document.getElementById("fechaRealizacion").value;
   let horaInicio = document.getElementById("horaInicio").value;
   let horaFin = document.getElementById("horaFin").value;

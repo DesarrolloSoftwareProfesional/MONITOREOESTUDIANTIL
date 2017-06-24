@@ -467,7 +467,7 @@ CREATE PROCEDURE SP_ACTIVIDADES_INSERT
 (
 	IN p_idEmpleado int,
 	IN p_idCurso int,
-    IN p_codGrupoAcademico char(6),
+    IN p_codGrupoAcademico char(6),    
 	IN p_nomActividad varchar(50),
 	IN p_descrActividad varchar(600),
 	IN p_fechaRealizacion varchar(10),
@@ -547,15 +547,16 @@ DELIMITER //
 CREATE PROCEDURE SP_ACTIVIDADES_SELECT_ALL()
  BEGIN
 	SELECT
-		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+		A.idActividad,E.nomCompleto,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
 		A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
     TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
     A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
 	FROM
 		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+        INNER JOIN empleados E ON A.idEmpleado = E.idEmpleado
 	ORDER BY A.idActividad DESC;
 END //
-DELIMITER ;
+DELIMITER ; 
 
 -- CALL SP_ACTIVIDADES_SELECT_ALL();
 
@@ -697,23 +698,25 @@ DELIMITER ;
 -- --------------------------------------------------------------
 
 -- DROP PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO;
+-- CALL SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO
 
 DELIMITER //
-CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO(IN p_codGrupoAcademico CHAR(6))
+CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO(IN p_codGrupoAcademico VARCHAR(6))
  BEGIN
 	SELECT
-		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+		A.idActividad,A.codGrupoAcademico,E.nomCompleto,A.nomActividad, A.descrActividad,
 		A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
     TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
     A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
 	FROM
 		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
-	WHERE A.codGrupoAcademico=p_codGrupoAcademico
+        INNER JOIN empleados E ON A.idEmpleado = E.idEmpleado
+	WHERE ( p_codGrupoAcademico = '0' OR A.codGrupoAcademico=p_codGrupoAcademico)
 	ORDER BY A.idActividad DESC;
 END //
 DELIMITER ;
 
--- CALL SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO('2B2017');
+-- CALL SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO('1D2017');
 
 
 -- -------------------------------------------------------------
@@ -1075,6 +1078,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE SP_EMPLEADOS_SELECT_ALL()
 BEGIN
-	SELECT e.idEmpleado, concat(e.apPaternoEmpleado , " " , e.apMaternoEmpleado , " " , e.nombresEmpleado) as nomEmpleado FROM empleados e;
+	SELECT e.idEmpleado, concat(e.apPaternoEmpleado , " " , e.apMaternoEmpleado , " " , e.nombresEmpleado) as nomEmpleado FROM empleados e
+    where e.idPerfil=3;
 END //
 DELIMITER ;

@@ -180,17 +180,17 @@ insert into secciones(codSeccion) values
 ('E');
 
 insert into cursos(nomCurso)values
-('Desarrollo Personal, Ciudananía y Cívica'),
-('Ciencias Sociales'),
-('Educación Fisica'),
-('Arte y Cultura'),
+('Matemática'),
 ('Comunicación'),
-('Castellano como Segunda Lengua'),
-('Ingles como Lengua Extranjera'),
-('Matematica'),
-('Ciencia y Tecnología'),
+('Educación Física'),
+('Ciencia, Tecnología y Ambiente'),
+('Historia, Geografía y Economía'),
 ('Educación para el Trabajo'),
-('Educación Relegiosa');
+('Inglés'),
+('Persona, Familia y Relaciones Humanas'),
+('Formación Ciudadana y Cívica'),
+('Arte'),
+('Educación Religiosa');
 
 insert into grupoacademico(codGrupoAcademico,idGrado,codSeccion,anio) values
 ('1A2017',1,'A',2017),

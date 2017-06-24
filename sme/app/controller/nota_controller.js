@@ -71,6 +71,7 @@ function hideModal() {
 }
 
 function getAllAlumnos() {
+<<<<<<< HEAD
   $.ajax({
     dataType: DATA_TYPE_JSON,
     contentType: CONTEN_TYPE_JSON,
@@ -95,6 +96,32 @@ function getAllAlumnos() {
           "<span class='glyphicon glyphicon-search'>" +
           "</button>" +
           "</td></tr>";
+=======
+	$.ajax({
+	    dataType: DATA_TYPE_JSON,
+	    contentType: CONTEN_TYPE_JSON,
+	    type: METHOD_GET,
+	    url: NOTA_URL_LISTAR_ALUMNO,
+	    success: function(data) {
+	      $("#tblAlumnos").html('');
+	      $.each(data, function(key, value) {
+	        var newrow = "<tr><td>" 	+
+	          //value['idAlumno'] 		+ "</td><td>" +
+	          value['apPaternoAlumno']	+ "</td><td>" +
+	          value['apMaternoAlumno'] 	+ "</td><td>" +
+	          value['nombresAlumno'] 	+ "</td><td>" +
+	          value['dniAlumno'] 		+ "</td><td>" +
+	          value['fechaNacAlumno'] 	+ "</td><td>" +
+	          value['direccionAlumno'] 	+ "</td><td style='text-align: center;'>" +
+	          value['codGrupoAcademico']+ "</td><td>" +
+	          "<button type='button' class='btn btn-xs btn-success' onclick='editarNotas(" + value['idAlumno'] + "," + value['dniAlumno'] + ")'>" +
+	          	"<span class='glyphicon glyphicon-pencil'>" + 
+	          "</button>" 				+ "</td><td>" +
+	          "<button type='button' class='btn btn-xs btn-info' onclick='consultarNotas(" + value['idAlumno'] + "," +  value['dniAlumno'] + ")'>" +
+	          	"<span class='glyphicon glyphicon-search'>" +
+	          "</button>" +
+	          "</td></tr>";
+>>>>>>> origin/master
 
         $("#tblAlumnos").parent().append(newrow);
       });

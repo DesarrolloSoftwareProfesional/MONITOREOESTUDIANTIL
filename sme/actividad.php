@@ -35,23 +35,30 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 <!--menu  -->
-<?php include_once 'template/main-menu.php'; ?>
+<?php include_once 'template/main-menu.php';?>
 <!-- /menu -->
 
 <!-- contenedor -->
 <div class="container">
   <!-- nuevo registro -->
-  <div class="row" style="padding: 1em;">
-    <input type="button" value="AGREGAR NUEVO REGISTRO" id="nuevaActividad" class="btn btn-primary"/>
+  <div class="row form-inline" style="padding: 1em;">
+    <button type="button" class="btn btn-warning"  id="nuevaActividad">Nuevo Registro</button>
+    <!-- <input type="button" value="AGREGAR NUEVO REGISTRO" id="nuevaActividad" class="btn btn-primary"/> -->
+    <div class="pull-right">
+      <select class="form-control" id="slnGrupoAcademico" style="width: 200px">
+          <option value='0' selected="selected"> Todos </option>"
+        </select>
+      <button type="button" class="btn btn-warning" onclick="javascript:window.print()" id="btnImprimirActividades">Imprimir Actividades</button>
+    </div>
   </div>
   <!-- /nuevo registro -->
   <!-- listado -->
   <div style="text-align: center;">
-    <table class="table table-bordered table-hover table-condensed">
-      <thead style="background:#419641; color:#fff; text-align:center;">
-        <tr>
-          <th style="text-align:center;">Cod</th>
+    <table class="table table-striped table-responsive table-bordered table-condensed table-hover">
+      <thead >
+        <tr class="warning">
           <th style="text-align:center;">Grupo Academico</th>
+          <th style="text-align:center;">Profesor</th>
           <th style="text-align:center;">Actividad</th>
           <th style="text-align:center;">Detalle</th>
           <th style="text-align:center;">Curso</th>
@@ -72,7 +79,7 @@
 <!-- /contenedor -->
 
 <!-- footer -->
-<?php include_once 'template/main-footer.php'; ?>
+<?php include_once 'template/main-footer.php';?>
 <!-- /fotter -->
 
 
@@ -94,17 +101,22 @@
               </select>
             </div>
 
+            <div class="form-group">
+                <select class="form-control" id="idCurso">
+                </select>
+              </div>
+
+              <div class="form-group">
+                <select class="form-control" id="idEmpleado">
+                </select>
+              </div>
+
               <div class="form-group">
                 <input type="text" class="form-control" id="nomActividad" placeholder="Actividad" required="true">
               </div>
 
               <div class="form-group">
                 <textarea class="form-control" rows="3" id="descrActividad" placeholder="Descripcion de actividad" required="true"></textarea>
-              </div>
-
-              <div class="form-group">
-                <select class="form-control" id="idCurso">
-                </select>
               </div>
 
               <div class="form-group">
@@ -136,7 +148,8 @@
               </div>
           </div>
           <div class="modal-footer">
-            <input type="button" class="btn btn-primary btn-block " id="guardarActividad" value="Registrar">
+            <!-- <input type="button" class="btn btn-primary btn-block " id="guardarActividad" value="Registrar"> -->
+            <button type="button" class="btn btn-warning btn-block"  id="guardarActividad">Registrar</button>
           </div>
         </div>
         </form>

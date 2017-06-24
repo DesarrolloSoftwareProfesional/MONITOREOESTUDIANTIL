@@ -2,7 +2,7 @@
 /**
  *
  */
-require_once("../src/lib/autoload.php");
+require_once "../src/lib/autoload.php";
 class ActividadService implements iCrudService
 {
     const TABLE = "Actividad";
@@ -25,7 +25,7 @@ class ActividadService implements iCrudService
 
     public function getLastInserted()
     {
-        $notificacion=$this->dao->getLastInserted();
+        $notificacion = $this->dao->getLastInserted();
         $this->setNotification($notificacion);
     }
 
@@ -35,7 +35,7 @@ class ActividadService implements iCrudService
             $notificacion = $this->dao->getNotificationByID($_GET[UtilConst::ID]);
             $this->setNotification($notificacion);
         } else {
-            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+            UtilService::errorResponse("No ingreso codigo de " . self::TABLE);
         }
     }
 
@@ -44,7 +44,7 @@ class ActividadService implements iCrudService
         if (!empty($_GET[UtilConst::ID])) {
             UtilService::jsonEncode($this->dao->getAllByIDGpoAcademico($_GET[UtilConst::ID]));
         } else {
-            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+            UtilService::errorResponse("No ingreso codigo de " . self::TABLE);
         }
     }
 
@@ -53,7 +53,7 @@ class ActividadService implements iCrudService
         if (!empty($_GET[UtilConst::ID])) {
             UtilService::jsonEncode($this->dao->getAllByIDApoderado($_GET[UtilConst::ID]));
         } else {
-            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+            UtilService::errorResponse("No ingreso codigo de " . self::TABLE);
         }
     }
 
@@ -81,7 +81,7 @@ class ActividadService implements iCrudService
         if (!empty($_GET[UtilConst::ID])) {
             UtilService::jsonEncode($this->dao->getById($_GET[UtilConst::ID]));
         } else {
-            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+            UtilService::errorResponse("No ingreso codigo de " . self::TABLE);
         }
     }
 
@@ -92,13 +92,13 @@ class ActividadService implements iCrudService
         if (isset($obj->idEmpleado) && isset($obj->idCurso) && isset($obj->codGrupoAcademico) &&
             isset($obj->nomActividad) && isset($obj->descrActividad) && isset($obj->fechaRealizacion) &&
             isset($obj->horaInicio) && isset($obj->horaFin) && isset($obj->frecuenciaAviso)) {
-            $result= $this->dao->insert($obj->idEmpleado, $obj->idCurso, $obj->codGrupoAcademico,
-                                        $obj->nomActividad, $obj->descrActividad, $obj->fechaRealizacion,
-                                         $obj->horaInicio, $obj->horaFin, $obj->frecuenciaAviso);
+            $result = $this->dao->insert($obj->idEmpleado, $obj->idCurso, $obj->codGrupoAcademico,
+                $obj->nomActividad, $obj->descrActividad, $obj->fechaRealizacion,
+                $obj->horaInicio, $obj->horaFin, $obj->frecuenciaAviso);
 
             UtilService::jsonEncodeIUD($result, self::TABLE, "Registrado");
         } else {
-            UtilService::errorResponse("JSON no coressponde a ".self::TABLE);
+            UtilService::errorResponse("JSON no coressponde a " . self::TABLE);
         }
     }
 
@@ -107,15 +107,15 @@ class ActividadService implements iCrudService
         $obj = UtilService::jsonDecode();
 
         if (isset($obj->idEmpleado) && isset($obj->idCurso) && isset($obj->codGrupoAcademico) &&
-          isset($obj->nomActividad) && isset($obj->descrActividad) && isset($obj->fechaRealizacion) &&
-          isset($obj->horaInicio) && isset($obj->horaFin) && isset($obj->frecuenciaAviso) && isset($obj->idActividad)) {
-            $result= $this->dao->update($obj->idEmpleado, $obj->idCurso, $obj->codGrupoAcademico,
-                                      $obj->nomActividad, $obj->descrActividad, $obj->fechaRealizacion,
-                                       $obj->horaInicio, $obj->horaFin, $obj->frecuenciaAviso, $obj->idActividad);
+            isset($obj->nomActividad) && isset($obj->descrActividad) && isset($obj->fechaRealizacion) &&
+            isset($obj->horaInicio) && isset($obj->horaFin) && isset($obj->frecuenciaAviso) && isset($obj->idActividad)) {
+            $result = $this->dao->update($obj->idEmpleado, $obj->idCurso, $obj->codGrupoAcademico,
+                $obj->nomActividad, $obj->descrActividad, $obj->fechaRealizacion,
+                $obj->horaInicio, $obj->horaFin, $obj->frecuenciaAviso, $obj->idActividad);
 
             UtilService::jsonEncodeIUD($result, self::TABLE, "Actualizado");
         } else {
-            UtilService::errorResponse("JSON no coressponde a ".self::TABLE);
+            UtilService::errorResponse("JSON no coressponde a " . self::TABLE);
         }
     }
 
@@ -126,60 +126,60 @@ class ActividadService implements iCrudService
 
             UtilService::jsonEncodeIUD($result, self::TABLE, "Eliminado");
         } else {
-            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+            UtilService::errorResponse("No ingreso codigo de " . self::TABLE);
         }
     }
 
 //Metodo que decide que accion se realizara
-  public function restApi()
-  {
-      if (!empty($_GET[UtilConst::ACCION])) {
-          $action =$_GET[UtilConst::ACCION];
+    public function restApi()
+    {
+        if (!empty($_GET[UtilConst::ACCION])) {
+            $action = $_GET[UtilConst::ACCION];
 
-          switch ($action) {
-        case UtilConst::LISTAR:
-          $this->getAll();
-          break;
-        case UtilConst::BUSCAR:
-          $this->getById();
-          break;
-        case UtilConst::REGISTRAR:
-          $this->insert();
-          break;
-        case UtilConst::ACTUALIZAR:
-          $this->update();
-          break;
-        case UtilConst::ELIMINAR:
-          if ($_SERVER['REQUEST_METHOD']=="DELETE") {
-              $this->delete();
-          } else {
-              UtilService::errorResponse("Use metodo DELETE");
-          }
-          break;
-        case 'pendientes':
-            $this->getAllPending();
-          break;
-        case 'ultimoregistro':
-            $this->getLastInserted();
-          break;
-        case 'notificacion':
-            $this->getNotificationByID();
-          break;
-        case 'gpoacademico':
-            $this->getAllByIDGpoAcademico();
-          break;
-        case 'apoderadoid':
-              $this->getAllByIDApoderado();
-            break;
-        case 'idactividalumno':
-              $this->getByIDActividadIDAlumno();
-            break;
-        default:
-          UtilService::errorResponse("Metodo no existe");
-      break;
-      }
-      } else {
-          UtilService::errorResponse("No indico ningun metodo");
-      }
-  }
+            switch ($action) {
+                case UtilConst::LISTAR:
+                    $this->getAll();
+                    break;
+                case UtilConst::BUSCAR:
+                    $this->getById();
+                    break;
+                case UtilConst::REGISTRAR:
+                    $this->insert();
+                    break;
+                case UtilConst::ACTUALIZAR:
+                    $this->update();
+                    break;
+                case UtilConst::ELIMINAR:
+                    if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
+                        $this->delete();
+                    } else {
+                        UtilService::errorResponse("Use metodo DELETE");
+                    }
+                    break;
+                case 'pendientes':
+                    $this->getAllPending();
+                    break;
+                case 'ultimoregistro':
+                    $this->getLastInserted();
+                    break;
+                case 'notificacion':
+                    $this->getNotificationByID();
+                    break;
+                case 'gpoacademico':
+                    $this->getAllByIDGpoAcademico();
+                    break;
+                case 'apoderadoid':
+                    $this->getAllByIDApoderado();
+                    break;
+                case 'idactividalumno':
+                    $this->getByIDActividadIDAlumno();
+                    break;
+                default:
+                    UtilService::errorResponse("Metodo no existe");
+                    break;
+            }
+        } else {
+            UtilService::errorResponse("No indico ningun metodo");
+        }
+    }
 }
