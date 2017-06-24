@@ -9,11 +9,8 @@ const CONTEN_TYPE_JSON = "application/json; charset=utf-8";
 const ACCION_REGISTRAR = "Registrar";
 const ACCION_ACTUALIZAR = "Actualizar";
 
-<<<<<<< HEAD
 const URL_BASE = "http://10.66.10.192/sise/sme/api/";
-=======
-const URL_BASE = "http://localhost/sise/sme/api/";
->>>>>>> origin/master
+
 
 const ALUMNO_URL_LISTAR = URL_BASE + "alumno/listar";
 const ALUMNO_URL_BUSCAR = URL_BASE + "alumno/buscar/";
