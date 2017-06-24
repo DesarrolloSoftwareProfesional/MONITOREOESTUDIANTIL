@@ -110,9 +110,15 @@ public class Attributes {
     public static final String MSG_ID ="id";
     public static final String MSG_ACTIVIDAD ="actividad";
     public static final String MSG_FECHA_REALIZARSE ="fecha";
-    public static final String MSG_ID_ALUMNO ="id";
+    public static final String MSG_TIPO_NOTIFICACION ="tipoNotificacion";
+
+    public static final String TIPO_NOTIFICACION_ACTIVIDAD ="A";
+    public static final String TIPO_NOTIFICACION_NOTA ="N";
+
 
     //ATRIBUTOS DE RESPONSE EN JSON
     public static final String RES_STATE = "state";
     public static final String RES_MSG = "msg";
+
+
 }

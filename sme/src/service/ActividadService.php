@@ -72,7 +72,7 @@ class ActividadService implements iCrudService
     public function setNotification($notificacion)
     {
         foreach ($notificacion as $key => $value) {
-            echo UtilNotification::sendNotificationTheme($value["codGrupoAcademico"], $value["id"], $value["actividad"], $value["fecha"]);
+            echo UtilNotification::sendNotificationTheme($value["codGrupoAcademico"], $value["id"], $value["actividad"], $value["fecha"], "A");
         }
     }
 

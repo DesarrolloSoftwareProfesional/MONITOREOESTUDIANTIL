@@ -114,7 +114,8 @@ class NotaDao
         $idPeriodo,
         $idEmpleado,
         $idTipoNota,
-        $nota) {
+        $nota)
+    {
         $sql  = "CALL SP_NOTAS_INSERT(?,?,?,?,?,?)";
         $conn = $this->mysqli->open();
         $stmt = $conn->prepare($sql);
@@ -154,4 +155,15 @@ class NotaDao
         return $this->mysqli->findAll($sql);
     }
 
+    public function getAlumnoCurso($idAlumno, $idCurso)
+    {
+        $sql  = "CALL SP_ALUMNOS_CURSO_BY_ID_ALUMNO_CURSO(?,?)";
+        $conn = $this->mysqli->open();
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('ii', $idAlumno, $idCurso);
+        $result = $this->mysqli->search($stmt);
+        $conn->close();
+
+        return $result;
+    }
 }
