@@ -22,6 +22,7 @@
 
 
     <string name="name_grado_alumno">Grado</string>
+    <string name="name_grado_seccion">Seccion</string>
     <string name="name_periodo_alumno">Periodo</string>
     <string name="name_valoracion_alumno">Valoracion</string>
     <string name="name_cant_act">Cant. Act.</string>

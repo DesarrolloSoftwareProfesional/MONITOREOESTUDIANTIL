@@ -70,14 +70,48 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE SP_ALUMNOS_SELECT_BY_ID(IN p_idAlumno INT)
  BEGIN
-	SELECT
-		A.idAlumno, A.apPaternoAlumno, A.apMaternoAlumno, A.nombresAlumno,
-        A.dniAlumno, A.fechaNacAlumno, A.direccionAlumno, A.nomCompleto, A.estadoRegistro
-	FROM ALUMNOS A WHERE A.idAlumno=p_idAlumno;
+ 
+ CREATE TEMPORARY TABLE temp_listAlumByApod as
+	(select  n.idAlumno, MAX(n.idPeriodo) as peridoFinal
+     from   notas n
+    INNER JOIN alumnos_apoderados a
+    on n.idAlumno = a.idAlumno where A.idAlumno=p_idAlumno
+    group by n.idAlumno);
+
+	select a.idAlumno, a.nombresAlumno,
+			a.apPaternoAlumno, a.apMaternoAlumno, p.trimestre,
+            p.anio, GA.idGrado, GA.codSeccion,
+            COALESCE(ac.CantAC,0) AS CantAC, 20 AS totalPromedio,
+            A.dniAlumno, A.fechaNacAlumno, A.direccionAlumno, A.nomCompleto, A.estadoRegistro
+	from alumnos a
+	inner join alumnos_apoderados ap
+	on a.idAlumno = ap.idAlumno
+    INNER JOIN alumnos_grupoacademico AG
+		ON AG.idAlumno = a.idAlumno
+        AND AG.estadoRegistro = 1 -- UltimoGrado
+	INNER JOIN grupoacademico GA
+		ON GA.codGrupoAcademico = AG.codGrupoAcademico
+	LEFT JOIN temp_listAlumByApod t
+    on a.idAlumno = t.idAlumno
+    INNER JOIN periodos p
+    on
+    p.idPeriodo = t.peridoFinal
+    LEFT JOIN(SELECT codGrupoAcademico,COUNT(1) AS CantAC FROM actividades
+     GROUP BY codGrupoAcademico) ac
+     on ac.codGrupoAcademico = AG.codGrupoAcademico
+	WHERE A.idAlumno=p_idAlumno;
+
+    drop table temp_listAlumByApod;
+ 
+	-- SELECT
+-- 		A.idAlumno, A.apPaternoAlumno, A.apMaternoAlumno, A.nombresAlumno,
+--         A.dniAlumno, A.fechaNacAlumno, A.direccionAlumno, A.nomCompleto, A.estadoRegistro
+-- 	FROM ALUMNOS A WHERE A.idAlumno=p_idAlumno;
 END //
 DELIMITER ;
 
--- CALL SP_ALUMNOS_SELECT_BY_ID(1);
+-- CALL SP_ALUMNOS_SELECT_BY_ID(2);
+
 
 
 
@@ -704,7 +738,7 @@ DELIMITER //
 CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO(IN p_codGrupoAcademico VARCHAR(6))
  BEGIN
 	SELECT
-		A.idActividad,A.codGrupoAcademico,E.nomCompletoSP_EMPLEADOS_SELECT_ALL,A.nomActividad, A.descrActividad,
+		A.idActividad,A.codGrupoAcademico,E.nomCompleto,A.nomActividad, A.descrActividad,
 		A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
     TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
     A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado

@@ -89,6 +89,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:text="@string/name_grado_seccion"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="A"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/colorSecondaryText"
+                    android:id="@+id/alum_row_tvi_seccion" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dimen_padding_small">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/name_periodo_alumno"
                     android:textColor="@color/colorSecondaryText"/>
                 <TextView

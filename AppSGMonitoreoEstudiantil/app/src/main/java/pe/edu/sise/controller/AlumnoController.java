@@ -112,4 +112,44 @@ public class AlumnoController {
 
         return alumnosString;
     }
+
+
+    public static List<Alumno> getAlumnoByID(Integer idAlumno) {
+        List<Alumno> lst = new ArrayList<>();
+
+
+        try {
+            String jsonString = JsonManager.getJsonString(ServiceManager.listarAlumnoByID(idAlumno), ServiceManager.GET);
+            JSONArray jsonArray = new JSONArray(jsonString);
+            JSONObject jsonObjectOut;
+
+            int length = jsonArray.length();
+
+            for (int i = 0; i < length; i++) {
+                jsonObjectOut = jsonArray.getJSONObject(i);
+                Alumno alumno = new Alumno();
+
+                alumno.setId(jsonObjectOut.getString(Attributes.ALUM_ID));
+                alumno.setNombres(jsonObjectOut.getString(Attributes.ALUM_NOM_COMPLETO));
+                alumno.setApPaterno(jsonObjectOut.getString(Attributes.ALUM_AP_PATERNO));
+                alumno.setApMaterno(jsonObjectOut.getString(Attributes.ALUM_AP_MATERNO));
+                alumno.setDni(jsonObjectOut.getString(Attributes.ALUM_DNI));
+                alumno.setCodGracdo(jsonObjectOut.getInt(Attributes.ALUM_GRADO));
+                alumno.setCodSeccion(jsonObjectOut.getString(Attributes.ALUM_COD_SECCION));
+                alumno.setPeriodo(jsonObjectOut.getInt(Attributes.ALUM_ANIO));
+                alumno.setFechaNac(jsonObjectOut.getString(Attributes.ALUM_FECHA_NAC));
+                lst.add(alumno);
+            }
+
+        } catch (Exception e) {
+            Log.d(TAG, "getAllCursos: " + Log.getStackTraceString(e));
+        }
+
+        return lst;
+    }
+
+
+
+
+
 }

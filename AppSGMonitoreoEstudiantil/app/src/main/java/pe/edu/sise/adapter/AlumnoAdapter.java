@@ -49,6 +49,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
 
         holder.alum_row_tvi_alum.setText(alumno.getNomCompleto());
         holder.alum_row_tvi_grado.setText(String.valueOf(alumno.getCodGracdo()));
+        holder.alum_row_tvi_seccion.setText(String.valueOf(alumno.getCodSeccion()));
         holder.alum_row_tvi_periodo.setText(String.valueOf(alumno.getPeriodo()));
         holder.alum_row_tvi_valoracion.setText(String.valueOf(alumno.getPromedioTotal()));
         holder.alum_row_tvi_cant_act.setText(String.valueOf(alumno.getCantAct()));
@@ -93,6 +94,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
         public ImageView alum_row_imgv_foto;
         public TextView alum_row_tvi_alum;
         public TextView alum_row_tvi_grado;
+        public TextView alum_row_tvi_seccion;
         public TextView alum_row_tvi_periodo;
         public TextView alum_row_tvi_valoracion;
         public TextView alum_row_tvi_cant_act;
@@ -104,6 +106,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
             alum_row_imgv_foto = (ImageView) view.findViewById(R.id.alum_row_imgv_foto);
             alum_row_tvi_alum = (TextView) view.findViewById(R.id.alum_row_tvi_alum);
             alum_row_tvi_grado = (TextView) view.findViewById(R.id.alum_row_tvi_grado);
+            alum_row_tvi_seccion = (TextView) view.findViewById(R.id.alum_row_tvi_seccion);
             alum_row_tvi_periodo = (TextView) view.findViewById(R.id.alum_row_tvi_periodo);
             alum_row_tvi_valoracion = (TextView) view.findViewById(R.id.alum_row_tvi_valoracion);
             alum_row_tvi_cant_act = (TextView) view.findViewById(R.id.alum_row_tvi_cant_act);

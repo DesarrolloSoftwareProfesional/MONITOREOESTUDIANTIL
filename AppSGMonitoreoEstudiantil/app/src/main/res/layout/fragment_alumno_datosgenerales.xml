@@ -29,24 +29,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jhonatan Aruhanca Vilca"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@drawable/ic_icon_user"
-                android:id="@+id/imageView2" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,79 +80,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:text="Fecha Nac :"
-                        android:textAlignment="textEnd"
-                        android:textSize="20dp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/frgmt_dtsGen_fechNac"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="17/09/1995"
-                        android:textAlignment="center"
-                        android:textSize="20dp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
-                        android:text="Domicilio :"
-                        android:textAlignment="textEnd"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/frgmt_dtsGen_domic"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Av. Los jardines nro 3456,Urb. Los jardines"
-                        android:textAlignment="center"
-                        android:textSize="20dp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -239,7 +154,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -253,12 +167,12 @@
 
                     <TextView
                         android:layout_width="110dp"
+
                         android:layout_height="wrap_content"
-                        android:text="Telefono :"
+                        android:text="Periodo :"
                         android:textAlignment="textEnd"
                         android:textSize="20dp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -266,15 +180,16 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/frgmt_dtsGen_telf"
+                        android:id="@+id/frgmt_dtsGen_periodo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="971505625"
+                        android:text="2017"
                         android:textAlignment="center"
                         android:textSize="20dp" />
                 </LinearLayout>
 
             </LinearLayout>
+
 
 
             <LinearLayout
@@ -291,7 +206,7 @@
                     <TextView
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
-                        android:text="Apoderado :"
+                        android:text="Fecha Nac :"
                         android:textAlignment="textEnd"
                         android:textSize="20dp"
                         android:textStyle="bold"/>
