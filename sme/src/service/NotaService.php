@@ -66,9 +66,9 @@ class NotaService implements iCrudService
          if(!empty($_GET[UtilConst::ID])){
             $result = $this->dao->delete($_GET[UtilConst::ID]);
         
-            UtilService::jsonEncodeIUD($result,self::TABLE,"Eliminado");
+           UtilService::jsonEncodeIUD($result,self::TABLE,"Eliminado");
          }else{
-            UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
+           UtilService::errorResponse("No ingreso codigo de ".self::TABLE);
          }
     }
 

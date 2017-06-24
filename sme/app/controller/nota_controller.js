@@ -23,7 +23,7 @@ document.onkeypress=function(e){
 $(document).ready(main);
 	//Funciones de Arranque
 	function main() {
-	  	getAllAlumnos();
+	  getAllAlumnos();
 	  //Accion al hacer click en boton  Registrar Alumno
 	  $('#btnRegistroNotas').click(function() {
 	   getTipoNotas();
@@ -40,6 +40,11 @@ $(document).ready(main);
 	  $("#btnguardarNota").click(function(){
 	  	postguardarNota();
 	  });
+
+	  $("#btnBuscarNotas").click(function(){
+	  	BuscarNotasAlumno();
+	  });
+
 	}
 
 function showModal() {
@@ -49,9 +54,19 @@ function showModal() {
   });
 }
 
+function limpiarDatos(){
+	$("#txtDNI").val("");
+	$("#hdnidAlumno").val("");
+	$("#txtvalornota").val("");
+  	$("#txtNombreAlum").val("");
+  	$("#txtApellAlumn").val("");
+  	$("#tblNotas").html('');
+}
+
 function hideModal() {
   $("#modalRegistroNotas").modal('toggle');
   variables.abrioDetalle = false;
+  limpiarDatos();
 }
 
 function getAllAlumnos() {
@@ -72,7 +87,7 @@ function getAllAlumnos() {
 	          value['fechaNacAlumno'] 	+ "</td><td>" +
 	          value['direccionAlumno'] 	+ "</td><td>" +
 	          value['codGrupoAcademico']+ "</td><td>" +
-	          "<button type='button' class='btn btn-xs btn-success' onclick='editarNotas(" + value['idAlumno'] + "," + value['codGrupoAcademico'] + ")'>" +
+	          "<button type='button' class='btn btn-xs btn-success' onclick='editarNotas(" + value['idAlumno'] + "," + value['dniAlumno'] + ")'>" +
 	          	"<span class='glyphicon glyphicon-pencil'>" + 
 	          "</button>" 				+ "</td><td>" +
 	          "<button type='button' class='btn btn-xs btn-info' onclick='consultarNotas(" + value['idAlumno'] + "," +  value['codGrupoAcademico'] + ")'>" +
@@ -89,6 +104,15 @@ function getAllAlumnos() {
 	  });
 }
 
+function editarNotas(idAlumno,dniAlumno){
+	getTipoNotas();
+	getCursos();
+	getPeriodos();
+	showModal();
+	variables.abrioDetalle = true;
+	$("#txtDNI").val(dniAlumno);
+	getAlumnoPorDni();
+}
 
 function getTipoNotas() {
   $.ajax({
@@ -171,12 +195,20 @@ function getAlumnoPorDni(){
 	    type: METHOD_GET,
 	    url: NOTA_URL_LISTAR_ALUMNO_DNI + dni,
 	    success: function(data) {
-        	$.each(data, function(key, value) {
-			  	$("#hdnidAlumno").val(value["idAlumno"]);
-			  	$("#txtNombreAlum").val(value["nombresAlumno"]);
-			  	$("#txtApellAlumn").val(value["apPaternoAlumno"] + " " + value["apMaternoAlumno"]);
-		 	});
+	    	if (data.length>0) {
+	    		$.each(data, function(key, value) {
+				  	$("#hdnidAlumno").val(value["idAlumno"]);
+				  	$("#txtNombreAlum").val(value["nombresAlumno"]);
+				  	$("#txtApellAlumn").val(value["apPaternoAlumno"] + " " + value["apMaternoAlumno"]);
+		 		});
 		 	BuscarNotasAlumno();
+	    	}else{
+	    		$("#hdnidAlumno").val("");
+				$("#txtvalornota").val("");
+			  	$("#txtNombreAlum").val("");
+			  	$("#txtApellAlumn").val("");
+			  	$("#tblNotas").html('');
+	    	}
 	    },
 	    error: function(data) {
 	      console.log(data);
@@ -205,26 +237,26 @@ function generarNota(){
 function postguardarNota(){
 	if ($("#slnCurso").val()=="0" || $("#slnCurso").val()==null) 
 	{
-		msg_error("Seleccione Curso");
+		msg_error("Seleccione curso");
 		$("#slnCurso").focus();	
 		return false;
 	}else if ($("#slnPeriodo").val()=="0" || $("#slnPeriodo").val()==null) 
 	{
-		msg_error("Seleccione Periodo");
+		msg_error("Seleccione periodo");
 		$("#slnPeriodo").focus();
 		return false;
 	}else if ($("#slnTipoNota").val()=="0" || $("#slnTipoNota").val()==null) 
 	{
-		msg_error("Seleccione Tipo de Nota");
+		msg_error("Seleccione tipo de nota");
 		$("#slnTipoNota").focus();
 		return false;
 	}else if ($("#txtvalornota").val()=="") 
 	{
-		msg_error("Ingrese Nota");
+		msg_error("Ingrese nota");
 		$("#txtvalornota").focus();
 		return false;
 	}else if ($("#txtDNI").val().length !=8) {
-		msg_error("Verificar Nro de DNI");
+		msg_error("Verificar nro de DNI");
 		$("#txtDNI").focus();
 		return false;
 	}
@@ -266,6 +298,7 @@ function validarDatos(){
 
 function BuscarNotasAlumno(){
 	if (!validarDatos()) {
+		msg_error("Validar datos para buscar notas.");
 		return false;	
 	}
 	var Nota = generarNota();

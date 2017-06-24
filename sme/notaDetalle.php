@@ -3,7 +3,7 @@
     <div class="modal-dialog">
 		<div class="modal-content">
 	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="variables.abrioDetalle = false;">&times;</button>
+	          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="variables.abrioDetalle = false;limpiarDatos();">&times;</button>
 	          <h4 class="modal-title" id="myModalLabel"><b>Registro de Notas</b></h4>
 	        </div>
 	        <form class=""  method="post">
