@@ -290,7 +290,7 @@ function dataForNotification(id) {
     type: METHOD_GET,
     url: url_select,
     success: function(data) {
-      ("" !== data.message_id) ? msg_success("notificacion enviado correctamente"): msg_error("notificacion no se pudo enviar");
+      ("" !== data.message_id) ? msg_info("notificacion enviado correctamente"): msg_error("notificacion no se pudo enviar");
       console.log(data);
     },
     error: function(data) {

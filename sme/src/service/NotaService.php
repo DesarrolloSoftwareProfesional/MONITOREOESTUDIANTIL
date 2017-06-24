@@ -146,6 +146,20 @@ class NotaService implements iCrudService
         UtilService::jsonEncode($this->dao->getEmpleados());
     }
 
+    public function getAlumnoCurso()
+    {
+        $obj = UtilService::jsonDecode();
+
+        if (isset($obj->idAlumno) && isset($obj->idCurso) && isset($obj->nota)) {
+            $result = $this->dao->getAlumnoCurso($obj->idAlumno, $obj->idCurso);
+            //UtilService::jsonEncode($result);
+            foreach ($result as $key => $value) {
+                echo UtilNotification::sendNotification($value["fcmToken"], $value["idAlumno"], $value["nombresAlumno"], $value["nomCurso"]." - Nota: ".$obj->nota, "N");
+            }
+        } else {
+            UtilService::errorResponse("JSON no coressponde a " . self::TABLE);
+        }
+    }
 //Metodo que decide que accion se realizara
     public function restApi()
     {
@@ -202,6 +216,10 @@ class NotaService implements iCrudService
                 case 'listarEmpleados':
                     $this->getEmpleados();
                     break;
+                case 'alumnocurso':
+                    $this->getAlumnoCurso();
+                    break;
+
                 default:
                     UtilService::errorResponse("Metodo no existe");
                     break;

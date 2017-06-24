@@ -28,36 +28,47 @@ public class SmeFirebaseMessagingService extends FirebaseMessagingService {
         String msgId = remoteMessage.getData().get(Attributes.MSG_ID);
         String msgActivity = remoteMessage.getData().get(Attributes.MSG_ACTIVIDAD);
         String msgStartDate = remoteMessage.getData().get(Attributes.MSG_FECHA_REALIZARSE);
+        String msgTypeNotification = remoteMessage.getData().get(Attributes.MSG_TIPO_NOTIFICACION);
 
-        Log.d(TAG,msgActivity);
+        Log.d(TAG, msgActivity);
 
-        this.sendNotification(msgId,msgActivity, msgStartDate);
+        this.sendNotification(msgId, msgActivity, msgStartDate, msgTypeNotification);
         //super.onMessageReceived(remoteMessage);
     }
 
-    private void sendNotification(String msgId,String msgActivity, String msgStartDate) {
-        Intent intent = new Intent(this, DetalleActividad.class);
-        intent.putExtra(Attributes.MSG_ACTIVIDAD,msgActivity);
-        intent.putExtra(Attributes.MSG_FECHA_REALIZARSE,msgStartDate);
-        intent.putExtra(Attributes.MSG_ID,msgId);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    private void sendNotification(String msgId, String msgActivity, String msgStartDate, String msgTypeNotification) {
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+        Intent intent;
 
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        if (Attributes.TIPO_NOTIFICACION_NOTA.equals(msgTypeNotification)) {
+            intent = new Intent(this, NotificandoActivity.class);
+        }else{
+            intent = new Intent(this, DetalleActividad.class);
+        }
 
-        notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_logo_monitoreo_msg)
-                .setContentTitle(msgActivity)
-                .setContentText(msgStartDate)
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent);
+            intent.putExtra(Attributes.MSG_ACTIVIDAD, msgActivity);
+            intent.putExtra(Attributes.MSG_FECHA_REALIZARSE, msgStartDate);
+            intent.putExtra(Attributes.MSG_ID, msgId);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(Integer.valueOf(msgId) /* ID of notification */, notificationBuilder.build());
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+
+            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+            notificationBuilder = new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.ic_logo_monitoreo_msg)
+                    .setContentTitle(msgActivity)
+                    .setContentText(msgStartDate)
+                    .setAutoCancel(true)
+                    .setSound(defaultSoundUri)
+                    .setContentIntent(pendingIntent);
+
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            notificationManager.notify(Integer.valueOf(msgId) /* ID of notification */, notificationBuilder.build());
+
     }
 }

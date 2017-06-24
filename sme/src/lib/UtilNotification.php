@@ -6,13 +6,13 @@ class UtilNotification
 {
     const GOOGLE_API_KEY="AAAAp6FuGcE:APA91bFnsPeki2rb7BBzSY_-M3vDkGVl5VYyax6sj-t1iJXoMyUiUDUZ2q2wOq-vnRYlzNeAks9XwG8Z5mef1tLa9KwZFUH_WXCfqNh8n8zWdr0H63CJY9gFoJCY0gIOd4oZAKiINTsk";
     const GOOGLE_GCM_URL ="https://fcm.googleapis.com/fcm/send";
-    
-    public static function sendNotification($fcmToken, $id, $actividad, $fecha)
+
+    public static function sendNotification($fcmToken, $id, $actividad, $fecha, $tipoNotificacion)
     {
         $fields = array(
             'to'=> $fcmToken,
             'priority'=> "high",
-            'data' => array("id"=>$id,"actividad" =>$actividad, "fecha" => $fecha)
+            'data' => array("id"=>$id,"actividad" =>$actividad, "fecha" => $fecha,"tipoNotificacion"=>$tipoNotificacion)
         );
 
         $headers = array(
@@ -35,13 +35,13 @@ class UtilNotification
         return $result;
     }
 
-
-    public static function sendNotificationTheme($theme, $id, $actividad, $fecha)
+    
+    public static function sendNotificationTheme($theme, $id, $actividad, $fecha, $tipoNotificacion)
     {
         $fields = array(
             'to'=> '/topics/'.$theme,
             'priority'=> "high",
-            'data' => array("id"=>$id,"actividad" =>$actividad, "fecha" => $fecha)
+            'data' => array("id"=>$id,"actividad" =>$actividad, "fecha" => $fecha,"tipoNotificacion"=>$tipoNotificacion)
         );
 
 
@@ -66,7 +66,7 @@ class UtilNotification
     }
 
 
-    public static function sendNotificationTokenNota($fcmToken, $idNota, $Alumno,$Curso,$Periodo,$Nota)
+    public static function sendNotificationTokenNota($fcmToken, $idNota, $Alumno, $Curso, $Periodo, $Nota)
     {
         $fields = array(
             'to'=> $fcmToken,

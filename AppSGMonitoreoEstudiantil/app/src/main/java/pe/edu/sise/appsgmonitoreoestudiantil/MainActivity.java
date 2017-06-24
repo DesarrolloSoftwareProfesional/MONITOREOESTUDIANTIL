@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
         iniciarUI();
 //        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
 //                new AlumnoRecyclerViewFragment()).addToBackStack(null).commit();
-        if (sessionManager.isLoggedApoderado()) {
+        if (sessionManager.existsApoderado()) {
 
             String idApoderado = sessionManager.getApoderadoSession().getId();
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
