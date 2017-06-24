@@ -4,6 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import pe.edu.sise.model.Alumno;
 import pe.edu.sise.model.Apoderado;
 import pe.edu.sise.model.Usuario;
@@ -42,37 +48,37 @@ public class SessionManager {
 
 
     public boolean isLoggedUsuario() {
-        return (this.sharedPreferences.getString(Attributes.USU_ID_USUARIO,null)== null )?false:true;
+        return (this.sharedPreferences.getString(Attributes.USU_ID_USUARIO, null) == null) ? false : true;
     }
 
-    public void createAlumnoSession(Alumno  alumno) {
-        this.editor.putString(Attributes.ALUM_ID,alumno.getId());
-        this.editor.putString(Attributes.ALUM_AP_PATERNO,alumno.getApPaterno());
-        this.editor.putString(Attributes.ALUM_AP_MATERNO,alumno.getApMaterno());
-        this.editor.putString(Attributes.ALUM_NOMBRES,alumno.getNombres());
-        this.editor.putString(Attributes.ALUM_DNI,alumno.getDni());
-        this.editor.putString(Attributes.ALUM_NOM_COMPLETO,alumno.getNomCompleto());
-        this.editor.putString(Attributes.ALUM_FECHA_NAC,alumno.getFechaNac());
-        this.editor.putString(Attributes.ALUM_DIRECCION,alumno.getDireccion());
-        this.editor.putBoolean(Attributes.ALUM_ESTADO_REG,alumno.isEstadoRegistro());
-        this.editor.putString(Attributes.ALUM_USUARIO,alumno.getUsuario());
-        this.editor.putBoolean(Attributes.ALUM_IS_LOGGED,alumno.isLogged());
+    public void createAlumnoSession(Alumno alumno) {
+        this.editor.putString(Attributes.ALUM_ID, alumno.getId());
+        this.editor.putString(Attributes.ALUM_AP_PATERNO, alumno.getApPaterno());
+        this.editor.putString(Attributes.ALUM_AP_MATERNO, alumno.getApMaterno());
+        this.editor.putString(Attributes.ALUM_NOMBRES, alumno.getNombres());
+        this.editor.putString(Attributes.ALUM_DNI, alumno.getDni());
+        this.editor.putString(Attributes.ALUM_NOM_COMPLETO, alumno.getNomCompleto());
+        this.editor.putString(Attributes.ALUM_FECHA_NAC, alumno.getFechaNac());
+        this.editor.putString(Attributes.ALUM_DIRECCION, alumno.getDireccion());
+        this.editor.putBoolean(Attributes.ALUM_ESTADO_REG, alumno.isEstadoRegistro());
+        this.editor.putString(Attributes.ALUM_USUARIO, alumno.getUsuario());
+        this.editor.putBoolean(Attributes.ALUM_IS_LOGGED, alumno.isLogged());
 
         this.editor.commit();
     }
 
     public void createApoderadoSession(Apoderado apoderado) {
-        this.editor.putString(Attributes.APOD_ID,apoderado.getId());
-        this.editor.putString(Attributes.APOD_AP_PATERNO,apoderado.getApPaterno());
-        this.editor.putString(Attributes.APOD_AP_MATERNO,apoderado.getApMaterno());
-        this.editor.putString(Attributes.APOD_NOMBRES,apoderado.getNombres());
-        this.editor.putString(Attributes.APOD_DNI,apoderado.getDni());
-        this.editor.putString(Attributes.APOD_NOM_COMPLETO,apoderado.getNomCompleto());
-        this.editor.putString(Attributes.APOD_FECHA_NAC,apoderado.getFechaNac());
-        this.editor.putString(Attributes.APOD_DIRECCION,apoderado.getDireccion());
-        this.editor.putBoolean(Attributes.APOD_ESTADO_REG,apoderado.isEstadoRegistro());
-        this.editor.putString(Attributes.APOD_USUARIO,apoderado.getUsuario());
-        this.editor.putBoolean(Attributes.APOD_IS_LOGGED,apoderado.isLogged());
+        this.editor.putString(Attributes.APOD_ID, apoderado.getId());
+        this.editor.putString(Attributes.APOD_AP_PATERNO, apoderado.getApPaterno());
+        this.editor.putString(Attributes.APOD_AP_MATERNO, apoderado.getApMaterno());
+        this.editor.putString(Attributes.APOD_NOMBRES, apoderado.getNombres());
+        this.editor.putString(Attributes.APOD_DNI, apoderado.getDni());
+        this.editor.putString(Attributes.APOD_NOM_COMPLETO, apoderado.getNomCompleto());
+        this.editor.putString(Attributes.APOD_FECHA_NAC, apoderado.getFechaNac());
+        this.editor.putString(Attributes.APOD_DIRECCION, apoderado.getDireccion());
+        this.editor.putBoolean(Attributes.APOD_ESTADO_REG, apoderado.isEstadoRegistro());
+        this.editor.putString(Attributes.APOD_USUARIO, apoderado.getUsuario());
+        this.editor.putBoolean(Attributes.APOD_IS_LOGGED, apoderado.isLogged());
 
         this.editor.commit();
     }
@@ -119,20 +125,53 @@ public class SessionManager {
     }
 
     public boolean existsAlumno() {
-        return (this.sharedPreferences.getString(Attributes.ALUM_ID,null)== null )?false:true;
+        return (this.sharedPreferences.getString(Attributes.ALUM_ID, null) == null) ? false : true;
     }
 
     public boolean existsApoderado() {
-        return (this.sharedPreferences.getString(Attributes.APOD_ID,null)== null )?false:true;
+        return (this.sharedPreferences.getString(Attributes.APOD_ID, null) == null) ? false : true;
     }
 
+    public void createListAlumnosByApoderadoSession(String jsonString) {
+        this.editor.putString(Attributes.KEY_LIST_ALUMNO, jsonString);
+        editor.commit();
+    }
+
+    public List<Alumno> getListAlumnos() {
+
+        List<Alumno> list = new ArrayList<>();
+
+        try {
+
+            String jsonString = this.sharedPreferences.getString(Attributes.KEY_LIST_ALUMNO, null);
+
+            JSONArray jsonArray = new JSONArray(jsonString);
+
+            JSONObject jsonObjectOut;
+
+            int length = jsonArray.length();
+
+            for (int i = 0; i < length; i++) {
+                jsonObjectOut = jsonArray.getJSONObject(i);
+                Alumno alumno = new Alumno();
+                alumno.setId(jsonObjectOut.getString(Attributes.ALUM_ID));
+                alumno.setNomCompleto(jsonObjectOut.getString(Attributes.ALUM_NOM_COMPLETO));
+                alumno.setCodGrupoAcademico(jsonObjectOut.getString(Attributes.ALUM_COD_GPO_ACADEMICO));
+
+                list.add(alumno);
+            }
+
+        } catch (Exception e) {
+            Log.d("SesionManage", "lista Alumno " + Log.getStackTraceString(e));
+        }
+
+        return list;
+    }
 
     public void closeSession() {
         this.editor.clear();
         this.editor.commit();
     }
-
-
 
 
 }

@@ -40,11 +40,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d(TAG, "Tocken: " + FirebaseInstanceId.getInstance().getToken());
-        FirebaseMessaging.getInstance().subscribeToTopic("1A2017");
-
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         this.sessionManager = new SessionManager(this);
+
+
+        //Log.d(TAG, "Tocken: " + FirebaseInstanceId.getInstance().getToken());
+        for (Alumno alumno : sessionManager.getListAlumnos()) {
+            FirebaseMessaging.getInstance().subscribeToTopic(alumno.getCodGrupoAcademico());
+        }
 
         iniciarUI();
 //        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,

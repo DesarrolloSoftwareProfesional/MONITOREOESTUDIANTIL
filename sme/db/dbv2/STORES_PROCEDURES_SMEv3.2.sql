@@ -181,6 +181,98 @@ DELIMITER ;
 
 
 -- -------------------------------------------------------------
+-- TABLA:					APODERADOS
+-- STORE PROCEDURE:			SP_APODERADOS_SELECT_ALUMNOS_BY_IDAPODERADO(?)
+-- DESCRIPCIÓN:				Buscar Alumnos por id del apoderado
+-- FECHA DE CREACIÓN:		2017-06-23
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_APODERADOS_SELECT_ALUMNOS_BY_IDAPODERADO;
+
+DELIMITER //
+CREATE PROCEDURE SP_APODERADOS_SELECT_ALUMNOS_BY_IDAPODERADO (IN p_idApoderado INT)
+BEGIN
+SELECT AL.idAlumno, AL.nomCompleto, AG.codGrupoAcademico FROM ALUMNOS AL
+INNER JOIN ALUMNOS_APODERADOS AA ON AL.idAlumno=AA.idAlumno
+INNER JOIN ALUMNOS_GRUPOACADEMICO AG ON AL.idAlumno=AG.idAlumno
+INNER JOIN APODERADOS AP ON AA.idApoderado=AP.idApoderado
+WHERE AP.idApoderado=p_idApoderado;
+END //
+DELIMITER ;
+
+-- CALL SP_APODERADOS_SELECT_ALUMNOS_BY_IDAPODERADO(1);
+
+
+
+-- -------------------------------------------------------------
+-- TABLA:					APODERADOS
+-- STORE PROCEDURE:			SP_APODERADOS_INSERT(?,?,?,?,?,?)
+-- DESCRIPCIÓN:				Registrar Apoderado
+-- FECHA DE CREACIÓN:		2017-06-23
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_APODERADOS_INSERT;
+
+DELIMITER //
+CREATE PROCEDURE SP_APODERADOS_INSERT
+(
+IN p_apPaternoApoderado varchar(60),
+IN p_apMaternoApoderado varchar(60),
+IN p_nombresApoderado varchar(60),
+IN p_dniApoderado char(8),
+IN p_fechaNacApoderado Date,
+IN p_direccionApoderado varchar(250)
+)
+BEGIN
+INSERT INTO APODERADOS
+(
+apPaternoApoderado,apMaternoApoderado,
+nombresApoderado,dniApoderado,fechaNacApoderado,
+direccionApoderado,nomCompleto
+)
+VALUES
+(
+p_apPaternoApoderado,p_apMaternoApoderado,p_nombresApoderado,
+p_dniApoderado,p_fechaNacApoderado,p_direccionApoderado,
+concat(p_apPaternoApoderado,' ',p_apMaternoApoderado,' ',p_nombresApoderado)
+);
+END //
+DELIMITER ;
+
+-- CALL SP_APODERADOS_INSERT('Perez','Hernandez','Raquel','46813788','1980-06-21','Aahh. Villa victor valiente b-18 ');
+
+
+
+-- -------------------------------------------------------------
+-- TABLA:					ALUMNOS_GRUPOACADEMICO
+-- STORE PROCEDURE:			SP_ALUMNOS_GRUPOACADEMICO_INSERT(?,?)
+-- DESCRIPCIÓN:				Registrar ALUMNOS_GRUPOACADEMICO
+-- FECHA DE CREACIÓN:		2017-06-23
+-- CREADO POR:				Palomino Rojas J. Abel
+-- FECHA DE MODIFICACIÓN:
+-- MODIFICADO POR:
+-- --------------------------------------------------------------
+
+-- DROP PROCEDURE SP_ALUMNOS_GRUPOACADEMICO_INSERT;
+DELIMITER //
+CREATE PROCEDURE SP_ALUMNOS_GRUPOACADEMICO_INSERT
+	(IN p_idAlumno INT,IN p_idApoderado INT)
+BEGIN
+	INSERT INTO ALUMNOS_GRUPOACADEMICO (idAlumno, idApoderado)
+	VALUES (p_idAlumno, p_idApoderado);
+END //
+DELIMITER ;
+
+-- CALL SP_ALUMNOS_GRUPOACADEMICO_INSERT(1,3);
+
+
+-- -------------------------------------------------------------
 -- TABLA:					NOTAS,
 -- STORE PROCEDURE:			SP_NOTAS_SELECT_ALL_BY_ID(?)
 -- DESCRIPCIÓN:				Listado de Notas por id del Alumno
@@ -924,7 +1016,7 @@ DELIMITER ;
 
 -- -------------------------------------------------------------
 -- TABLA:					NOTAS
--- STORE PROCEDURE:			SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO 
+-- STORE PROCEDURE:			SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO
 -- DESCRIPCIÓN:				Insertar Notas de Menores
 -- FECHA DE CREACIÓN:		2017-06-21
 -- CREADO POR:				Ronald Fabian Garcia
@@ -934,14 +1026,14 @@ DELIMITER ;
 -- DROP PROCEDURE SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO
 -- CALL SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(1,1,1);
 DELIMITER //
-CREATE PROCEDURE SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(IN idAlumno INT, 
-													 IN idCurso INT, 
+CREATE PROCEDURE SP_NOTAS_SELECT_ALUMNO_CURSO_PERIODO(IN idAlumno INT,
+													 IN idCurso INT,
 													 IN idPeriodo INT)
 BEGIN
-	SELECT idNota, 
-		   idAlumno, 
-           idCurso, 
-           idPeriodo, 
+	SELECT idNota,
+		   idAlumno,
+           idCurso,
+           idPeriodo,
            E.idEmpleado,
            E.dniEmpleado,
            TN.idTipoNota,
@@ -950,7 +1042,7 @@ BEGIN
     FROM NOTAS N
     INNER JOIN tiponotas TN
 		ON N.idTipoNota = TN.idTipoNota
-	INNER JOIN empleados E 
+	INNER JOIN empleados E
 		ON E.idEmpleado = N.idEmpleado
     WHERE N.idAlumno = idAlumno
     AND N.idCurso = idCurso

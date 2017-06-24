@@ -22,6 +22,6 @@ public class FcmTokenAsyncTask extends AsyncTask<JSONObject, Void, Response> {
     @Override
     protected void onPostExecute(Response response) {
         super.onPostExecute(response);
-        Log.d(TAG, "fcmUpdate" + response.getMsg());
+        Log.d(TAG, "fcmUpdate " + response.getMsg());
     }
 }

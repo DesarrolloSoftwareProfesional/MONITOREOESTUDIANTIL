@@ -23,6 +23,7 @@ public class Alumno {
     private int cantAct;
     private int periodo;
     private int promedioTotal;
+    private String codGrupoAcademico;
 
 
     public Alumno(String id, String apPaterno, String apMaterno, String nombres, String dni, String fechaNac, String direccion, String nomCompleto, boolean estadoRegistro) {
@@ -183,5 +184,13 @@ public class Alumno {
 
     public void setPromedioTotal(int promedioTotal) {
         this.promedioTotal = promedioTotal;
+    }
+
+    public String getCodGrupoAcademico() {
+        return codGrupoAcademico;
+    }
+
+    public void setCodGrupoAcademico(String codGrupoAcademico) {
+        this.codGrupoAcademico = codGrupoAcademico;
     }
 }

@@ -31,6 +31,9 @@ public class ServiceManager {
 
     //URL-APODERADO
     public static final String APODERADO_URL_LOGEO = DOMAIN + "apoderado/logeo";
+    public static String listaAlumnosByIDApoderado(Integer id) {
+        return DOMAIN + "apoderado/alumnoidapoderado/" + id;
+    }
 
     //URL-NOTAS
     public static final String NOTA_URL_PROMEDIO_TRIMESTRE = DOMAIN + "nota/promedioalumnotrimestre";
