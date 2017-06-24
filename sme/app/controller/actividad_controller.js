@@ -12,6 +12,7 @@ $(document).ready(main);
 //Funciones de Arranque
 function main() {
   getAllActividad();
+  getAllGrupoAcademicoLst();
 
   //Accion al hacer click en boton  Registrar Alumno
   $('#nuevaActividad').click(function() {
@@ -108,7 +109,7 @@ function getEmpleados(){
   });
 }
 
-//listar todos los grupos academicos
+//listar todos los grupos academicos, DEL MODAL
 function getAllGrupoAcademico() {
   $.ajax({
     dataType: DATA_TYPE_JSON,
@@ -125,6 +126,31 @@ function getAllGrupoAcademico() {
           value['anio'] +
           "</option>";
         $("#codGrupoAcademico").append(newrow);
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  });
+}
+
+//listar todos los grupos academicos, DE LA LISTA COMPLETA
+function getAllGrupoAcademicoLst() {
+  $.ajax({
+    dataType: DATA_TYPE_JSON,
+    contentType: CONTEN_TYPE_JSON,
+    type: METHOD_GET,
+    url: GRUPOACADEMICO_URL_LISTAR,
+    success: function(data) {
+      $("#slnGrupoAcademico").html('');
+      $("#slnGrupoAcademico").append("<option value='0' disabled selected> Seleccione Grupo Academico </option>");
+      $.each(data, function(key, value) {
+        var newrow = "<option value='" + value['codGrupoAcademico'] + "'>" +
+          value['idGrado'] + "° " +
+          value['codSeccion'] + " - " +
+          value['anio'] +
+          "</option>";
+        $("#slnGrupoAcademico").append(newrow);
       });
     },
     error: function(data) {
