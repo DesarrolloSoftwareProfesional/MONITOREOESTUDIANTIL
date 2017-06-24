@@ -64,6 +64,7 @@
 					<input type="button" class="btn btn-warning pull-right" style="margin:-7px 5px 5px 5px" id="btnBuscarNotas" value="Buscar Notas">
 				</div>
 			</div>
+		
 		<div id="divTabla">
 		 	<table class="table table-striped table-responsive table-bordered table-condensed table-hover">
 		 		<thead>
