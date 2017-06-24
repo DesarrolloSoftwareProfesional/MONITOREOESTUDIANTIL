@@ -86,7 +86,7 @@ function getAllAlumnos() {
 	          value['nombresAlumno'] 	+ "</td><td>" +
 	          value['dniAlumno'] 		+ "</td><td>" +
 	          value['fechaNacAlumno'] 	+ "</td><td>" +
-	          value['direccionAlumno'] 	+ "</td><td>" +
+	          value['direccionAlumno'] 	+ "</td><td style='text-align: center;'>" +
 	          value['codGrupoAcademico']+ "</td><td>" +
 	          "<button type='button' class='btn btn-xs btn-success' onclick='editarNotas(" + value['idAlumno'] + "," + value['dniAlumno'] + ")'>" +
 	          	"<span class='glyphicon glyphicon-pencil'>" + 

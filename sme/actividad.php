@@ -42,14 +42,23 @@
 <div class="container">
   <!-- nuevo registro -->
   <div class="row" style="padding: 1em;">
-    <input type="button" value="AGREGAR NUEVO REGISTRO" id="nuevaActividad" class="btn btn-primary"/>
+    <button type="button" class="btn btn-warning"  id="nuevaActividad">Nuevo Registro</button>
+    <!-- <input type="button" value="AGREGAR NUEVO REGISTRO" id="nuevaActividad" class="btn btn-primary"/> -->
+    <button type="button" class="btn btn-warning" onclick="javascript:window.print()" id="btnImprimirActividades">Imprimir Actividades</button>
   </div>
   <!-- /nuevo registro -->
   <!-- listado -->
   <div style="text-align: center;">
+<<<<<<< HEAD
     <table class="table table-bordered table-hover table-condensed">
       <thead style="background:#419641; color:#fff; text-align:center;">
         <tr>
+=======
+    <table class="table table-striped table-responsive table-bordered table-condensed table-hover">
+      <thead >
+        <tr class="warning">
+          <th style="text-align:center;">Cod</th>
+>>>>>>> origin/master
           <th style="text-align:center;">Grupo Academico</th>
           <th style="text-align:center;">Profesor</th>
           <th style="text-align:center;">Actividad</th>
@@ -141,7 +150,8 @@
               </div>
           </div>
           <div class="modal-footer">
-            <input type="button" class="btn btn-primary btn-block " id="guardarActividad" value="Registrar">
+            <!-- <input type="button" class="btn btn-primary btn-block " id="guardarActividad" value="Registrar"> -->
+            <button type="button" class="btn btn-warning btn-block"  id="guardarActividad">Registrar</button>
           </div>
         </div>
         </form>

@@ -52,7 +52,7 @@ function getAllActividad() {
           value['horaInicio'] + "</td><td>" +
           value['horaFin'] + "</td><td>" +
           "<button type='button' class='btn btn-xs btn-success' onclick='searchActividad(" + value['idActividad'] + ")'>" +
-          "<span class='glyphicon glyphicon-refresh'></button></td><td>" +
+          "<span class='glyphicon glyphicon-pencil'></button></td><td>" +
           "<button type='button' class='btn btn-xs btn-danger' onclick='deleteActividad(" + value['idActividad'] + ")'>" +
           "<span class='glyphicon glyphicon-trash'></button></td><tr>";
 
@@ -171,7 +171,7 @@ function saveActividad() {
 function searchActividad(id) {
   getAllGrupoAcademico();
   getAllCursos();
-
+  getEmpleados();
   $.ajax({
     dataType: DATA_TYPE_JSON,
     contentType: CONTEN_TYPE_JSON,
