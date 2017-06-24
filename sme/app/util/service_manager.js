@@ -9,7 +9,7 @@ const CONTEN_TYPE_JSON = "application/json; charset=utf-8";
 const ACCION_REGISTRAR = "Registrar";
 const ACCION_ACTUALIZAR = "Actualizar";
 
-const URL_BASE = "http://192.168.137.157/sise/sme/api/";
+const URL_BASE = "http://10.66.10.192/sise/sme/api/";
 
 const ALUMNO_URL_LISTAR = URL_BASE + "alumno/listar";
 const ALUMNO_URL_BUSCAR = URL_BASE + "alumno/buscar/";
@@ -25,7 +25,7 @@ const ACTIVIDAD_URL_REGISTAR = URL_BASE + "actividad/registrar";
 const ACTIVIDAD_URL_ACTUALIZAR = URL_BASE + "actividad/actualizar";
 const ACTIVIDAD_URL_ELIMINAR = URL_BASE + "actividad/eliminar/";
 const ACTIVIDAD_URL_BUSCAR_NOTIFICACION = URL_BASE + "actividad/notificacion/";
-
+const ACTIVIDAD_URL_BUSCAR_GPO = URL_BASE + "actividad/gpoacademico/";
 
 const CURSO_URL_LISTAR = URL_BASE + "curso/listar";
 

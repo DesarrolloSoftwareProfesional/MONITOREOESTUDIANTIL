@@ -578,7 +578,7 @@ DELIMITER //
 CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_ID(IN p_idActividad INT)
  BEGIN
 	SELECT
-		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+		A.idActividad,A.idEmpleado,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
 		A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
     TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
     A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado

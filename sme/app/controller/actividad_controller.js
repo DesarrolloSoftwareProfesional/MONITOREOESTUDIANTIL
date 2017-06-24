@@ -14,13 +14,13 @@ function main() {
   getAllActividad();
   getAllGrupoAcademicoLst();
 
+  getAllGrupoAcademico();
+  getAllCursos();
+  getEmpleados();
   //Accion al hacer click en boton  Registrar Alumno
   $('#nuevaActividad').click(function() {
     document.getElementById("guardarActividad").value = ACCION_REGISTRAR;
     clearInputs();
-    getAllGrupoAcademico();
-    getAllCursos();
-    getEmpleados();
     showModal();
   });
 
@@ -193,15 +193,13 @@ function saveActividad() {
     }
 
   });
-
-
 }
 
 //Metodo para buscar una categoria por su ID
 function searchActividad(id) {
-  getAllGrupoAcademico();
-  getAllCursos();
-  getEmpleados();
+  //getAllGrupoAcademico();
+  //getAllCursos();
+  //getEmpleados();
   $.ajax({
     dataType: DATA_TYPE_JSON,
     contentType: CONTEN_TYPE_JSON,
@@ -227,13 +225,13 @@ function searchActividad(id) {
 function getActividadByIdGpoAcademico(){
   
   var idGpoAcademico=$("#slnGrupoAcademico").val();
-  let url_select = (idGpoAcademico=="0")?ACTIVIDAD_URL_LISTAR:ACTIVIDAD_URL_BUSCAR + idGpoAcademico;
+  let url_select = (idGpoAcademico=="0")?ACTIVIDAD_URL_LISTAR:ACTIVIDAD_URL_BUSCAR_GPO + idGpoAcademico;
 
   $.ajax({
       dataType: DATA_TYPE_JSON,
       contentType: CONTEN_TYPE_JSON,
       type: METHOD_GET,
-      url: url_select,
+      url:  url_select,
       success: function(data) {
         $("#tblActividad").html('');
 
@@ -263,7 +261,6 @@ function getActividadByIdGpoAcademico(){
 
 //Metodo para eliminar una categoria por su ID
 function deleteActividad(id) {
-
   if (confirm('Desea eliminar este registo?')) {
 
     $.ajax({
