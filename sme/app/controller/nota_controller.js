@@ -109,6 +109,7 @@ function editarNotas(idAlumno,dniAlumno){
 	getTipoNotas();
 	getCursos();
 	getPeriodos();
+	getEmpleados();
 	showModal();
 	variables.abrioDetalle = true;
 	$("#txtDNI").val(dniAlumno);
@@ -342,9 +343,9 @@ function BuscarNotasAlumno(){
 	        var newrow = "<tr><td>" 	+
 	          //value['idAlumno'] 		+ "</td><td>" +
 	          value['nomTipoNota']	+ "</td><td>" +
-	          value['dniEmpleado'] 	+ "</td><td>" +
-	          value['nota'] 	+ "</td><td>" +
-	          "<button style='text-align:center' type='button' class='btn btn-xs btn-danger' onclick='eliminarNota(" + value['idNota'] +")'>" +
+	          value['nomCompleto'] 	+ "</td><td>" +
+	          value['nota'] 	+ "</td><td style='text-align: center;'>" +
+	          "<button type='button' class='btn btn-xs btn-danger' onclick='eliminarNota(" + value['idNota'] +")'>" +
 	          	"<span class='glyphicon glyphicon-remove'>" + 
 	          "</button>" 				+ 
 	          "</td></tr>";
