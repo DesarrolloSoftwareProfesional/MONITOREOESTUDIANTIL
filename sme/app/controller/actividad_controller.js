@@ -43,8 +43,8 @@ function getAllActividad() {
 
       $.each(data, function(key, value) {
         var newrow = "<tr><td>" +
-          value['idActividad'] + "</td><td>" +
           value['codGrupoAcademico'] + "</td><td>" +
+          value['nomCompleto'] + "</td><td>" +
           value['nomActividad'] + "</td><td>" +
           value['descrActividad'] + "</td><td>" +
           value['nomCurso'] + "</td><td>" +

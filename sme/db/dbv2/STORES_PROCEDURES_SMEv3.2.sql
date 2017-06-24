@@ -547,12 +547,13 @@ DELIMITER //
 CREATE PROCEDURE SP_ACTIVIDADES_SELECT_ALL()
  BEGIN
 	SELECT
-		A.idActividad,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
+		A.idActividad,E.nomCompleto,A.codGrupoAcademico,A.nomActividad, A.descrActividad,
 		A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
     TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
     A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
 	FROM
 		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
+        INNER JOIN empleados E ON A.idEmpleado = E.idEmpleado
 	ORDER BY A.idActividad DESC;
 END //
 DELIMITER ;

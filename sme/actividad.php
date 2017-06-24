@@ -50,8 +50,8 @@
     <table class="table table-bordered table-hover table-condensed">
       <thead style="background:#419641; color:#fff; text-align:center;">
         <tr>
-          <th style="text-align:center;">Cod</th>
           <th style="text-align:center;">Grupo Academico</th>
+          <th style="text-align:center;">Profesor</th>
           <th style="text-align:center;">Actividad</th>
           <th style="text-align:center;">Detalle</th>
           <th style="text-align:center;">Curso</th>
