@@ -46,9 +46,7 @@
 										<select class="form-control" id="slnTipoNota">
 											<option value='0' disabled selected> Seleccione Tipo de Nota </option>"
 										</select>
-
-
-
+										
 										<input type="number" id="txtvalornota" class="form-control" placeholder="Nota" min="0"  max="20" maxlength="99">
 									</div>
 								</div>

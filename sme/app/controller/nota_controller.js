@@ -90,7 +90,7 @@ function getAllAlumnos() {
 	          "<button type='button' class='btn btn-xs btn-success' onclick='editarNotas(" + value['idAlumno'] + "," + value['dniAlumno'] + ")'>" +
 	          	"<span class='glyphicon glyphicon-pencil'>" + 
 	          "</button>" 				+ "</td><td>" +
-	          "<button type='button' class='btn btn-xs btn-info' onclick='consultarNotas(" + value['idAlumno'] + "," +  value['codGrupoAcademico'] + ")'>" +
+	          "<button type='button' class='btn btn-xs btn-info' onclick='consultarNotas(" + value['idAlumno'] + "," +  value['dniAlumno'] + ")'>" +
 	          	"<span class='glyphicon glyphicon-search'>" +
 	          "</button>" +
 	          "</td></tr>";
@@ -349,4 +349,8 @@ function eliminarNota(idNota){
 	    });
 
   	}	
+}
+
+function consultarNotas(idAlumno,dniAlumno){
+	window.open("notaImpresion.php");
 }
