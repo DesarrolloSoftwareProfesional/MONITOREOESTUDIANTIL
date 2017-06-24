@@ -704,7 +704,7 @@ DELIMITER //
 CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO(IN p_codGrupoAcademico VARCHAR(6))
  BEGIN
 	SELECT
-		A.idActividad,A.codGrupoAcademico,E.nomCompleto,A.nomActividad, A.descrActividad,
+		A.idActividad,A.codGrupoAcademico,E.nomCompletoSP_EMPLEADOS_SELECT_ALL,A.nomActividad, A.descrActividad,
 		A.idCurso,C.nomCurso, DATE_FORMAT(A.fechaRealizacion,'%d-%m-%Y') as 'fechaRealizacion',
     TIME_FORMAT(A.horaInicio, '%h:%i %p') as 'horaInicio',TIME_FORMAT(A.horaFin, '%h:%i %p') as 'horaFin',
     A.frecuenciaAviso, A.flag_Notificado, A.idEmpleado
@@ -1078,7 +1078,6 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE SP_EMPLEADOS_SELECT_ALL()
 BEGIN
-	SELECT e.idEmpleado, concat(e.apPaternoEmpleado , " " , e.apMaternoEmpleado , " " , e.nombresEmpleado) as nomEmpleado FROM empleados e
-    where e.idPerfil=3;
+	SELECT e.idEmpleado, concat(e.apPaternoEmpleado , " " , e.apMaternoEmpleado , " " , e.nombresEmpleado) as nomEmpleado FROM empleados e;
 END //
 DELIMITER ;
