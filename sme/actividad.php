@@ -49,16 +49,10 @@
   <!-- /nuevo registro -->
   <!-- listado -->
   <div style="text-align: center;">
-<<<<<<< HEAD
-    <table class="table table-bordered table-hover table-condensed">
-      <thead style="background:#419641; color:#fff; text-align:center;">
-        <tr>
-=======
     <table class="table table-striped table-responsive table-bordered table-condensed table-hover">
       <thead >
         <tr class="warning">
           <th style="text-align:center;">Cod</th>
->>>>>>> origin/master
           <th style="text-align:center;">Grupo Academico</th>
           <th style="text-align:center;">Profesor</th>
           <th style="text-align:center;">Actividad</th>
