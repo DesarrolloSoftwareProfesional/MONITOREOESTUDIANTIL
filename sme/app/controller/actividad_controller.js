@@ -30,7 +30,8 @@ function main() {
   });
 
   $('#slnGrupoAcademico').on('change', function() {
-    getAllActividad();
+    getActividadByIdGpoAcademico();
+
   })
 }
 
@@ -226,12 +227,13 @@ function searchActividad(id) {
 function getActividadByIdGpoAcademico(){
   
   var idGpoAcademico=$("#slnGrupoAcademico").val();
+  let url_select = (idGpoAcademico=="0")?ACTIVIDAD_URL_LISTAR:ACTIVIDAD_URL_BUSCAR + idGpoAcademico;
 
   $.ajax({
       dataType: DATA_TYPE_JSON,
       contentType: CONTEN_TYPE_JSON,
       type: METHOD_GET,
-      url: ACTIVIDAD_URL_BUSCAR + idGpoAcademico,
+      url: url_select,
       success: function(data) {
         $("#tblActividad").html('');
 

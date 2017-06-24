@@ -698,9 +698,10 @@ DELIMITER ;
 -- --------------------------------------------------------------
 
 -- DROP PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO;
+-- CALL SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO
 
 DELIMITER //
-CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO(IN p_codGrupoAcademico CHAR(6))
+CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO(IN p_codGrupoAcademico VARCHAR(6))
  BEGIN
 	SELECT
 		A.idActividad,A.codGrupoAcademico,E.nomCompleto,A.nomActividad, A.descrActividad,
@@ -710,12 +711,12 @@ CREATE PROCEDURE SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO(IN p_codGrupoAcademico CH
 	FROM
 		ACTIVIDADES A INNER JOIN CURSOS C ON A.idCurso = C.idCurso
         INNER JOIN empleados E ON A.idEmpleado = E.idEmpleado
-	WHERE A.codGrupoAcademico=p_codGrupoAcademico
+	WHERE ( p_codGrupoAcademico = '0' OR A.codGrupoAcademico=p_codGrupoAcademico)
 	ORDER BY A.idActividad DESC;
 END //
 DELIMITER ;
 
--- CALL SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO('2B2017');
+-- CALL SP_ACTIVIDADES_SELECT_BY_GPOACADEMICO('1D2017');
 
 
 -- -------------------------------------------------------------
