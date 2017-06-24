@@ -41,10 +41,15 @@
 <!-- contenedor -->
 <div class="container">
   <!-- nuevo registro -->
-  <div class="row" style="padding: 1em;">
+  <div class="row form-inline" style="padding: 1em;">
     <button type="button" class="btn btn-warning"  id="nuevaActividad">Nuevo Registro</button>
     <!-- <input type="button" value="AGREGAR NUEVO REGISTRO" id="nuevaActividad" class="btn btn-primary"/> -->
-    <button type="button" class="btn btn-warning" onclick="javascript:window.print()" id="btnImprimirActividades">Imprimir Actividades</button>
+    <div class="pull-right">
+      <select class="form-control" id="slnGrupoAcademico" style="width: 200px">
+          <option value='0' selected="selected"> Todos </option>"
+        </select>
+      <button type="button" class="btn btn-warning" onclick="javascript:window.print()" id="btnImprimirActividades">Imprimir Actividades</button>
+    </div>
   </div>
   <!-- /nuevo registro -->
   <!-- listado -->
@@ -52,7 +57,6 @@
     <table class="table table-striped table-responsive table-bordered table-condensed table-hover">
       <thead >
         <tr class="warning">
-          <th style="text-align:center;">Cod</th>
           <th style="text-align:center;">Grupo Academico</th>
           <th style="text-align:center;">Profesor</th>
           <th style="text-align:center;">Actividad</th>
