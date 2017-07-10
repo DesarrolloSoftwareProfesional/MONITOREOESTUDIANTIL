@@ -185,7 +185,8 @@ function saveActividad() {
         dataForNotification(objActividad.id);
       }
       console.log(data);
-      getAllActividad();
+      //getAllActividad();
+      getActividadByIdGpoAcademico();
       hideModal();
     },
     error: function(data) {
@@ -271,7 +272,8 @@ function deleteActividad(id) {
       success: function(data) {
         ("true" === data.state) ? msg_success(data.msg): msg_error(data.msg);
         console.log(data);
-        getAllActividad();
+        //getAllActividad();
+        getActividadByIdGpoAcademico();
       },
       error: function(data) {
         console.log(data);
